@@ -13,6 +13,7 @@ export default function AnimationHero() {
   const titlesRef = useRef<HTMLDivElement[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [showOverlay, setShowOverlay] = useState(true);
   const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, "-");
   const slides = [
     {
@@ -156,8 +157,7 @@ export default function AnimationHero() {
         duration: 0.8,
         ease: "power2.out",
         onComplete: () => {
-          // Opcional: remover overlay después de animación
-          overlayRef.current?.remove();
+          setShowOverlay(false);
         },
       });
     }
@@ -169,7 +169,9 @@ export default function AnimationHero() {
       className="relative w-full h-screen overflow-hidden bg-black"
     >
       {/* Overlay oscuro inicial */}
-      <div ref={overlayRef} className="absolute inset-0 bg-black z-30"></div>
+      {showOverlay && (
+        <div ref={overlayRef} className="absolute inset-0 bg-black z-30"></div>
+      )}
       {slides.map((slide, i) => (
         <div
           key={i}

@@ -28,7 +28,10 @@ export default function Page() {
 
   return (
     <div className="bg-white relative text-black">
-      <Hero />
+      <div className="relative">
+        <Hero />
+        <SearchBar floating={showNavbar} />
+      </div>
       <AnimationHero />
       <div
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
@@ -39,7 +42,6 @@ export default function Page() {
       >
         <Navbar />
       </div>
-      <SearchBar floating={showNavbar} />
       <Banner />
 
       {/* Sección Our Promise existente */}

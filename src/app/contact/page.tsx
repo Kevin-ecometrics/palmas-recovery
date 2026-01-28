@@ -135,12 +135,13 @@ const ContactPage: React.FC = () => {
             {/* Mapa */}
             <div className="rounded-xl overflow-hidden shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3362.590066209535!2d-117.0109032!3d32.5253886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d949a52b4f2a03%3A0x37d02f82b0d5c2f1!2sPalmas%20Recovery!5e0!3m2!1sen!2smx!4v1699120000000!5m2!1sen!2smx"
-                width="100%"
-                height="220"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12088.580052987509!2d-117.023245165386!3d32.52914205537506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d94932f905417b%3A0x6c8cc8c7050e7276!2sPalmas%20Recovery!5e0!3m2!1ses-419!2smx!4v1769628420070!5m2!1ses-419!2smx"
+                width="400"
+                height="300"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>

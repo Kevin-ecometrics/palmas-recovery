@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FaInstagram } from "react-icons/fa";
 
 const IMAGES_TOP = [
   "https://images.unsplash.com/photo-1501117716987-c8e1ecb2106d?w=800&q=80",
@@ -61,9 +62,16 @@ export default function InfiniteImageBanner() {
           <h2 className="text-4xl font-serif mb-4">Collecting</h2>
           <p className="text-4xl font-serif italic mb-6">unique moments</p>
 
-          <span className="inline-flex items-center gap-2 bg-[#c7bddf] text-black px-5 py-2 rounded-md text-sm">
-            @oneshot_hotels
-          </span>
+          <a
+            href="https://www.instagram.com/palmasrecovery/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium text-white shadow-md hover:shadow-lg transition bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#515BD4]"
+            aria-label="Visit @palmasrecovery on Instagram"
+          >
+            <FaInstagram size={16} />
+            @palmasrecovery
+          </a>
         </div>
 
         {/* BOTTOM ROW */}

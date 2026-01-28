@@ -132,12 +132,11 @@ export default function SearchBar({ floating }: Props) {
     <>
       <div
         className={`
-          left-1/2 -translate-x-1/2
           transition-all duration-700 ease-out
           ${
             floating
-              ? "fixed bottom-8 z-40 scale-95"
-              : "absolute bottom-12 z-20"
+              ? "fixed bottom-8 left-1/2 -translate-x-1/2 z-40 scale-95"
+              : "absolute bottom-12 right-6 md:right-12 z-20"
           }
         `}
       >
