@@ -1,56 +1,27 @@
+"use client";
+
 import { useState } from "react";
 import { FaStar, FaCalendarAlt, FaPhone, FaChevronDown } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
+import { getLocalizedPath } from "@/i18n/routeMap";
 export default function ImprovedSections() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const router = useRouter();
-  const testimonials = [
-    {
-      name: "Sarah M.",
-      story:
-        "The care and comfort here made my recovery journey peaceful and effective.",
-      rating: 5,
-      procedure: "Post-Surgical Care",
-      avatar: "S",
-    },
-    {
-      name: "James L.",
-      story: "Outstanding medical support in a truly healing environment.",
-      rating: 5,
-      procedure: "Rehabilitation",
-      avatar: "J",
-    },
-    {
-      name: "Maria K.",
-      story: "Felt like home from the first day. The staff is incredible.",
-      rating: 5,
-      procedure: "Recovery Program",
-      avatar: "M",
-    },
-  ];
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
+  const testimonials = t("about.testimonials", { returnObjects: true }) as Array<{
+    name: string;
+    story: string;
+    rating: number;
+    procedure: string;
+    avatar: string;
+  }>;
 
-  const faqs = [
-    {
-      question: "What types of recovery do you specialize in?",
-      answer:
-        "We specialize in post-surgical recovery, chronic illness management, and rehabilitation services.",
-    },
-    {
-      question: "How long is the typical stay?",
-      answer:
-        "Stay duration varies based on individual needs, typically ranging from 2 weeks to 3 months.",
-    },
-    {
-      question: "Do you accept insurance?",
-      answer:
-        "We work with most major insurance providers and offer flexible payment options.",
-    },
-    {
-      question: "Can family members visit?",
-      answer:
-        "Yes, we have designated visiting hours and family support programs.",
-    },
-  ];
+  const faqs = t("about.faq.items", { returnObjects: true }) as Array<{
+    question: string;
+    answer: string;
+  }>;
 
   return (
     <div className="bg-white">
@@ -59,10 +30,10 @@ export default function ImprovedSections() {
         <div className="container mx-auto px-8">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 text-principal  bg-clip-text">
-              Patient Stories
+              {t("about.patientStories.title")}
             </h2>
             <p className="text-xl text-gray-600">
-              Hear from those who've walked the path to recovery
+              {t("about.patientStories.subtitle")}
             </p>
           </div>
 
@@ -108,27 +79,30 @@ export default function ImprovedSections() {
 
         <div className="container mx-auto px-8 text-center relative z-10">
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Ready to Begin Your Journey?
+            {t("about.cta.title")}
           </h2>
           <p className="text-xl mb-12 max-w-2xl mx-auto opacity-95">
-            Contact us today to learn more about our facilities and how we can
-            support your recovery.
+            {t("about.cta.description")}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <button
-              onClick={() => router.push("/panorama")}
+              onClick={() =>
+                router.push(getLocalizedPath("/panorama", currentLang))
+              }
               className="group bg-white text-principal px-10 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:scale-105 flex items-center justify-center gap-3"
             >
               <FaCalendarAlt className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              Schedule a Tour
+              {t("about.cta.schedule")}
             </button>
             <button
-              onClick={() => router.push("/contact")}
+              onClick={() =>
+                router.push(getLocalizedPath("/contact", currentLang))
+              }
               className="group border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-principal transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3"
             >
               <FaPhone className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-              Contact Us
+              {t("about.cta.contact")}
             </button>
           </div>
         </div>
@@ -139,9 +113,9 @@ export default function ImprovedSections() {
         <div className="container mx-auto px-8">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-principal">
-              Frequently Asked Questions
+              {t("about.faq.title")}
             </h2>
-            <p className="text-xl text-gray-600">Everything you need to know</p>
+            <p className="text-xl text-gray-600">{t("about.faq.subtitle")}</p>
           </div>
 
           <div className="max-w-4xl mx-auto space-y-4">

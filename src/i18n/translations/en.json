@@ -1,0 +1,842 @@
+{
+  "common": {
+    "language": "Language",
+    "english": "EN",
+    "spanish": "ES",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "viewTour": "View tour",
+    "scroll": "Scroll",
+    "bookNow": "Book Now",
+    "bookNowUpper": "BOOK NOW",
+    "contactUs": "Contact Us",
+    "scheduleTour": "Schedule a Tour",
+    "learnMore": "Learn More",
+    "showLess": "Show Less",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "confirmStay": "Confirm Stay",
+    "confirmGuests": "Confirm Guests",
+    "apply": "Apply",
+    "applyDiscount": "Apply Discount",
+    "clearCode": "Clear Code",
+    "selectRoom": "Select Room",
+    "select": "Select",
+    "details": "Details",
+    "guest_one": "guest",
+    "guest_other": "guests",
+    "night_one": "night",
+    "night_other": "nights",
+    "hotel_one": "Hotel",
+    "hotel_other": "Hotels",
+    "perNight": "/ night",
+    "perNightShort": "per night",
+    "total": "Total",
+    "totalLower": "total",
+    "legal": "Legal",
+    "viewHotels": "View hotels"
+  },
+  "brand": {
+    "name": "Palmas Recovery",
+    "tagline": "Post-Op & Recovery",
+    "address": {
+      "line1": "Fray Servando Teresa de Mier",
+      "line2": "15-Interior 2",
+      "line3": "Zona Urbana Rio Tijuana",
+      "line4": "22010 Tijuana, B.C."
+    },
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "available": "AVAILABLE 24/7",
+    "roundTheClock": "Round-the-clock care & support"
+  },
+  "navbar": {
+    "items": {
+      "home": "HOME",
+      "book": "BOOK TODAY",
+      "services": "SERVICES",
+      "contact": "CONTACT US",
+      "panorama": "PANORAMA"
+    },
+    "logoAlt": "Palmas Recovery logo"
+  },
+  "footer": {
+    "description": "Premier post-surgical recovery facility in Tijuana, providing exceptional care and comfort.",
+    "quickLinks": "Quick Links",
+    "links": {
+      "home": "Home",
+      "book": "Book Today",
+      "services": "Services",
+      "contact": "Contact Us",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "contactTitle": "Contact Us",
+    "connectTitle": "Connect With Us",
+    "rights": "All rights reserved.",
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "tiktok": "TikTok"
+    }
+  },
+  "home": {
+    "promise": {
+      "label": "Our Promise",
+      "title": "Rest, Recover, Renew",
+      "description": "Each room is thoughtfully crafted for your comfort, privacy, and healing — ensuring every moment of your recovery feels like home.",
+      "values": [
+        {
+          "title": "Comfort",
+          "desc": "Thoughtfully designed spaces for peace and relaxation."
+        },
+        {
+          "title": "Privacy",
+          "desc": "Your personal sanctuary for uninterrupted recovery."
+        },
+        {
+          "title": "Healing",
+          "desc": "A nurturing environment that promotes well-being."
+        }
+      ]
+    },
+    "hero": {
+      "slides": [
+        {
+          "id": "shared-room",
+          "title": "Shared Room",
+          "subtitle": "Community & Connection",
+          "description": "Experience healing in a supportive group environment"
+        },
+        {
+          "id": "private-room",
+          "title": "Private Room",
+          "subtitle": "Personal Sanctuary",
+          "description": "Your own space for reflection and recovery"
+        },
+        {
+          "id": "vip-suite",
+          "title": "VIP Suite",
+          "subtitle": "Ultimate Comfort",
+          "description": "Premium amenities for an elevated experience"
+        }
+      ],
+      "viewTour": "View tour",
+      "scroll": "Scroll"
+    },
+    "heroVideo": {
+      "words": ["place", "moment", "experience", "story", "adventure"],
+      "subtitle": "Life is what you experience when every moment counts.",
+      "cta": "Learn more"
+    }
+  },
+  "audience": {
+    "items": {
+      "parejas": {
+        "label": "Couples",
+        "description": "Enjoy unique moments with the one you love most in spaces designed for intimacy."
+      },
+      "negocios": {
+        "label": "Work + Leisure",
+        "description": "Comfort, location, and a welcoming atmosphere. Our hotels are designed for those who combine work and leisure."
+      },
+      "urbano": {
+        "label": "Urban Explorer",
+        "description": "Experience the city at your own pace. Dive into its culture and feel the pulse. One Shot Hotels gives you the perfect place."
+      },
+      "familia": {
+        "label": "Family & Friends",
+        "description": "Laughs, plans, and moments to disconnect await you. One Shot Hotels is your meeting point right in the city center."
+      }
+    }
+  },
+  "banner": {
+    "exclusive": "Exclusive Benefits:",
+    "items": [
+      "Rewards available",
+      "Late check-out until 1:00 PM",
+      "Exclusive promotions",
+      "Best price guaranteed",
+      "Last rooms available",
+      "Late check-out until 1:00 PM"
+    ]
+  },
+  "bannerAbout": {
+    "title": "ONEshot Friends",
+    "subtitle": "Join our club and enjoy exclusive benefits",
+    "button": "More information"
+  },
+  "bannerWithImage": {
+    "title": "The joy of travel. Where design meets authenticity.",
+    "subtitle": "Experience urban essence at One Shot Hotels. From Madrid to San Sebastián, Valencia, Seville, Porto, and Barcelona, our prime locations bring you closer to the vibrant energy of each city. Stroll through streets steeped in history, uncover hidden gems, and immerse yourself in the unique character that defines each destination.",
+    "button": "READ MORE"
+  },
+  "about": {
+    "patientStories": {
+      "title": "Patient Stories",
+      "subtitle": "Hear from those who've walked the path to recovery"
+    },
+    "testimonials": [
+      {
+        "name": "Sarah M.",
+        "story": "The care and comfort here made my recovery journey peaceful and effective.",
+        "procedure": "Post-Surgical Care",
+        "avatar": "S",
+        "rating": 5
+      },
+      {
+        "name": "James L.",
+        "story": "Outstanding medical support in a truly healing environment.",
+        "procedure": "Rehabilitation",
+        "avatar": "J",
+        "rating": 5
+      },
+      {
+        "name": "Maria K.",
+        "story": "Felt like home from the first day. The staff is incredible.",
+        "procedure": "Recovery Program",
+        "avatar": "M",
+        "rating": 5
+      }
+    ],
+    "cta": {
+      "title": "Ready to Begin Your Journey?",
+      "description": "Contact us today to learn more about our facilities and how we can support your recovery.",
+      "schedule": "Schedule a Tour",
+      "contact": "Contact Us"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know",
+      "items": [
+        {
+          "question": "What types of recovery do you specialize in?",
+          "answer": "We specialize in post-surgical recovery, chronic illness management, and rehabilitation services."
+        },
+        {
+          "question": "How long is the typical stay?",
+          "answer": "Stay duration varies based on individual needs, typically ranging from 2 weeks to 3 months."
+        },
+        {
+          "question": "Do you accept insurance?",
+          "answer": "We work with most major insurance providers and offer flexible payment options."
+        },
+        {
+          "question": "Can family members visit?",
+          "answer": "Yes, we have designated visiting hours and family support programs."
+        }
+      ]
+    }
+  },
+  "infiniteBanner": {
+    "title1": "Collecting",
+    "title2": "unique moments",
+    "ctaAria": "Visit @palmasrecovery on Instagram"
+  },
+  "uniqueHotels": {
+    "title": "Unique Hotels",
+    "description": "Every corner of One Shot Hotels reflects the unique character of its surroundings, blending elegance with functionality. Enjoy hotels where art, design, and comfort come together to turn your journey into an unforgettable stay.",
+    "bullets": [
+      "+ Boutique hotels in urban settings",
+      "+ Locations in prime areas",
+      "+ Buildings with character",
+      "+ Spaces both original and design-led",
+      "+ Promoting art and culture",
+      "+ Exceptional service"
+    ],
+    "prev": "Previous image",
+    "next": "Next image"
+  },
+  "destinations": {
+    "title": "Choose your destination and explore our hotels"
+  },
+  "rooms": {
+    "shared": {
+      "name": "Shared Room",
+      "subtitle": "POPULAR",
+      "tagline": "Comfortable & Affordable",
+      "description": "Experience exceptional care in a shared space designed for comfort and connection. Ideal for guests seeking professional recovery services.",
+      "imageAlt": "Shared Room",
+      "beds": "Adjustable Medical Bed",
+      "size": "Shared Space",
+      "amenities": ["Adjustable Medical Bed", "Shared Bathroom", "Air Conditioning", "Smart TV"],
+      "features": ["24/7 Medical Assistance", "Daily Cleaning", "All Meals Included"],
+      "highlight": "POPULAR",
+      "tag": "POPULAR",
+      "tagDescription": "Comfortable & Affordable"
+    },
+    "private": {
+      "name": "Private Room",
+      "subtitle": "RECOMMENDED",
+      "tagline": "Your Personal Sanctuary",
+      "description": "Find tranquility and privacy in your own recovery space. Our private rooms offer modern medical comfort.",
+      "imageAlt": "Private Room",
+      "beds": "Adjustable Medical Bed",
+      "size": "Private Room",
+      "amenities": ["Adjustable Medical Bed", "Private Bathroom", "Air Conditioning", "Smart TV"],
+      "features": ["Full Privacy", "Personalized Attention"],
+      "highlight": "RECOMMENDED",
+      "tag": "RECOMMENDED",
+      "tagDescription": "Your Personal Sanctuary"
+    },
+    "vip": {
+      "name": "VIP Suite",
+      "subtitle": "PREMIUM",
+      "tagline": "The Ultimate Luxury Experience",
+      "description": "Immerse yourself in unmatched comfort and privacy. Premium furnishings combined with top-tier medical care.",
+      "imageAlt": "VIP Suite",
+      "beds": "Premium Adjustable Medical Bed",
+      "size": "Luxury Suite",
+      "amenities": ["Adjustable Medical Bed", "Private Bathroom", "Private Entrance with Terrace", "Air Conditioning", "Smart TV"],
+      "features": ["Maximum Privacy", "Premium Amenities"],
+      "highlight": "PREMIUM",
+      "tag": "PREMIUM",
+      "tagDescription": "The Ultimate Luxury Experience"
+    }
+  },
+  "roomsPage": {
+    "heroTitle": "Your Recovery, Our Priority",
+    "heroDescription": "Experience personalized post-surgical care where medical excellence meets luxury comfort.",
+    "exploreRooms": "EXPLORE ROOMS",
+    "contactUs": "CONTACT US",
+    "ourSpaces": "Our Spaces",
+    "discoverTitle": "Discover Your Place of Healing",
+    "discoverDescription": "Each suite is designed to nurture your recovery with serenity, comfort, and personalized care.",
+    "amenitiesTitle": "Luxury Amenities",
+    "viewDetails": "VIEW DETAILS",
+    "limited": "Limited availability • Instant confirmation"
+  },
+  "roomDetail": {
+    "exploreMore": "EXPLORE MORE",
+    "discoverOtherSuites": "Discover Our Other Luxury Suites",
+    "otherSuitesDescription": "Each space is uniquely designed to provide the perfect environment for your recovery journey.",
+    "viewDetails": "View Details",
+    "viewAllRooms": "View All Rooms",
+    "startingFrom": "Starting from",
+    "taxesIncluded": "Taxes & services included",
+    "medicalAssistance": "24/7 Medical Assistance",
+    "allMeals": "All Meals Included",
+    "dailyCleaning": "Daily Professional Cleaning",
+    "privacy": "Complete Privacy & Security",
+    "bookThisRoom": "BOOK THIS ROOM",
+    "instantConfirmation": "⚡ Instant confirmation",
+    "secureBooking": "🔒 Secure booking",
+    "bestPrice": "🏆 Best price guaranteed",
+    "needHelp": "Need help?",
+    "contactTeam": "Contact our team",
+    "readyTitle": "Ready to begin your recovery journey?",
+    "readyDescription": "Experience world-class post-surgical care in an environment designed for healing and comfort.",
+    "bookNow": "Book Now",
+    "scheduleTour": "Schedule a Tour",
+    "roomSpecs": "Room Specifications",
+    "bedType": "Bed Type",
+    "roomSize": "Room Size",
+    "capacity": "Capacity",
+    "medicalFeatures": "Medical Features",
+    "premiumAmenities": "Premium Amenities",
+    "allInclusive": "All inclusive • No hidden fees",
+    "more": "more",
+    "total": "total"
+  },
+  "booking": {
+    "title": "Book Your Stay",
+    "subtitle": "Complete the details to reserve your recovery space.",
+    "steps": {
+      "select": "Select",
+      "details": "Details",
+      "confirm": "Confirm"
+    },
+    "selectRoomTitle": "Select Your Room",
+    "perNight": "per night",
+    "roomDescription": "Room Description",
+    "guestLabel": "guest",
+    "guestsLabel": "guests",
+    "stayDetails": "Stay Details",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "period": "Period",
+    "to": "to",
+    "specialRequests": "Special Requests",
+    "assistance": "24/7 assistance",
+    "paymentMethod": "Payment Method",
+    "paymentCard": "Credit / Debit Card",
+    "paymentCash": "Cash",
+    "paymentTransfer": "Bank Transfer",
+    "paymentPayPal": "PayPal",
+    "confirmBooking": "Confirm Booking",
+    "back": "Back",
+    "next": "Next",
+    "summary": "Booking Summary",
+    "nights": "Nights",
+    "extras": "Extras",
+    "total": "Total",
+    "taxesIncluded": "Taxes and services included",
+    "taxesIncludedShort": "Taxes included",
+    "estimatedTotal": "Estimated total",
+    "included": "Included in your stay:",
+    "personalizedSupport": "Personalized support",
+    "productGallery": "Product Gallery",
+    "bookingComplete": "Booking completed! We will contact you to confirm.",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "specialRequestsPlaceholder": "Any special requests or medical notes...",
+    "selectRoomHelper": "Select one of the rooms below to continue.",
+    "extrasTitle": "Recovery Essentials",
+    "extrasSubtitle": "Add recovery garments to your stay.",
+    "extrasNote": "Optional add-ons will be charged at checkout.",
+    "extrasCta": "Browse extra items",
+    "extrasPrice": "Price",
+    "extrasViewGallery": "View gallery",
+    "extrasAdd": "Add",
+    "extrasRemove": "Remove",
+    "extrasSelected": "Selected extras",
+    "detailsTitle": "Your Details",
+    "confirmTitle": "Review & Confirm",
+    "successTitle": "Thanks for your booking!",
+    "successSubtitle": "We will reach out shortly to confirm your reservation.",
+    "cancellationTitle": "Cancellation Policy",
+    "cancellationItems": [
+      "Free cancellation up to 48 hours before check-in",
+      "50% refund for cancellations within 48 hours",
+      "A 30% deposit is required to confirm the booking",
+      "No-show policy: full stay charge"
+    ],
+    "fields": {
+      "checkIn": "Check-in date",
+      "checkOut": "Check-out date",
+      "guests": "Number of guests",
+      "fullName": "Full name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "specialRequests": "Special requests"
+    }
+  },
+  "searchBar": {
+    "roomType": "Room Type",
+    "guests": "Guests",
+    "selectRoom": "Select Room",
+    "stayDuration": "Stay Duration",
+    "promotion": "Promotion",
+    "addCode": "Add code",
+    "saveUpTo": "Save up to {{percent}}%",
+    "totalWithValue": "Total: ${{value}}",
+    "maxGuests": "Max: {{count}}",
+    "roomTypePanelTitle": "Select Your Room Type",
+    "accommodates_one": "Accommodates up to {{count}} guest",
+    "accommodates_other": "Accommodates up to {{count}} guests",
+    "bathroomLabel": "Bathroom",
+    "bathroom": {
+      "shared": "Shared",
+      "private": "Private"
+    },
+    "luxuryAmenities": "Luxury Amenities",
+    "numberOfGuests": "Number of Guests",
+    "maximumCapacity_one": "Maximum capacity: {{count}} guest",
+    "maximumCapacity_other": "Maximum capacity: {{count}} guests",
+    "noteTitle": "Note:",
+    "sharedNote": "For shared rooms, additional guests may be placed with other patients in recovery.",
+    "durationTitle": "Select Stay Duration",
+    "duration": {
+      "oneNight": "1 night",
+      "threeNights": "3 nights",
+      "oneWeek": "1 week",
+      "twoWeeks": "2 weeks",
+      "oneMonth": "1 month"
+    },
+    "recommended": "RECOMMENDED",
+    "save": "SAVE {{percent}}%",
+    "pricePerNight": "Price per night:",
+    "nights": "Nights:",
+    "promoTitle": "Apply Promotion Code",
+    "promoCardTitle": "Special Recovery Discounts",
+    "promoCardSubtitle": "Apply a code for exclusive savings on medical recovery stays",
+    "promoPlaceholder": "Enter promo code",
+    "availableCodes": "Available Codes",
+    "promoExamples": {
+      "recovery20": "20% off all stays",
+      "health15": "15% off for healthcare workers",
+      "welcome10": "10% off first booking"
+    },
+    "apply": "APPLY"
+  },
+  "contact": {
+    "titleStart": "Let's",
+    "titleHighlight": "Connect",
+    "subtitle": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    "formTitle": "Send us a Message",
+    "fullName": "Full Name *",
+    "email": "Email Address *",
+    "phone": "Phone Number",
+    "message": "Your Message *",
+    "messagePlaceholder": "Tell us how we can help you...",
+    "namePlaceholder": "John Doe",
+    "emailPlaceholder": "john@example.com",
+    "phonePlaceholder": "+1 (555) 000-0000",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully. We'll get back to you soon.",
+    "error": "Failed to send message.",
+    "infoTitle": "Contact Information"
+  },
+  "services": {
+    "heroLabel": "Premium Post-Surgical Care",
+    "heroTitle": "Your Recovery, Our Priority",
+    "heroSubtitle": "At Palmas Recovery, we blend medical excellence with luxury hospitality to create the perfect environment for your healing journey.",
+    "stats": [
+      { "stat": "500+", "label": "Successful Recoveries" },
+      { "stat": "100%", "label": "Licensed Medical Staff" },
+      { "stat": "24/7", "label": "Care & Support" },
+      { "stat": "5★", "label": "Patient Satisfaction" }
+    ],
+    "sectionTitle": "Comprehensive Care Services",
+    "sectionSubtitle": "Every aspect of your recovery is carefully managed by our dedicated team of healthcare professionals.",
+    "core": [
+      {
+        "title": "24/7 Medical Supervision",
+        "description": "Round-the-clock professional care ensures your comfort and safety during recovery.",
+        "details": [
+          "Licensed nursing staff on-site 24 hours",
+          "Vital signs monitoring",
+          "Immediate emergency response",
+          "Direct coordination with your surgeon"
+        ]
+      },
+      {
+        "title": "Personalized Care Plans",
+        "description": "Every guest receives a recovery plan tailored by our experienced healthcare team.",
+        "details": [
+          "Custom recovery timeline",
+          "Medication management",
+          "Progress tracking & documentation",
+          "Regular health assessments"
+        ]
+      },
+      {
+        "title": "Luxury Accommodations",
+        "description": "Experience a serene, hotel-style environment that promotes healing and relaxation.",
+        "details": [
+          "Private & shared room options",
+          "Premium bedding & linens",
+          "Climate-controlled comfort",
+          "Entertainment systems"
+        ]
+      },
+      {
+        "title": "Gourmet Meal Service",
+        "description": "Enjoy nutritious, chef-prepared meals designed to aid your post-surgical recovery.",
+        "details": [
+          "Doctor-approved nutrition plans",
+          "Fresh, locally-sourced ingredients",
+          "Accommodates dietary restrictions",
+          "Three meals + snacks daily"
+        ]
+      },
+      {
+        "title": "Wellness & Comfort",
+        "description": "Holistic approach to recovery including relaxation and gentle therapeutic activities.",
+        "details": [
+          "Comfortable common areas",
+          "Outdoor garden access",
+          "Entertainment options",
+          "Quiet relaxation spaces"
+        ]
+      },
+      {
+        "title": "Medication Management",
+        "description": "Professional administration and monitoring of all prescribed medications.",
+        "details": [
+          "Timely medication delivery",
+          "Side effect monitoring",
+          "Pharmacy coordination",
+          "Detailed medication logs"
+        ]
+      }
+    ],
+    "commitmentTitle": "Our Commitment to Excellence",
+    "commitmentSubtitle": "Driven by purpose, guided by compassion, dedicated to your recovery.",
+    "missionTitle": "Our Mission",
+    "missionText": "Provide the best post-surgical recovery service in a timely, efficient, and warm manner, ensuring a healthy return to your daily life with the highest standards of medical care and personal attention.",
+    "visionTitle": "Our Vision",
+    "visionText": "To be Tijuana's most trusted post-surgical recovery spa, recognized internationally for excellence in service, state-of-the-art facilities, and compassionate care that transforms the recovery experience.",
+    "ctaTitle": "Ready to Begin Your Recovery?",
+    "ctaSubtitle": "Experience the difference that professional care and luxury comfort make in your post-surgical journey.",
+    "ctaBook": "Book Your Stay",
+    "ctaContact": "Contact Us",
+    "ctaQuestions": "Questions? Call us at"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "We respect your privacy and are committed to protecting your personal information.",
+    "sections": [
+      {
+        "title": "1. Information We Collect",
+        "content": "We collect information you provide directly, such as your name, email, phone number, booking details, and special requests. We may also collect basic usage data to improve site performance."
+      },
+      {
+        "title": "2. How We Use Information",
+        "list": [
+          "Process bookings and provide requested services.",
+          "Respond to inquiries and customer support requests.",
+          "Improve our services, website, and user experience.",
+          "Send operational communications related to your stay."
+        ]
+      },
+      {
+        "title": "3. Cookies and Analytics",
+        "content": "We may use cookies and similar technologies to measure usage and improve our website. You can control cookies through your browser settings."
+      },
+      {
+        "title": "4. Sharing of Information",
+        "content": "We do not sell your personal information. We may share information with trusted service providers who help operate our website or deliver services, subject to confidentiality obligations."
+      },
+      {
+        "title": "5. Data Security",
+        "content": "We use reasonable administrative and technical safeguards to protect your information. No system is 100% secure, and we cannot guarantee absolute security."
+      },
+      {
+        "title": "6. Your Rights",
+        "content": "You may request access, correction, or deletion of your personal data by contacting us. We will respond in accordance with applicable law."
+      },
+      {
+        "title": "7. Contact Us",
+        "content": "For privacy-related questions, contact us at palmasrecoveryspa@gmail.com."
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "subtitle": "Please review these terms carefully before using our services.",
+    "sections": [
+      {
+        "title": "1. Acceptance of Terms",
+        "content": "By accessing or using our website and services, you agree to these Terms & Conditions. If you do not agree, please do not use the site."
+      },
+      {
+        "title": "2. Booking and Payments",
+        "list": [
+          "Reservations are subject to availability and confirmation.",
+          "A deposit may be required to secure your booking.",
+          "Prices are subject to change without notice."
+        ]
+      },
+      {
+        "title": "3. Cancellations",
+        "content": "Cancellation policies may vary by room type and season. Please review your confirmation details for applicable terms."
+      },
+      {
+        "title": "4. Use of the Website",
+        "content": "You agree not to misuse the website, interfere with its functionality, or attempt unauthorized access."
+      },
+      {
+        "title": "5. Liability Disclaimer",
+        "content": "Our services are provided \"as is\". We are not liable for indirect or consequential damages arising from the use of our website or services, to the extent permitted by law."
+      },
+      {
+        "title": "6. Changes to Terms",
+        "content": "We may update these Terms from time to time. Continued use of the website constitutes acceptance of the updated Terms."
+      },
+      {
+        "title": "7. Contact Us",
+        "content": "If you have questions about these Terms, contact us at palmasrecoveryspa@gmail.com."
+      }
+    ]
+  },
+  "tour": {
+    "private": {
+      "heroLabel": "Tour • Private Room",
+      "title": "Private Room",
+      "subtitle": "Serenity & Total Privacy",
+      "description": "A quiet, elegant room designed for uninterrupted recovery, personal attention, and complete peace of mind.",
+      "book": "BOOK THIS ROOM",
+      "ask": "ASK A QUESTION",
+      "highlightsLabel": "Designed for Recovery",
+      "highlightsTitle": "Private Comforts",
+      "highlightsSubtitle": "Ideal for guests who value privacy and personalized support.",
+      "highlights": [
+        {
+          "title": "Quiet & Restful",
+          "desc": "Sound-minimized design with calming lighting and premium bedding."
+        },
+        {
+          "title": "Personal Attention",
+          "desc": "Dedicated care and frequent check-ins tailored to your recovery."
+        },
+        {
+          "title": "Elegant Space",
+          "desc": "Warm, minimal décor with upscale finishes and a soothing palette."
+        }
+      ],
+      "detailsLabel": "Room Details",
+      "detailsTitle": "A Private Sanctuary for Healing",
+      "detailsText": "Our private rooms offer a tranquil recovery experience with added space, privacy, and comfort. Perfect for guests seeking a calm, personalized environment while recovering.",
+      "features": [
+        "King or queen bed with premium linens",
+        "En-suite bathroom with safety features",
+        "Daily housekeeping & linen refresh",
+        "24/7 nursing access and monitoring",
+        "Smart TV, Wi‑Fi, and relaxation lounge",
+        "Nutrition-focused meal plan"
+      ],
+      "reserve": "RESERVE NOW",
+      "viewAll": "VIEW ALL ROOMS",
+      "faqTitle": "Frequently Asked Questions",
+      "faqSubtitle": "Answers about our private room experience.",
+      "faq": [
+        {
+          "q": "Is the room fully private?",
+          "a": "Yes. You have a single-occupancy room with private amenities and dedicated care."
+        },
+        {
+          "q": "Can I have a companion stay with me?",
+          "a": "In many cases, yes. Please contact us to confirm availability and policies."
+        },
+        {
+          "q": "What is included in the nightly rate?",
+          "a": "Your stay includes nursing support, meals, daily housekeeping, and access to all wellness amenities."
+        }
+      ],
+      "ctaTitle": "Ready to Book Your Private Room?",
+      "ctaSubtitle": "We'll help you plan a quiet, comfortable stay with personalized care.",
+      "ctaBook": "BOOK NOW",
+      "ctaTalk": "TALK TO US"
+    },
+    "shared": {
+      "heroLabel": "Tour • Shared Room",
+      "title": "Shared Room",
+      "subtitle": "Comfort, Care & Calm",
+      "description": "A welcoming, peaceful space designed for recovery with attentive care, elegant finishes, and a warm community atmosphere.",
+      "book": "BOOK THIS ROOM",
+      "ask": "ASK A QUESTION",
+      "highlightsLabel": "Designed for Recovery",
+      "highlightsTitle": "What You'll Love",
+      "highlightsSubtitle": "A balanced blend of privacy, companionship, and comfort — with every detail curated for healing.",
+      "highlights": [
+        {
+          "title": "Restful Comfort",
+          "desc": "Premium bedding, soothing lighting, and quiet ambiance for deep rest."
+        },
+        {
+          "title": "Nursing Support",
+          "desc": "On-site staff and daily check-ins to ensure your recovery stays on track."
+        },
+        {
+          "title": "Wellness Amenities",
+          "desc": "Nutritious meals, hydration, and gentle mobility assistance."
+        }
+      ],
+      "detailsLabel": "Room Details",
+      "detailsTitle": "A Shared Space That Feels Like Home",
+      "detailsText": "Our shared room option offers a comfortable, supportive atmosphere that many guests love. It's ideal for those who prefer gentle companionship while still enjoying personal privacy and excellent care.",
+      "features": [
+        "Two twin beds with premium linens",
+        "En-suite bathroom with safety features",
+        "Daily housekeeping & linen refresh",
+        "24/7 nursing access and monitoring",
+        "Wi‑Fi, streaming, and reading lounge",
+        "Healthy meal plan tailored to recovery"
+      ],
+      "reserve": "RESERVE NOW",
+      "viewAll": "VIEW ALL ROOMS",
+      "faqTitle": "Frequently Asked Questions",
+      "faqSubtitle": "Everything you need to know about our shared room option.",
+      "faq": [
+        {
+          "q": "Is the shared room private enough?",
+          "a": "Yes. Each guest has a dedicated bed space with privacy considerations, and our staff ensures a calm, respectful environment."
+        },
+        {
+          "q": "Can I request a specific roommate?",
+          "a": "When possible, we'll accommodate preferences based on availability and recovery compatibility."
+        },
+        {
+          "q": "What is included in the nightly rate?",
+          "a": "Your stay includes nursing support, meals, daily housekeeping, and access to all wellness amenities."
+        }
+      ],
+      "ctaTitle": "Ready to Book Your Shared Room?",
+      "ctaSubtitle": "Let us take care of the details while you focus on healing. We'll help you plan the perfect stay.",
+      "ctaBook": "BOOK NOW",
+      "ctaTalk": "TALK TO US"
+    },
+    "vip": {
+      "heroLabel": "Tour • VIP Suite",
+      "title": "VIP Suite",
+      "subtitle": "Luxury Recovery Experience",
+      "description": "Indulge in a spacious, private suite featuring elevated comfort, refined amenities, and priority care throughout your recovery.",
+      "book": "BOOK THIS SUITE",
+      "ask": "ASK A QUESTION",
+      "highlightsLabel": "Elevated Comfort",
+      "highlightsTitle": "The VIP Difference",
+      "highlightsSubtitle": "A premium experience for guests seeking the highest level of care and comfort.",
+      "highlights": [
+        {
+          "title": "Spacious Suite",
+          "desc": "Generous layout with a lounge area for rest and companionship."
+        },
+        {
+          "title": "Priority Service",
+          "desc": "Enhanced nursing attention and personalized recovery support."
+        },
+        {
+          "title": "Premium Amenities",
+          "desc": "Upgraded bedding, curated wellness products, and luxury touches."
+        }
+      ],
+      "detailsLabel": "Suite Details",
+      "detailsTitle": "A Luxury Space for Rest & Recovery",
+      "detailsText": "The VIP Suite offers a refined recovery environment with elevated finishes, dedicated support, and extra space for comfort. Perfect for guests seeking premium privacy and care.",
+      "features": [
+        "King bed with premium linens and recovery pillows",
+        "Private lounge and relaxation seating",
+        "En-suite spa-inspired bathroom",
+        "Priority nursing support and monitoring",
+        "Smart TV, Wi‑Fi, and curated entertainment",
+        "Chef-guided recovery meals"
+      ],
+      "reserve": "RESERVE NOW",
+      "viewAll": "VIEW ALL ROOMS",
+      "faqTitle": "Frequently Asked Questions",
+      "faqSubtitle": "Details about the VIP Suite experience.",
+      "faq": [
+        {
+          "q": "What makes the VIP Suite different?",
+          "a": "It offers extra space, upgraded amenities, and priority care for a premium recovery experience."
+        },
+        {
+          "q": "Can family stay with me?",
+          "a": "In many cases, yes. We can accommodate a companion—please contact us for details."
+        },
+        {
+          "q": "What is included in the nightly rate?",
+          "a": "Your stay includes premium support, meals, daily housekeeping, and access to all wellness amenities."
+        }
+      ],
+      "ctaTitle": "Ready to Book the VIP Suite?",
+      "ctaSubtitle": "Enjoy premium privacy, comfort, and care in our most exclusive suite.",
+      "ctaBook": "BOOK NOW",
+      "ctaTalk": "TALK TO US"
+    }
+  },
+  "panorama": {
+    "dragHint": "Drag to explore • 360°",
+    "labels": {
+      "studio": "Studio",
+      "playRoom": "Play Room",
+      "riverAlcove": "River Alcove",
+      "moonLab": "Moon Lab",
+      "germanTown": "German Town"
+    }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist. It might have been removed or the URL is incorrect.",
+    "cta": "Go Back Home"
+  },
+  "testPage": {
+    "title": "Content that follows",
+    "description": "Here the scroll is released. The image finished its animation and now the content flows normally downward."
+  }
+}

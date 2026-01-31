@@ -15,106 +15,36 @@ import {
 } from "react-icons/fa";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { useTranslation } from "react-i18next";
+import { getLocalizedPath } from "@/i18n/routeMap";
 
 const ServicesPage: React.FC = () => {
   const [activeService, setActiveService] = useState<number | null>(null);
   const router = useRouter();
-  const coreServices = [
-    {
-      icon: <FaHeartbeat />,
-      title: "24/7 Medical Supervision",
-      description:
-        "Round-the-clock professional care ensures your comfort and safety during recovery.",
-      details: [
-        "Licensed nursing staff on-site 24 hours",
-        "Vital signs monitoring",
-        "Immediate emergency response",
-        "Direct coordination with your surgeon",
-      ],
-    },
-    {
-      icon: <FaUserMd />,
-      title: "Personalized Care Plans",
-      description:
-        "Every guest receives a recovery plan tailored by our experienced healthcare team.",
-      details: [
-        "Custom recovery timeline",
-        "Medication management",
-        "Progress tracking & documentation",
-        "Regular health assessments",
-      ],
-    },
-    {
-      icon: <FaConciergeBell />,
-      title: "Luxury Accommodations",
-      description:
-        "Experience a serene, hotel-style environment that promotes healing and relaxation.",
-      details: [
-        "Private & shared room options",
-        "Premium bedding & linens",
-        "Climate-controlled comfort",
-        "Entertainment systems",
-      ],
-    },
-    {
-      icon: <FaUtensils />,
-      title: "Gourmet Meal Service",
-      description:
-        "Enjoy nutritious, chef-prepared meals designed to aid your post-surgical recovery.",
-      details: [
-        "Doctor-approved nutrition plans",
-        "Fresh, locally-sourced ingredients",
-        "Accommodates dietary restrictions",
-        "Three meals + snacks daily",
-      ],
-    },
-    {
-      icon: <FaSpa />,
-      title: "Wellness & Comfort",
-      description:
-        "Holistic approach to recovery including relaxation and gentle therapeutic activities.",
-      details: [
-        "Comfortable common areas",
-        "Outdoor garden access",
-        "Entertainment options",
-        "Quiet relaxation spaces",
-      ],
-    },
-    {
-      icon: <FaPills />,
-      title: "Medication Management",
-      description:
-        "Professional administration and monitoring of all prescribed medications.",
-      details: [
-        "Timely medication delivery",
-        "Side effect monitoring",
-        "Pharmacy coordination",
-        "Detailed medication logs",
-      ],
-    },
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
+  const coreServices = t("services.core", { returnObjects: true }) as Array<{
+    title: string;
+    description: string;
+    details: string[];
+  }>;
+  const serviceIcons = [
+    <FaHeartbeat key="heart" />,
+    <FaUserMd key="doctor" />,
+    <FaConciergeBell key="concierge" />,
+    <FaUtensils key="meals" />,
+    <FaSpa key="spa" />,
+    <FaPills key="pills" />,
   ];
-
-  const whyChooseUs = [
-    {
-      icon: <FaAward />,
-      stat: "500+",
-      label: "Successful Recoveries",
-    },
-    {
-      icon: <FaShieldAlt />,
-      stat: "100%",
-      label: "Licensed Medical Staff",
-    },
-    {
-      icon: <FaBed />,
-      stat: "24/7",
-      label: "Care & Support",
-    },
-    {
-      icon: <FaCheckCircle />,
-      stat: "5★",
-      label: "Patient Satisfaction",
-    },
+  const whyChooseUs = t("services.stats", { returnObjects: true }) as Array<{
+    stat: string;
+    label: string;
+  }>;
+  const statIcons = [
+    <FaAward key="award" />,
+    <FaShieldAlt key="shield" />,
+    <FaBed key="bed" />,
+    <FaCheckCircle key="check" />,
   ];
 
   return (
@@ -130,17 +60,13 @@ const ServicesPage: React.FC = () => {
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <p className="text-white/90 font-semibold tracking-widest text-sm mb-6 uppercase animate-fade-in">
-            Premium Post-Surgical Care
+            {t("services.heroLabel")}
           </p>
           <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight">
-            Your Recovery,
-            <br />
-            Our Priority
+            {t("services.heroTitle")}
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-            At Palmas Recovery, we blend medical excellence with luxury
-            hospitality to create the perfect environment for your healing
-            journey.
+            {t("services.heroSubtitle")}
           </p>
         </div>
       </div>
@@ -151,7 +77,7 @@ const ServicesPage: React.FC = () => {
           {whyChooseUs.map((item, index) => (
             <div key={index} className="text-center group">
               <div className="inline-block text-principal text-4xl mb-3 transform group-hover:scale-110 transition-transform">
-                {item.icon}
+                {statIcons[index]}
               </div>
               <div className="text-3xl md:text-4xl font-bold text-principal mb-1">
                 {item.stat}
@@ -167,11 +93,10 @@ const ServicesPage: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
-              Comprehensive Care Services
+              {t("services.sectionTitle")}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Every aspect of your recovery is carefully managed by our
-              dedicated team of healthcare professionals.
+              {t("services.sectionSubtitle")}
             </p>
           </div>
 
@@ -186,7 +111,7 @@ const ServicesPage: React.FC = () => {
               >
                 <div className="p-8">
                   <div className="text-principal text-5xl mb-4 transform group-hover:scale-110 transition-transform">
-                    {service.icon}
+                    {serviceIcons[index]}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-principal transition-colors">
                     {service.title}
@@ -216,7 +141,9 @@ const ServicesPage: React.FC = () => {
                   </div>
 
                   <button className="mt-4 text-principal font-semibold text-sm flex items-center gap-2 hover:gap-3 transition-all">
-                    {activeService === index ? "Show Less" : "Learn More"}
+                    {activeService === index
+                      ? t("common.showLess")
+                      : t("common.learnMore")}
                     <span
                       className={`transform transition-transform ${
                         activeService === index ? "rotate-180" : ""
@@ -245,11 +172,10 @@ const ServicesPage: React.FC = () => {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-              Our Commitment to Excellence
+              {t("services.commitmentTitle")}
             </h2>
             <p className="text-white/90 text-lg max-w-2xl mx-auto">
-              Driven by purpose, guided by compassion, dedicated to your
-              recovery.
+              {t("services.commitmentSubtitle")}
             </p>
           </div>
 
@@ -260,13 +186,12 @@ const ServicesPage: React.FC = () => {
                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                   <FaHeartbeat className="text-3xl" />
                 </div>
-                <h3 className="text-3xl font-serif font-bold">Our Mission</h3>
+                <h3 className="text-3xl font-serif font-bold">
+                  {t("services.missionTitle")}
+                </h3>
               </div>
               <p className="text-white/95 text-lg leading-relaxed">
-                Provide the best post-surgical recovery service in a timely,
-                efficient, and warm manner, ensuring a healthy return to your
-                daily life with the highest standards of medical care and
-                personal attention.
+                {t("services.missionText")}
               </p>
             </div>
 
@@ -276,13 +201,12 @@ const ServicesPage: React.FC = () => {
                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                   <FaAward className="text-3xl" />
                 </div>
-                <h3 className="text-3xl font-serif font-bold">Our Vision</h3>
+                <h3 className="text-3xl font-serif font-bold">
+                  {t("services.visionTitle")}
+                </h3>
               </div>
               <p className="text-white/95 text-lg leading-relaxed">
-                To be Tijuana's most trusted post-surgical recovery spa,
-                recognized internationally for excellence in service,
-                state-of-the-art facilities, and compassionate care that
-                transforms the recovery experience.
+                {t("services.visionText")}
               </p>
             </div>
           </div>
@@ -293,28 +217,29 @@ const ServicesPage: React.FC = () => {
       <div className="py-20 px-6 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
-            Ready to Begin Your Recovery?
+            {t("services.ctaTitle")}
           </h2>
           <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Experience the difference that professional care and luxury comfort
-            make in your post-surgical journey.
+            {t("services.ctaSubtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => router.push("/book")}
+              onClick={() => router.push(getLocalizedPath("/book", currentLang))}
               className="bg-principal text-white px-10 py-4 rounded-lg font-bold hover:bg-principal/90 transition-all text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              Book Your Stay
+              {t("services.ctaBook")}
             </button>
             <button
-              onClick={() => router.push("/contact")}
+              onClick={() =>
+                router.push(getLocalizedPath("/contact", currentLang))
+              }
               className="border-2 border-principal text-principal px-10 py-4 rounded-lg font-bold hover:bg-principal hover:text-white transition-all text-lg"
             >
-              Contact Us
+              {t("services.ctaContact")}
             </button>
           </div>
           <p className="mt-8 text-gray-500 text-sm">
-            Questions? Call us at{" "}
+            {t("services.ctaQuestions")} {" "}
             <a href="tel:16199679558" className="text-principal font-semibold">
               +1 619-967-9558
             </a>

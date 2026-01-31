@@ -2,6 +2,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
+import { useTranslation } from "react-i18next";
 
 function SpherePanorama({ image, rotation }: { image: string; rotation: any }) {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -60,22 +61,14 @@ export default function Panorama360() {
   const lastX = useRef(0);
   const lastTime = useRef(0);
   const [activeImage, setActiveImage] = useState("/studio_small_09_4k.jpg");
+  const { t } = useTranslation();
 
   const images = [
-    { src: "/studio_small_09_4k.jpg", label: "Studio" },
-    { src: "/empty_play_room_2k.jpg", label: "Play Room" },
-    {
-      src: "/river_alcove_4k.jpg",
-      label: "River Alcove",
-    },
-    {
-      src: "/moon_lab_4k.jpg",
-      label: "Moon Lab",
-    },
-    {
-      src: "/german_town_street_4k.jpg",
-      label: "German Town",
-    },
+    { src: "/studio_small_09_4k.jpg", key: "studio" },
+    { src: "/empty_play_room_2k.jpg", key: "playRoom" },
+    { src: "/river_alcove_4k.jpg", key: "riverAlcove" },
+    { src: "/moon_lab_4k.jpg", key: "moonLab" },
+    { src: "/german_town_street_4k.jpg", key: "germanTown" },
   ];
 
   // Inercia
@@ -135,7 +128,7 @@ export default function Panorama360() {
 
       {/* Indicador */}
       <div className="absolute bottom-28 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
-        Arrastra para explorar • 360°
+        {t("panorama.dragHint")}
       </div>
 
       {/* Galería */}
@@ -152,11 +145,11 @@ export default function Panorama360() {
           >
             <img
               src={img.src}
-              alt={img.label}
+              alt={t(`panorama.labels.${img.key}`)}
               className="w-full h-full object-cover"
             />
             <span className="absolute bottom-0 left-0 right-0 bg-black/60 text-xs text-white py-1">
-              {img.label}
+              {t(`panorama.labels.${img.key}`)}
             </span>
           </button>
         ))}

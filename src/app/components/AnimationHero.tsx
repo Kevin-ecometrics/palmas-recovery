@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import { getTourPath } from "@/i18n/slugRoutes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,27 +16,27 @@ export default function AnimationHero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const overlayRef = useRef<HTMLDivElement>(null);
   const [showOverlay, setShowOverlay] = useState(true);
-  const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, "-");
-  const slides = [
-    {
-      image: "/shared-room.jpg",
-      title: "Shared Room",
-      subtitle: "Community & Connection",
-      description: "Experience healing in a supportive group environment",
-    },
-    {
-      image: "/private-room.jpg",
-      title: "Private Room",
-      subtitle: "Personal Sanctuary",
-      description: "Your own space for reflection and recovery",
-    },
-    {
-      image: "/vip-suite.jpeg",
-      title: "VIP Suite",
-      subtitle: "Ultimate Comfort",
-      description: "Premium amenities for an elevated experience",
-    },
-  ];
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
+  const slides = t("home.hero.slides", { returnObjects: true }) as Array<{
+    id: string;
+    title: string;
+    subtitle: string;
+    description: string;
+  }>;
+
+  const getSlideImage = (id: string) => {
+    switch (id) {
+      case "shared-room":
+        return "/shared-room.jpg";
+      case "private-room":
+        return "/private-room.jpg";
+      case "vip-suite":
+        return "/vip-suite.jpeg";
+      default:
+        return "/shared-room.jpg";
+    }
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -184,7 +186,7 @@ export default function AnimationHero() {
             ref={(el) => {
               if (el) imagesRef.current[i] = el;
             }}
-            src={slide.image}
+            src={getSlideImage(slide.id)}
             alt={slide.title}
             className="w-full h-full object-cover"
           />
@@ -211,7 +213,7 @@ export default function AnimationHero() {
               {slide.description}
             </p>
             <div className="mt-8 pointer-events-auto">
-              <Link href={`/tour/${slugify(slide.title)}`}>
+              <Link href={getTourPath(slide.id, currentLang)}>
                 <span
                   className="group relative inline-flex px-10 py-4 
       bg-transparent border-2 border-white rounded-xl 
@@ -219,7 +221,7 @@ export default function AnimationHero() {
       overflow-hidden transition-all duration-500"
                 >
                   <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
-                    Ver tour
+                  {t("home.hero.viewTour")}
                   </span>
 
                   <span
@@ -251,7 +253,7 @@ export default function AnimationHero() {
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20">
         <span className="text-white/60 text-xs uppercase tracking-[0.2em] font-light">
-          Scroll
+          {t("home.hero.scroll")}
         </span>
         <div className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center p-2">
           <div className="w-1 h-3 bg-white/60 rounded-full animate-bounce"></div>

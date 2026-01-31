@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const IMAGES = [
   "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80",
@@ -26,6 +27,8 @@ const variants = {
 
 export default function UniqueHotels() {
   const [[index, direction], setIndex] = useState<[number, number]>([0, 0]);
+  const { t } = useTranslation();
+  const bullets = t("uniqueHotels.bullets", { returnObjects: true }) as string[];
 
   const paginate = (newDirection: number) => {
     setIndex(([prev]) => {
@@ -43,34 +46,16 @@ export default function UniqueHotels() {
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-16 items-center px-6">
         {/* LEFT – STATIC TEXT */}
         <div>
-          <h2 className="text-4xl font-serif mb-6">Unique Hotels</h2>
+          <h2 className="text-4xl font-serif mb-6">{t("uniqueHotels.title")}</h2>
 
           <p className="text-sm max-w-md mb-10">
-            Every corner of One Shot Hotels reflects the unique character of its
-            surroundings, blending elegance with functionality. Enjoy hotels
-            where art, design, and comfort come together to turn your journey
-            into an unforgettable stay.
+            {t("uniqueHotels.description")}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-10 text-sm">
-            <p>
-              + Boutique hotels in <em>urban settings</em>
-            </p>
-            <p>
-              + Locations in <em>prime areas</em>
-            </p>
-            <p>
-              + Buildings with <em>character</em>
-            </p>
-            <p>
-              + Spaces both <em>original and design-led</em>
-            </p>
-            <p>
-              + Promoting <em>art and culture</em>
-            </p>
-            <p>
-              + Exceptional <em>service</em>
-            </p>
+            {bullets.map((item, idx) => (
+              <p key={idx}>{item}</p>
+            ))}
           </div>
         </div>
 
@@ -100,7 +85,7 @@ export default function UniqueHotels() {
             <button
               onClick={() => paginate(-1)}
               className="w-10 h-10 rounded-full bg-white/80 hover:bg-white transition flex items-center justify-center text-xl"
-              aria-label="Previous image"
+              aria-label={t("uniqueHotels.prev")}
             >
               ‹
             </button>
@@ -108,7 +93,7 @@ export default function UniqueHotels() {
             <button
               onClick={() => paginate(1)}
               className="w-10 h-10 rounded-full bg-white/80 hover:bg-white transition flex items-center justify-center text-xl"
-              aria-label="Next image"
+              aria-label={t("uniqueHotels.next")}
             >
               ›
             </button>

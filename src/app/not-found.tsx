@@ -2,9 +2,11 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 const NotFound: React.FC = () => {
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
@@ -12,17 +14,16 @@ const NotFound: React.FC = () => {
         404
       </h1>
       <h2 className="text-2xl md:text-3xl font-semibold text-slate-800 mb-6">
-        Page Not Found
+        {t("notFound.title")}
       </h2>
       <p className="text-slate-600 mb-8 max-w-lg">
-        Sorry, the page you are looking for does not exist. It might have been
-        removed or the URL is incorrect.
+        {t("notFound.description")}
       </p>
       <button
         onClick={() => router.push("/")}
         className="bg-gradient-to-r from-principal to-secundario text-white font-semibold py-3 px-6 rounded-lg hover:from-hover cursor-pointer hover:to-principal transition-all duration-200 transform hover:scale-[1.05]"
       >
-        Go Back Home
+        {t("notFound.cta")}
       </button>
     </div>
   );

@@ -20,11 +20,18 @@ import {
 import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/Navbar";
 import { ROOMS } from "../rooms/rooms.data";
+import { useTranslation } from "react-i18next";
+import { getLocalizedPath } from "@/i18n/routeMap";
 
 const BookingPage = () => {
   const router = useRouter();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
   const [step, setStep] = useState(1);
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+  const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
+  const [galleryExtraId, setGalleryExtraId] = useState<string | null>(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
   const [formData, setFormData] = useState({
     checkIn: "",
     checkOut: "",
@@ -36,17 +43,71 @@ const BookingPage = () => {
     paymentMethod: "credit-card",
   });
 
+  const extras = [
+    {
+      id: "b01g",
+      title: "ORIGINAL RECOVERY BRA - STYLE NO. B01G",
+      price: 80,
+      // link: "https://marena.com/collections/recovery-bras/products/original-recovery-bra-style-no-b01g",
+      images: ["/extra1-1.png", "/extra1-2.png", "/extra1-3.png"],
+    },
+    {
+      id: "fvom",
+      title: "OPEN BUST VEST - 3/4 LENGTH SLEEVES - STYLE NO. FVOM",
+      price: 80,
+      // link: "https://marena.com/products/fvom-compression-vest?_pos=1&_sid=06fdccf3c&_ss=r",
+      images: ["/extra2-1.png", "/extra2-2.png", "/extra2-3.png"],
+    },
+    {
+      id: "sfbhrs",
+      title:
+        "REINFORCED GIRDLE WITH HIGH-BACK AND LAYERED PANELS - SHORT LENGTH - STYLES NO. SFBHRS",
+      price: 140,
+      // link: "https://marena.com/products/girdle-with-high-back-and-reinforced-panels-short-length-style-no-sfbhs?_pos=1&_sid=54cd26453&_ss=r&variant=39327118655511",
+      images: ["/extra3-1.png", "/Extra3-2.png", "/extra3-3.png"],
+    },
+    {
+      id: "sfbhs2",
+      title: "GIRDLE WITH HIGH-BACK - NO CLOSURES - SHORT LENGHT - STYLE NO. SFBHS2",
+      price: 140,
+      // link: "https://marena.com/products/sfbhs2-compression-girdle?_pos=1&_sid=76a7163d2&_ss=r&variant=14424290918442",
+      images: ["/extra4-1.png", "/extra4-2.png", "/extra4.3.png"],
+    },
+  ];
+
   const selectedRoomData = selectedRoom
     ? ROOMS.find((r) => r.id === selectedRoom)
     : null;
+
+  const getRoomText = (id: string, key: string) => t(`rooms.${id}.${key}`);
 
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const target = e.target as HTMLInputElement;
+    const { name, value } = target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const toggleExtra = (id: string) => {
+    setSelectedExtras((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  const openGallery = (id: string, index: number) => {
+    setGalleryExtraId(id);
+    setGalleryIndex(index);
+  };
+
+  const closeGallery = () => {
+    setGalleryExtraId(null);
+    setGalleryIndex(0);
   };
 
   const calculateNights = () => {
@@ -57,9 +118,16 @@ const BookingPage = () => {
     return Math.ceil(diff / (1000 * 3600 * 24));
   };
 
+  const calculateExtrasTotal = () => {
+    return selectedExtras.reduce((total, id) => {
+      const extra = extras.find((item) => item.id === id);
+      return total + (extra?.price || 0);
+    }, 0);
+  };
+
   const calculateTotal = () => {
     if (!selectedRoomData || calculateNights() <= 0) return 0;
-    return selectedRoomData.price * calculateNights();
+    return selectedRoomData.price * calculateNights() + calculateExtrasTotal();
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -68,7 +136,7 @@ const BookingPage = () => {
       setStep(step + 1);
     } else {
       // Aquí iría la lógica de envío del formulario
-      alert("¡Reserva completada! Te contactaremos para confirmar.");
+      alert(t("booking.bookingComplete"));
       router.push("/");
     }
   };
@@ -97,10 +165,10 @@ const BookingPage = () => {
                   </div>
                   <span className="mt-2 text-sm font-medium text-gray-600">
                     {num === 1
-                      ? "Seleccionar"
+                      ? t("booking.steps.select")
                       : num === 2
-                      ? "Detalles"
-                      : "Confirmar"}
+                      ? t("booking.steps.details")
+                      : t("booking.steps.confirm")}
                   </span>
                 </div>
                 {num < 3 && (
@@ -120,11 +188,11 @@ const BookingPage = () => {
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Main Form */}
           <div className="lg:col-span-2">
-            <h1 className="text-4xl font-serif font-bold text-gray-900 mb-2">
-              Reserva tu Estancia
+              <h1 className="text-4xl font-serif font-bold text-gray-900 mb-2">
+              {t("booking.title")}
             </h1>
             <p className="text-gray-600 mb-10">
-              Completa los detalles para reservar tu espacio de recuperación.
+              {t("booking.subtitle")}
             </p>
 
             <form onSubmit={handleSubmit}>
@@ -133,7 +201,7 @@ const BookingPage = () => {
                 <div className="space-y-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                     <FaBed className="text-principal" />
-                    Selecciona tu Habitación
+                    {t("booking.selectRoomTitle")}
                   </h2>
 
                   <div className="space-y-6">
@@ -154,7 +222,7 @@ const BookingPage = () => {
                           <div className="md:w-1/3">
                             <img
                               src={room.image}
-                              alt={room.imageAlt}
+                              alt={getRoomText(room.id, "imageAlt")}
                               className="w-full h-48 object-cover rounded-xl"
                             />
                           </div>
@@ -163,17 +231,17 @@ const BookingPage = () => {
                               <div>
                                 <div className="flex items-center gap-3 mb-2">
                                   <span className="bg-principal text-white px-3 py-1 rounded-full text-xs font-bold">
-                                    {room.highlight}
+                                    {getRoomText(room.id, "highlight")}
                                   </span>
                                   <span className="text-sm text-gray-500">
-                                    {room.subtitle}
+                                    {getRoomText(room.id, "subtitle")}
                                   </span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-gray-900">
-                                  {room.name}
+                                  {getRoomText(room.id, "name")}
                                 </h3>
                                 <p className="text-gray-600 italic mb-3">
-                                  {room.tagline}
+                                  {getRoomText(room.id, "tagline")}
                                 </p>
                               </div>
                               <div className="text-right">
@@ -181,34 +249,36 @@ const BookingPage = () => {
                                   ${room.price}
                                 </div>
                                 <div className="text-gray-500 text-sm">
-                                  por noche
+                                  {t("booking.perNight")}
                                 </div>
                               </div>
                             </div>
 
                             <p className="text-gray-700 mb-4">
-                              {room.description}
+                              {getRoomText(room.id, "description")}
                             </p>
 
                             <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                               <div className="flex items-center gap-2">
                                 <FaUserFriends />
                                 <span>
-                                  {room.capacity} persona
-                                  {room.capacity > 1 ? "s" : ""}
+                                  {t("searchBar.accommodates", {
+                                    count: room.capacity,
+                                  })}
                                 </span>
                               </div>
                               <div className="flex items-center gap-2">
                                 <FaBath />
                                 <span>
-                                  {room.amenities.includes("Private Bathroom")
-                                    ? "Baño privado"
-                                    : "Baño compartido"}
+                                  {room.id === "shared"
+                                    ? t("searchBar.bathroom.shared")
+                                    : t("searchBar.bathroom.private")}{" "}
+                                  {t("searchBar.bathroomLabel")}
                                 </span>
                               </div>
                               <div className="flex items-center gap-2">
                                 <MdMedicalServices />
-                                <span>Asistencia 24/7</span>
+                                <span>{t("booking.assistance")}</span>
                               </div>
                             </div>
                           </div>
@@ -224,13 +294,13 @@ const BookingPage = () => {
                 <div className="space-y-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                     <FaCalendarAlt className="text-principal" />
-                    Detalles de la Reserva
+                    {t("booking.stayDetails")}
                   </h2>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Fecha de Ingreso
+                        {t("booking.fields.checkIn")}
                       </label>
                       <input
                         type="date"
@@ -244,7 +314,7 @@ const BookingPage = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Fecha de Salida
+                        {t("booking.fields.checkOut")}
                       </label>
                       <input
                         type="date"
@@ -258,7 +328,7 @@ const BookingPage = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Número de Huéspedes
+                        {t("booking.fields.guests")}
                       </label>
                       <select
                         name="guests"
@@ -268,7 +338,7 @@ const BookingPage = () => {
                       >
                         {[1, 2, 3, 4].map((num) => (
                           <option key={num} value={num}>
-                            {num} {num === 1 ? "persona" : "personas"}
+                            {num} {t("common.guest", { count: num })}
                           </option>
                         ))}
                       </select>
@@ -277,13 +347,13 @@ const BookingPage = () => {
 
                   <div className="space-y-6">
                     <h3 className="text-xl font-bold text-gray-900">
-                      Información Personal
+                      {t("booking.detailsTitle")}
                     </h3>
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Nombre Completo
+                          {t("booking.fields.fullName")}
                         </label>
                         <input
                           type="text"
@@ -297,7 +367,7 @@ const BookingPage = () => {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Email
+                          {t("booking.fields.email")}
                         </label>
                         <input
                           type="email"
@@ -311,7 +381,7 @@ const BookingPage = () => {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Teléfono
+                          {t("booking.fields.phone")}
                         </label>
                         <input
                           type="tel"
@@ -326,7 +396,7 @@ const BookingPage = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Solicitudes Especiales (opcional)
+                        {t("booking.fields.specialRequests")}
                       </label>
                       <textarea
                         name="specialRequests"
@@ -334,7 +404,7 @@ const BookingPage = () => {
                         onChange={handleInputChange}
                         rows={4}
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-principal focus:border-transparent"
-                        placeholder="Alergias alimentarias, necesidades médicas específicas, etc."
+                        placeholder={t("booking.specialRequestsPlaceholder")}
                       />
                     </div>
                   </div>
@@ -346,12 +416,12 @@ const BookingPage = () => {
                 <div className="space-y-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                     <FaCreditCard className="text-principal" />
-                    Confirmación y Pago
+                    {t("booking.confirmTitle")}
                   </h2>
 
                   <div className="bg-gray-50 rounded-2xl p-8">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">
-                      Resumen de la Reserva
+                      {t("booking.summary")}
                     </h3>
 
                     {selectedRoomData && (
@@ -359,10 +429,10 @@ const BookingPage = () => {
                         <div className="flex justify-between items-center pb-4 border-b">
                           <div>
                             <h4 className="font-bold text-gray-900">
-                              {selectedRoomData.name}
+                              {getRoomText(selectedRoomData.id, "name")}
                             </h4>
                             <p className="text-sm text-gray-600">
-                              {selectedRoomData.subtitle}
+                              {getRoomText(selectedRoomData.id, "subtitle")}
                             </p>
                           </div>
                           <div className="text-right">
@@ -370,64 +440,131 @@ const BookingPage = () => {
                               ${selectedRoomData.price}
                             </div>
                             <div className="text-sm text-gray-500">
-                              por noche
+                              {t("booking.perNight")}
                             </div>
                           </div>
                         </div>
 
                         <div className="space-y-3">
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Noches:</span>
+                            <span className="text-gray-600">{t("booking.nights")}:</span>
                             <span className="font-medium">
-                              {calculateNights()} noches
+                              {calculateNights()} {t("common.night", { count: calculateNights() })}
+                            </span>
+                          </div>
+                          {selectedExtras.length > 0 && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-600">{t("booking.extras")}:</span>
+                              <span className="font-medium">
+                                ${calculateExtrasTotal()}
+                              </span>
+                            </div>
+                          )}
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">{t("booking.guests")}:</span>
+                            <span className="font-medium">
+                              {formData.guests} {t("common.guest", { count: Number(formData.guests) })}
                             </span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-gray-600">Huéspedes:</span>
+                            <span className="text-gray-600">{t("booking.period")}:</span>
                             <span className="font-medium">
-                              {formData.guests} persona
-                              {formData.guests !== "1" ? "s" : ""}
-                            </span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">Período:</span>
-                            <span className="font-medium">
-                              {formData.checkIn} a {formData.checkOut}
+                              {formData.checkIn} {t("booking.to")} {formData.checkOut}
                             </span>
                           </div>
                         </div>
 
                         <div className="pt-4 border-t">
                           <div className="flex justify-between text-lg font-bold">
-                            <span>Total:</span>
+                            <span>{t("booking.total")}:</span>
                             <span>${calculateTotal()}</span>
                           </div>
                           <p className="text-sm text-gray-500 mt-1">
-                            Impuestos y servicios incluidos
+                            {t("booking.taxesIncluded")}
                           </p>
                         </div>
                       </div>
                     )}
                   </div>
 
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">
+                      {t("booking.extras")}
+                    </h3>
+                    <div className="space-y-6">
+                      {extras.map((extra) => {
+                        const isChecked = selectedExtras.includes(extra.id);
+                        return (
+                          <div
+                            key={extra.id}
+                            className="border border-gray-200 rounded-2xl p-4 md:p-5"
+                          >
+                            <div className="grid md:grid-cols-[140px_1fr_auto] gap-4 items-start">
+                              <button
+                                type="button"
+                                onClick={() => openGallery(extra.id, 0)}
+                                className="text-left"
+                              >
+                                <div className="space-y-2">
+                                  <img
+                                    src={extra.images[0]}
+                                    alt={extra.title}
+                                    className="w-full h-24 rounded-xl object-cover border border-cream"
+                                  />
+                                </div>
+                              </button>
+
+                              <div className="space-y-2">
+                                <p className="font-semibold text-gray-900 text-sm md:text-base leading-snug break-words">
+                                  {extra.title}
+                                </p>
+                                <p className="text-sm text-gray-600">
+                                  {t("booking.extrasPrice")}: {" "}
+                                  <span className="font-semibold">
+                                    ${extra.price} USD
+                                  </span>
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  {t("booking.extrasViewGallery")}
+                                </p>
+                              </div>
+
+                              <label className="flex items-start gap-2 cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  checked={isChecked}
+                                  onChange={() => toggleExtra(extra.id)}
+                                  className="mt-1 h-4 w-4 text-principal focus:ring-principal"
+                                />
+                                <span className="text-sm font-medium text-gray-700">
+                                  {t("booking.extrasAdd")}
+                                </span>
+                              </label>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
                   <div className="space-y-6">
                     <h3 className="text-xl font-bold text-gray-900">
-                      Método de Pago
+                      {t("booking.paymentMethod")}
                     </h3>
 
                     <div className="space-y-4">
                       {[
                         {
                           id: "credit-card",
-                          label: "Tarjeta de Crédito/Débito",
+                          label: t("booking.paymentCard"),
                           icon: "💳",
                         },
                         {
                           id: "bank-transfer",
-                          label: "Transferencia Bancaria",
+                          label: t("booking.paymentTransfer"),
                           icon: "🏦",
                         },
-                        { id: "paypal", label: "PayPal", icon: "🔗" },
+                        { id: "paypal", label: t("booking.paymentPayPal"), icon: "🔗" },
                       ].map((method) => (
                         <label
                           key={method.id}
@@ -458,22 +595,14 @@ const BookingPage = () => {
                   <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
                     <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
                       <FaShieldAlt className="text-blue-600" />
-                      Política de Cancelación
+                      {t("booking.cancellationTitle")}
                     </h4>
                     <ul className="space-y-2 text-blue-800 text-sm">
-                      <li>
-                        • Cancelación gratuita hasta 48 horas antes del ingreso
-                      </li>
-                      <li>
-                        • Reembolso del 50% por cancelaciones dentro de las 48
-                        horas
-                      </li>
-                      <li>
-                        • Se requiere depósito del 30% para confirmar la reserva
-                      </li>
-                      <li>
-                        • Política de no-show: cargo completo de la estadía
-                      </li>
+                      {(t("booking.cancellationItems", {
+                        returnObjects: true,
+                      }) as string[]).map((item) => (
+                        <li key={item}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -487,7 +616,7 @@ const BookingPage = () => {
                     onClick={() => setStep(step - 1)}
                     className="px-8 py-4 border-2 border-gray-300 text-gray-700 font-bold rounded-full hover:border-gray-400 transition-all"
                   >
-                    ← Volver
+                    ← {t("booking.back")}
                   </button>
                 ) : (
                   <div></div>
@@ -504,7 +633,9 @@ const BookingPage = () => {
                     }
                   `}
                 >
-                  {step < 3 ? "Continuar →" : "Confirmar Reserva ✅"}
+                  {step < 3
+                    ? `${t("booking.next")} →`
+                    : `${t("booking.confirmBooking")} ✅`}
                 </button>
               </div>
             </form>
@@ -515,7 +646,7 @@ const BookingPage = () => {
             <div className="sticky top-24">
               <div className="bg-gradient-to-b from-gray-50 to-white rounded-2xl p-8 border border-gray-200 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Resumen
+                  {t("booking.summary")}
                 </h3>
 
                 {selectedRoomData ? (
@@ -523,18 +654,18 @@ const BookingPage = () => {
                     <div className="flex items-center gap-4">
                       <img
                         src={selectedRoomData.image}
-                        alt={selectedRoomData.imageAlt}
+                        alt={getRoomText(selectedRoomData.id, "imageAlt")}
                         className="w-20 h-20 object-cover rounded-xl"
                       />
                       <div>
                         <h4 className="font-bold text-gray-900">
-                          {selectedRoomData.name}
+                          {getRoomText(selectedRoomData.id, "name")}
                         </h4>
                         <p className="text-sm text-gray-600">
-                          {selectedRoomData.subtitle}
+                          {getRoomText(selectedRoomData.id, "subtitle")}
                         </p>
                         <div className="text-lg font-bold text-principal">
-                          ${selectedRoomData.price}/noche
+                          ${selectedRoomData.price} {t("common.perNight")}
                         </div>
                       </div>
                     </div>
@@ -542,25 +673,33 @@ const BookingPage = () => {
                     {formData.checkIn && formData.checkOut && (
                       <div className="space-y-3">
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Entrada:</span>
+                          <span className="text-gray-600">
+                            {t("booking.checkIn")}:
+                          </span>
                           <span className="font-medium">
                             {formData.checkIn}
                           </span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Salida:</span>
+                          <span className="text-gray-600">
+                            {t("booking.checkOut")}:
+                          </span>
                           <span className="font-medium">
                             {formData.checkOut}
                           </span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Noches:</span>
+                          <span className="text-gray-600">
+                            {t("booking.nights")}:
+                          </span>
                           <span className="font-medium">
                             {calculateNights()}
                           </span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Huéspedes:</span>
+                          <span className="text-gray-600">
+                            {t("booking.guests")}:
+                          </span>
                           <span className="font-medium">{formData.guests}</span>
                         </div>
                       </div>
@@ -568,18 +707,32 @@ const BookingPage = () => {
 
                     <div className="pt-6 border-t">
                       <div className="flex justify-between text-lg font-bold mb-2">
-                        <span>Total estimado:</span>
+                        <span>{t("booking.estimatedTotal")}:</span>
                         <span>${calculateTotal()}</span>
                       </div>
+                      {selectedExtras.length > 0 && (
+                        <div className="mt-2 text-sm text-gray-600 space-y-1">
+                          {selectedExtras.map((id) => {
+                            const extra = extras.find((item) => item.id === id);
+                            if (!extra) return null;
+                            return (
+                              <div key={extra.id} className="flex justify-between">
+                                <span className="truncate">{extra.title}</span>
+                                <span>${extra.price}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                       <p className="text-sm text-gray-500">
-                        Impuestos incluidos
+                        {t("booking.taxesIncludedShort")}
                       </p>
                     </div>
                   </div>
                 ) : (
                   <div className="text-center py-8">
                     <p className="text-gray-500">
-                      Selecciona una habitación para ver el resumen
+                      {t("booking.selectRoomHelper")}
                     </p>
                   </div>
                 )}
@@ -587,28 +740,28 @@ const BookingPage = () => {
                 {/* Benefits */}
                 <div className="mt-8 pt-8 border-t">
                   <h4 className="font-bold text-gray-900 mb-4">
-                    Incluido en tu estadía:
+                    {t("booking.included")}
                   </h4>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <MdMedicalServices className="text-principal" />
-                      <span className="text-sm">Asistencia médica 24/7</span>
+                      <span className="text-sm">{t("roomDetail.medicalAssistance")}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <FaUtensils className="text-principal" />
                       <span className="text-sm">
-                        Todas las comidas incluidas
+                        {t("roomDetail.allMeals")}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <MdCleaningServices className="text-principal" />
                       <span className="text-sm">
-                        Limpieza diaria profesional
+                        {t("roomDetail.dailyCleaning")}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <MdSupportAgent className="text-principal" />
-                      <span className="text-sm">Soporte personalizado</span>
+                      <span className="text-sm">{t("booking.personalizedSupport")}</span>
                     </div>
                   </div>
                 </div>
@@ -616,12 +769,12 @@ const BookingPage = () => {
                 {/* Contact Info */}
                 <div className="mt-8 p-4 bg-principal/10 rounded-xl">
                   <p className="text-sm text-gray-700">
-                    ¿Necesitas ayuda?{" "}
+                    {t("roomDetail.needHelp")} {" "}
                     <Link
-                      href="/contact"
+                      href={getLocalizedPath("/contact", currentLang)}
                       className="text-principal font-semibold hover:underline"
                     >
-                      Contáctanos
+                      {t("common.contactUs")}
                     </Link>
                   </p>
                 </div>
@@ -630,6 +783,92 @@ const BookingPage = () => {
           </div>
         </div>
       </div>
+
+      {galleryExtraId && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          {(() => {
+            const extra = extras.find((item) => item.id === galleryExtraId);
+            if (!extra) return null;
+            const images = extra.images;
+            const currentImage = images[galleryIndex] || images[0];
+
+            return (
+              <div className="bg-white rounded-3xl shadow-2xl w-[90vw] max-w-3xl overflow-hidden">
+                <div className="flex items-center justify-between px-6 py-2 bg-gradient-to-r from-[#fffaf6] to-white border-b">
+                  <div className="flex-1 text-center">
+                    <p className="font-semibold text-gray-900 text-[10px] md:text-xs uppercase tracking-[0.15em]">
+                      {t("booking.productGallery")}
+                    </p>
+                    <p className="text-gray-700 text-[11px] md:text-xs text-center max-w-2xl leading-snug break-words mx-auto">
+                      {extra.title}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={closeGallery}
+                    className="ml-4 text-gray-500 hover:text-gray-800"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <div className="relative bg-white">
+                  <img
+                    src={currentImage}
+                    alt={extra.title}
+                    className="w-full h-[70vh] object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setGalleryIndex((prev) =>
+                        prev === 0 ? images.length - 1 : prev - 1
+                      )
+                    }
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white/80 text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setGalleryIndex((prev) =>
+                        prev === images.length - 1 ? 0 : prev + 1
+                      )
+                    }
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white/80 text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow"
+                  >
+                    ›
+                  </button>
+                </div>
+
+                <div className="px-6 py-4 border-t">
+                  <div className="flex gap-3 justify-center overflow-x-auto">
+                    {images.map((img, index) => (
+                      <button
+                        key={img}
+                        type="button"
+                        onClick={() => setGalleryIndex(index)}
+                        className={`border rounded-xl p-1 flex-shrink-0 transition ${
+                          index === galleryIndex
+                            ? "border-principal"
+                            : "border-gray-200"
+                        }`}
+                      >
+                        <img
+                          src={img}
+                          alt={`${extra.title} ${index + 1}`}
+                          className="w-24 h-18 object-cover rounded-lg"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      )}
 
       <Footer />
     </div>

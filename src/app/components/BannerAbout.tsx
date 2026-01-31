@@ -1,8 +1,12 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Banner: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <motion.div
       className="relative w-full h-[400px] md:h-[500px] bg-cover bg-center"
@@ -25,7 +29,7 @@ const Banner: React.FC = () => {
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          ONEshot Friends
+          {t("bannerAbout.title")}
         </motion.h2>
 
         {/* Subtítulo */}
@@ -35,7 +39,7 @@ const Banner: React.FC = () => {
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Join our club and enjoy exclusive benefits
+          {t("bannerAbout.subtitle")}
         </motion.p>
 
         {/* Botón */}
@@ -43,7 +47,7 @@ const Banner: React.FC = () => {
           className="bg-transparent border-2 border-white text-white py-3 px-8 rounded-full text-lg flex items-center justify-center hover:bg-white hover:text-black transition duration-300"
           whileHover={{ scale: 1.1 }}
         >
-          More information
+          {t("bannerAbout.button")}
           <FaArrowRight className="ml-2" />
         </motion.button>
       </div>

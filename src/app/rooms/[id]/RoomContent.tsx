@@ -1,4 +1,7 @@
+"use client";
+
 import { Room } from "../rooms.data";
+import Link from "next/link";
 import {
   FaUsers,
   FaBed,
@@ -17,23 +20,36 @@ import {
   MdPrivacyTip,
 } from "react-icons/md";
 import { GiMedicalPack } from "react-icons/gi";
+import { useTranslation } from "react-i18next";
+import { getLocalizedPath } from "@/i18n/routeMap";
 
 type Props = {
   room: Room;
 };
 
 export default function RoomContent({ room }: Props) {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
+  const name = t(`rooms.${room.id}.name`);
+  const subtitle = t(`rooms.${room.id}.subtitle`);
+  const tagline = t(`rooms.${room.id}.tagline`);
+  const description = t(`rooms.${room.id}.description`);
+  const beds = t(`rooms.${room.id}.beds`);
+  const size = t(`rooms.${room.id}.size`);
+  const amenities = t(`rooms.${room.id}.amenities`, { returnObjects: true }) as string[];
+  const features = t(`rooms.${room.id}.features`, { returnObjects: true }) as string[];
   // Mapeo de íconos para amenities
   const getAmenityIcon = (amenity: string) => {
-    if (amenity.includes("Medical"))
+    const normalized = amenity.toLowerCase();
+    if (normalized.includes("medical") || normalized.includes("médic"))
       return <GiMedicalPack className="text-principal text-lg" />;
-    if (amenity.includes("Bathroom"))
+    if (normalized.includes("bathroom") || normalized.includes("baño"))
       return <FaBath className="text-principal text-lg" />;
-    if (amenity.includes("Air Conditioning"))
+    if (normalized.includes("air conditioning") || normalized.includes("aire acondicionado"))
       return <FaWind className="text-principal text-lg" />;
-    if (amenity.includes("TV"))
+    if (normalized.includes("tv"))
       return <FaTv className="text-principal text-lg" />;
-    if (amenity.includes("Private Entrance"))
+    if (normalized.includes("private entrance") || normalized.includes("entrada privada"))
       return <FaKey className="text-principal text-lg" />;
     return <FaStar className="text-principal text-lg" />;
   };
@@ -45,7 +61,7 @@ export default function RoomContent({ room }: Props) {
         <div className="absolute inset-0">
           <img
             src={room.image}
-            alt={room.imageAlt}
+            alt={t(`rooms.${room.id}.imageAlt`)}
             className="w-full h-full object-cover transform scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
@@ -59,27 +75,27 @@ export default function RoomContent({ room }: Props) {
               <div className="inline-flex items-center gap-2 bg-principal/20 backdrop-blur-sm border border-principal/30 text-principal px-6 py-2 rounded-full mb-6">
                 <div className="w-2 h-2 bg-principal rounded-full animate-pulse" />
                 <span className="font-bold tracking-widest text-sm uppercase">
-                  {room.subtitle}
+                  {subtitle}
                 </span>
               </div>
 
               {/* Title */}
               <h1 className="text-7xl md:text-8xl font-serif font-bold text-white mb-4 leading-tight">
-                {room.name}
+                {name}
               </h1>
 
               {/* Tagline */}
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-px bg-white/50" />
                 <p className="text-2xl text-white/90 italic font-light">
-                  {room.tagline}
+                  {tagline}
                 </p>
                 <div className="w-16 h-px bg-white/50" />
               </div>
 
               {/* Description */}
               <p className="text-lg text-white/80 max-w-2xl leading-relaxed">
-                {room.description}
+                {description}
               </p>
 
               {/* Price in Hero */}
@@ -88,10 +104,10 @@ export default function RoomContent({ room }: Props) {
                   <span className="text-4xl font-bold text-white">
                     ${room.price}
                   </span>
-                  <span className="text-white/70">/ night</span>
+                  <span className="text-white/70">{t("common.perNight")}</span>
                 </div>
                 <p className="text-sm text-white/60 mt-1">
-                  All inclusive • No hidden fees
+                  {t("roomDetail.allInclusive")}
                 </p>
               </div>
             </div>
@@ -119,7 +135,7 @@ export default function RoomContent({ room }: Props) {
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-10 h-px bg-principal" />
                   <h2 className="text-3xl font-serif font-bold text-gray-900">
-                    Room Specifications
+                    {t("roomDetail.roomSpecs")}
                   </h2>
                 </div>
 
@@ -130,8 +146,8 @@ export default function RoomContent({ room }: Props) {
                         <FaBed className="text-principal text-2xl" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500">Bed Type</p>
-                        <p className="text-lg font-semibold">{room.beds}</p>
+                        <p className="text-sm text-gray-500">{t("roomDetail.bedType")}</p>
+                        <p className="text-lg font-semibold">{beds}</p>
                       </div>
                     </div>
 
@@ -140,8 +156,8 @@ export default function RoomContent({ room }: Props) {
                         <MdZoomOutMap className="text-principal text-2xl" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500">Room Size</p>
-                        <p className="text-lg font-semibold">{room.size}</p>
+                        <p className="text-sm text-gray-500">{t("roomDetail.roomSize")}</p>
+                        <p className="text-lg font-semibold">{size}</p>
                       </div>
                     </div>
 
@@ -150,10 +166,9 @@ export default function RoomContent({ room }: Props) {
                         <FaUsers className="text-principal text-2xl" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500">Capacity</p>
+                        <p className="text-sm text-gray-500">{t("roomDetail.capacity")}</p>
                         <p className="text-lg font-semibold">
-                          Up to {room.capacity} guest
-                          {room.capacity > 1 ? "s" : ""}
+                          {t("searchBar.accommodates", { count: room.capacity })}
                         </p>
                       </div>
                     </div>
@@ -164,10 +179,10 @@ export default function RoomContent({ room }: Props) {
                     <div className="space-y-4">
                       <h3 className="font-bold text-gray-900 flex items-center gap-2">
                         <MdLocalHospital className="text-principal" />
-                        Medical Features
+                        {t("roomDetail.medicalFeatures")}
                       </h3>
                       <div className="space-y-3">
-                        {room.features.map((feature, idx) => (
+                        {features.map((feature, idx) => (
                           <div
                             key={idx}
                             className="flex items-center gap-3 text-gray-700"
@@ -187,12 +202,12 @@ export default function RoomContent({ room }: Props) {
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-10 h-px bg-principal" />
                   <h2 className="text-3xl font-serif font-bold text-gray-900">
-                    Premium Amenities
+                    {t("roomDetail.premiumAmenities")}
                   </h2>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
-                  {room.amenities.map((amenity, idx) => (
+                  {amenities.map((amenity, idx) => (
                     <div
                       key={idx}
                       className="flex items-center gap-4 p-4 rounded-xl hover:bg-white hover:shadow-md transition-all group"
@@ -214,15 +229,17 @@ export default function RoomContent({ room }: Props) {
               <div className="sticky top-24 bg-gradient-to-b from-white to-gray-50 p-10 rounded-3xl shadow-2xl border border-gray-200">
                 {/* Price Highlight */}
                 <div className="text-center mb-8">
-                  <p className="text-sm text-gray-500 mb-2">Starting from</p>
+                  <p className="text-sm text-gray-500 mb-2">
+                    {t("roomDetail.startingFrom")}
+                  </p>
                   <div className="flex items-baseline justify-center gap-2">
                     <span className="text-6xl font-bold text-gray-900">
                       ${room.price}
                     </span>
-                    <span className="text-gray-600 text-lg">/ night</span>
+                    <span className="text-gray-600 text-lg">{t("common.perNight")}</span>
                   </div>
                   <p className="text-sm text-gray-500 mt-2">
-                    Taxes & services included
+                    {t("roomDetail.taxesIncluded")}
                   </p>
                 </div>
 
@@ -230,26 +247,26 @@ export default function RoomContent({ room }: Props) {
                 <div className="space-y-4 mb-8 pb-8 border-b border-gray-200">
                   <div className="flex items-center gap-3 text-gray-700">
                     <FaShieldAlt className="text-principal" />
-                    <span className="text-sm">24/7 Medical Assistance</span>
+                    <span className="text-sm">{t("roomDetail.medicalAssistance")}</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-700">
                     <FaUtensils className="text-principal" />
-                    <span className="text-sm">All Meals Included</span>
+                    <span className="text-sm">{t("roomDetail.allMeals")}</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-700">
                     <MdCleaningServices className="text-principal" />
-                    <span className="text-sm">Daily Professional Cleaning</span>
+                    <span className="text-sm">{t("roomDetail.dailyCleaning")}</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-700">
                     <MdPrivacyTip className="text-principal" />
-                    <span className="text-sm">Complete Privacy & Security</span>
+                    <span className="text-sm">{t("roomDetail.privacy")}</span>
                   </div>
                 </div>
 
                 {/* CTA Button */}
                 <button className="group/btn relative w-full bg-black text-white font-bold py-5 overflow-hidden transition-all hover:shadow-2xl rounded-full mb-6">
                   <span className="relative z-10 tracking-wider text-lg">
-                    BOOK THIS ROOM
+                    {t("roomDetail.bookThisRoom")}
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-principal to-principal transform translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 rounded-full" />
                 </button>
@@ -257,21 +274,23 @@ export default function RoomContent({ room }: Props) {
                 {/* Additional Info */}
                 <div className="text-center space-y-3">
                   <p className="text-sm text-gray-500">
-                    ⚡ Instant confirmation
+                    {t("roomDetail.instantConfirmation")}
                   </p>
-                  <p className="text-sm text-gray-500">🔒 Secure booking</p>
                   <p className="text-sm text-gray-500">
-                    🏆 Best price guaranteed
+                    {t("roomDetail.secureBooking")}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {t("roomDetail.bestPrice")}
                   </p>
                   <div className="pt-4 border-t border-gray-200">
                     <p className="text-xs text-gray-400">
-                      Need help?{" "}
-                      <a
-                        href="/contact"
+                      {t("roomDetail.needHelp")} {" "}
+                      <Link
+                        href={getLocalizedPath("/contact", currentLang)}
                         className="text-principal font-semibold hover:underline"
                       >
-                        Contact our team
-                      </a>
+                        {t("roomDetail.contactTeam")}
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -285,18 +304,17 @@ export default function RoomContent({ room }: Props) {
       <div className="bg-gradient-to-r from-principal/10 to-principal/5 py-16">
         <div className="max-w-4xl mx-auto text-center px-6">
           <h3 className="text-3xl font-serif font-bold text-gray-900 mb-6">
-            Ready to begin your recovery journey?
+            {t("roomDetail.readyTitle")}
           </h3>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Experience world-class post-surgical care in an environment designed
-            for healing and comfort.
+            {t("roomDetail.readyDescription")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="px-12 py-4 bg-black text-white font-bold rounded-full hover:bg-gray-900 transition-all shadow-lg">
-              Book Now
+              {t("roomDetail.bookNow")}
             </button>
             <button className="px-12 py-4 border-2 border-gray-300 text-gray-800 font-bold rounded-full hover:border-black hover:bg-white transition-all">
-              Schedule a Tour
+              {t("roomDetail.scheduleTour")}
             </button>
           </div>
         </div>

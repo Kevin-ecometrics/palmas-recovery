@@ -84,9 +84,11 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ScrollZoomIntro() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -114,10 +116,9 @@ export default function ScrollZoomIntro() {
 
       {/* CONTENIDO NORMAL */}
       <section className="min-h-screen bg-white px-8 py-24">
-        <h2 className="text-4xl font-bold mb-6">Contenido que sigue</h2>
+        <h2 className="text-4xl font-bold mb-6">{t("testPage.title")}</h2>
         <p className="max-w-2xl text-lg text-gray-700">
-          Aquí ya se libera el scroll. La imagen terminó su animación y ahora el
-          contenido fluye normalmente hacia abajo.
+          {t("testPage.description")}
         </p>
       </section>
     </>

@@ -1,10 +1,24 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { usePathname, useRouter } from "next/navigation";
+import { getLocalizedPath } from "@/i18n/routeMap";
 
 export default function Hero() {
-  const words = ["place", "moment", "experience", "story", "adventure"];
+  const { t, i18n } = useTranslation();
+  const pathname = usePathname();
+  const router = useRouter();
+  const currentLanguage = i18n.language?.startsWith("es") ? "es" : "en";
+  const words = t("home.heroVideo.words", { returnObjects: true }) as string[];
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleLanguageChange = (lng: "es" | "en") => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("appLanguage", lng);
+    const canonical = getLocalizedPath(pathname, "en");
+    router.replace(getLocalizedPath(canonical, lng));
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,6 +33,31 @@ export default function Hero() {
       className="relative h-screen w-full overflow-hidden bg-black"
       aria-label="Hero section"
     >
+      {/* Language toggle */}
+      <div className="absolute top-6 right-6 z-30 hidden sm:flex items-center border border-white/40 rounded-full overflow-hidden text-xs">
+        <button
+          type="button"
+          onClick={() => handleLanguageChange("es")}
+          className={`px-3 py-1 transition-colors ${
+            currentLanguage === "es"
+              ? "bg-white text-black"
+              : "bg-transparent text-white"
+          }`}
+        >
+          {t("common.spanish")}
+        </button>
+        <button
+          type="button"
+          onClick={() => handleLanguageChange("en")}
+          className={`px-3 py-1 transition-colors ${
+            currentLanguage === "en"
+              ? "bg-white text-black"
+              : "bg-transparent text-white"
+          }`}
+        >
+          {t("common.english")}
+        </button>
+      </div>
       {/* === Video de fondo optimizado para reel === */}
       <div className="absolute inset-0 flex items-center justify-center bg-black">
         <video
@@ -73,13 +112,13 @@ export default function Hero() {
 
             {/* === Subtítulo === */}
             <p className="text-white text-xl md:text-2xl lg:text-3xl mb-10 font-light max-w-2xl leading-relaxed">
-              La vida es lo que experimentas cuando cada momento cuenta
+              {t("home.heroVideo.subtitle")}
             </p>
 
             {/* === Botón CTA mejorado === */}
             <button className="group relative px-10 py-4 bg-transparent border-2 rounded-xl border-white text-white text-lg font-normal tracking-wide overflow-hidden transition-all duration-500 hover:border-white">
               <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
-                Conoce más
+                {t("home.heroVideo.cta")}
               </span>
               <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
             </button>

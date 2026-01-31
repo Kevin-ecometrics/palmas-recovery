@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface Destination {
   id: number;
@@ -67,6 +68,7 @@ const imageHeights = ["h-[420px]", "h-[480px]", "h-[500px]"];
 
 export default function HotelDestinationsScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -118,7 +120,7 @@ export default function HotelDestinationsScroll() {
 
       <div className="max-w-[1800px] mx-auto">
         <h1 className="text-[42px] font-serif text-gray-800 mb-16 max-w-3xl">
-          Choose your destination and explore our hotels
+          {t("destinations.title")}
         </h1>
 
         {/* DRAG CONTAINER */}
@@ -147,7 +149,7 @@ export default function HotelDestinationsScroll() {
                         {item.name}
                       </h3>
                       <p className="text-sm text-gray-500">
-                        {item.hotels} {item.hotels === 1 ? "Hotel" : "Hotels"}
+                        {item.hotels} {t("common.hotel", { count: item.hotels })}
                       </p>
                     </div>
                   )}
@@ -180,7 +182,7 @@ export default function HotelDestinationsScroll() {
                         {item.name}
                       </h3>
                       <p className="text-sm text-gray-500">
-                        {item.hotels} {item.hotels === 1 ? "Hotel" : "Hotels"}
+                        {item.hotels} {t("common.hotel", { count: item.hotels })}
                       </p>
                     </div>
                   )}

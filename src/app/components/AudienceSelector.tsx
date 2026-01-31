@@ -1,76 +1,189 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type Item = {
-  label: string;
+  id: string;
+  labelKey: string;
+  descriptionKey: string;
+  image: string;
   color: string;
+  bgColor: string;
+  href: string;
 };
 
 const ITEMS: Item[] = [
-  { label: "Couples", color: "#0E5A3A" },
-  { label: "Business + Leisure", color: "#4CAF73" },
-  { label: "Urban explorer", color: "#1F6F8B" },
-  { label: "Family & Friends", color: "#7DB9A2" },
+  {
+    id: "parejas",
+    labelKey: "audience.items.parejas.label",
+    descriptionKey: "audience.items.parejas.description",
+    image:
+      "https://www.oneshothotels.com/data/webp/one-shot-hoteles-parejas888947-f97e9528d9c28139629e713cdde43eb6.webp",
+    color: "#0E5A3A",
+    bgColor: "#0E5A3A",
+    href: "/es/tipo-de-viaje/parejas/",
+  },
+  {
+    id: "negocios",
+    labelKey: "audience.items.negocios.label",
+    descriptionKey: "audience.items.negocios.description",
+    image:
+      "https://www.oneshothotels.com/data/webp/one-shot-hoteles-trabajo-ocio924612-c4ececa38b7c0bc4df5d8aba85725a07.webp",
+    color: "#4CAF73",
+    bgColor: "#4CAF73",
+    href: "/es/tipo-de-viaje/negocios/",
+  },
+  {
+    id: "urbano",
+    labelKey: "audience.items.urbano.label",
+    descriptionKey: "audience.items.urbano.description",
+    image:
+      "https://www.oneshothotels.com/data/webp/one-shot-hoteles-viajar-solo713798-0ec766fb935574205aad09e566764030.webp",
+    color: "#1F6F8B",
+    bgColor: "#1F6F8B",
+    href: "/es/tipo-de-viaje/viajar-solo/",
+  },
+  {
+    id: "familia",
+    labelKey: "audience.items.familia.label",
+    descriptionKey: "audience.items.familia.description",
+    image:
+      "https://www.oneshothotels.com/data/webp/one-shot-hoteles-familia-amigos316802-04e8b0eab74194078413a6699b94f0f7.webp",
+    color: "#7DB9A2",
+    bgColor: "#7DB9A2",
+    href: "/es/tipo-de-viaje/familia-y-amigos/",
+  },
 ];
 
-const DESCRIPTION =
-  "ECOMMETRICAECOMMETRICAECOMMETRICAECOMMETRICAECOMMETRICAECOMMETRICAECOMMETRICAECOMMETRICAECOMMETRICAECOMMETRICAECOMMETRICAECOMMETRICA";
-
-const getImageSrc = (label: string) =>
-  `/${label.toLowerCase().replace(/\s+/g, "-")}-img.jpg`;
-
 export default function AudienceSelector() {
-  const [active, setActive] = useState<Item | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const { t } = useTranslation();
+
+  const collapsedHeight = "84px";
+  const expandedHeight = "260px";
+  const expandedHeightMd = "280px";
+
+  const activeItem = ITEMS.find((item) => item.id === activeId);
 
   return (
     <section
-      className="relative flex items-center justify-start min-h-[60vh] transition-colors duration-500 ease-out px-8 md:px-16 lg:px-24"
-      style={{ backgroundColor: active?.color || "#ffffff" }}
-      onMouseLeave={() => {
-        setActive(null);
+      className="relative w-full py-6 md:py-8 transition-colors duration-300"
+      style={{
+        backgroundColor: activeItem ? activeItem.bgColor : "#ffffff",
       }}
     >
-      <div className="flex flex-col items-start gap-10">
-        {ITEMS.map((item) => {
-          const isActive = active?.label === item.label;
+      <div className="relative w-full">
+        <ul className="flex flex-col space-y-2">
+          {ITEMS.map((item, index) => {
+            const isActive = activeId === item.id;
 
-          return (
-            <span
-              key={item.label}
-              onMouseEnter={() => {
-                setActive(item);
-              }}
-              className={`
-                text-[42px] md:text-[56px] font-serif cursor-pointer text-left
-                transition-all duration-500 ease-out
-                ${
-                  active
-                    ? isActive
-                      ? "opacity-100 text-white scale-105"
-                      : "opacity-40 text-white"
-                    : "opacity-100 text-black"
-                }
-              `}
-            >
-              {item.label}
-            </span>
-          );
-        })}
+            return (
+              <li
+                key={item.id}
+                className="relative w-full transition-[min-height] duration-300"
+                style={{
+                  zIndex: isActive ? 50 : 10 - index,
+                  minHeight: isActive ? expandedHeight : collapsedHeight,
+                }}
+                onMouseEnter={() => setActiveId(item.id)}
+                onMouseLeave={() => setActiveId(null)}
+              >
+                <div className="relative w-full flex items-center justify-center cursor-pointer">
+                  {isActive && (
+                    <div
+                      className="absolute inset-0 left-0 right-0 w-full overflow-hidden transition-opacity duration-300"
+                      style={{
+                        opacity: isActive ? 1 : 0,
+                        height: expandedHeight,
+                        top: 0,
+                      }}
+                    >
+                      <img
+                        src={item.image}
+                        alt={t(item.labelKey)}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+
+                  <div
+                    className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 transition-[height] duration-300"
+                    style={{
+                      height: isActive ? expandedHeight : collapsedHeight,
+                    }}
+                  >
+                    <h3
+                      className="text-4xl md:text-5xl lg:text-6xl font-serif transition-colors duration-300"
+                      style={{
+                        color: isActive ? "#ffffff" : "#1a1a1a",
+                        fontWeight: 300,
+                        letterSpacing: "-0.02em",
+                        marginBottom: isActive ? "0.75rem" : "0",
+                      }}
+                    >
+                      {t(item.labelKey)}
+                    </h3>
+
+                    {isActive && (
+                      <div className="animate-in fade-in duration-300">
+                        <p
+                          className="text-white text-base md:text-lg mb-5 leading-relaxed max-w-2xl uppercase tracking-wide"
+                          style={{ fontSize: "0.85rem" }}
+                        >
+                          {t(item.descriptionKey)}
+                        </p>
+
+                        <a
+                          href={item.href}
+                          className="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-2.5 rounded-full font-medium hover:bg-opacity-90 transition-all duration-200 text-sm"
+                          style={{
+                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                          }}
+                        >
+                          {t("common.viewHotels")}
+                          <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                          >
+                            <path
+                              d="M6.12476 14.1248L14.3743 5.87518"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M6.12476 5.87524H14.3743V14.1248"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       </div>
 
-      {active && (
-        <div className="mt-2 flex flex-col items-center gap-4 px-6">
-          <img
-            src={getImageSrc(active.label)}
-            alt={active.label}
-            className="w-[320px] md:w-[420px] h-[200px] md:h-[260px] object-cover rounded-2xl shadow-xl"
-          />
-          <p className="text-white/90 text-center text-base md:text-lg max-w-2xl">
-            {DESCRIPTION}
-          </p>
-        </div>
-      )}
+      <style jsx>{`
+        @media (min-width: 768px) {
+          div[style*="height: 260px"] {
+            height: ${expandedHeightMd};
+          }
+          li[style*="min-height: 260px"] {
+            min-height: ${expandedHeightMd};
+          }
+        }
+      `}</style>
     </section>
   );
 }

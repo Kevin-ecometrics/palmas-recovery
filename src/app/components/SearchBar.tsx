@@ -13,6 +13,7 @@ import {
   FaTv,
   FaWind,
 } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   floating: boolean;
@@ -40,49 +41,45 @@ interface SearchFilters {
 }
 
 export default function SearchBar({ floating }: Props) {
+  const { t } = useTranslation();
   const roomTypes: RoomType[] = [
     {
       id: "shared",
-      name: "Shared Room",
+      name: t("rooms.shared.name"),
       type: "shared",
       price: 150,
-      description: "Comfortable & Affordable",
+      description: t("rooms.shared.tagline"),
       capacity: 4,
-      beds: "Adjustable Medical Bed",
+      beds: t("rooms.shared.beds"),
       bathroom: "shared",
-      amenities: ["Air Conditioning", "Smart TV", "Shared Bathroom"],
-      tag: "POPULAR",
+      amenities: t("rooms.shared.amenities", { returnObjects: true }) as string[],
+      tag: t("rooms.shared.tag"),
       tagColor: "bg-blue-500",
     },
     {
       id: "private",
-      name: "Private Room",
+      name: t("rooms.private.name"),
       type: "private",
       price: 180,
-      description: "Your Personal Sanctuary",
+      description: t("rooms.private.tagline"),
       capacity: 1,
-      beds: "Adjustable Medical Bed",
+      beds: t("rooms.private.beds"),
       bathroom: "private",
-      amenities: ["Private Bathroom", "Air Conditioning", "Smart TV"],
-      tag: "RECOMMENDED",
+      amenities: t("rooms.private.amenities", { returnObjects: true }) as string[],
+      tag: t("rooms.private.tag"),
       tagColor: "bg-green-500",
     },
     {
       id: "vip",
-      name: "VIP Suite",
+      name: t("rooms.vip.name"),
       type: "vip",
       price: 200,
-      description: "The Ultimate Luxury Experience",
+      description: t("rooms.vip.tagline"),
       capacity: 1,
-      beds: "Premium Adjustable Medical Bed",
+      beds: t("rooms.vip.beds"),
       bathroom: "private",
-      amenities: [
-        "Private Bathroom",
-        "Private Entrance with Terrace",
-        "Air Conditioning",
-        "Smart TV",
-      ],
-      tag: "PREMIUM",
+      amenities: t("rooms.vip.amenities", { returnObjects: true }) as string[],
+      tag: t("rooms.vip.tag"),
       tagColor: "bg-purple-500",
     },
   ];
@@ -90,11 +87,12 @@ export default function SearchBar({ floating }: Props) {
   const [filters, setFilters] = useState<SearchFilters>({
     roomType: "shared",
     guests: 1,
-    duration: "3 nights",
+    duration: "3",
     promoCode: "",
   });
 
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleFilterChange = (key: keyof SearchFilters, value: any) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
@@ -142,20 +140,51 @@ export default function SearchBar({ floating }: Props) {
       >
         <div
           className={`
-            flex items-center
-            bg-white rounded-xl shadow-xl
-            border border-gray-200
+            bg-principal rounded-xl shadow-xl
+            border border-white/20
             backdrop-blur-md
             overflow-hidden
-            ${floating ? "max-w-5xl" : "max-w-6xl"}
+            w-[92vw] max-w-full md:w-auto
+            ${floating ? "md:max-w-5xl" : "md:max-w-6xl"}
           `}
         >
+          <button
+            type="button"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className="md:hidden w-full px-4 py-3 flex items-center justify-between text-white"
+          >
+            <span className="flex items-center gap-2 text-sm font-semibold tracking-wide">
+              <FaSearch />
+              {t("common.bookNow")}
+            </span>
+            <span
+              className={`text-white/70 transition-transform ${
+                mobileOpen ? "rotate-180" : ""
+              }`}
+            >
+              ▾
+            </span>
+          </button>
+
+          <div
+            className={`
+              flex flex-col md:flex-row md:items-center
+              transition-all duration-500 ease-out
+              overflow-hidden
+              ${
+                mobileOpen
+                  ? "max-h-[600px] opacity-100"
+                  : "max-h-0 opacity-0"
+              }
+              md:max-h-none md:opacity-100
+            `}
+          >
           {/* Room Type Filter */}
           <FilterButton
             icon={getRoomIcon(filters.roomType)}
-            label="Room Type"
-            value={selectedRoom?.name || "Select Room"}
-            subValue={`$${selectedRoom?.price}/night`}
+            label={t("searchBar.roomType")}
+            value={selectedRoom?.name || t("searchBar.selectRoom")}
+            subValue={selectedRoom ? `$${selectedRoom.price} ${t("common.perNight")}` : undefined}
             isActive={activeFilter === "roomType"}
             onClick={() =>
               setActiveFilter(activeFilter === "roomType" ? null : "roomType")
@@ -167,9 +196,11 @@ export default function SearchBar({ floating }: Props) {
           {/* Guests Filter */}
           <FilterButton
             icon={<FaUser size={16} />}
-            label="Guests"
-            value={`${filters.guests} guest${filters.guests > 1 ? "s" : ""}`}
-            subValue={`Max: ${selectedRoom?.capacity || 1}`}
+            label={t("searchBar.guests")}
+            value={`${filters.guests} ${t("common.guest", { count: filters.guests })}`}
+            subValue={t("searchBar.maxGuests", {
+              count: selectedRoom?.capacity || 1,
+            })}
             isActive={activeFilter === "guests"}
             onClick={() =>
               setActiveFilter(activeFilter === "guests" ? null : "guests")
@@ -181,11 +212,15 @@ export default function SearchBar({ floating }: Props) {
           {/* Duration Filter */}
           <FilterButton
             icon={<FaDoorOpen size={16} />}
-            label="Stay Duration"
-            value={filters.duration}
-            subValue={`Total: $${
-              selectedRoom ? selectedRoom.price * parseInt(filters.duration) : 0
-            }`}
+            label={t("searchBar.stayDuration")}
+            value={`${filters.duration} ${t("common.night", {
+              count: Number(filters.duration),
+            })}`}
+            subValue={t("searchBar.totalWithValue", {
+              value: selectedRoom
+                ? selectedRoom.price * parseInt(filters.duration)
+                : 0,
+            })}
             isActive={activeFilter === "duration"}
             onClick={() =>
               setActiveFilter(activeFilter === "duration" ? null : "duration")
@@ -197,9 +232,9 @@ export default function SearchBar({ floating }: Props) {
           {/* Promo Filter */}
           <FilterButton
             icon={<FaCrown size={14} />}
-            label="Promotion"
-            value={filters.promoCode || "Add code"}
-            subValue="Save up to 20%"
+            label={t("searchBar.promotion")}
+            value={filters.promoCode || t("searchBar.addCode")}
+            subValue={t("searchBar.saveUpTo", { percent: 20 })}
             isActive={activeFilter === "promo"}
             onClick={() =>
               setActiveFilter(activeFilter === "promo" ? null : "promo")
@@ -207,17 +242,18 @@ export default function SearchBar({ floating }: Props) {
           />
 
           {/* Search/Book Button */}
-          <div className="px-4">
+          <div className="px-4 pb-4 md:pb-0">
             <button
               onClick={handleSearch}
               className="
-                bg-gradient-to-r from-[#e56b5c] to-[#d65f51]
-                text-white
-                px-8
+                bg-[#fffaf6]
+                text-principal
+                w-full md:w-auto
+                px-6 md:px-8
                 py-3
                 rounded-lg
                 font-medium
-                hover:from-[#d65f51] hover:to-[#c55345]
+                hover:bg-cream
                 transition-all
                 whitespace-nowrap
                 flex items-center gap-2
@@ -225,8 +261,9 @@ export default function SearchBar({ floating }: Props) {
               "
             >
               <FaSearch />
-              BOOK NOW
+              {t("common.bookNowUpper")}
             </button>
+          </div>
           </div>
         </div>
       </div>
@@ -308,26 +345,26 @@ function FilterButton({
       onClick={onClick}
       className={`
         flex items-center gap-3
-        px-6 py-4
-        min-w-[180px]
+        px-5 py-4
+        w-full md:min-w-[180px] md:w-auto
         text-left
-        hover:bg-gray-50
+        hover:bg-white/10
         transition-all
         focus:outline-none
-        focus:bg-gray-100
+        focus:bg-white/10
         cursor-pointer
-        ${isActive ? "bg-gray-50 border-r-2 border-[#e56b5c]" : ""}
+        ${isActive ? "bg-white/10 border-r-2 border-[#e56b5c]" : ""}
       `}
     >
-      <div className="text-gray-600 flex-shrink-0">{icon}</div>
+      <div className="text-white/80 flex-shrink-0">{icon}</div>
       <div className="flex-1 min-w-0">
-        <p className="text-xs text-gray-500">{label}</p>
-        <p className="text-sm font-medium text-gray-900 truncate">{value}</p>
+        <p className="text-xs text-white/70">{label}</p>
+        <p className="text-sm font-medium text-white truncate">{value}</p>
         {subValue && (
-          <p className="text-xs text-gray-600 truncate">{subValue}</p>
+          <p className="text-xs text-white/80 truncate">{subValue}</p>
         )}
       </div>
-      <FaChevronDown className="text-gray-400 flex-shrink-0" size={12} />
+      <FaChevronDown className="text-white/60 flex-shrink-0" size={12} />
     </button>
   );
 }
@@ -346,9 +383,23 @@ function RoomTypeFilter({
   onClose,
 }: RoomTypeFilterProps) {
   const [selected, setSelected] = useState(selectedRoom);
+  const { t } = useTranslation();
+
+  const getTagIcon = (type: RoomType["type"]) => {
+    switch (type) {
+      case "vip":
+        return <FaCrown size={10} />;
+      case "private":
+        return <FaUser size={10} />;
+      case "shared":
+        return <FaUsers size={10} />;
+      default:
+        return null;
+    }
+  };
 
   return (
-    <FilterPanel title="Select Your Room Type" onClose={onClose}>
+    <FilterPanel title={t("searchBar.roomTypePanelTitle")} onClose={onClose}>
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {rooms.map((room) => (
@@ -369,9 +420,7 @@ function RoomTypeFilter({
                 <div
                   className={`${room.tagColor} text-white text-xs font-bold px-2 py-1 rounded-full inline-flex items-center gap-1 mb-3`}
                 >
-                  {room.tag === "PREMIUM" && <FaCrown size={10} />}
-                  {room.tag === "RECOMMENDED" && <FaUser size={10} />}
-                  {room.tag === "POPULAR" && <FaUsers size={10} />}
+                  {getTagIcon(room.type)}
                   {room.tag}
                 </div>
               )}
@@ -386,7 +435,9 @@ function RoomTypeFilter({
                   <div className="text-2xl font-bold text-[#e56b5c]">
                     ${room.price}
                   </div>
-                  <div className="text-xs text-gray-500">/ night</div>
+                  <div className="text-xs text-gray-500">
+                    {t("common.perNight")}
+                  </div>
                 </div>
               </div>
 
@@ -399,20 +450,23 @@ function RoomTypeFilter({
                 <div className="flex items-center gap-2 text-sm">
                   <FaUser className="text-gray-400" />
                   <span>
-                    Accommodates up to {room.capacity} guest
-                    {room.capacity > 1 ? "s" : ""}
+                    {t("searchBar.accommodates", {
+                      count: room.capacity,
+                    })}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <FaBath className="text-gray-400" />
-                  <span className="capitalize">{room.bathroom} Bathroom</span>
+                  <span className="capitalize">
+                    {t(`searchBar.bathroom.${room.bathroom}`)} {t("searchBar.bathroomLabel")}
+                  </span>
                 </div>
               </div>
 
               {/* Amenities */}
               <div className="mt-4 pt-4 border-t">
                 <p className="text-xs font-medium text-gray-500 mb-2">
-                  Luxury Amenities
+                  {t("searchBar.luxuryAmenities")}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {room.amenities.map((amenity, index) => (
@@ -434,7 +488,7 @@ function RoomTypeFilter({
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition"
           >
-            Cancel
+            {t("common.cancel")}
           </button>
           <button
             onClick={() => {
@@ -443,7 +497,7 @@ function RoomTypeFilter({
             }}
             className="px-6 py-2 bg-[#e56b5c] text-white rounded-lg font-medium hover:bg-[#d65f51] transition"
           >
-            Select Room
+            {t("common.selectRoom")}
           </button>
         </div>
       </div>
@@ -464,14 +518,19 @@ function GuestsFilter({
   onChange,
   onClose,
 }: GuestsFilterProps) {
+  const { t } = useTranslation();
   return (
-    <FilterPanel title="Number of Guests" onClose={onClose}>
+    <FilterPanel title={t("searchBar.numberOfGuests")} onClose={onClose}>
       <div className="p-6">
         <div className="text-center mb-6">
           <div className="text-4xl font-bold text-[#e56b5c] mb-2">{guests}</div>
-          <p className="text-gray-600">guest{guests > 1 ? "s" : ""}</p>
+          <p className="text-gray-600">
+            {t("common.guest", { count: guests })}
+          </p>
           <p className="text-sm text-gray-500 mt-2">
-            Maximum capacity: {maxGuests} guest{maxGuests > 1 ? "s" : ""}
+            {t("searchBar.maximumCapacity", {
+              count: maxGuests,
+            })}
           </p>
         </div>
 
@@ -495,8 +554,7 @@ function GuestsFilter({
 
         <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
           <p className="text-sm text-blue-800">
-            <strong>Note:</strong> For shared rooms, additional guests may be
-            placed with other patients in recovery.
+            <strong>{t("searchBar.noteTitle")}</strong> {t("searchBar.sharedNote")}
           </p>
         </div>
 
@@ -504,7 +562,7 @@ function GuestsFilter({
           onClick={onClose}
           className="w-full bg-[#e56b5c] text-white py-3 rounded-lg font-medium hover:bg-[#d65f51] transition"
         >
-          Confirm Guests
+          {t("common.confirmGuests")}
         </button>
       </div>
     </FilterPanel>
@@ -524,30 +582,41 @@ function DurationFilter({
   onChange,
   onClose,
 }: DurationFilterProps) {
+  const { t } = useTranslation();
   const durations = [
-    { nights: "1", label: "1 night", total: pricePerNight },
+    { nights: "1", label: t("searchBar.duration.oneNight"), total: pricePerNight },
     {
       nights: "3",
-      label: "3 nights",
+      label: t("searchBar.duration.threeNights"),
       total: pricePerNight * 3,
       recommended: true,
     },
-    { nights: "7", label: "1 week", total: pricePerNight * 7 },
-    { nights: "14", label: "2 weeks", total: pricePerNight * 14, discount: 10 },
-    { nights: "30", label: "1 month", total: pricePerNight * 30, discount: 15 },
+    { nights: "7", label: t("searchBar.duration.oneWeek"), total: pricePerNight * 7 },
+    {
+      nights: "14",
+      label: t("searchBar.duration.twoWeeks"),
+      total: pricePerNight * 14,
+      discount: 10,
+    },
+    {
+      nights: "30",
+      label: t("searchBar.duration.oneMonth"),
+      total: pricePerNight * 30,
+      discount: 15,
+    },
   ];
 
-  const [selectedNights, setSelectedNights] = useState(duration.split(" ")[0]);
+  const [selectedNights, setSelectedNights] = useState(duration);
 
   return (
-    <FilterPanel title="Select Stay Duration" onClose={onClose}>
+    <FilterPanel title={t("searchBar.durationTitle")} onClose={onClose}>
       <div className="p-6">
         <div className="mb-6">
           <div className="text-center mb-4">
             <div className="text-2xl font-bold text-gray-800">
               ${pricePerNight}
             </div>
-            <div className="text-sm text-gray-500">per night</div>
+            <div className="text-sm text-gray-500">{t("common.perNightShort")}</div>
           </div>
 
           <div className="flex items-center justify-center gap-2">
@@ -562,7 +631,9 @@ function DurationFilter({
             <div className="text-lg font-bold min-w-[40px] text-center">
               {selectedNights}
             </div>
-            <span className="text-gray-600">nights</span>
+            <span className="text-gray-600">
+              {t("common.night", { count: Number(selectedNights) })}
+            </span>
           </div>
         </div>
 
@@ -583,34 +654,36 @@ function DurationFilter({
               {item.recommended && (
                 <div className="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded-full inline-flex items-center gap-1 mb-2">
                   <FaUser size={8} />
-                  RECOMMENDED
+                  {t("searchBar.recommended")}
                 </div>
               )}
               {item.discount && (
                 <div className="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded-full mb-2">
-                  SAVE {item.discount}%
+                  {t("searchBar.save", { percent: item.discount })}
                 </div>
               )}
               <div className="font-bold text-lg">{item.label}</div>
               <div className="text-2xl font-bold text-[#e56b5c] mt-1">
                 ${item.total}
               </div>
-              <div className="text-xs text-gray-500">total</div>
+              <div className="text-xs text-gray-500">
+                {t("common.totalLower")}
+              </div>
             </button>
           ))}
         </div>
 
         <div className="bg-gray-50 rounded-lg p-4 mb-6">
           <div className="flex justify-between text-sm mb-1">
-            <span className="text-gray-600">Price per night:</span>
+            <span className="text-gray-600">{t("searchBar.pricePerNight")}</span>
             <span className="font-medium">${pricePerNight}</span>
           </div>
           <div className="flex justify-between text-sm mb-1">
-            <span className="text-gray-600">Nights:</span>
+            <span className="text-gray-600">{t("searchBar.nights")}</span>
             <span className="font-medium">{selectedNights}</span>
           </div>
           <div className="flex justify-between text-lg font-bold mt-2 pt-2 border-t">
-            <span>Total:</span>
+            <span>{t("common.total")}:</span>
             <span className="text-[#e56b5c]">
               ${pricePerNight * parseInt(selectedNights)}
             </span>
@@ -622,16 +695,16 @@ function DurationFilter({
             onClick={onClose}
             className="flex-1 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition"
           >
-            Cancel
+            {t("common.cancel")}
           </button>
           <button
             onClick={() => {
-              onChange(`${selectedNights} nights`);
+              onChange(selectedNights);
               onClose();
             }}
             className="flex-1 bg-[#e56b5c] text-white py-3 rounded-lg font-medium hover:bg-[#d65f51] transition"
           >
-            Confirm Stay
+            {t("common.confirmStay")}
           </button>
         </div>
       </div>
@@ -648,15 +721,18 @@ interface PromoFilterProps {
 function PromoFilter({ value, onChange, onClose }: PromoFilterProps) {
   const [code, setCode] = useState(value);
   const promoExamples = ["RECOVERY20", "HEALTH15", "WELCOME10"];
+  const { t } = useTranslation();
 
   return (
-    <FilterPanel title="Apply Promotion Code" onClose={onClose}>
+    <FilterPanel title={t("searchBar.promoTitle")} onClose={onClose}>
       <div className="p-6">
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-6 text-center">
           <FaCrown className="text-yellow-500 text-3xl mx-auto mb-3" />
-          <h4 className="font-bold text-lg mb-1">Special Recovery Discounts</h4>
+          <h4 className="font-bold text-lg mb-1">
+            {t("searchBar.promoCardTitle")}
+          </h4>
           <p className="text-gray-600 text-sm">
-            Apply a code for exclusive savings on medical recovery stays
+            {t("searchBar.promoCardSubtitle")}
           </p>
         </div>
 
@@ -664,14 +740,14 @@ function PromoFilter({ value, onChange, onClose }: PromoFilterProps) {
           type="text"
           value={code}
           onChange={(e) => setCode(e.target.value.toUpperCase())}
-          placeholder="Enter promo code"
+          placeholder={t("searchBar.promoPlaceholder")}
           className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#e56b5c] text-center text-lg font-medium tracking-wider"
           maxLength={15}
         />
 
         <div className="mt-6">
           <p className="text-sm font-medium text-gray-700 mb-3">
-            Available Codes
+            {t("searchBar.availableCodes")}
           </p>
           <div className="flex flex-col gap-2">
             {promoExamples.map((promo) => (
@@ -683,13 +759,13 @@ function PromoFilter({ value, onChange, onClose }: PromoFilterProps) {
                 <div>
                   <div className="font-medium">{promo}</div>
                   <div className="text-xs text-gray-500">
-                    {promo === "RECOVERY20" && "20% off all stays"}
-                    {promo === "HEALTH15" && "15% off for healthcare workers"}
-                    {promo === "WELCOME10" && "10% off first booking"}
+                    {promo === "RECOVERY20" && t("searchBar.promoExamples.recovery20")}
+                    {promo === "HEALTH15" && t("searchBar.promoExamples.health15")}
+                    {promo === "WELCOME10" && t("searchBar.promoExamples.welcome10")}
                   </div>
                 </div>
                 <div className="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">
-                  APPLY
+                  {t("searchBar.apply")}
                 </div>
               </button>
             ))}
@@ -704,7 +780,7 @@ function PromoFilter({ value, onChange, onClose }: PromoFilterProps) {
             }}
             className="flex-1 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition"
           >
-            Clear Code
+            {t("common.clearCode")}
           </button>
           <button
             onClick={() => {
@@ -713,7 +789,7 @@ function PromoFilter({ value, onChange, onClose }: PromoFilterProps) {
             }}
             className="flex-1 bg-gradient-to-r from-[#e56b5c] to-[#d65f51] text-white py-3 rounded-lg font-medium hover:from-[#d65f51] hover:to-[#c55345] transition"
           >
-            Apply Discount
+            {t("common.applyDiscount")}
           </button>
         </div>
       </div>
@@ -745,5 +821,5 @@ function FilterPanel({ title, children, onClose }: FilterPanelProps) {
 }
 
 function Divider() {
-  return <div className="h-10 w-px bg-gray-200" />;
+  return <div className="hidden md:block h-10 w-px bg-white/20" />;
 }

@@ -1,7 +1,11 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const BannerWithImage: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="flex justify-between items-center px-6 py-12 md:px-12 md:py-24">
       {/* Texto a la izquierda */}
@@ -13,7 +17,7 @@ const BannerWithImage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          The joy of travel. Where design meets authenticity.
+          {t("bannerWithImage.title")}
         </motion.h2>
 
         {/* Subtítulo */}
@@ -23,11 +27,7 @@ const BannerWithImage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Experience urban essence at One Shot Hotels. From Madrid to San
-          Sebastián, Valencia, Seville, Porto, and Barcelona, our prime
-          locations bring you closer to the vibrant energy of each city. Stroll
-          through streets steeped in history, uncover hidden gems, and immerse
-          yourself in the unique character that defines each destination.
+          {t("bannerWithImage.subtitle")}
         </motion.p>
 
         {/* Botón */}
@@ -37,7 +37,7 @@ const BannerWithImage: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          READ MORE
+          {t("bannerWithImage.button")}
         </motion.button>
       </div>
 
