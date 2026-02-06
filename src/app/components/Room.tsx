@@ -8,59 +8,74 @@ import { useTranslation } from "react-i18next";
 interface Destination {
   id: number;
   name: string;
-  hotels: number;
+  priceText: string;
   image: string;
 }
 
 const destinations: Destination[] = [
   {
     id: 1,
-    name: "Barcelona",
-    hotels: 1,
+    name: "Shared Room",
+    priceText: "$170 dlls / night",
     image:
-      "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&q=80",
+      "/shared-room.jpg",
   },
   {
     id: 2,
-    name: "Madrid",
-    hotels: 5,
+    name: "Private Room",
+    priceText: "$180 dlls / night",
     image:
-      "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80",
+      "/private-room.jpg",
   },
   {
     id: 3,
-    name: "San Sebastian",
-    hotels: 1,
+    name: "VIP Suite",
+    priceText: "$200 dlls / night",
     image:
-      "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&q=80",
+      "/vip-suite.jpeg",
   },
   {
     id: 4,
-    name: "Seville",
-    hotels: 1,
+    name: "Lymphatic massage",
+    priceText: "$60 dlls",
     image:
-      "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80",
+      "/lymphatic-massage.jpg",
   },
   {
     id: 5,
-    name: "Madrid",
-    hotels: 5,
+    name: "5 Lymphatic massages package",
+    priceText: "$270 dlls",
     image:
-      "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80",
+      "/5-lymphatic-massages-package.jpg",
   },
   {
     id: 6,
-    name: "San Sebastian",
-    hotels: 1,
+    name: "Original Recovery bra sytle No. B01G",
+    priceText: "$80 dlls",
     image:
-      "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80",
+      "/extra1-1.png",
   },
   {
     id: 7,
-    name: "Seville",
-    hotels: 1,
+    name: "Open Bust Vest 3/4 Lengh Sleeves Style No. FVOM",
+    priceText: "$80 dlls",
     image:
-      "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80",
+      "/extra2-1.png",
+  },
+  {
+    id: 8,
+    name:
+      "Reinforced Girdle with High Back and Layered Panels Short Lenght Style No. SFBHRS",
+    priceText: "$140 dlls",
+    image:
+      "/extra3-1.png",
+  },
+  {
+    id: 9,
+    name: "Girdle With High Back No Closures Short Lenght Style No. SFBHS2",
+    priceText: "$140 dlls",
+    image:
+      "/extra4-1.png",
   },
 ];
 
@@ -149,7 +164,7 @@ export default function HotelDestinationsScroll() {
                         {item.name}
                       </h3>
                       <p className="text-sm text-gray-500">
-                        {item.hotels} {t("common.hotel", { count: item.hotels })}
+                        {item.priceText}
                       </p>
                     </div>
                   )}
@@ -182,7 +197,7 @@ export default function HotelDestinationsScroll() {
                         {item.name}
                       </h3>
                       <p className="text-sm text-gray-500">
-                        {item.hotels} {t("common.hotel", { count: item.hotels })}
+                        {item.priceText}
                       </p>
                     </div>
                   )}

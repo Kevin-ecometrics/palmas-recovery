@@ -24,7 +24,7 @@ export default function ImprovedSections() {
   }>;
 
   return (
-    <div className="bg-white">
+    <div id="about" className="bg-white">
       {/* Patient Stories Section */}
       <section className="py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="container mx-auto px-8">

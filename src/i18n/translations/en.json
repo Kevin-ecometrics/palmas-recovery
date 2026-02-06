@@ -59,11 +59,20 @@
       "contact": "CONTACT US",
       "panorama": "PANORAMA"
     },
-    "logoAlt": "Palmas Recovery logo"
+    "logoAlt": "Palmas Recovery logo",
+    "phoneAria": "Call Palmas Recovery"
   },
   "footer": {
     "description": "Premier post-surgical recovery facility in Tijuana, providing exceptional care and comfort.",
     "quickLinks": "Quick Links",
+    "newsletterTitle": "newsletter",
+    "newsletterSubtitle": "Offers, updates, and recovery guidance. We share what we are and what we want to share with you. Join us.",
+    "newsletterName": "Name",
+    "newsletterEmail": "Email",
+    "newsletterSend": "Send",
+    "newsletterConsent": "I have read and accept the legal notice and the privacy policy.",
+    "linksTitle": "Information",
+    "emailPrompt": "Email us at jesusponcho0015@gmail.com",
     "links": {
       "home": "Home",
       "book": "Book Today",
@@ -82,6 +91,19 @@
     }
   },
   "home": {
+    "pleasure": {
+      "titleLine1": "The top choice Recovery House",
+      "titleLine2": "chosen by double board–certified surgeons",
+      "subtitleLine1": "At Palma’s Recovery House , we ensure superior results and a seamless transition to wellness.",
+      "subtitleLine2": "",
+      "paragraphs": [
+        "We work hand-in-hand with Mexico’s leading plastic surgeons to provide thoughtfully designed care. From private transportation and personalized medication management to chef-prepared meals, we offer a discreet and nurturing environment. "
+      ],
+      "more": "Read more",
+      "less": "Read less",
+      "imageAlt": "one-shot-hotels-urban-essence",
+      "imageAltSecondary": "one-shot-hotels-joy-of-travel"
+    },
     "promise": {
       "label": "Our Promise",
       "title": "Rest, Recover, Renew",
@@ -126,40 +148,47 @@
       "scroll": "Scroll"
     },
     "heroVideo": {
-      "words": ["place", "moment", "experience", "story", "adventure"],
-      "subtitle": "Life is what you experience when every moment counts.",
+      "words": ["Rest", "Recover", "Renew"],
+      "subtitle": "The best post-op care with in-house doctors in Tijuana",
       "cta": "Learn more"
     }
   },
   "audience": {
+    "heading": {
+      "titleLine1": "Certified Recovery House in Tijuana",
+      "titleLine2": "",
+      "description": "Proudly founded by doctors who put your health first, we combine medical expertise with personalized care to ensure a safe, comfortable, and high-quality recovery experience."
+    },
     "items": {
       "parejas": {
-        "label": "Couples",
-        "description": "Enjoy unique moments with the one you love most in spaces designed for intimacy."
+        "label": "Just 10 minutes from the border",
+        "description": "Located only minutes from the U.S. border with easily accessible from the airport, with medical fast-pass options for a smooth, worry-free crossing."
       },
       "negocios": {
-        "label": "Work + Leisure",
-        "description": "Comfort, location, and a welcoming atmosphere. Our hotels are designed for those who combine work and leisure."
+        "label": "No minimum stay required",
+        "description": "No fixed packages or minimum nights. Your recovery plan is tailored to your body, your procedure, and your personal healing pace."
       },
       "urbano": {
-        "label": "Urban Explorer",
-        "description": "Experience the city at your own pace. Dive into its culture and feel the pulse. One Shot Hotels gives you the perfect place."
+        "label": "Flexible payment options & insurance support",
+        "description": "No fixed packages or minimum nights. Your recovery plan is tailored to your body, your procedure, and your personal healing pace."
       },
       "familia": {
-        "label": "Family & Friends",
-        "description": "Laughs, plans, and moments to disconnect await you. One Shot Hotels is your meeting point right in the city center."
+        "label": "Safe, central & discreet location",
+        "description": "Situated in one of the safest areas in the heart of the city for total privacy and peace of mind."
+      },
+            "luxury": {
+        "label": "Everything your guest needs nearby",
+        "description": "Luxury hotels, upscale restaurants, spas, shopping centers, and leading hospitals are just moments away for the comfort of your companion."
       }
     }
   },
   "banner": {
     "exclusive": "Exclusive Benefits:",
     "items": [
-      "Rewards available",
-      "Late check-out until 1:00 PM",
-      "Exclusive promotions",
-      "Best price guaranteed",
-      "Last rooms available",
-      "Late check-out until 1:00 PM"
+      "Your Recovery, Our Priority",
+      "Flexible booking",
+      "In-House Doctors",
+      "24/7 Certified Nursing"
     ]
   },
   "bannerAbout": {
@@ -171,6 +200,29 @@
     "title": "The joy of travel. Where design meets authenticity.",
     "subtitle": "Experience urban essence at One Shot Hotels. From Madrid to San Sebastián, Valencia, Seville, Porto, and Barcelona, our prime locations bring you closer to the vibrant energy of each city. Stroll through streets steeped in history, uncover hidden gems, and immerse yourself in the unique character that defines each destination.",
     "button": "READ MORE"
+  },
+  "blogs": {
+    "kicker": "Blog",
+    "title": "Discover helpful insights, practical tips, and everything you need to support your recovery journey",
+    "subtitle": "",
+    "cta": "Read more",
+    "items": [
+      {
+        "category": "Wellness",
+        "title": "What to pack for your post-op recovery house?",
+        "excerpt": ""
+      },
+      {
+        "category": "Care",
+        "title": "When is the best time for plastic surgery in Mexico?",
+        "excerpt": ""
+      },
+      {
+        "category": "Lifestyle",
+        "title": "Recovery House vs. Hotel: 3 Reasons Why Your Healing Depends on Professional Care",
+        "excerpt": ""
+      }
+    ]
   },
   "about": {
     "patientStories": {
@@ -230,27 +282,31 @@
     }
   },
   "infiniteBanner": {
-    "title1": "Collecting",
-    "title2": "unique moments",
+    "title1": "The ideal recovery",
+    "title2": "experience is here",
     "ctaAria": "Visit @palmasrecovery on Instagram"
   },
   "uniqueHotels": {
-    "title": "Unique Hotels",
-    "description": "Every corner of One Shot Hotels reflects the unique character of its surroundings, blending elegance with functionality. Enjoy hotels where art, design, and comfort come together to turn your journey into an unforgettable stay.",
+    "title": "At Palmas recovery",
+    "description": "Enjoy a stress-free recovery in a space created to support healing, privacy, and total comfort:",
     "bullets": [
-      "+ Boutique hotels in urban settings",
-      "+ Locations in prime areas",
-      "+ Buildings with character",
-      "+ Spaces both original and design-led",
-      "+ Promoting art and culture",
-      "+ Exceptional service"
+      "+ Private and shared suites with adjustable beds, A/C, and high-speed Wi-Fi",
+      "+ Elevator access for effortless mobility",
+      "+ Private transportation to the hospital and post-op appointments",
+      "+ Spacious, serene common areas with wide hallways and full in-room privacy",
+      "+ Fresh laundry service included during your stay",
+      "+ On-site boutique with post-surgical garments and recovery supplements",
+      "+ Chef-prepared anti-inflammatory meals: 3 nourishing meals + 2 snacks daily",
+      "+ Complimentary hydration station with wellness drinks and healing teas"
     ],
     "prev": "Previous image",
     "next": "Next image"
   },
-  "destinations": {
-    "title": "Choose your destination and explore our hotels"
-  },
+"destinations": {
+  "title": "The best BBL recovery house in Tijuana\n\nMommy Makeover All-inclusive aftercare\n\nChoicest Recovery House for Tummy Tucks",
+  "subtitle": "Experience unparalleled post-surgical care in Tijuana's premier recovery facility. Our dedicated team of medical professionals and luxurious amenities ensure a seamless healing journey tailored to your needs.",
+  "cta": "Book Your Stay"
+},
   "rooms": {
     "shared": {
       "name": "Shared Room",
@@ -288,7 +344,7 @@
       "imageAlt": "VIP Suite",
       "beds": "Premium Adjustable Medical Bed",
       "size": "Luxury Suite",
-      "amenities": ["Adjustable Medical Bed", "Private Bathroom", "Private Entrance with Terrace", "Air Conditioning", "Smart TV"],
+      "amenities": ["Adjustable Medical Bed", "Private Bathroom", "Air Conditioning", "Smart TV"],
       "features": ["Maximum Privacy", "Premium Amenities"],
       "highlight": "PREMIUM",
       "tag": "PREMIUM",

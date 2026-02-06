@@ -100,14 +100,16 @@ const ServicesPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-8">
             {coreServices.map((service, index) => (
               <div
                 key={index}
                 onClick={() =>
-                  setActiveService(activeService === index ? null : index)
+                  setActiveService((current) =>
+                    current === index ? null : index
+                  )
                 }
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer group border-2 border-transparent hover:border-principal"
+                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer group border-2 border-transparent hover:border-principal break-inside-avoid mb-8"
               >
                 <div className="p-8">
                   <div className="text-principal text-5xl mb-4 transform group-hover:scale-110 transition-transform">
@@ -124,7 +126,7 @@ const ServicesPage: React.FC = () => {
                   <div
                     className={`overflow-hidden transition-all duration-300 ${
                       activeService === index
-                        ? "max-h-96 opacity-100"
+                        ? "max-h-72 opacity-100"
                         : "max-h-0 opacity-0"
                     }`}
                   >

@@ -41,16 +41,24 @@ const BannerWithImage: React.FC = () => {
         </motion.button>
       </div>
 
-      {/* Imagen a la derecha */}
+      {/* Mapa a la derecha */}
       <div className="w-full md:w-1/2">
-        <motion.img
-          src="https://images.unsplash.com/photo-1600380012191-d0a9bc9c6a57?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg2MnwwfDF8c2VhY2h8MjN8fGJ1aWxkaW5nfGVufDB8fHx8fDE2NjA5NzI1OTQ&ixlib=rb-1.2.1&q=80&w=1080"
-          alt="Hotel view"
-          className="w-full h-full object-cover rounded-xl shadow-lg"
+        <motion.div
+          className="w-full aspect-[4/3] rounded-xl shadow-lg overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-        />
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!4v1770248444901!6m8!1m7!1sN-CYaVYhfuwqmBIsa4VYVA!2m2!1d32.53180523214883!2d-117.0158720135962!3f123.79771063065212!4f15.805835351637043!5f1.0392978847143994"
+            className="w-full h-full"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Palmas Recovery Map"
+          />
+        </motion.div>
       </div>
     </div>
   );

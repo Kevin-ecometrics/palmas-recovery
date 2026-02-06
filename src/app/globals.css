@@ -1,9 +1,8 @@
 @import "tailwindcss";
-@import '@fontsource-variable/montserrat';
 
 @font-face {
-  font-family: "Madison Sauvage Serif";
-  src: url("/fonts/madison-sauvage-serif.ttf") format("truetype");
+  font-family: "Madison Sauvage Script";
+  src: url("/fonts/madison-sauvage-script.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -25,10 +24,14 @@ html {
   scroll-behavior: smooth;
 }
 
-p {
-  font-family: "Madison Sauvage Serif", serif;
+body {
+  font-family: var(--font-montserrat), "Montserrat", sans-serif;
 }
 
-body {
-  font-family: 'Montserrat Variable', sans-serif;
+h1,
+h2,
+h3,
+h4,
+.font-script {
+  font-family: "Madison Sauvage Script", "Montserrat", serif;
 }

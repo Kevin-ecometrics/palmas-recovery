@@ -32,6 +32,10 @@ const BookingPage = () => {
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [galleryExtraId, setGalleryExtraId] = useState<string | null>(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
+  const today = new Date();
+  const todayValue = `${today.getFullYear()}-${String(
+    today.getMonth() + 1
+  ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
   const [formData, setFormData] = useState({
     checkIn: "",
     checkOut: "",
@@ -143,8 +147,9 @@ const BookingPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <Navbar />
       {/* Progress Bar */}
-      <div className="bg-gray-50 border-b">
+      <div className="bg-gray-50 border-b pt-24 md:pt-28">
         <div className="max-w-4xl mx-auto px-6 py-8">
           <div className="flex items-center justify-between">
             {[1, 2, 3].map((num) => (
@@ -233,9 +238,6 @@ const BookingPage = () => {
                                   <span className="bg-principal text-white px-3 py-1 rounded-full text-xs font-bold">
                                     {getRoomText(room.id, "highlight")}
                                   </span>
-                                  <span className="text-sm text-gray-500">
-                                    {getRoomText(room.id, "subtitle")}
-                                  </span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-gray-900">
                                   {getRoomText(room.id, "name")}
@@ -307,6 +309,7 @@ const BookingPage = () => {
                         name="checkIn"
                         value={formData.checkIn}
                         onChange={handleInputChange}
+                        min={todayValue}
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-principal focus:border-transparent"
                         required
                       />
@@ -321,6 +324,7 @@ const BookingPage = () => {
                         name="checkOut"
                         value={formData.checkOut}
                         onChange={handleInputChange}
+                        min={todayValue}
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-principal focus:border-transparent"
                         required
                       />
@@ -431,9 +435,6 @@ const BookingPage = () => {
                             <h4 className="font-bold text-gray-900">
                               {getRoomText(selectedRoomData.id, "name")}
                             </h4>
-                            <p className="text-sm text-gray-600">
-                              {getRoomText(selectedRoomData.id, "subtitle")}
-                            </p>
                           </div>
                           <div className="text-right">
                             <div className="text-lg font-bold">
@@ -661,9 +662,6 @@ const BookingPage = () => {
                         <h4 className="font-bold text-gray-900">
                           {getRoomText(selectedRoomData.id, "name")}
                         </h4>
-                        <p className="text-sm text-gray-600">
-                          {getRoomText(selectedRoomData.id, "subtitle")}
-                        </p>
                         <div className="text-lg font-bold text-principal">
                           ${selectedRoomData.price} {t("common.perNight")}
                         </div>

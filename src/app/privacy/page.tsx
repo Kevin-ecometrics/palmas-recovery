@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import { useTranslation } from "react-i18next";
 
 export default function PrivacyPage() {
   const { t } = useTranslation();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const sections = t("privacy.sections", { returnObjects: true }) as Array<{
     title: string;
     content?: string;
@@ -32,7 +33,7 @@ export default function PrivacyPage() {
 
           <div className="space-y-4">
             {sections.map((section, index) => (
-              <details
+              <div
                 key={section.title}
                 className={`group border rounded-xl ${
                   index === sections.length - 1
@@ -40,13 +41,30 @@ export default function PrivacyPage() {
                     : "border-gray-200 bg-white/70"
                 }`}
               >
-                <summary className="flex cursor-pointer items-center justify-between px-5 py-4 text-gray-900 font-semibold">
+                <button
+                  type="button"
+                  aria-expanded={openIndex === index}
+                  onClick={() =>
+                    setOpenIndex((current) => (current === index ? null : index))
+                  }
+                  className="flex w-full items-center justify-between px-5 py-4 text-left text-gray-900 font-semibold"
+                >
                   {section.title}
-                  <span className="text-gray-400 transition-transform group-open:rotate-180">
+                  <span
+                    className={`text-gray-400 transition-transform duration-300 ${
+                      openIndex === index ? "rotate-180" : "rotate-0"
+                    }`}
+                  >
                     ▾
                   </span>
-                </summary>
-                <div className="px-5 pb-5 text-gray-700 leading-relaxed">
+                </button>
+                <div
+                  className={`overflow-hidden px-5 text-gray-700 leading-relaxed transition-all duration-300 ease-in-out ${
+                    openIndex === index
+                      ? "max-h-[1000px] pb-5 opacity-100"
+                      : "max-h-0 pb-0 opacity-0"
+                  }`}
+                >
                   {section.list ? (
                     <ul className="list-disc pl-5 space-y-2">
                       {section.list.map((item) => (
@@ -57,7 +75,7 @@ export default function PrivacyPage() {
                     <p>{section.content}</p>
                   )}
                 </div>
-              </details>
+              </div>
             ))}
           </div>
         </div>

@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 
 interface Props {
   floating: boolean;
+  hidden?: boolean;
 }
 
 interface RoomType {
@@ -40,14 +41,14 @@ interface SearchFilters {
   promoCode: string;
 }
 
-export default function SearchBar({ floating }: Props) {
+export default function SearchBar({ floating, hidden = false }: Props) {
   const { t } = useTranslation();
   const roomTypes: RoomType[] = [
     {
       id: "shared",
       name: t("rooms.shared.name"),
       type: "shared",
-      price: 150,
+      price: 170,
       description: t("rooms.shared.tagline"),
       capacity: 4,
       beds: t("rooms.shared.beds"),
@@ -135,6 +136,11 @@ export default function SearchBar({ floating }: Props) {
             floating
               ? "fixed bottom-8 left-1/2 -translate-x-1/2 z-40 scale-95"
               : "absolute bottom-12 right-6 md:right-12 z-20"
+          }
+          ${
+            hidden
+              ? "opacity-0 translate-y-4 pointer-events-none"
+              : "opacity-100 translate-y-0"
           }
         `}
       >
@@ -448,14 +454,6 @@ function RoomTypeFilter({
                   <span>{room.beds}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <FaUser className="text-gray-400" />
-                  <span>
-                    {t("searchBar.accommodates", {
-                      count: room.capacity,
-                    })}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
                   <FaBath className="text-gray-400" />
                   <span className="capitalize">
                     {t(`searchBar.bathroom.${room.bathroom}`)} {t("searchBar.bathroomLabel")}
@@ -495,7 +493,7 @@ function RoomTypeFilter({
               onChange(selected);
               onClose();
             }}
-            className="px-6 py-2 bg-[#e56b5c] text-white rounded-lg font-medium hover:bg-[#d65f51] transition"
+            className="px-6 py-2 bg-[#70805a] text-white rounded-lg font-medium hover:bg-[#63724f] transition"
           >
             {t("common.selectRoom")}
           </button>
@@ -550,12 +548,6 @@ function GuestsFilter({
           >
             +
           </button>
-        </div>
-
-        <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
-          <p className="text-sm text-blue-800">
-            <strong>{t("searchBar.noteTitle")}</strong> {t("searchBar.sharedNote")}
-          </p>
         </div>
 
         <button

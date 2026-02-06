@@ -85,7 +85,7 @@ export default function Hero() {
             <div className="mb-6">
               <div className="flex items-center">
                 <h1 className="text-8xl md:text-9xl lg:text-[10rem] font-bold text-white leading-none tracking-tight">
-                  ONE
+                  PALMAS
                 </h1>
                 <div
                   className="relative ml-1 md:ml-2"

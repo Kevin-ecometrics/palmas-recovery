@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import AnimationHero from "./components/AnimationHero";
 import Banner from "./components/Banner";
@@ -14,10 +14,16 @@ import UniqueHotels from "./components/UniqueHotels";
 import InfiniteImageBanner from "./components/InfiniteImageBanner";
 import BannerAbout from "./components/BannerAbout";
 import BannerWithImage from "./components/BannerWithImage";
+import Blogs from "./components/Blogs";
 
 export default function Page() {
   const [showNavbar, setShowNavbar] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
+  const footerRef = useRef<HTMLDivElement | null>(null);
   const { t } = useTranslation();
+  const pleasureParagraphs = t("home.pleasure.paragraphs", {
+    returnObjects: true,
+  }) as string[];
 
   useEffect(() => {
     const handleHeroScroll = (e: Event) => {
@@ -29,16 +35,27 @@ export default function Page() {
     return () => window.removeEventListener("heroScroll", handleHeroScroll);
   }, []);
 
+  useEffect(() => {
+    if (!footerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setFooterVisible(entry.isIntersecting),
+      { root: null, threshold: 0.1 }
+    );
+
+    observer.observe(footerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="bg-white relative text-black">
       <div className="relative">
         <Hero />
-        <SearchBar floating={showNavbar} />
+        <SearchBar floating={showNavbar} hidden={footerVisible} />
       </div>
       <AnimationHero />
       <div
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
-          showNavbar
+          showNavbar && !footerVisible
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-10 pointer-events-none"
         }`}
@@ -47,51 +64,65 @@ export default function Page() {
       </div>
       <Banner />
 
-      {/* Sección Our Promise existente */}
-      <section className="relative flex items-center justify-center px-6 md:px-12 py-24 bg-gradient-to-b from-white to-gray-50">
-        <div className="max-w-5xl text-center space-y-10">
-          {/* Etiqueta */}
-          <div className="inline-block px-5 py-2 border border-gray-300/40 rounded-full text-sm uppercase tracking-[0.2em] text-gray-700 bg-white/60 backdrop-blur-sm shadow-sm transition-transform duration-300 hover:scale-105">
-            {t("home.promise.label")}
-          </div>
+      {/* Sección estilo One Shot */}
+      <section className="relative px-6 md:px-12 py-20 lg:py-24 bg-[#fffaf6]">
+        <div className="max-w-6xl mx-auto">
+          <header className="max-w-5xl">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.15] tracking-tight">
+              {t("home.pleasure.titleLine1")}
+              <br />
+              {t("home.pleasure.titleLine2")}
+            </h2>
+          </header>
 
-          {/* Título principal */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-gray-900 leading-tight">
-            {t("home.promise.title")}
-          </h2>
+          <div className="mt-12 space-y-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-start">
+              <div className="relative">
+                <img
+                  src="/01-cover.jpg"
+                  alt={t("home.pleasure.imageAlt")}
+                  className="w-full h-[420px] md:h-[520px] object-cover"
+                />
+              </div>
 
-          {/* Descripción */}
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-            {t("home.promise.description")}
-            </p>
-
-          {/* Valores */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
-              {(t("home.promise.values", { returnObjects: true }) as Array<{
-                title: string;
-                desc: string;
-              }>).map((item, i) => (
-                <div
-                  key={i}
-                  className="space-y-3 p-6 rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100"
-                >
-                  <h3 className="text-2xl font-semibold text-principal tracking-tight">
-                    {item.title}
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-4 leading-snug">
+                    {t("home.pleasure.subtitleLine1")}
+                    <br />
+                    {t("home.pleasure.subtitleLine2")}
                   </h3>
-                  <p className="text-gray-500 leading-relaxed">{item.desc}</p>
+                  <div className="text-gray-600 leading-relaxed space-y-4 text-base">
+                    {pleasureParagraphs
+                      .slice(0, 1)
+                      .map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                      ))}
+                  </div>
+                  <a
+                    href="#about"
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-900 border-b border-gray-900/50 hover:border-gray-900 transition-colors"
+                  >
+                    {t("home.pleasure.more")}
+                  </a>
                 </div>
-              ))}
+              </div>
             </div>
+
+          </div>
         </div>
       </section>
       <Room />
       <AudienceSelector />
+      <Blogs />
       <UniqueHotels />
+      <About />
       <InfiniteImageBanner />
       <BannerAbout />
       <BannerWithImage />
-      <About />
-      <Footer />
+      <div ref={footerRef}>
+        <Footer />
+      </div>
     </div>
   );
 }

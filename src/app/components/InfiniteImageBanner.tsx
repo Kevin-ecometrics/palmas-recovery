@@ -5,7 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 const IMAGES_TOP = [
-  "https://images.unsplash.com/photo-1501117716987-c8e1ecb2106d?w=800&q=80",
+  "/viendo.jpg",
   "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80",
   "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
   "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80",
@@ -19,6 +19,8 @@ const IMAGES_BOTTOM = [
   "https://images.unsplash.com/photo-1470163395405-d2b80e7450ed?w=800&q=80",
   "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80",
 ];
+
+const FALLBACK_IMAGE = "/logo.png";
 
 function MarqueeRow({ images }: { images: string[] }) {
   return (
@@ -43,6 +45,12 @@ function MarqueeRow({ images }: { images: string[] }) {
               alt="Gallery"
               className="w-full h-full object-cover"
               draggable={false}
+              onError={(event) => {
+                const target = event.currentTarget;
+                if (target.src !== window.location.origin + FALLBACK_IMAGE) {
+                  target.src = FALLBACK_IMAGE;
+                }
+              }}
             />
           </div>
         ))}

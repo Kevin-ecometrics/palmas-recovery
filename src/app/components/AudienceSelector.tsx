@@ -54,6 +54,16 @@ const ITEMS: Item[] = [
     bgColor: "#7DB9A2",
     href: "/es/tipo-de-viaje/familia-y-amigos/",
   },
+    {
+    id: "luxury",
+    labelKey: "audience.items.luxury.label",
+    descriptionKey: "audience.items.luxury.description",
+    image:
+      "https://www.oneshothotels.com/data/webp/one-shot-hoteles-familia-amigos316802-04e8b0eab74194078413a6699b94f0f7.webp",
+    color: "#7DB9A2",
+    bgColor: "#7DB9A2",
+    href: "/es/tipo-de-viaje/familia-y-amigos/",
+  },
 ];
 
 export default function AudienceSelector() {
@@ -68,108 +78,121 @@ export default function AudienceSelector() {
 
   return (
     <section
-      className="relative w-full py-6 md:py-8 transition-colors duration-300"
+      className="relative w-full py-14 md:py-20 transition-colors duration-300"
       style={{
         backgroundColor: activeItem ? activeItem.bgColor : "#ffffff",
       }}
     >
-      <div className="relative w-full">
-        <ul className="flex flex-col space-y-2">
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-6">
+        <div className="max-w-md">
+          <h2 className="text-4xl md:text-5xl font-serif text-[#1a1a1a] leading-[1.2]">
+            {t("audience.heading.titleLine1")}
+            <br />
+            {t("audience.heading.titleLine2")}
+          </h2>
+          <p className="mt-6 text-sm md:text-base text-[#1a1a1a] leading-relaxed">
+            {t("audience.heading.description")}
+          </p>
+        </div>
+      </div>
+
+      <div className="relative w-full mt-10">
+        <ul className="flex flex-col space-y-4 md:space-y-6 py-4 md:py-6">
           {ITEMS.map((item, index) => {
             const isActive = activeId === item.id;
 
-            return (
-              <li
-                key={item.id}
-                className="relative w-full transition-[min-height] duration-300"
-                style={{
-                  zIndex: isActive ? 50 : 10 - index,
-                  minHeight: isActive ? expandedHeight : collapsedHeight,
-                }}
-                onMouseEnter={() => setActiveId(item.id)}
-                onMouseLeave={() => setActiveId(null)}
-              >
-                <div className="relative w-full flex items-center justify-center cursor-pointer">
-                  {isActive && (
-                    <div
-                      className="absolute inset-0 left-0 right-0 w-full overflow-hidden transition-opacity duration-300"
-                      style={{
-                        opacity: isActive ? 1 : 0,
-                        height: expandedHeight,
-                        top: 0,
-                      }}
-                    >
-                      <img
-                        src={item.image}
-                        alt={t(item.labelKey)}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-
-                  <div
-                    className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 transition-[height] duration-300"
+                return (
+                  <li
+                    key={item.id}
+                    className="relative w-full transition-[min-height] duration-300"
                     style={{
-                      height: isActive ? expandedHeight : collapsedHeight,
+                      zIndex: isActive ? 50 : 10 - index,
+                      minHeight: isActive ? expandedHeight : collapsedHeight,
                     }}
+                    onMouseEnter={() => setActiveId(item.id)}
+                    onMouseLeave={() => setActiveId(null)}
                   >
-                    <h3
-                      className="text-4xl md:text-5xl lg:text-6xl font-serif transition-colors duration-300"
-                      style={{
-                        color: isActive ? "#ffffff" : "#1a1a1a",
-                        fontWeight: 300,
-                        letterSpacing: "-0.02em",
-                        marginBottom: isActive ? "0.75rem" : "0",
-                      }}
-                    >
-                      {t(item.labelKey)}
-                    </h3>
-
-                    {isActive && (
-                      <div className="animate-in fade-in duration-300">
-                        <p
-                          className="text-white text-base md:text-lg mb-5 leading-relaxed max-w-2xl uppercase tracking-wide"
-                          style={{ fontSize: "0.85rem" }}
-                        >
-                          {t(item.descriptionKey)}
-                        </p>
-
-                        <a
-                          href={item.href}
-                          className="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-2.5 rounded-full font-medium hover:bg-opacity-90 transition-all duration-200 text-sm"
+                    <div className="relative w-full flex items-center justify-center cursor-pointer">
+                      {isActive && (
+                        <div
+                          className="absolute inset-0 left-0 right-0 w-full overflow-hidden transition-opacity duration-300"
                           style={{
-                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                            opacity: isActive ? 1 : 0,
+                            height: expandedHeight,
+                            top: 0,
                           }}
                         >
-                          {t("common.viewHotels")}
-                          <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 20 20"
-                            fill="none"
-                          >
-                            <path
-                              d="M6.12476 14.1248L14.3743 5.87518"
-                              stroke="currentColor"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                            <path
-                              d="M6.12476 5.87524H14.3743V14.1248"
-                              stroke="currentColor"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </a>
+                          <img
+                            src={item.image}
+                            alt={t(item.labelKey)}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+
+                      <div
+                        className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 transition-[height] duration-300"
+                        style={{
+                          height: isActive ? expandedHeight : collapsedHeight,
+                        }}
+                      >
+                        <h3
+                          className="text-2xl md:text-3xl lg:text-4xl font-serif transition-colors duration-300"
+                          style={{
+                            color: isActive ? "#ffffff" : "#1a1a1a",
+                            fontWeight: 300,
+                            letterSpacing: "-0.02em",
+                            marginBottom: isActive ? "0.75rem" : "0",
+                          }}
+                        >
+                          {t(item.labelKey)}
+                        </h3>
+
+                        {isActive && (
+                          <div className="animate-in fade-in duration-300">
+                            <p
+                              className="text-white text-base md:text-lg mb-5 leading-relaxed max-w-2xl uppercase tracking-wide"
+                              style={{ fontSize: "0.85rem" }}
+                            >
+                              {t(item.descriptionKey)}
+                            </p>
+
+                            <a
+                              href={item.href}
+                              className="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-2.5 rounded-full font-medium hover:bg-opacity-90 transition-all duration-200 text-sm"
+                              style={{
+                                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                              }}
+                            >
+                              {t("common.viewHotels")}
+                              <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                              >
+                                <path
+                                  d="M6.12476 14.1248L14.3743 5.87518"
+                                  stroke="currentColor"
+                                  strokeWidth="1.5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                                <path
+                                  d="M6.12476 5.87524H14.3743V14.1248"
+                                  stroke="currentColor"
+                                  strokeWidth="1.5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </a>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                </div>
-              </li>
-            );
+                    </div>
+                  </li>
+                );
           })}
         </ul>
       </div>

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import type { Variants } from "motion/react";
-import { FaInstagram, FaTiktok, FaFacebookF } from "react-icons/fa";
+import { FaInstagram, FaTiktok, FaFacebookF, FaPhone } from "react-icons/fa";
 import { RiMenuFill, RiCloseFill } from "react-icons/ri";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,7 @@ import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const isHome = usePathname() === "/";
   const pathname = usePathname();
@@ -18,8 +19,6 @@ const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
 
-  // Estado para controlar el navbar sticky
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
     { label: t("navbar.items.home"), path: "/" },
@@ -37,14 +36,6 @@ const Navbar: React.FC = () => {
     router.replace(getLocalizedPath(canonical, lng), { scroll: false });
   };
 
-  // Efecto para manejar scroll y cambiar estado sticky
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 80);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const currentPath = getLocalizedPath(
@@ -105,11 +96,8 @@ const Navbar: React.FC = () => {
   return (
     <motion.header
       initial={{ y: 0, opacity: 1 }}
-      animate={{
-        y: isScrolled ? -20 : 0,
-        transition: { duration: 0.3 },
-      }}
-      className="w-full bg-[#fffaf6] border-b text-black border-black fixed top-1 md:top-5 left-0 z-50"
+      animate={{ y: 0, transition: { duration: 0.3 } }}
+      className="w-full bg-[#fffaf6] border-b text-black border-black fixed top-0 left-0 z-50"
     >
       {/* Línea superior */}
       <div className="h-1 bg-principal w-full md:block hidden"></div>
@@ -148,26 +136,30 @@ const Navbar: React.FC = () => {
         </button>
 
         {/* Links desktop + Logo */}
-        <nav className="hidden md:flex items-center space-x-8 text-sm tracking-widest font-medium">
+        <nav className="hidden md:flex items-center text-sm tracking-widest font-medium">
           {navItems.map((item, i) => (
-            <motion.div
-              key={item.label}
-              custom={i}
-              initial="hidden"
-              animate="visible"
-              variants={navItemVariants}
-            >
-              <button
-                onClick={() => router.push(getLocalizedPath(item.path, currentLang))}
-                className={`hover:text-principal transition-colors ${
-                  i === activeIndex ? "text-principal font-bold" : ""
-                }`}
+            <React.Fragment key={item.label}>
+              <motion.div
+                custom={i}
+                initial="hidden"
+                animate="visible"
+                variants={navItemVariants}
               >
-                {item.label}
-              </button>
-            </motion.div>
+                <button
+                  onClick={() => router.push(getLocalizedPath(item.path, currentLang))}
+                  className={`hover:text-principal transition-colors ${
+                    i === activeIndex ? "text-principal font-bold" : ""
+                  }`}
+                >
+                  {item.label}
+                </button>
+              </motion.div>
+              {i < navItems.length - 1 && (
+                <span className="mx-4 h-4 w-px bg-black/30" aria-hidden="true" />
+              )}
+            </React.Fragment>
           ))}
-          
+
           {/* Logo después de PANORAMA */}
           <motion.div
             custom={navItems.length}
@@ -193,43 +185,66 @@ const Navbar: React.FC = () => {
         </nav>
 
         {/* Redes */}
-        <div className="hidden md:flex items-center space-x-4 text-black">
-          {[FaInstagram, FaTiktok, FaFacebookF].map((Icon, i) => (
-            <motion.div
-              key={i}
-              custom={i}
-              initial="hidden"
-              animate="visible"
-              variants={socialIconVariants}
-            >
-              <Icon className="hover:text-principal cursor-pointer transition-colors" />
-            </motion.div>
-          ))}
-          <div className="flex items-center border border-black/20 rounded-full overflow-hidden text-xs">
+        <div className="hidden md:flex items-center text-black">
+          <a
+            href="tel:+16199679558"
+            aria-label={t("navbar.phoneAria")}
+            className="flex items-center hover:text-principal transition-colors"
+          >
+            <FaPhone />
+          </a>
+          <span className="mx-4 h-4 w-px bg-black/30" aria-hidden="true" />
+          <div className="flex items-center space-x-4">
+            {[FaInstagram, FaTiktok, FaFacebookF].map((Icon, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                initial="hidden"
+                animate="visible"
+                variants={socialIconVariants}
+              >
+                <Icon className="hover:text-principal cursor-pointer transition-colors" />
+              </motion.div>
+            ))}
+          </div>
+          <span className="mx-4 h-4 w-px bg-black/30" aria-hidden="true" />
+          <div className="relative">
             <button
               type="button"
-              onClick={() => handleLanguageChange("es")}
-              aria-disabled={currentLang === "es"}
-              className={`px-3 py-1 transition-colors ${
-                currentLang === "es"
-                  ? "bg-black text-white opacity-80"
-                  : "bg-transparent text-black"
-              }`}
+              onClick={() => setLangOpen((prev) => !prev)}
+              className="text-xs tracking-widest border border-black/20 rounded-full px-3 py-1 hover:bg-black/5 transition-colors"
+              aria-expanded={langOpen}
+              aria-controls="navbar-language-menu"
             >
-              {t("common.spanish")}
+              {currentLang === "es" ? t("common.spanish") : t("common.english")}
             </button>
-            <button
-              type="button"
-              onClick={() => handleLanguageChange("en")}
-              aria-disabled={currentLang === "en"}
-              className={`px-3 py-1 transition-colors ${
-                currentLang === "en"
-                  ? "bg-black text-white opacity-80"
-                  : "bg-transparent text-black"
-              }`}
-            >
-              {t("common.english")}
-            </button>
+            {langOpen && (
+              <div
+                id="navbar-language-menu"
+                className="absolute right-0 mt-2 w-28 rounded-lg border border-black/10 bg-white shadow-lg overflow-hidden z-50"
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleLanguageChange("es");
+                    setLangOpen(false);
+                  }}
+                  className="w-full text-left px-3 py-2 text-xs hover:bg-black/5"
+                >
+                  {t("common.spanish")}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleLanguageChange("en");
+                    setLangOpen(false);
+                  }}
+                  className="w-full text-left px-3 py-2 text-xs hover:bg-black/5"
+                >
+                  {t("common.english")}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -270,37 +285,56 @@ const Navbar: React.FC = () => {
           transition={{ delay: 0.5 }}
           className="flex items-center justify-start space-x-4 py-4"
         >
+          <a
+            href="tel:+16199679558"
+            aria-label={t("navbar.phoneAria")}
+            className="flex items-center hover:text-principal transition-colors"
+          >
+            <FaPhone />
+          </a>
           {[FaInstagram, FaTiktok, FaFacebookF].map((Icon, i) => (
             <Icon
               key={i}
               className="hover:text-principal cursor-pointer transition-colors"
             />
           ))}
-          <div className="flex items-center border border-black/20 rounded-full overflow-hidden text-xs">
+          <div className="relative">
             <button
               type="button"
-              onClick={() => handleLanguageChange("es")}
-              aria-disabled={currentLang === "es"}
-              className={`px-3 py-1 transition-colors ${
-                currentLang === "es"
-                  ? "bg-black text-white opacity-80"
-                  : "bg-transparent text-black"
-              }`}
+              onClick={() => setLangOpen((prev) => !prev)}
+              className="text-xs tracking-widest border border-black/20 rounded-full px-3 py-1 hover:bg-black/5 transition-colors"
+              aria-expanded={langOpen}
+              aria-controls="navbar-language-menu-mobile"
             >
-              {t("common.spanish")}
+              {currentLang === "es" ? t("common.spanish") : t("common.english")}
             </button>
-            <button
-              type="button"
-              onClick={() => handleLanguageChange("en")}
-              aria-disabled={currentLang === "en"}
-              className={`px-3 py-1 transition-colors ${
-                currentLang === "en"
-                  ? "bg-black text-white opacity-80"
-                  : "bg-transparent text-black"
-              }`}
-            >
-              {t("common.english")}
-            </button>
+            {langOpen && (
+              <div
+                id="navbar-language-menu-mobile"
+                className="absolute left-0 mt-2 w-28 rounded-lg border border-black/10 bg-white shadow-lg overflow-hidden z-50"
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleLanguageChange("es");
+                    setLangOpen(false);
+                  }}
+                  className="w-full text-left px-3 py-2 text-xs hover:bg-black/5"
+                >
+                  {t("common.spanish")}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleLanguageChange("en");
+                    setLangOpen(false);
+                  }}
+                  className="w-full text-left px-3 py-2 text-xs hover:bg-black/5"
+                >
+                  {t("common.english")}
+                </button>
+              </div>
+            )}
           </div>
         </motion.div>
 
