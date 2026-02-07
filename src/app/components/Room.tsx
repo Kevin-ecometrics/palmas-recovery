@@ -39,14 +39,14 @@ const destinations: Destination[] = [
     name: "Lymphatic massage",
     priceText: "$60 dlls",
     image:
-      "/lymphatic-massage.jpg",
+      "/lymphatic.jpg",
   },
   {
     id: 5,
     name: "5 Lymphatic massages package",
     priceText: "$270 dlls",
     image:
-      "/5-lymphatic-massages-package.jpg",
+      "/5massages.jpeg",
   },
   {
     id: 6,
@@ -79,7 +79,11 @@ const destinations: Destination[] = [
   },
 ];
 
-const imageHeights = ["h-[420px]", "h-[480px]", "h-[500px]"];
+const imageHeights = [
+  "h-[260px] sm:h-[420px]",
+  "h-[300px] sm:h-[480px]",
+  "h-[320px] sm:h-[500px]",
+];
 
 export default function HotelDestinationsScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -116,11 +120,11 @@ export default function HotelDestinationsScroll() {
   /* -------------------------------------------- */
 
   return (
-    <section className="bg-[#f5f3ef] py-20 px-10 relative">
+    <section className="bg-[#f5f3ef] py-16 sm:py-20 px-6 sm:px-10 relative">
       {/* CURSOR CUSTOM */}
       {showCursor && (
         <div
-          className="fixed z-50 pointer-events-none"
+          className="fixed z-50 pointer-events-none hidden md:block"
           style={{
             left: cursorPos.x,
             top: cursorPos.y,
@@ -134,14 +138,14 @@ export default function HotelDestinationsScroll() {
       )}
 
       <div className="max-w-[1800px] mx-auto">
-        <h1 className="text-[42px] font-serif text-gray-800 mb-16 max-w-3xl">
+        <h1 className="text-2xl sm:text-3xl md:text-[42px] font-serif text-gray-800 mb-10 sm:mb-16 max-w-xl sm:max-w-3xl leading-snug">
           {t("destinations.title")}
         </h1>
 
         {/* DRAG CONTAINER */}
         <div
           ref={containerRef}
-          className="flex gap-14 overflow-hidden select-none cursor-none"
+          className="flex gap-6 sm:gap-10 md:gap-14 overflow-x-auto md:overflow-hidden select-none cursor-auto md:cursor-none snap-x snap-mandatory md:snap-none touch-pan-x pr-6 md:pr-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]"
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onMouseUp={stopDragging}
@@ -155,15 +159,15 @@ export default function HotelDestinationsScroll() {
             const isOdd = index % 2 === 1;
 
             return (
-              <div key={item.id} className="flex-none w-[360px]">
+              <div key={item.id} className="flex-none w-[260px] sm:w-[300px] md:w-[360px] snap-start">
                 <div className="flex flex-col gap-4">
                   {/* TEXTO ARRIBA */}
                   {isOdd && (
                     <div>
-                      <h3 className="text-xl font-serif text-gray-800">
+                      <h3 className="text-base sm:text-xl font-serif text-gray-800">
                         {item.name}
                       </h3>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500">
                         {item.priceText}
                       </p>
                     </div>
@@ -193,10 +197,10 @@ export default function HotelDestinationsScroll() {
                   {/* TEXTO ABAJO */}
                   {!isOdd && (
                     <div>
-                      <h3 className="text-xl font-serif text-gray-800">
+                      <h3 className="text-base sm:text-xl font-serif text-gray-800">
                         {item.name}
                       </h3>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500">
                         {item.priceText}
                       </p>
                     </div>

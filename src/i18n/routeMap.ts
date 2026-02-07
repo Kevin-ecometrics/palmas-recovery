@@ -12,7 +12,7 @@ export type RouteKey =
   | "tour";
 
 export const ROUTE_PAIRS: Array<{ key: RouteKey; es: string; en: string }> = [
-  { key: "home", es: "/", en: "/" },
+  { key: "home", es: "/es", en: "/en" },
   { key: "book", es: "/reservar", en: "/book" },
   { key: "services", es: "/servicios", en: "/services" },
   { key: "contact", es: "/contacto", en: "/contact" },
@@ -43,6 +43,9 @@ export const getRouteByKey = (key: RouteKey, lang: Lang) => {
 
 export const getLocalizedPath = (pathname: string, lang: Lang) => {
   const normalized = normalizePath(pathname);
+  if (normalized === "/") {
+    return getRouteByKey("home", lang);
+  }
   const match = ROUTE_PAIRS.find(
     (pair) =>
       normalizePath(pair.es) === normalized ||

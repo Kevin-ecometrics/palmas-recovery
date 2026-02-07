@@ -18,14 +18,14 @@ export default function Blogs() {
   const roomIds = ["shared", "private", "vip"];
 
   return (
-    <section className="pt-32 pb-40 lg:pt-36 lg:pb-48 bg-[#fffaf6]">
-      <div className="container mx-auto px-0 md:px-0">
+    <section className="pt-16 sm:pt-28 lg:pt-36 pb-20 sm:pb-32 lg:pb-48 bg-[#fffaf6]">
+      <div className="container mx-auto px-6 md:px-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.2fr] gap-12 items-start">
           <div className="text-black">
-            <h2 className="text-3xl md:text-4xl font-serif leading-tight mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif leading-tight mb-5 sm:mb-6">
               {t("blogs.title")}
             </h2>
-            <p className="text-lg md:text-xl text-black/70 mb-8 max-w-md">
+            <p className="text-base sm:text-lg md:text-xl text-black/70 mb-6 sm:mb-8 max-w-md">
               {t("blogs.subtitle")}
             </p>
             <Link
@@ -37,11 +37,14 @@ export default function Blogs() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x divide-black/20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-0 md:divide-x divide-black/20">
             {items.map((item, index) => (
-              <article key={item.title} className="bg-transparent md:px-5">
+              <article
+                key={item.title}
+                className="bg-white/70 border border-black/10 rounded-2xl p-4 sm:p-5 md:bg-transparent md:border-0 md:rounded-none md:p-0 md:px-5"
+              >
                 <div className="overflow-hidden">
-                  <div className="relative h-52 w-full overflow-hidden">
+                  <div className="relative h-44 sm:h-52 w-full overflow-hidden rounded-xl md:rounded-none">
                     <img
                       src={BLOG_IMAGES[index % BLOG_IMAGES.length]}
                       alt={item.title}
@@ -51,7 +54,7 @@ export default function Blogs() {
                       {item.category}
                     </span>
                   </div>
-                  <div className="pt-4 border-t border-black/20">
+                  <div className="pt-4 border-t border-black/10 md:border-black/20">
                     <p className="text-xs uppercase tracking-[0.2em] text-black/50">
                       {t("blogs.kicker")}
                     </p>

@@ -130,12 +130,12 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
         </div>
 
         <div className={`w-full mt-3 pt-3 pb-3 border-t ${borderClass}`}>
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-end gap-10">
-            <div className="w-full md:w-[9200px] overflow-hidden rounded-2xl border border-white/10 md:ml-auto">
+          <div className="max-w-6xl mx-auto flex flex-col items-start gap-8">
+            <div className="w-full overflow-hidden rounded-2xl border border-white/10">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!4v1770341021986!6m8!1m7!1sN-CYaVYhfuwqmBIsa4VYVA!2m2!1d32.53180523214883!2d-117.0158720135962!3f121.88!4f0!5f0.7820865974627469"
                 width="520"
-                height="240"
+                height="360"
                 style={{ border: 0, width: "100%" }}
                 allowFullScreen
                 loading="lazy"
@@ -144,7 +144,7 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
               />
             </div>
 
-            <div className="w-full md:max-w-sm">
+            <div className="w-full md:max-w-xl">
               <h4 className="text-sm uppercase tracking-[0.2em] mb-4">
                 {t("footer.contactTitle")}
               </h4>

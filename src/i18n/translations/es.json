@@ -62,7 +62,7 @@
     "phoneAria": "Llamar a Palmas Recovery"
   },
   "footer": {
-    "description": "Centro líder de recuperación postquirúrgica en Tijuana, brindando cuidado y confort excepcionales.",
+    "description": "Centro líder de recuperación post-operatorio en Tijuana, brindando cuidado y confort excepcionales.",
     "quickLinks": "Enlaces rápidos",
     "newsletterTitle": "newsletter",
     "newsletterSubtitle": "Ofertas, novedades y guía para tu recuperación. Lo que somos y lo que queremos compartir contigo. Regístrate.",
@@ -93,7 +93,7 @@
     "pleasure": {
       "titleLine1": "La casa de recuperación",
       "titleLine2": "preferida por cirujanos con doble certificación",
-      "subtitleLine1": "En Palma’s Recovery House garantizamos resultados superiores y una transición fluida hacia tu bienestar.",
+      "subtitleLine1": "En Palmas Recovery House garantizamos resultados superiores y una transición fluida hacia tu bienestar.",
       "subtitleLine2": "",
       "paragraphs": [
         "Trabajamos de la mano con algunos de los cirujanos plásticos más reconocidos de México para ofrecer una atención cuidadosamente diseñada. Desde transporte privado y manejo personalizado de medicamentos hasta comidas preparadas por chef, brindamos un entorno discreto, seguro y enfocado en tu recuperación."
@@ -197,9 +197,10 @@
     "button": "Más información"
   },
   "bannerWithImage": {
-    "title": "La alegría de viajar. Donde el diseño se encuentra con la autenticidad.",
-    "subtitle": "Vive la esencia urbana en One Shot Hotels. De Madrid a San Sebastián, Valencia, Sevilla, Porto y Barcelona, nuestras ubicaciones te acercan a la energía de cada ciudad. Recorre calles llenas de historia, descubre joyas ocultas y sumérgete en el carácter único de cada destino.",
-    "button": "LEER MÁS"
+    "title": "Cuidado post-operatorio, cerca y sin complicaciones",
+    "subtitle": "Estamos a minutos de la frontera, con acceso rapido desde el aeropuerto y transporte privado para citas medicas. Habitaciones tranquilas, equipo 24/7 y atencion personalizada para una recuperacion segura.",
+    "button": "Ver habitaciones",
+    "imageAlt": "Equipo de cuidado de Palmas Recovery"
   },
   "blogs": {
     "kicker": "Blog",
@@ -287,7 +288,7 @@
     "ctaAria": "Visita @palmasrecovery en Instagram"
   },
   "uniqueHotels": {
-    "title": "En Palmas recovery",
+    "title": "En Palmas Recovery",
     "description": "Disfruta de una recuperación sin estrés en un espacio creado para apoyar la sanación, la privacidad y el confort total:",
     "bullets": [
       "+ Suites privadas y compartidas con camas ajustables, A/C y Wi-Fi de alta velocidad",
@@ -351,7 +352,7 @@
   },
   "roomsPage": {
     "heroTitle": "Tu recuperación, nuestra prioridad",
-    "heroDescription": "Vive atención postquirúrgica personalizada donde la excelencia médica se encuentra con el confort de lujo.",
+    "heroDescription": "Vive atención post-operatorio personalizada donde la excelencia médica se encuentra con el confort de lujo.",
     "exploreRooms": "EXPLORAR HABITACIONES",
     "contactUs": "CONTÁCTANOS",
     "ourSpaces": "Nuestros espacios",
@@ -380,7 +381,7 @@
     "needHelp": "¿Necesitas ayuda?",
     "contactTeam": "Contacta a nuestro equipo",
     "readyTitle": "¿Listo para comenzar tu recuperación?",
-    "readyDescription": "Vive atención postquirúrgica de clase mundial en un entorno diseñado para sanar y reconfortar.",
+    "readyDescription": "Vive atención post-operatorio de clase mundial en un entorno diseñado para sanar y reconfortar.",
     "bookNow": "Reservar",
     "scheduleTour": "Agendar tour",
     "roomSpecs": "Especificaciones de la habitación",
@@ -612,11 +613,11 @@
     "commitmentTitle": "Nuestro compromiso con la excelencia",
     "commitmentSubtitle": "Guiados por la compasión, dedicados a tu recuperación.",
     "missionTitle": "Nuestra misión",
-    "missionText": "Brindar el mejor servicio de recuperación postquirúrgica de manera oportuna, eficiente y cálida, garantizando un regreso saludable a tu vida diaria con los más altos estándares de atención médica.",
+    "missionText": "Brindar el mejor servicio de recuperación post-operatorio de manera oportuna, eficiente y cálida, garantizando un regreso saludable a tu vida diaria con los más altos estándares de atención médica.",
     "visionTitle": "Nuestra visión",
-    "visionText": "Ser el spa de recuperación postquirúrgica más confiable de Tijuana, reconocido internacionalmente por su excelencia, instalaciones de vanguardia y cuidado compasivo que transforma la experiencia de recuperación.",
+    "visionText": "Ser el spa de recuperación post-operatorio más confiable de Tijuana, reconocido internacionalmente por su excelencia, instalaciones de vanguardia y cuidado compasivo que transforma la experiencia de recuperación.",
     "ctaTitle": "¿Listo para comenzar tu recuperación?",
-    "ctaSubtitle": "Vive la diferencia que marcan el cuidado profesional y el confort de lujo en tu proceso postquirúrgico.",
+    "ctaSubtitle": "Vive la diferencia que marcan el cuidado profesional y el confort de lujo en tu proceso post-operatorio.",
     "ctaBook": "Reserva tu estancia",
     "ctaContact": "Contáctanos",
     "ctaQuestions": "¿Preguntas? Llámanos al"

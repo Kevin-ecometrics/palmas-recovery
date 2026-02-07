@@ -5,20 +5,19 @@ import { FaInstagram } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 const IMAGES_TOP = [
-  "/viendo.jpg",
-  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80",
-  "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
-  "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80",
-  "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80",
+  "/img1.jpg",
+  "/img2.jpg",
+  "/img8.jpg",
+  "/img5.jpg",
+
 ];
 
 const IMAGES_BOTTOM = [
-  "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=800&q=80",
-  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80",
-  "https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?w=800&q=80",
-  "https://images.unsplash.com/photo-1470163395405-d2b80e7450ed?w=800&q=80",
-  "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80",
-];
+  "/img6.jpg",
+  "/img7.jpg",
+  "/img4.jpg",
+  "/lymphatic.jpg",
+]; 
 
 const FALLBACK_IMAGE = "/logo.png";
 

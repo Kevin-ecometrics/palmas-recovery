@@ -359,7 +359,7 @@ function FilterButton({
         focus:outline-none
         focus:bg-white/10
         cursor-pointer
-        ${isActive ? "bg-white/10 border-r-2 border-[#e56b5c]" : ""}
+        ${isActive ? "bg-white/10 border-r-2 border-[#70805a]" : ""}
       `}
     >
       <div className="text-white/80 flex-shrink-0">{icon}</div>
@@ -416,7 +416,7 @@ function RoomTypeFilter({
                 border-2 rounded-xl p-4 text-left transition-all
                 ${
                   selected === room.id
-                    ? "border-[#e56b5c] bg-red-50"
+                    ? "border-[#70805a] bg-green-50"
                     : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                 }
               `}
@@ -438,7 +438,7 @@ function RoomTypeFilter({
                   <p className="text-sm text-gray-600">{room.description}</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-[#e56b5c]">
+                  <div className="text-2xl font-bold text-[#70805a]">
                     ${room.price}
                   </div>
                   <div className="text-xs text-gray-500">
@@ -521,7 +521,7 @@ function GuestsFilter({
     <FilterPanel title={t("searchBar.numberOfGuests")} onClose={onClose}>
       <div className="p-6">
         <div className="text-center mb-6">
-          <div className="text-4xl font-bold text-[#e56b5c] mb-2">{guests}</div>
+          <div className="text-4xl font-bold text-[#70805a] mb-2">{guests}</div>
           <p className="text-gray-600">
             {t("common.guest", { count: guests })}
           </p>
@@ -552,7 +552,7 @@ function GuestsFilter({
 
         <button
           onClick={onClose}
-          className="w-full bg-[#e56b5c] text-white py-3 rounded-lg font-medium hover:bg-[#d65f51] transition"
+          className="w-full bg-[#70805a] text-white py-3 rounded-lg font-medium hover:bg-[#63724f] transition"
         >
           {t("common.confirmGuests")}
         </button>
@@ -638,7 +638,7 @@ function DurationFilter({
                 border-2 rounded-lg p-4 text-center transition-all
                 ${
                   selectedNights === item.nights
-                    ? "border-[#e56b5c] bg-red-50"
+                    ? "border-[#70805a] bg-green-50"
                     : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                 }
               `}
@@ -655,7 +655,7 @@ function DurationFilter({
                 </div>
               )}
               <div className="font-bold text-lg">{item.label}</div>
-              <div className="text-2xl font-bold text-[#e56b5c] mt-1">
+              <div className="text-2xl font-bold text-[#70805a] mt-1">
                 ${item.total}
               </div>
               <div className="text-xs text-gray-500">
@@ -676,7 +676,7 @@ function DurationFilter({
           </div>
           <div className="flex justify-between text-lg font-bold mt-2 pt-2 border-t">
             <span>{t("common.total")}:</span>
-            <span className="text-[#e56b5c]">
+            <span className="text-[#70805a]">
               ${pricePerNight * parseInt(selectedNights)}
             </span>
           </div>
@@ -694,7 +694,7 @@ function DurationFilter({
               onChange(selectedNights);
               onClose();
             }}
-            className="flex-1 bg-[#e56b5c] text-white py-3 rounded-lg font-medium hover:bg-[#d65f51] transition"
+            className="flex-1 bg-[#70805a] text-white py-3 rounded-lg font-medium hover:bg-[#63724f] transition"
           >
             {t("common.confirmStay")}
           </button>
@@ -733,7 +733,7 @@ function PromoFilter({ value, onChange, onClose }: PromoFilterProps) {
           value={code}
           onChange={(e) => setCode(e.target.value.toUpperCase())}
           placeholder={t("searchBar.promoPlaceholder")}
-          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#e56b5c] text-center text-lg font-medium tracking-wider"
+          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#70805a] text-center text-lg font-medium tracking-wider"
           maxLength={15}
         />
 
@@ -779,7 +779,7 @@ function PromoFilter({ value, onChange, onClose }: PromoFilterProps) {
               onChange(code);
               onClose();
             }}
-            className="flex-1 bg-gradient-to-r from-[#e56b5c] to-[#d65f51] text-white py-3 rounded-lg font-medium hover:from-[#d65f51] hover:to-[#c55345] transition"
+            className="flex-1 bg-gradient-to-r from-[#70805a] to-[#63724f] text-white py-3 rounded-lg font-medium hover:from-[#63724f] hover:to-[#5f6f4a] transition"
           >
             {t("common.applyDiscount")}
           </button>

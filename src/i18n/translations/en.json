@@ -197,9 +197,10 @@
     "button": "More information"
   },
   "bannerWithImage": {
-    "title": "The joy of travel. Where design meets authenticity.",
-    "subtitle": "Experience urban essence at One Shot Hotels. From Madrid to San Sebastián, Valencia, Seville, Porto, and Barcelona, our prime locations bring you closer to the vibrant energy of each city. Stroll through streets steeped in history, uncover hidden gems, and immerse yourself in the unique character that defines each destination.",
-    "button": "READ MORE"
+    "title": "Post-op care, close and stress-free",
+    "subtitle": "Minutes from the border with easy airport access and private transport to appointments. Quiet rooms, 24/7 staff, and personalized care for a safe recovery.",
+    "button": "View rooms",
+    "imageAlt": "Palmas Recovery care team"
   },
   "blogs": {
     "kicker": "Blog",
@@ -287,7 +288,7 @@
     "ctaAria": "Visit @palmasrecovery on Instagram"
   },
   "uniqueHotels": {
-    "title": "At Palmas recovery",
+    "title": "At Palmas Recovery",
     "description": "Enjoy a stress-free recovery in a space created to support healing, privacy, and total comfort:",
     "bullets": [
       "+ Private and shared suites with adjustable beds, A/C, and high-speed Wi-Fi",

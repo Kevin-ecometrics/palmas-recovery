@@ -49,14 +49,11 @@ const BannerWithImage: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!4v1770248444901!6m8!1m7!1sN-CYaVYhfuwqmBIsa4VYVA!2m2!1d32.53180523214883!2d-117.0158720135962!3f123.79771063065212!4f15.805835351637043!5f1.0392978847143994"
-            className="w-full h-full"
-            style={{ border: 0 }}
-            allowFullScreen
+          <img
+            src="/doctores.jpg"
+            alt={t("bannerWithImage.imageAlt")}
+            className="w-full h-full object-cover"
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Palmas Recovery Map"
           />
         </motion.div>
       </div>

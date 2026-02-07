@@ -79,18 +79,15 @@ export default function Hero() {
 
       {/* === Contenido alineado a la IZQUIERDA === */}
       <div className="absolute inset-0 flex items-center">
-        <div className="w-full mx-auto px-8 md:px-16 lg:px-24">
+        <div className="w-full mx-auto px-6 md:px-16 lg:px-24">
           <div className="max-w-3xl">
             {/* === Logo texto ONE + palabra animada === */}
             <div className="mb-6">
-              <div className="flex items-center">
-                <h1 className="text-8xl md:text-9xl lg:text-[10rem] font-bold text-white leading-none tracking-tight">
+              <div className="flex flex-col sm:flex-row sm:items-center">
+                <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold text-white leading-none tracking-tight">
                   PALMAS
                 </h1>
-                <div
-                  className="relative ml-1 md:ml-2"
-                  style={{ width: "400px", height: "10rem" }}
-                >
+                <div className="relative mt-2 sm:mt-0 sm:ml-2 w-full h-[3.5rem] sm:w-[400px] sm:h-[10rem]">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={words[currentIndex]}
@@ -101,7 +98,7 @@ export default function Hero() {
                         duration: 0.7,
                         ease: [0.68, -0.55, 0.265, 1.55],
                       }}
-                      className="absolute top-0 left-0 text-8xl md:text-9xl lg:text-[10rem] font-extralight italic text-white leading-none"
+                      className="absolute top-0 left-0 text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-extralight italic text-white leading-none"
                     >
                       {words[currentIndex]}
                     </motion.span>
@@ -111,12 +108,12 @@ export default function Hero() {
             </div>
 
             {/* === Subtítulo === */}
-            <p className="text-white text-xl md:text-2xl lg:text-3xl mb-10 font-light max-w-2xl leading-relaxed">
+            <p className="text-white text-base sm:text-xl md:text-2xl lg:text-3xl mb-8 md:mb-10 font-light max-w-2xl leading-relaxed">
               {t("home.heroVideo.subtitle")}
             </p>
 
             {/* === Botón CTA mejorado === */}
-            <button className="group relative px-10 py-4 bg-transparent border-2 rounded-xl border-white text-white text-lg font-normal tracking-wide overflow-hidden transition-all duration-500 hover:border-white">
+            <button className="group relative px-6 sm:px-10 py-3 sm:py-4 bg-transparent border-2 rounded-xl border-white text-white text-sm sm:text-lg font-normal tracking-wide overflow-hidden transition-all duration-500 hover:border-white">
               <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
                 {t("home.heroVideo.cta")}
               </span>
