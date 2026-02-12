@@ -5,12 +5,12 @@
     "spanish": "ES",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
-    "viewTour": "Ver tour",
+    "viewTour": "Ver habitación",
     "scroll": "Desliza",
     "bookNow": "Reservar",
     "bookNowUpper": "RESERVAR",
     "contactUs": "Contáctanos",
-    "scheduleTour": "Agendar tour",
+    "scheduleTour": "Agendar estancia",
     "learnMore": "Conoce más",
     "showLess": "Ver menos",
     "cancel": "Cancelar",
@@ -33,7 +33,8 @@
     "perNightShort": "por noche",
     "total": "Total",
     "totalLower": "total",
-    "legal": "Legal"
+    "legal": "Legal",
+    "viewHotels": "Ver paquetes"
   },
   "brand": {
     "name": "Palmas Recovery",
@@ -91,8 +92,7 @@
   },
   "home": {
     "pleasure": {
-      "titleLine1": "La casa de recuperación",
-      "titleLine2": "preferida por cirujanos con doble certificación",
+      "titleLine1": "La casa de recuperación preferida por cirujanos con doble certificación",
       "subtitleLine1": "En Palmas Recovery House garantizamos resultados superiores y una transición fluida hacia tu bienestar.",
       "subtitleLine2": "",
       "paragraphs": [
@@ -143,7 +143,7 @@
           "description": "Amenidades premium para una experiencia superior"
         }
       ],
-      "viewTour": "Ver tour",
+      "viewTour": "Ver habitación",
       "scroll": "Desliza"
     },
     "heroVideo": {
@@ -192,9 +192,10 @@
     ]
   },
   "bannerAbout": {
-    "title": "ONEshot Friends",
-    "subtitle": "Únete a nuestro club y disfruta beneficios exclusivos",
-    "button": "Más información"
+    "title1": "La mejor casa de recuperación BBL en Tijuana",
+    "title2": "Cuidado postoperatorio todo incluido para Mommy Makeover",
+    "title3": "La casa de recuperación más exclusiva para Abdominoplastia",
+    "button": "Ver ahora"
   },
   "bannerWithImage": {
     "title": "Cuidado post-operatorio, cerca y sin complicaciones",
@@ -256,7 +257,7 @@
     "cta": {
       "title": "¿Listo para comenzar tu camino?",
       "description": "Contáctanos hoy para conocer nuestras instalaciones y cómo podemos apoyar tu recuperación.",
-      "schedule": "Agendar tour",
+      "schedule": "Agendar cita",
       "contact": "Contáctanos"
     },
     "faq": {
@@ -304,7 +305,7 @@
     "next": "Imagen siguiente"
   },
   "destinations": {
-    "title": "La mejor casa de recuperación BBL en Tijuana Mommy Makeover Cuidado posterior todo incluido"
+    "title": "Habitaciones de recuperación + bienestar"
   },
   "rooms": {
     "shared": {
@@ -383,7 +384,7 @@
     "readyTitle": "¿Listo para comenzar tu recuperación?",
     "readyDescription": "Vive atención post-operatorio de clase mundial en un entorno diseñado para sanar y reconfortar.",
     "bookNow": "Reservar",
-    "scheduleTour": "Agendar tour",
+    "scheduleTour": "Agendar cita",
     "roomSpecs": "Especificaciones de la habitación",
     "bedType": "Tipo de cama",
     "roomSize": "Tamaño de la habitación",

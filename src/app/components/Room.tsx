@@ -18,21 +18,21 @@ const destinations: Destination[] = [
     name: "Shared Room",
     priceText: "$170 dlls / night",
     image:
-      "/shared-room.jpg",
+      "/habitacion_compartida.jpg",
   },
   {
     id: 2,
     name: "Private Room",
     priceText: "$180 dlls / night",
     image:
-      "/private-room.jpg",
+      "/habitacion_privada.jpg",
   },
   {
     id: 3,
     name: "VIP Suite",
     priceText: "$200 dlls / night",
     image:
-      "/vip-suite.jpeg",
+      "/habitacion_vip.jpg",
   },
   {
     id: 4,
@@ -138,7 +138,7 @@ export default function HotelDestinationsScroll() {
       )}
 
       <div className="max-w-[1800px] mx-auto">
-        <h1 className="text-2xl sm:text-3xl md:text-[42px] font-serif text-gray-800 mb-10 sm:mb-16 max-w-xl sm:max-w-3xl leading-snug">
+        <h1 className="text-2xl sm:text-3xl md:text-[42px] font-serif text-gray-800 mb-10 sm:mb-16 max-w-xl sm:max-w-3xl leading-snug whitespace-nowrap text-center mx-auto">
           {t("destinations.title")}
         </h1>
 

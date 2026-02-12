@@ -185,7 +185,7 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
         <div className={`w-full mt-auto border-t ${borderClass}`}>
           <div className="max-w-6xl mx-auto py-4 flex flex-col md:flex-row items-center justify-between gap-6">
             <img
-              src="/logo.png"
+              src="/logoblanco.png"
               alt={t("navbar.logoAlt")}
               className="h-32 md:h-40 w-auto"
             />

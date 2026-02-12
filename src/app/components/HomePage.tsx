@@ -63,19 +63,19 @@ export default function HomePage() {
         <Navbar />
       </div>
       <Banner />
-
       <section className="relative px-6 md:px-12 py-20 lg:py-24 bg-[#fffaf6]">
-        <div className="max-w-6xl mx-auto">
-          <header className="max-w-5xl">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.15] tracking-tight">
-              {t("home.pleasure.titleLine1")}
-              <br />
-              {t("home.pleasure.titleLine2")}
-            </h2>
-          </header>
 
-          <div className="mt-12 space-y-10">
+ <header className="mb-12 ml-12 md:ml-24 lg:ml-32 mr-6 md:mr-12">
+  <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.15] tracking-tight text-left">
+    {t("home.pleasure.titleLine1")}
+    <br />
+  </h2>
+</header>
+
+        <div className="max-w-6xl mx-auto">
+          <div className="space-y-10">
             <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-start">
+              {/* Imagen */}
               <div className="relative">
                 <img
                   src="/salon.jpg"
@@ -84,6 +84,7 @@ export default function HomePage() {
                 />
               </div>
 
+              {/* Texto */}
               <div className="space-y-6">
                 <div>
                   <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-4 leading-snug">
@@ -108,6 +109,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       <Room />
       <AudienceSelector />
       <Blogs />

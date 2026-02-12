@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   FaCalendarAlt,
@@ -28,7 +28,16 @@ const BookingPage = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
   const [step, setStep] = useState(1);
+  const searchParams = useSearchParams();
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+
+  // Preseleccionar habitación si viene en query param
+  useEffect(() => {
+    const roomParam = searchParams.get("room");
+    if (roomParam && ROOMS.some(r => r.id === roomParam)) {
+      setSelectedRoom(roomParam);
+    }
+  }, [searchParams]);
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [galleryExtraId, setGalleryExtraId] = useState<string | null>(null);
   const [galleryIndex, setGalleryIndex] = useState(0);

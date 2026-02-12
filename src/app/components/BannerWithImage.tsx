@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 const BannerWithImage: React.FC = () => {
   const { t } = useTranslation();
@@ -31,14 +32,18 @@ const BannerWithImage: React.FC = () => {
         </motion.p>
 
         {/* Botón */}
-        <motion.button
-          className="bg-transparent border-2 border-black text-black py-3 px-8 rounded-full text-lg hover:bg-black hover:text-white transition-all duration-300"
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          {t("bannerWithImage.button")}
-        </motion.button>
+          <Link
+            href="/reservar/"
+            className="bg-transparent border-2 border-black text-black py-3 px-8 rounded-full text-lg hover:bg-black hover:text-white transition-all duration-300 inline-block text-center"
+          >
+            {t("bannerWithImage.button")}
+          </Link>
+        </motion.div>
       </div>
 
       {/* Mapa a la derecha */}

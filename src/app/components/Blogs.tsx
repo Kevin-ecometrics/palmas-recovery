@@ -5,7 +5,7 @@ import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import { getLocalizedPath } from "@/i18n/routeMap";
 
-const BLOG_IMAGES = ["/shared-room.jpg", "/private-room.jpg", "/vip-suite.jpeg"];
+const BLOG_IMAGES = ["/blog1.png", "/blog2.jpg", "/blog3.png"];
 
 export default function Blogs() {
   const { t, i18n } = useTranslation();
@@ -15,7 +15,8 @@ export default function Blogs() {
     excerpt: string;
     category: string;
   }>;
-  const roomIds = ["shared", "private", "vip"];
+  
+  const blogUrls = ["/blog/blog1", "/blog/blog2", "/blog/blog3"];
 
   return (
     <section className="pt-16 sm:pt-28 lg:pt-36 pb-20 sm:pb-32 lg:pb-48 bg-[#fffaf6]">
@@ -29,7 +30,7 @@ export default function Blogs() {
               {t("blogs.subtitle")}
             </p>
             <Link
-              href={getLocalizedPath("/rooms", currentLang)}
+              href={getLocalizedPath("/blog", currentLang)} // Cambiado de "/rooms" a "/blog"
               className="inline-flex items-center gap-2 rounded-full border border-black/20 px-6 py-3 text-sm font-semibold text-black hover:bg-black/5 transition"
             >
               {t("blogs.cta")}
@@ -66,7 +67,7 @@ export default function Blogs() {
                     </p>
                     <Link
                       href={getLocalizedPath(
-                        `/rooms/${roomIds[index % roomIds.length]}`,
+                        blogUrls[index % blogUrls.length], // Usando URLs de blog
                         currentLang
                       )}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-black/70 transition-colors"

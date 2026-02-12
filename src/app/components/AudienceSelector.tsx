@@ -18,10 +18,10 @@ const ITEMS: Item[] = [
     id: "parejas",
     labelKey: "audience.items.parejas.label",
     descriptionKey: "audience.items.parejas.description",
-    image: "/img1.jpg",
+    image: "/img10.jpg",
     color: "#0E5A3A",
     bgColor: "#0E5A3A",
-    href: "/es/tipo-de-viaje/parejas/",
+    href: "/reservar",
   },
   {
     id: "negocios",
@@ -30,34 +30,34 @@ const ITEMS: Item[] = [
     image: "/img7.jpg",
     color: "#4CAF73",
     bgColor: "#4CAF73",
-    href: "/es/tipo-de-viaje/negocios/",
+    href: "/reservar",
   },
   {
     id: "urbano",
     labelKey: "audience.items.urbano.label",
     descriptionKey: "audience.items.urbano.description",
-    image: "/img6.jpg",
+    image: "/img11.png",
     color: "#1F6F8B",
     bgColor: "#1F6F8B",
-    href: "/es/tipo-de-viaje/viajar-solo/",
+    href: "/reservar",
   },
   {
     id: "familia",
     labelKey: "audience.items.familia.label",
     descriptionKey: "audience.items.familia.description",
-    image: "/img4.jpg",
+    image: "/img6.jpg",
     color: "#7DB9A2",
     bgColor: "#7DB9A2",
-    href: "/es/tipo-de-viaje/familia-y-amigos/",
+    href: "/reservar",
   },
   {
     id: "luxury",
     labelKey: "audience.items.luxury.label",
     descriptionKey: "audience.items.luxury.description",
-    image: "/img8.jpg",
-    color: "#7DB9A2",
-    bgColor: "#7DB9A2",
-    href: "/es/tipo-de-viaje/familia-y-amigos/",
+    image: "/img12.jpg",
+    color: "#6B8E6B", 
+    bgColor: "#6B8E6B",
+    href: "/reservar",
   },
 ];
 
@@ -206,41 +206,6 @@ export default function AudienceSelector() {
           })}
         </ul>
       </div>
-
-      <style jsx>{`
-        @media (min-width: 768px) {
-          div[style*="height: 260px"] {
-            height: ${expandedHeightMd};
-          }
-          li[style*="min-height: 260px"] {
-            min-height: ${expandedHeightMd};
-          }
-          
-          /* Para las últimas 2 imágenes en desktop */
-          li:nth-child(4) img,
-          li:nth-child(5) img {
-            top: -15% !important;
-            height: 130% !important;
-          }
-          
-          /* Para las primeras 3 imágenes - mantener como estaban */
-          li:nth-child(1) img,
-          li:nth-child(2) img,
-          li:nth-child(3) img {
-            top: 0 !important;
-            height: 115% !important;
-          }
-        }
-        
-        /* Ajustes para pantallas más grandes */
-        @media (min-width: 1024px) {
-          li:nth-child(4) img,
-          li:nth-child(5) img {
-            top: -20% !important;
-            height: 140% !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

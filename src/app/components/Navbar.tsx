@@ -172,13 +172,13 @@ const Navbar: React.FC = () => {
               onClick={() => router.push(getLocalizedPath("/", currentLang))}
               className="flex items-center"
             >
-              <figure>
-                <img
-                  src="/logo.png"
-                  alt={t("navbar.logoAlt") || "Logo"}
-                  className="h-8 w-auto object-contain hover:opacity-80 transition-opacity"
-                />
-              </figure>
+                <figure>
+                  <img
+                    src="/logo.png"
+                    alt={t("navbar.logoAlt") || "Logo"}
+                    className="h-10 w-auto object-contain hover:opacity-80 transition-opacity"
+                  />
+                </figure>
 
             </button>
           </motion.div>

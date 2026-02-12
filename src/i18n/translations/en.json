@@ -5,12 +5,12 @@
     "spanish": "ES",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "viewTour": "View tour",
+    "viewTour": "View room",
     "scroll": "Scroll",
     "bookNow": "Book Now",
     "bookNowUpper": "BOOK NOW",
     "contactUs": "Contact Us",
-    "scheduleTour": "Schedule a Tour",
+    "scheduleTour": "Schedule an appointment",
     "learnMore": "Learn More",
     "showLess": "Show Less",
     "cancel": "Cancel",
@@ -34,7 +34,7 @@
     "total": "Total",
     "totalLower": "total",
     "legal": "Legal",
-    "viewHotels": "View hotels"
+    "viewHotels": "View packages"
   },
   "brand": {
     "name": "Palmas Recovery",
@@ -92,8 +92,7 @@
   },
   "home": {
     "pleasure": {
-      "titleLine1": "The top choice Recovery House",
-      "titleLine2": "chosen by double board–certified surgeons",
+      "titleLine1": "The top choice Recovery House chosen by double board–certified surgeons",
       "subtitleLine1": "At Palma’s Recovery House , we ensure superior results and a seamless transition to wellness.",
       "subtitleLine2": "",
       "paragraphs": [
@@ -144,12 +143,12 @@
           "description": "Premium amenities for an elevated experience"
         }
       ],
-      "viewTour": "View tour",
+      "viewTour": "View room",
       "scroll": "Scroll"
     },
     "heroVideo": {
       "words": ["Rest", "Recover", "Renew"],
-      "subtitle": "The best post-op care with in-house doctors in Tijuana",
+      "subtitle": "Best post-op care with in-house doctors in Tijuana",
       "cta": "Learn more"
     }
   },
@@ -192,9 +191,10 @@
     ]
   },
   "bannerAbout": {
-    "title": "ONEshot Friends",
-    "subtitle": "Join our club and enjoy exclusive benefits",
-    "button": "More information"
+    "title1": "The best BBL recovery house in Tijuana",
+    "title2": "Mommy Makeover All-inclusive aftercare",
+    "title3": "Choicest Recovery House for Tummy Tuck",
+    "button": "See now"
   },
   "bannerWithImage": {
     "title": "Post-op care, close and stress-free",
@@ -256,7 +256,7 @@
     "cta": {
       "title": "Ready to Begin Your Journey?",
       "description": "Contact us today to learn more about our facilities and how we can support your recovery.",
-      "schedule": "Schedule a Tour",
+      "schedule": "Schedule an appointment",
       "contact": "Contact Us"
     },
     "faq": {
@@ -304,9 +304,7 @@
     "next": "Next image"
   },
 "destinations": {
-  "title": "The best BBL recovery house in Tijuana\n\nMommy Makeover All-inclusive aftercare\n\nChoicest Recovery House for Tummy Tucks",
-  "subtitle": "Experience unparalleled post-surgical care in Tijuana's premier recovery facility. Our dedicated team of medical professionals and luxurious amenities ensure a seamless healing journey tailored to your needs.",
-  "cta": "Book Your Stay"
+  "title": "Recovery Rooms & Wellness"
 },
   "rooms": {
     "shared": {
@@ -385,7 +383,7 @@
     "readyTitle": "Ready to begin your recovery journey?",
     "readyDescription": "Experience world-class post-surgical care in an environment designed for healing and comfort.",
     "bookNow": "Book Now",
-    "scheduleTour": "Schedule a Tour",
+    "scheduleTour": "Schedule an appointment",
     "roomSpecs": "Room Specifications",
     "bedType": "Bed Type",
     "roomSize": "Room Size",
