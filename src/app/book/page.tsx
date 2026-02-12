@@ -23,7 +23,9 @@ import { ROOMS } from "../rooms/rooms.data";
 import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
 
-const BookingPage = () => {
+import { Suspense } from "react";
+
+const BookingPageInner = () => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
@@ -791,6 +793,7 @@ const BookingPage = () => {
         </div>
       </div>
 
+      {/* Modal Gallery */}
       {galleryExtraId && (
         <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
           {(() => {
@@ -798,7 +801,6 @@ const BookingPage = () => {
             if (!extra) return null;
             const images = extra.images;
             const currentImage = images[galleryIndex] || images[0];
-
             return (
               <div className="bg-white rounded-3xl shadow-2xl w-[90vw] max-w-3xl overflow-hidden">
                 <div className="flex items-center justify-between px-6 py-2 bg-gradient-to-r from-[#fffaf6] to-white border-b">
@@ -818,7 +820,6 @@ const BookingPage = () => {
                     ✕
                   </button>
                 </div>
-
                 <div className="relative bg-white">
                   <img
                     src={currentImage}
@@ -848,7 +849,6 @@ const BookingPage = () => {
                     ›
                   </button>
                 </div>
-
                 <div className="px-6 py-4 border-t">
                   <div className="flex gap-3 justify-center overflow-x-auto">
                     {images.map((img, index) => (
@@ -876,10 +876,15 @@ const BookingPage = () => {
           })()}
         </div>
       )}
-
       <Footer />
     </div>
   );
 };
+
+const BookingPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <BookingPageInner />
+  </Suspense>
+);
 
 export default BookingPage;
