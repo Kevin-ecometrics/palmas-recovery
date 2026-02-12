@@ -56,21 +56,18 @@ export default function RoomPageClient({ roomId }: RoomPageClientProps) {
   }
 
   if (!room) {
-    return null; // Redirección ya manejada en useEffect
+    return null;
   }
 
   return (
     <>
-      {/* Navbar dinámico - sin borde blanco */}
+      {/* Navbar dinámico */}
       <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100' 
-          : 'bg-transparent border-none'
+          : 'bg-transparent'
       }`}>
-        <Navbar 
-          isTransparent={!isScrolled}
-          textColor={isScrolled ? "text-gray-900" : "text-white"}
-        />
+        <Navbar />
       </div>
       
       {/* Contenido principal */}
