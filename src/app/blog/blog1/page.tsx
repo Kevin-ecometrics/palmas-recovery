@@ -69,7 +69,7 @@ export default function Blog1() {
         <meta name="keywords" content="Recovery, Tijuana, travel, traveling, post-op, packing, surgery, Palmas Recovery House" />
       </Head>
       <Navbar />
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-12 py-8">
         <div className="mb-8">
           <Link href="/blog" className="inline-flex items-center gap-2 text-[#657251] hover:text-[#657251]/80 transition-colors group">
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
@@ -85,7 +85,7 @@ export default function Blog1() {
         <ul className="list-disc pl-6 mb-6">
           <li>Identification: A valid Passport and ID. Ensure you have secured a Visa if your country of origin requires one for entry into Mexico.</li>
           <li>Medical Records: Physical or digital copies of your surgical consultation notes, medical history, and emergency contact information.</li>
-          <li>Insurance & Contact Details: Travel insurance documents (specifically medical coverage) and the direct contact information for your surgeon’s office and the hospital.</li>
+          <li>Insurance & Contact Details: Travel insurance documents (specifically medical coverage) and the direct contact information for your surgeon's office and the hospital.</li>
           <li>Financial Readiness: Carry local currency for minor expenditures. Notify your banking institution of your international travel to prevent security blocks on your credit or debit cards.</li>
         </ul>
         <h3 className="text-2xl font-bold text-[#657251] mt-10 mb-4">II. Functional Post-Operative Wardrobe</h3>
@@ -121,12 +121,40 @@ export default function Blog1() {
         <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mt-12 mb-6">How long should you stay at a recovery house before it is safe to fly back home?</h1>
         <h3 className="text-2xl font-bold text-[#657251] mt-10 mb-4">VI. Safety Protocol: The Journey Home</h3>
         <p className="mb-8">Patient safety is our absolute priority. We generally advise a stay of 7 to 14 days before it is medically safe to fly. Air travel too soon after surgery carries risks such as deep vein thrombosis (DVT) and increased edema. We will work in direct coordination with your surgeon to determine your specific "fit-to-fly" timeline.</p>
-        <p className="mb-8">Ready to start your journey? At Palmas Recovery, we combine professional medical expertise with the warmth of a home. We’re here to make sure your aesthetic goals are met with peace of mind.</p>
-        <div className="flex justify-center mt-12 pt-8 border-t border-gray-200">
-          <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 text-[#657251] hover:text-[#657251]/80 transition-colors border border-[#657251] rounded-full hover:bg-[#657251]/5">
-            <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-            Back to Blog
-          </Link>
+        <p className="mb-8">Ready to start your journey? At Palmas Recovery, we combine professional medical expertise with the warmth of a home. We're here to make sure your aesthetic goals are met with peace of mind.</p>
+        
+        {/* Blog Navigation */}
+        <div className="mt-16 pt-8 border-t border-gray-200">
+          <div className="flex justify-between items-center mb-8">
+            <div className="flex-1">
+              <Link href="/blog/blog3" className="group inline-flex items-center gap-3 text-[#657251] hover:text-[#657251]/80 transition-colors">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#657251] group-hover:bg-[#657251]/10 transition">
+                  <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Previous Article</p>
+                  <p className="font-semibold">Recovery House vs. Hotel</p>
+                </div>
+              </Link>
+            </div>
+            <div className="flex-1 flex justify-end">
+              <Link href="/blog/blog2" className="group inline-flex items-center gap-3 text-[#657251] hover:text-[#657251]/80 transition-colors">
+                <div className="text-right">
+                  <p className="text-sm text-gray-500">Next Article</p>
+                  <p className="font-semibold">Ideal Weather for Surgery</p>
+                </div>
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#657251] group-hover:bg-[#657251]/10 transition rotate-180">
+                  <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 text-[#657251] hover:text-[#657251]/80 transition-colors border border-[#657251] rounded-full hover:bg-[#657251]/5">
+              <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+              Back to All Articles
+            </Link>
+          </div>
         </div>
       </div>
       <Footer />
