@@ -5,7 +5,7 @@ import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import { getLocalizedPath } from "@/i18n/routeMap";
 
-const BLOG_IMAGES = ["/blog1.png", "/blog2.jpg", "/blog3.png"];
+const BLOG_IMAGES = ["/blog1.png", "/blog2.jpg", "/blog3.jpg"];
 
 export default function Blogs() {
   const { t, i18n } = useTranslation();
@@ -39,7 +39,7 @@ export default function Blogs() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-0 md:divide-x divide-black/20">
-            {items.map((item, index) => (
+            {items.map((item: { title: string; excerpt: string; category: string }, index: number) => (
               <article
                 key={item.title}
                 className="bg-white/70 border border-black/10 rounded-2xl p-4 sm:p-5 md:bg-transparent md:border-0 md:rounded-none md:p-0 md:px-5"
