@@ -5,7 +5,11 @@ import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import { getLocalizedPath } from "@/i18n/routeMap";
 
-const BLOG_IMAGES = ["/blog1.png", "/blog2.jpg", "/blog3.jpg"];
+const BLOG_IMAGES = [
+  "/blog1.png", // Entrada de blog 1
+  "/blog2.jpg", // Entrada de blog 2
+  "/blog3.jpg", // Entrada de blog 3
+];
 
 export default function Blogs() {
   const { t, i18n } = useTranslation();

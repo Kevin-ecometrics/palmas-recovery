@@ -19,6 +19,8 @@ const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
 
+  if (!i18n.language) return null;
+
 
   const navItems = [
     { label: t("navbar.items.home"), path: "/" },
@@ -175,7 +177,7 @@ const Navbar: React.FC = () => {
                 <figure>
                   <img
                     src="/logo.png"
-                    alt={t("navbar.logoAlt") || "Logo"}
+                    alt="Icono del logotipo de la Clínica"
                     className="h-10 w-auto object-contain hover:opacity-80 transition-opacity"
                   />
                 </figure>
@@ -354,8 +356,8 @@ const Navbar: React.FC = () => {
           <div className="w-full text-principal text-6xl font-[serif]">
             <img
               src="/logo.png"
-              alt={t("navbar.logoAlt")}
-              title={t("navbar.logoAlt")}
+              alt="Icono del logotipo de la Clínica"
+              title="Icono del logotipo de la Clínica"
               className="w-auto h-auto mx-auto"
             />
           </div>

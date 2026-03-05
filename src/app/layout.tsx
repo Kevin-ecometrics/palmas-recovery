@@ -14,6 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/fav.ico" type="image/x-icon" />
+      </head>
       <body className={`${montserrat.variable} antialiased`}>
         <I18nProvider>{children}</I18nProvider>
       </body>

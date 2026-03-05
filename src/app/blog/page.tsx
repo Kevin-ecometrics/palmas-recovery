@@ -16,7 +16,7 @@ const featuredPosts = [
     excerpt:
       "Your complete checklist for a stress-free recovery experience. Prepare like a pro with our essential packing guide.",
     category: "Recovery Preparation",
-    image: "/shared-room.jpg",
+    image: "/habitacion_compartida.jpg",
     icon: <FaSuitcase className="text-xl" />,
   },
   {
@@ -25,7 +25,7 @@ const featuredPosts = [
     excerpt:
       "A comprehensive guide to choosing the optimal season for your cosmetic procedure and recovery in Mexico.",
     category: "Planning Guide",
-    image: "/private-room.jpg",
+    image: "/habitacion_privada.jpg",
     icon: <FaCalendarAlt className="text-xl" />,
   },
   {
@@ -35,7 +35,7 @@ const featuredPosts = [
     excerpt:
       "Understanding the critical differences between professional recovery care and standard hotel accommodations.",
     category: "Recovery Care",
-    image: "/vip-suite.jpeg",
+    image: "/habitacion_vip.jpg",
     icon: <FaHotel className="text-xl" />,
   },
 ];

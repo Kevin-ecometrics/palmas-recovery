@@ -159,23 +159,23 @@
       "description": "Fundada con orgullo por médicos que priorizan tu salud, combinamos experiencia médica con atención personalizada para garantizar una recuperación segura, cómoda y de la más alta calidad."
     },
     "items": {
-      "parejas": {
+      "linea": {
         "label": "A solo 10 minutos de la línea",
         "description": "Ubicación estratégica a minutos de la frontera para una llegada y salida sin complicaciones."
       },
-      "negocios": {
+      "estancia": {
         "label": "Sin estancia mínima obligatoria",
         "description": "No trabajamos con paquetes rígidos ni noches mínimas. Tu plan de recuperación se adapta a tu cuerpo, tu procedimiento y tu ritmo personal de sanación."
       },
-      "urbano": {
+      "pago": {
         "label": "Opciones de pago flexibles y apoyo con seguros",
         "description": "Ofrecemos alternativas de pago flexibles y orientación con trámites de seguros para que puedas enfocarte en tu recuperación con tranquilidad."
       },
-      "familia": {
+      "ubicacion": {
         "label": "Ubicación segura, céntrica y discreta",
         "description": "Situado en una de las zonas más seguras del corazón de la ciudad, garantizando privacidad total y paz mental."
       },
-            "luxury": {
+            "plazas": {
         "label": "Todo lo que necesitas saber de tu visita",
         "description": "Hoteles de lujo, restaurantes exclusivos, spas, centros comerciales y hospitales líderes están a solo unos momentos para la comodidad de tu visita."
       }

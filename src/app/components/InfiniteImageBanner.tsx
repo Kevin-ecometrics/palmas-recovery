@@ -5,18 +5,21 @@ import { FaInstagram } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 const IMAGES_TOP = [
-  "/img1.jpg",
-  "/img2.jpg",
-  "/img8.jpg",
-  "/img5.jpg",
-
+  "/carrusel1.png", 
+  "/carrusel2.png", 
+  "/carrusel3.png", 
+  "/carrusel4.png", 
+  "/carrusel5.jpg", 
 ];
 
 const IMAGES_BOTTOM = [
-  "/img6.jpg",
-  "/img7.jpg",
-  "/img4.jpg",
-  "/lymphatic.jpg",
+  "/carrusel6.jpg", 
+  "/carrusel7.jpg", 
+  "/carrusel8.jpg", 
+  "/carrusel9.png", 
+  "/carrusel10.png", 
+
+
 ]; 
 
 const FALLBACK_IMAGE = "/logo.png";

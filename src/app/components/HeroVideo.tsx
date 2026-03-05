@@ -33,7 +33,6 @@ export default function Hero() {
       className="relative h-screen w-full overflow-hidden bg-black"
       aria-label="Hero section"
     >
-      {/* Language toggle */}
       <div className="absolute top-6 right-6 z-30 hidden sm:flex items-center border border-white/40 rounded-full overflow-hidden text-xs">
         <button
           type="button"
@@ -58,29 +57,25 @@ export default function Hero() {
           {t("common.english")}
         </button>
       </div>
-      {/* === Video de fondo optimizado para reel === */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black">
+      <div className="absolute inset-0 w-full h-full">
         <video
-          className="h-full w-auto max-w-none"
+          className="w-full h-full object-cover"
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
         >
-          <source src="/videohero.mp4" type="video/mp4" />
+          <source src="/Hero.mp4" type="video/mp4" />
         </video>
       </div>
 
-      {/* === Overlay con gradiente desde la izquierda === */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
 
-      {/* === Contenido alineado a la IZQUIERDA === */}
       <div className="absolute inset-0 flex items-center">
         <div className="w-full mx-auto px-6 md:px-16 lg:px-24">
           <div className="max-w-3xl">
-            {/* === Logo texto ONE + palabra animada === */}
             <div className="mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center">
                 <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold text-white leading-none tracking-tight">
@@ -106,13 +101,14 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* === Subtítulo === */}
             <p className="text-white text-base sm:text-xl md:text-2xl lg:text-3xl mb-8 md:mb-10 font-light max-w-2xl leading-relaxed">
               {t("home.heroVideo.subtitle")}
             </p>
 
-            {/* === Botón CTA mejorado === */}
-            <button className="group relative px-6 sm:px-10 py-3 sm:py-4 bg-transparent border-2 rounded-xl border-white text-white text-sm sm:text-lg font-normal tracking-wide overflow-hidden transition-all duration-500 hover:border-white">
+            <button
+              className="group relative px-6 sm:px-10 py-3 sm:py-4 bg-transparent border-2 rounded-xl border-white text-white text-sm sm:text-lg font-normal tracking-wide overflow-hidden transition-all duration-500 hover:border-white"
+              onClick={() => router.push("/rooms")}
+            >
               <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
                 {t("home.heroVideo.cta")}
               </span>

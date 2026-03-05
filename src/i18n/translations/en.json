@@ -159,23 +159,23 @@
       "description": "Proudly founded by doctors who put your health first, we combine medical expertise with personalized care to ensure a safe, comfortable, and high-quality recovery experience."
     },
     "items": {
-      "parejas": {
+      "linea": {
         "label": "Just 10 minutes from the border",
         "description": "Located only minutes from the U.S. border with easily accessible from the airport, with medical fast-pass options for a smooth, worry-free crossing."
       },
-      "negocios": {
+      "estancia": {
         "label": "No minimum stay required",
         "description": "No fixed packages or minimum nights. Your recovery plan is tailored to your body, your procedure, and your personal healing pace."
       },
-      "urbano": {
+      "pago": {
         "label": "Flexible payment options & insurance support",
         "description": "No fixed packages or minimum nights. Your recovery plan is tailored to your body, your procedure, and your personal healing pace."
       },
-      "familia": {
+      "ubicacion": {
         "label": "Safe, central & discreet location",
         "description": "Situated in one of the safest areas in the heart of the city for total privacy and peace of mind."
       },
-            "luxury": {
+        "plazas": {
         "label": "Everything your guest needs nearby",
         "description": "Luxury hotels, upscale restaurants, spas, shopping centers, and leading hospitals are just moments away for the comfort of your companion."
       }

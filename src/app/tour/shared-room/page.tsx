@@ -64,7 +64,7 @@ export default function SharedRoomPage() {
             <div className="absolute -inset-4 bg-white/20 blur-2xl rounded-3xl"></div>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20">
               <img
-                src="/shared-room.jpg"
+                src="/habitacion_compartida.jpg"
                 alt="Shared recovery room"
                 className="w-full h-[360px] md:h-[420px] object-cover"
               />
@@ -152,14 +152,14 @@ export default function SharedRoomPage() {
           <div className="grid gap-6">
             <div className="rounded-3xl overflow-hidden shadow-xl">
               <img
-                src="/private-room.jpg"
+                src="/habitacion_compartida1.jpg"
                 alt="Recovery room ambiance"
                 className="w-full h-56 md:h-64 object-cover"
               />
             </div>
             <div className="rounded-3xl overflow-hidden shadow-xl">
               <img
-                src="/vip-suite.jpeg"
+                src="/habitacion_compartida2.jpg"
                 alt="Comfortable suite details"
                 className="w-full h-56 md:h-64 object-cover"
               />

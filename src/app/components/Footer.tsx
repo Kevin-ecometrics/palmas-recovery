@@ -186,7 +186,7 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
           <div className="max-w-6xl mx-auto py-4 flex flex-col md:flex-row items-center justify-between gap-6">
             <img
               src="/logoblanco.png"
-              alt={t("navbar.logoAlt")}
+              alt="Logotipo de la Clínica en blanco"
               className="h-32 md:h-40 w-auto"
             />
             <p className={`text-xs ${mutedText}`}>

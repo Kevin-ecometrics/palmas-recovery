@@ -24,7 +24,7 @@ export const ROOMS: Room[] = [
     tagline: "Comfortable & Affordable",
     description:
       "Experience exceptional care in a shared space designed for comfort and connection. Ideal for guests seeking professional recovery services.",
-    image: "/shared-room.jpg",
+    image: "/habitacion_compartida.jpg",
     imageAlt: "Shared Room",
     price: 170,
     capacity: 4,
@@ -50,7 +50,7 @@ export const ROOMS: Room[] = [
     tagline: "Your Personal Sanctuary",
     description:
       "Find tranquility and privacy in your own recovery space. Our private rooms offer modern medical comfort.",
-    image: "/private-room.jpg",
+    image: "/habitacion_privada.jpg",
     imageAlt: "Private Room",
     price: 180,
     capacity: 1,
@@ -72,7 +72,7 @@ export const ROOMS: Room[] = [
     tagline: "The Ultimate Luxury Experience",
     description:
       "Immerse yourself in unmatched comfort and privacy. Premium furnishings combined with top-tier medical care.",
-    image: "/vip-suite.jpeg",
+    image: "/habitacion_vip.jpg",
     imageAlt: "VIP Suite",
     price: 200,
     capacity: 1,

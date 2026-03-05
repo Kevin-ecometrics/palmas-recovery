@@ -107,7 +107,7 @@ export default function ScrollZoomIntro() {
         <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
           <motion.img
             src="/logo.png"
-            alt="Zoom intro"
+            alt="Icono del logotipo de la Clínica"
             style={{ scale, opacity }}
             className="w-64 md:w-96 rounded-2xl"
           />

@@ -39,28 +39,28 @@ const destinations: Destination[] = [
     name: "Lymphatic massage",
     priceText: "$60 dlls",
     image:
-      "/lymphatic.jpg",
+      "/lymphatic.jpg", // Masaje de drenaje linfático
   },
   {
     id: 5,
     name: "5 Lymphatic massages package",
     priceText: "$270 dlls",
     image:
-      "/5massages.jpeg",
+      "/5massages.jpeg", // Promoción de 5 tipos de masajes
   },
   {
     id: 6,
     name: "Original Recovery bra sytle No. B01G",
     priceText: "$80 dlls",
     image:
-      "/extra1-1.png",
+      "/extra1-1.png", 
   },
   {
     id: 7,
     name: "Open Bust Vest 3/4 Lengh Sleeves Style No. FVOM",
     priceText: "$80 dlls",
     image:
-      "/extra2-1.png",
+      "/extra2-1.png", 
   },
   {
     id: 8,
@@ -68,14 +68,14 @@ const destinations: Destination[] = [
       "Reinforced Girdle with High Back and Layered Panels Short Lenght Style No. SFBHRS",
     priceText: "$140 dlls",
     image:
-      "/extra3-1.png",
+      "/extra3-1.png", 
   },
   {
     id: 9,
     name: "Girdle With High Back No Closures Short Lenght Style No. SFBHS2",
     priceText: "$140 dlls",
     image:
-      "/extra4-1.png",
+      "/extra4-1.png", 
   },
 ];
 

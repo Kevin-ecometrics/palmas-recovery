@@ -64,7 +64,7 @@ export default function PrivateRoomPage() {
             <div className="absolute -inset-4 bg-white/20 blur-2xl rounded-3xl"></div>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20">
               <img
-                src="/private-room.jpg"
+                src="/habitacion_privada.jpg"
                 alt="Private recovery room"
                 className="w-full h-[360px] md:h-[420px] object-cover"
               />
@@ -152,14 +152,14 @@ export default function PrivateRoomPage() {
           <div className="grid gap-6">
             <div className="rounded-3xl overflow-hidden shadow-xl">
               <img
-                src="/shared-room.jpg"
+                src="/habitacion_privada1.jpg"
                 alt="Room ambiance"
                 className="w-full h-56 md:h-64 object-cover"
               />
             </div>
             <div className="rounded-3xl overflow-hidden shadow-xl">
               <img
-                src="/vip-suite.jpeg"
+                src="/habitacion_privada2.jpg"
                 alt="Private suite details"
                 className="w-full h-56 md:h-64 object-cover"
               />

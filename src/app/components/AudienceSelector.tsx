@@ -8,6 +8,7 @@ type Item = {
   labelKey: string;
   descriptionKey: string;
   image: string;
+  alt: string;
   color: string;
   bgColor: string;
   href: string;
@@ -15,46 +16,51 @@ type Item = {
 
 const ITEMS: Item[] = [
   {
-    id: "parejas",
-    labelKey: "audience.items.parejas.label",
-    descriptionKey: "audience.items.parejas.description",
-    image: "/img10.jpg",
+    id: "linea",
+    labelKey: "audience.items.linea.label",
+    descriptionKey: "audience.items.linea.description",
+    image: "/linea.jpg",
+    alt: "Linea",
     color: "#0E5A3A",
     bgColor: "#0E5A3A",
     href: "/reservar",
   },
   {
-    id: "negocios",
-    labelKey: "audience.items.negocios.label",
-    descriptionKey: "audience.items.negocios.description",
-    image: "/img7.jpg",
+    id: "estancia",
+    labelKey: "audience.items.estancia.label",
+    descriptionKey: "audience.items.estancia.description",
+    image: "/estancia.jpg", 
+    alt: "Estancia",
     color: "#4CAF73",
     bgColor: "#4CAF73",
     href: "/reservar",
   },
   {
-    id: "urbano",
-    labelKey: "audience.items.urbano.label",
-    descriptionKey: "audience.items.urbano.description",
-    image: "/img11.png",
+    id: "pago",
+    labelKey: "audience.items.pago.label",
+    descriptionKey: "audience.items.pago.description",
+    image: "/pago.png", 
+    alt: "Pago",
     color: "#1F6F8B",
     bgColor: "#1F6F8B",
     href: "/reservar",
   },
   {
-    id: "familia",
-    labelKey: "audience.items.familia.label",
-    descriptionKey: "audience.items.familia.description",
-    image: "/img6.jpg",
+    id: "ubicacion",
+    labelKey: "audience.items.ubicacion.label",
+    descriptionKey: "audience.items.ubicacion.description",
+    image: "/ubicacion.jpg", 
+    alt: "Ubicación",
     color: "#7DB9A2",
     bgColor: "#7DB9A2",
     href: "/reservar",
   },
   {
-    id: "luxury",
-    labelKey: "audience.items.luxury.label",
-    descriptionKey: "audience.items.luxury.description",
-    image: "/img12.jpg",
+    id: "plazas",
+    labelKey: "audience.items.plazas.label",
+    descriptionKey: "audience.items.plazas.description",
+    image: "/plazas.jpg",
+    alt: "Plazas",
     color: "#6B8E6B", 
     bgColor: "#6B8E6B",
     href: "/reservar",

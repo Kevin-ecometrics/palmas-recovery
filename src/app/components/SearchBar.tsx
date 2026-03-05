@@ -101,14 +101,14 @@ export default function SearchBar({ floating, hidden = false }: Props) {
 
   const handleSearch = () => {
     const selectedRoom = roomTypes.find((room) => room.id === filters.roomType);
-    console.log("Searching with filters:", {
-      ...filters,
-      roomDetails: selectedRoom,
-      totalPrice: selectedRoom
-        ? selectedRoom.price * parseInt(filters.duration)
-        : 0,
+    // Redirigir a la página de reserva con los filtros seleccionados
+    const params = new URLSearchParams({
+      room: filters.roomType,
+      guests: filters.guests.toString(),
+      duration: filters.duration,
+      promo: filters.promoCode,
     });
-    // Aquí implementarías la lógica de búsqueda/reserva
+    window.location.href = `/book?${params.toString()}`;
     setActiveFilter(null);
   };
 
@@ -277,7 +277,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
       {/* Filter Panels */}
       {activeFilter && (
         <div
-          className="fixed inset-0 top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center"
+          className="fixed inset-0 top-0 left-0 w-full h-full bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center"
           onClick={() => setActiveFilter(null)}
         >
           <div
