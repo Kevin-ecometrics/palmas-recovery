@@ -21,6 +21,11 @@ const Navbar: React.FC = () => {
 
   if (!i18n.language) return null;
 
+  const socialLinks = [
+    { icon: FaInstagram, url: "https://www.instagram.com/palmasrecovery/?hl=es", label: "Instagram" },
+    { icon: FaTiktok, url: "https://www.tiktok.com/@palmasrecovery", label: "TikTok" },
+    { icon: FaFacebookF, url: "https://www.facebook.com/palmasrecovery/", label: "Facebook" },
+  ];
 
   const navItems = [
     { label: t("navbar.items.home"), path: "/" },
@@ -37,7 +42,6 @@ const Navbar: React.FC = () => {
     const canonical = getLocalizedPath(pathname, "en");
     router.replace(getLocalizedPath(canonical, lng), { scroll: false });
   };
-
 
   useEffect(() => {
     const currentPath = getLocalizedPath(
@@ -181,7 +185,6 @@ const Navbar: React.FC = () => {
                     className="h-10 w-auto object-contain hover:opacity-80 transition-opacity"
                   />
                 </figure>
-
             </button>
           </motion.div>
         </nav>
@@ -197,17 +200,28 @@ const Navbar: React.FC = () => {
           </a>
           <span className="mx-4 h-4 w-px bg-black/30" aria-hidden="true" />
           <div className="flex items-center space-x-4">
-            {[FaInstagram, FaTiktok, FaFacebookF].map((Icon, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                initial="hidden"
-                animate="visible"
-                variants={socialIconVariants}
-              >
-                <Icon className="hover:text-principal cursor-pointer transition-colors" />
-              </motion.div>
-            ))}
+            {socialLinks.map((social, i) => {
+              const Icon = social.icon;
+              return (
+                <motion.div
+                  key={i}
+                  custom={i}
+                  initial="hidden"
+                  animate="visible"
+                  variants={socialIconVariants}
+                >
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visitar ${social.label}`}
+                    className="hover:text-principal cursor-pointer transition-colors inline-block"
+                  >
+                    <Icon />
+                  </a>
+                </motion.div>
+              );
+            })}
           </div>
           <span className="mx-4 h-4 w-px bg-black/30" aria-hidden="true" />
           <div className="relative">
@@ -294,12 +308,21 @@ const Navbar: React.FC = () => {
           >
             <FaPhone />
           </a>
-          {[FaInstagram, FaTiktok, FaFacebookF].map((Icon, i) => (
-            <Icon
-              key={i}
-              className="hover:text-principal cursor-pointer transition-colors"
-            />
-          ))}
+          {socialLinks.map((social, i) => {
+            const Icon = social.icon;
+            return (
+              <a
+                key={i}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visitar ${social.label}`}
+                className="hover:text-principal cursor-pointer transition-colors inline-block"
+              >
+                <Icon />
+              </a>
+            );
+          })}
           <div className="relative">
             <button
               type="button"
