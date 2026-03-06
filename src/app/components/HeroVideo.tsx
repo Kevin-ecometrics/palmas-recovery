@@ -10,7 +10,11 @@ export default function Hero() {
   const pathname = usePathname();
   const router = useRouter();
   const currentLanguage = i18n.language?.startsWith("es") ? "es" : "en";
-  const words = t("home.heroVideo.words", { returnObjects: true }) as string[];
+  const words = {
+    en: ["Rest", "Recover", "Renew"],
+    es: ["Descansa", "Recupera", "Renueva"],
+  }[currentLanguage] as string[];
+  // const words = i18n.t("home.heroVideo.words", { returnObjects: true }) as string[];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleLanguageChange = (lng: "es" | "en") => {
@@ -66,7 +70,7 @@ export default function Hero() {
           playsInline
           preload="auto"
         >
-          <source src="/Hero.mp4" type="video/mp4" />
+          <source src="/hero.webm" type="video/webm" />
         </video>
       </div>
 
