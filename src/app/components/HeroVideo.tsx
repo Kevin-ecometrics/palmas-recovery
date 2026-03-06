@@ -9,7 +9,7 @@ export default function Hero() {
   const { t, i18n } = useTranslation();
   const pathname = usePathname();
   const router = useRouter();
-  const currentLanguage = i18n.language?.startsWith("es") ? "es" : "en";
+  const currentLanguage = i18n.language?.startsWith("en") ? "en" : "es";
   const words = {
     en: ["Rest", "Recover", "Renew"],
     es: ["Descansa", "Recupera", "Renueva"],

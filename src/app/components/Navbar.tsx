@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { t, i18n } = useTranslation();
-  const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
+  const currentLang = i18n.language?.startsWith("en") ? "en" : "es";
 
   if (!i18n.language) return null;
 
