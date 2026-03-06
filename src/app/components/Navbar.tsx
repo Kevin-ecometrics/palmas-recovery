@@ -22,9 +22,21 @@ const Navbar: React.FC = () => {
   if (!i18n.language) return null;
 
   const socialLinks = [
-    { icon: FaInstagram, url: "https://www.instagram.com/palmasrecovery/?hl=es", label: "Instagram" },
-    { icon: FaTiktok, url: "https://www.tiktok.com/@palmasrecovery", label: "TikTok" },
-    { icon: FaFacebookF, url: "https://www.facebook.com/palmasrecovery/", label: "Facebook" },
+    {
+      icon: FaInstagram,
+      url: "https://www.instagram.com/palmasrecovery/?hl=es",
+      label: "Instagram",
+    },
+    {
+      icon: FaTiktok,
+      url: "https://www.tiktok.com/@palmasrecovery",
+      label: "TikTok",
+    },
+    {
+      icon: FaFacebookF,
+      url: "https://www.facebook.com/palmasrecovery/",
+      label: "Facebook",
+    },
   ];
 
   const navItems = [
@@ -32,7 +44,7 @@ const Navbar: React.FC = () => {
     { label: t("navbar.items.book"), path: "/book" },
     { label: t("navbar.items.services"), path: "/services" },
     { label: t("navbar.items.contact"), path: "/contact" },
-    { label: t("navbar.items.panorama"), path: "/panorama" },
+    //{ label: t("navbar.items.panorama"), path: "/panorama" },
   ];
 
   const handleLanguageChange = (lng: "es" | "en") => {
@@ -46,7 +58,7 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const currentPath = getLocalizedPath(
       pathname === "/" ? "/" : pathname.replace(/\/$/, ""),
-      "en"
+      "en",
     ); // eliminar slash final
     const index = navItems.findIndex((item) => item.path === currentPath);
     if (index !== -1) setActiveIndex(index);
@@ -152,7 +164,9 @@ const Navbar: React.FC = () => {
                 variants={navItemVariants}
               >
                 <button
-                  onClick={() => router.push(getLocalizedPath(item.path, currentLang))}
+                  onClick={() =>
+                    router.push(getLocalizedPath(item.path, currentLang))
+                  }
                   className={`hover:text-principal transition-colors ${
                     i === activeIndex ? "text-principal font-bold" : ""
                   }`}
@@ -161,7 +175,10 @@ const Navbar: React.FC = () => {
                 </button>
               </motion.div>
               {i < navItems.length - 1 && (
-                <span className="mx-4 h-4 w-px bg-black/30" aria-hidden="true" />
+                <span
+                  className="mx-4 h-4 w-px bg-black/30"
+                  aria-hidden="true"
+                />
               )}
             </React.Fragment>
           ))}
@@ -178,13 +195,13 @@ const Navbar: React.FC = () => {
               onClick={() => router.push(getLocalizedPath("/", currentLang))}
               className="flex items-center"
             >
-                <figure>
-                  <img
-                    src="/logo.png"
-                    alt="Icono del logotipo de la Clínica"
-                    className="h-10 w-auto object-contain hover:opacity-80 transition-opacity"
-                  />
-                </figure>
+              <figure>
+                <img
+                  src="/logo.png"
+                  alt="Icono del logotipo de la Clínica"
+                  className="h-10 w-auto object-contain hover:opacity-80 transition-opacity"
+                />
+              </figure>
             </button>
           </motion.div>
         </nav>

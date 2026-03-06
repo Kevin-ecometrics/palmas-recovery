@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -16,6 +17,8 @@ import {
   FaChevronRight,
   FaTimes,
   FaCheckCircle,
+  FaInfoCircle,
+  FaSearch,
 } from "react-icons/fa";
 import {
   MdMedicalServices,
@@ -29,34 +32,552 @@ import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
 import { Suspense } from "react";
 
+// Tipos
+interface BookingPayload {
+  roomId: string;
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+  fullName: string;
+  email: string;
+  phone: string;
+  specialRequests?: string;
+  extras: string[];
+  total: number;
+  nights: number;
+  pricePerNight: number;
+}
+
+interface Extra {
+  id: string;
+  title: string;
+  price: number;
+  images: string[];
+}
+
+interface AvailableRoom {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  capacity: number;
+  bathroom_type: string;
+  image: string;
+  available: boolean;
+}
+
+// Datos de extras
+const EXTRAS: Extra[] = [
+  {
+    id: "b01g",
+    title: "ORIGINAL RECOVERY BRA - STYLE NO. B01G",
+    price: 80,
+    images: ["/extra1-1.png", "/extra1-2.png", "/extra1-3.png"],
+  },
+  {
+    id: "fvom",
+    title: "OPEN BUST VEST - 3/4 LENGTH SLEEVES - STYLE NO. FVOM",
+    price: 80,
+    images: ["/extra2-1.png", "/extra2-2.png", "/extra2-3.png"],
+  },
+  {
+    id: "sfbhrs",
+    title:
+      "REINFORCED GIRDLE WITH HIGH-BACK AND LAYERED PANELS - SHORT LENGTH - STYLES NO. SFBHRS",
+    price: 140,
+    images: ["/extra3-1.png", "/Extra3-2.png", "/extra3-3.png"],
+  },
+  {
+    id: "sfbhs2",
+    title:
+      "GIRDLE WITH HIGH-BACK - NO CLOSURES - SHORT LENGHT - STYLE NO. SFBHS2",
+    price: 140,
+    images: ["/extra4-1.png", "/extra4-2.png", "/extra4-3.png"],
+  },
+];
+
+// Función para verificar disponibilidad de múltiples habitaciones
+const checkBulkAvailability = async (
+  checkIn: string,
+  checkOut: string,
+): Promise<{ [roomId: string]: boolean }> => {
+  try {
+    const apiBaseUrl =
+      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+    const response = await axios.post(`${apiBaseUrl}/api/bulk-availability`, {
+      checkIn,
+      checkOut,
+      roomIds: ROOMS.map((r) => r.id),
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error checking bulk availability:", error);
+    return {};
+  }
+};
+
+// Función para verificar disponibilidad de una habitación específica
+const checkAvailability = async (
+  roomId: string,
+  checkIn: string,
+  checkOut: string,
+): Promise<{ available: boolean; message?: string }> => {
+  try {
+    const apiBaseUrl =
+      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+    const response = await axios.post(`${apiBaseUrl}/api/check-availability`, {
+      roomId,
+      checkIn,
+      checkOut,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error checking availability:", error);
+    return { available: false, message: "Error checking availability" };
+  }
+};
+
+// Función para validar fechas
+const validateDates = (
+  checkIn: string,
+  checkOut: string,
+  t: (key: string) => string,
+): { isValid: boolean; errorMessage: string | null } => {
+  if (!checkIn) {
+    return {
+      isValid: false,
+      errorMessage: t("booking.errors.checkInRequired"),
+    };
+  }
+  if (!checkOut) {
+    return {
+      isValid: false,
+      errorMessage: t("booking.errors.checkOutRequired"),
+    };
+  }
+
+  const checkInDate = new Date(checkIn);
+  const checkOutDate = new Date(checkOut);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (checkInDate < today) {
+    return { isValid: false, errorMessage: t("booking.errors.checkInPast") };
+  }
+
+  if (checkOutDate <= checkInDate) {
+    return {
+      isValid: false,
+      errorMessage: t("booking.errors.checkOutAfterCheckIn"),
+    };
+  }
+
+  return { isValid: true, errorMessage: null };
+};
+
+// Función para validar el formulario paso 2
+const validateStep2 = (
+  formData: any,
+  t: (key: string) => string,
+): { isValid: boolean; errorMessage: string | null } => {
+  if (!formData.fullName) {
+    return {
+      isValid: false,
+      errorMessage: t("booking.errors.fullNameRequired"),
+    };
+  }
+  if (!formData.email) {
+    return { isValid: false, errorMessage: t("booking.errors.emailRequired") };
+  }
+  if (!formData.phone) {
+    return { isValid: false, errorMessage: t("booking.errors.phoneRequired") };
+  }
+
+  // Validación de email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(formData.email)) {
+    return { isValid: false, errorMessage: t("booking.errors.invalidEmail") };
+  }
+
+  return { isValid: true, errorMessage: null };
+};
+
+// Función para calcular noches
+const calculateNights = (checkIn: string, checkOut: string): number => {
+  if (!checkIn || !checkOut) return 0;
+  const checkInDate = new Date(checkIn);
+  const checkOutDate = new Date(checkOut);
+  const diff = checkOutDate.getTime() - checkInDate.getTime();
+  return Math.ceil(diff / (1000 * 3600 * 24));
+};
+
+// Función para calcular total de extras
+const calculateExtrasTotal = (selectedExtras: string[]): number => {
+  return selectedExtras.reduce((total, id) => {
+    const extra = EXTRAS.find((item) => item.id === id);
+    return total + (extra?.price || 0);
+  }, 0);
+};
+
+// Función para calcular total general
+const calculateTotal = (
+  selectedRoomData: (typeof ROOMS)[0] | null,
+  checkIn: string,
+  checkOut: string,
+  selectedExtras: string[],
+  guests = 1,
+): number => {
+  if (!selectedRoomData || calculateNights(checkIn, checkOut) <= 0) return 0;
+  const numberOfGuests = guests || 1;
+  const roomTotal =
+    selectedRoomData.price *
+    calculateNights(checkIn, checkOut) *
+    numberOfGuests;
+  return roomTotal + calculateExtrasTotal(selectedExtras);
+};
+
+// Función para manejar el cambio de paso
+const handleStepChange = (newStep: number, setStep: (step: number) => void) => {
+  setStep(newStep);
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 100);
+};
+
+// Función para enviar email de confirmación
+const sendConfirmationEmail = async (bookingData: BookingPayload) => {
+  try {
+    const apiBaseUrl =
+      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+    await axios.post(
+      `${apiBaseUrl}/api/send-booking-confirmation`,
+      bookingData,
+    );
+  } catch (error) {
+    console.error("Error sending confirmation email:", error);
+  }
+};
+
+// Función para resetear el formulario después de reservar
+const resetBookingForm = (
+  setSelectedRoom: (room: string | null) => void,
+  setSelectedExtras: (extras: string[]) => void,
+  setFormData: (data: any) => void,
+  setStep: (step: number) => void,
+  setStatus: (status: "idle" | "submitting" | "success" | "error") => void,
+  setShowSuccessModal: (show: boolean) => void,
+) => {
+  setSelectedRoom(null);
+  setSelectedExtras([]);
+  setFormData({
+    checkIn: "",
+    checkOut: "",
+    fullName: "",
+    email: "",
+    phone: "",
+    specialRequests: "",
+    paymentMethod: "credit-card",
+  });
+  setStep(1);
+  setStatus("idle");
+  setShowSuccessModal(false);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+// Función para manejar el submit final
+const handleFinalSubmit = async (
+  formData: any,
+  selectedRoom: string | null,
+  selectedExtras: string[],
+  t: (key: string) => string,
+  setStatus: (status: "idle" | "submitting" | "success" | "error") => void,
+  setErrorText: (error: string | null) => void,
+  setShowSuccessModal: (show: boolean) => void,
+  setConfirmationData: (data: any) => void,
+): Promise<void> => {
+  try {
+    setStatus("submitting");
+    setErrorText(null);
+
+    // Validar que hay una habitación seleccionada
+    if (!selectedRoom) {
+      throw new Error(t("booking.errors.selectRoomRequired"));
+    }
+
+    const roomData = ROOMS.find((r) => r.id === selectedRoom);
+    if (!roomData) {
+      throw new Error(t("booking.errors.roomNotFound"));
+    }
+
+    // Verificar disponibilidad nuevamente
+    const availability = await checkAvailability(
+      selectedRoom,
+      formData.checkIn,
+      formData.checkOut,
+    );
+    if (!availability.available) {
+      throw new Error(
+        availability.message || t("booking.errors.roomNotAvailable"),
+      );
+    }
+
+    const nights = calculateNights(formData.checkIn, formData.checkOut);
+    const total = calculateTotal(
+      roomData,
+      formData.checkIn,
+      formData.checkOut,
+      selectedExtras,
+      1,
+    );
+
+    // Preparar payload para la API
+    const payload: BookingPayload = {
+      roomId: selectedRoom,
+      checkIn: formData.checkIn,
+      checkOut: formData.checkOut,
+      guests: 1,
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      specialRequests: formData.specialRequests,
+      extras: selectedExtras,
+      total,
+      nights,
+      pricePerNight: roomData.price,
+    };
+
+    const apiBaseUrl =
+      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
+    // Enviar reserva a la base de datos
+    const response = await axios.post(`${apiBaseUrl}/api/bookings`, payload, {
+      headers: { "Content-Type": "application/json" },
+    });
+
+    // Enviar email de confirmación
+    await sendConfirmationEmail(payload);
+
+    // Guardar datos de confirmación
+    setConfirmationData({
+      ...payload,
+      confirmationNumber: response.data.confirmationNumber,
+      bookingId: response.data.bookingId,
+    });
+
+    setStatus("success");
+    setShowSuccessModal(true);
+  } catch (error) {
+    setStatus("error");
+    if (axios.isAxiosError(error)) {
+      setErrorText(error.response?.data?.error || t("booking.errors.server"));
+    } else if (error instanceof Error) {
+      setErrorText(error.message);
+    } else {
+      setErrorText(t("booking.errors.unknown"));
+    }
+  }
+};
+
+// Modal de éxito
+const SuccessModal = ({
+  isOpen,
+  onClose,
+  confirmationData,
+  onNewBooking,
+  t,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  confirmationData: any;
+  onNewBooking: () => void;
+  t: (key: string, options?: any) => string;
+}) => {
+  if (!isOpen) return null;
+
+  const getRoomName = (roomId: string) => {
+    switch (roomId) {
+      case "standard":
+        return t("rooms.standard.name");
+      case "deluxe":
+        return t("rooms.deluxe.name");
+      case "shared":
+        return t("rooms.shared.name");
+      default:
+        return roomId;
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-fadeIn">
+      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slideInUp">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white text-center">
+          <FaCheckCircle className="text-6xl mx-auto mb-4" />
+          <h2 className="text-3xl font-bold mb-2">{t("booking.success")}</h2>
+          <p className="text-green-100">{t("booking.successMessage")}</p>
+        </div>
+
+        <div className="p-6">
+          <div className="bg-gray-50 rounded-xl p-6 mb-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
+              {t("booking.confirmationDetails")}
+            </h3>
+
+            <div className="space-y-3">
+              <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                <span className="text-gray-600 font-medium">
+                  {t("booking.confirmationNumber")}:
+                </span>
+                <span className="font-bold text-principal">
+                  {confirmationData?.confirmationNumber}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center py-2">
+                <span className="text-gray-600 font-medium">
+                  {t("booking.fields.room")}:
+                </span>
+                <span className="font-semibold">
+                  {getRoomName(confirmationData?.roomId)}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center py-2">
+                <span className="text-gray-600 font-medium">
+                  {t("booking.fields.checkIn")}:
+                </span>
+                <span className="font-semibold">
+                  {confirmationData?.checkIn}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center py-2">
+                <span className="text-gray-600 font-medium">
+                  {t("booking.fields.checkOut")}:
+                </span>
+                <span className="font-semibold">
+                  {confirmationData?.checkOut}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center py-2">
+                <span className="text-gray-600 font-medium">
+                  {t("booking.nights")}:
+                </span>
+                <span className="font-semibold">
+                  {confirmationData?.nights}{" "}
+                  {t("common.night", { count: confirmationData?.nights })}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center py-2">
+                <span className="text-gray-600 font-medium">
+                  {t("booking.guests")}:
+                </span>
+                <span className="font-semibold">
+                  {confirmationData?.guests ?? 1}{" "}
+                  {t("common.guest", { count: confirmationData?.guests ?? 1 })}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center py-2">
+                <span className="text-gray-600 font-medium">
+                  {t("booking.fields.fullName")}:
+                </span>
+                <span className="font-semibold">
+                  {confirmationData?.fullName}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center py-2">
+                <span className="text-gray-600 font-medium">
+                  {t("booking.fields.email")}:
+                </span>
+                <span className="font-semibold">{confirmationData?.email}</span>
+              </div>
+
+              {confirmationData?.extras &&
+                confirmationData.extras.length > 0 && (
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-600 font-medium">
+                      {t("booking.extras")}:
+                    </span>
+                    <span className="font-semibold">
+                      ${confirmationData?.extrasTotal}
+                    </span>
+                  </div>
+                )}
+
+              <div className="flex justify-between items-center py-2 border-t border-gray-200 mt-2">
+                <span className="text-xl font-bold text-gray-900">
+                  {t("booking.total")}:
+                </span>
+                <span className="text-3xl font-bold text-principal">
+                  ${confirmationData?.total}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+            <p className="text-sm text-blue-800">
+              <strong>{t("booking.important")}:</strong>{" "}
+              {t("booking.emailSent")}
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={onNewBooking}
+              className="flex-1 bg-principal text-white py-3 rounded-xl font-semibold hover:bg-principal-dark transition-colors"
+            >
+              {t("booking.newBooking")}
+            </button>
+            {/* <button
+              onClick={onClose}
+              className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
+            >
+              {t("booking.close")}
+            </button> */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const BookingPageInner = () => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
   const [step, setStep] = useState(1);
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+  const [errorText, setErrorText] = useState<string | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [confirmationData, setConfirmationData] = useState<any>(null);
   const searchParams = useSearchParams();
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
-
-  useEffect(() => {
-    const roomParam = searchParams.get("room");
-    if (roomParam && ROOMS.some((r) => r.id === roomParam)) {
-      setSelectedRoom(roomParam);
-    }
-  }, [searchParams]);
-
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [galleryExtraId, setGalleryExtraId] = useState<string | null>(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
-  
+  const [availableRooms, setAvailableRooms] = useState<{
+    [roomId: string]: boolean;
+  }>({});
+  const [isSearchingRooms, setIsSearchingRooms] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
   const today = new Date();
   const todayValue = `${today.getFullYear()}-${String(
-    today.getMonth() + 1
+    today.getMonth() + 1,
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-  
+  const DEFAULT_GUEST_COUNT = 1;
+
   const [formData, setFormData] = useState({
     checkIn: "",
     checkOut: "",
-    guests: "1",
     fullName: "",
     email: "",
     phone: "",
@@ -64,73 +585,86 @@ const BookingPageInner = () => {
     paymentMethod: "credit-card",
   });
 
-  const extras = [
-    {
-      id: "b01g",
-      title: "ORIGINAL RECOVERY BRA - STYLE NO. B01G",
-      price: 80,
-      images: [
-        "/extra1-1.png", 
-        "/extra1-2.png", 
-        "/extra1-3.png", 
-      ],
-    },
-    {
-      id: "fvom",
-      title: "OPEN BUST VEST - 3/4 LENGTH SLEEVES - STYLE NO. FVOM",
-      price: 80,
-      images: [
-        "/extra2-1.png", 
-        "/extra2-2.png", 
-        "/extra2-3.png", 
-      ],
-    },
-    {
-      id: "sfbhrs",
-      title:
-        "REINFORCED GIRDLE WITH HIGH-BACK AND LAYERED PANELS - SHORT LENGTH - STYLES NO. SFBHRS",
-      price: 140,
-      images: [
-        "/extra3-1.png", 
-        "/Extra3-2.png", 
-        "/extra3-3.png", 
-      ],
-    },
-    {
-      id: "sfbhs2",
-      title:
-        "GIRDLE WITH HIGH-BACK - NO CLOSURES - SHORT LENGHT - STYLE NO. SFBHS2",
-      price: 140,
-      images: [
-        "/extra4-1.png", // Servicio extra 4, imagen 1
-        "/extra4-2.png", // Servicio extra 4, imagen 2
-        "/extra4-3.png", // Servicio extra 4, imagen 3
-      ],
-    },
-  ];
+  // Obtener room param de URL
+  useEffect(() => {
+    const roomParam = searchParams.get("room");
+    if (roomParam && ROOMS.some((r) => r.id === roomParam)) {
+      setSelectedRoom(roomParam);
+    }
+  }, [searchParams]);
 
   const selectedRoomData = selectedRoom
-    ? ROOMS.find((r) => r.id === selectedRoom)
+    ? (ROOMS.find((r) => r.id === selectedRoom) ?? null)
     : null;
 
   const getRoomText = (id: string, key: string) => t(`rooms.${id}.${key}`);
 
-  const handleInputChange = (
+  // Función para buscar habitaciones disponibles
+  const searchAvailableRooms = async () => {
+    const datesValidation = validateDates(
+      formData.checkIn,
+      formData.checkOut,
+      t,
+    );
+    if (!datesValidation.isValid) {
+      setValidationError(datesValidation.errorMessage);
+      return;
+    }
+
+    setIsSearchingRooms(true);
+    setValidationError(null);
+    setHasSearched(true);
+
+    try {
+      const availability = await checkBulkAvailability(
+        formData.checkIn,
+        formData.checkOut,
+      );
+      setAvailableRooms(availability);
+
+      // Si la habitación actualmente seleccionada no está disponible, deseleccionarla
+      if (selectedRoom && availability[selectedRoom] === false) {
+        setSelectedRoom(null);
+        setValidationError(t("booking.errors.selectedRoomNotAvailable"));
+      }
+    } catch (error) {
+      console.error("Error searching rooms:", error);
+      setValidationError(t("booking.errors.availabilityCheckFailed"));
+    } finally {
+      setIsSearchingRooms(false);
+    }
+  };
+
+  const handleInputChange = async (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const target = e.target as HTMLInputElement;
     const { name, value } = target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+
+    // Limpiar errores
+    if (status === "error") {
+      setStatus("idle");
+      setErrorText(null);
+    }
+    setValidationError(null);
+
+    // Resetear búsqueda cuando cambian las fechas
+    if (name === "checkIn" || name === "checkOut") {
+      setHasSearched(false);
+      setAvailableRooms({});
+    }
   };
 
   const toggleExtra = (id: string) => {
     setSelectedExtras((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
     );
   };
 
@@ -144,74 +678,112 @@ const BookingPageInner = () => {
     setGalleryIndex(0);
   };
 
-  const calculateNights = () => {
-    if (!formData.checkIn || !formData.checkOut) return 0;
-    const checkIn = new Date(formData.checkIn);
-    const checkOut = new Date(formData.checkOut);
-    const diff = checkOut.getTime() - checkIn.getTime();
-    return Math.ceil(diff / (1000 * 3600 * 24));
+  const nights = calculateNights(formData.checkIn, formData.checkOut);
+  const extrasTotal = calculateExtrasTotal(selectedExtras);
+  const total = calculateTotal(
+    selectedRoomData,
+    formData.checkIn,
+    formData.checkOut,
+    selectedExtras,
+    1,
+  );
+
+  const handleNextClick = async () => {
+    if (step === 1) {
+      // En paso 1, validar que hay fechas y habitación seleccionada
+      if (!selectedRoom) {
+        setValidationError(t("booking.errors.selectRoomRequired"));
+        return;
+      }
+      if (!hasSearched) {
+        setValidationError(t("booking.errors.searchRoomsFirst"));
+        return;
+      }
+      handleStepChange(step + 1, setStep);
+    } else if (step === 2) {
+      // Validación completa del paso 2
+      const validation = validateStep2(formData, t);
+      if (!validation.isValid) {
+        setValidationError(validation.errorMessage);
+        return;
+      }
+      handleStepChange(step + 1, setStep);
+    }
   };
 
-  const calculateExtrasTotal = () => {
-    return selectedExtras.reduce((total, id) => {
-      const extra = extras.find((item) => item.id === id);
-      return total + (extra?.price || 0);
-    }, 0);
-  };
-
-  const calculateTotal = () => {
-    if (!selectedRoomData || calculateNights() <= 0) return 0;
-    const numberOfGuests = Number(formData.guests) || 1;
-    const roomTotal = selectedRoomData.price * calculateNights() * numberOfGuests;
-    return roomTotal + calculateExtrasTotal();
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (step < 3) {
-      setStep(step + 1);
-      // Scroll to top immediately when changing steps
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 100);
+      await handleNextClick();
     } else {
-      alert(t("booking.bookingComplete"));
-      router.push("/");
-    }
-  };
-
-  const handleNextClick = () => {
-    if (step < 3 && canProceed()) {
-      setStep(step + 1);
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 100);
-    }
-  };
-
-  const canProceed = () => {
-    if (step === 1) return selectedRoom !== null;
-    if (step === 2) {
-      return (
-        formData.checkIn &&
-        formData.checkOut &&
-        formData.fullName &&
-        formData.email &&
-        formData.phone
+      await handleFinalSubmit(
+        formData,
+        selectedRoom,
+        selectedExtras,
+        t,
+        setStatus,
+        setErrorText,
+        setShowSuccessModal,
+        setConfirmationData,
       );
     }
-    return true;
+  };
+
+  const handleNewBooking = () => {
+    resetBookingForm(
+      setSelectedRoom,
+      setSelectedExtras,
+      setFormData,
+      setStep,
+      setStatus,
+      setShowSuccessModal,
+    );
+    setHasSearched(false);
+    setAvailableRooms({});
+  };
+
+  const getRoomAvailabilityStatus = (roomId: string) => {
+    if (!hasSearched) return "unknown";
+    return availableRooms[roomId] ? "available" : "unavailable";
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <Navbar />
 
-      {/* Enhanced Progress Bar */}
+      {/* Mostrar mensajes de estado */}
+      {status === "success" && !showSuccessModal && (
+        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg animate-slideInDown">
+          <div className="flex items-center gap-2">
+            <FaCheckCircle className="text-white" />
+            <span className="font-medium">{t("booking.success")}</span>
+          </div>
+        </div>
+      )}
+
+      {status === "error" && errorText && (
+        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-red-500 text-white px-6 py-3 rounded-full shadow-lg animate-slideInDown">
+          <div className="flex items-center gap-2">
+            <FaTimes className="text-white" />
+            <span className="font-medium">{errorText}</span>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de éxito */}
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        confirmationData={confirmationData}
+        onNewBooking={handleNewBooking}
+        t={t}
+      />
+
+      {/* Progress Bar */}
       <div className="bg-white/80 backdrop-blur-sm border-b shadow-sm pt-24 md:pt-28 sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between relative">
-            {/* Background Progress Line */}
             <div className="absolute top-6 left-0 right-0 h-1 bg-gray-200 rounded-full -z-10" />
             <div
               className="absolute top-6 left-0 h-1 bg-gradient-to-r from-principal to-principal/80 rounded-full transition-all duration-700 ease-out -z-10"
@@ -228,8 +800,8 @@ const BookingPageInner = () => {
                       step > num
                         ? "bg-gradient-to-br from-green-500 to-green-600 text-white scale-100"
                         : step === num
-                        ? "bg-gradient-to-br from-principal to-principal/90 text-white scale-110 ring-4 ring-principal/30"
-                        : "bg-white text-gray-400 border-2 border-gray-300 scale-90"
+                          ? "bg-gradient-to-br from-principal to-principal/90 text-white scale-110 ring-4 ring-principal/30"
+                          : "bg-white text-gray-400 border-2 border-gray-300 scale-90"
                     }
                   `}
                 >
@@ -243,8 +815,8 @@ const BookingPageInner = () => {
                   {num === 1
                     ? t("booking.steps.select")
                     : num === 2
-                    ? t("booking.steps.details")
-                    : t("booking.steps.confirm")}
+                      ? t("booking.steps.details")
+                      : t("booking.steps.confirm")}
                 </span>
               </div>
             ))}
@@ -256,7 +828,6 @@ const BookingPageInner = () => {
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Main Form */}
           <div className="lg:col-span-2">
-            {/* Enhanced Header */}
             <div className="mb-8 md:mb-12">
               <h1 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                 {t("booking.title")}
@@ -266,155 +837,38 @@ const BookingPageInner = () => {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit}>
-              {/* Step 1: Enhanced Room Selection */}
+            <form ref={formRef} onSubmit={handleSubmit}>
+              {/* Step 1: Date Selection & Room Search */}
               {step === 1 && (
                 <div className="space-y-6 animate-fadeIn">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#70805A] to-[#5a6647] flex items-center justify-center">
-                      <FaBed className="text-white text-lg" />
-                    </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                      {t("booking.selectRoomTitle")}
-                    </h2>
-                  </div>
-
-                  <div className="space-y-5">
-                    {ROOMS.map((room) => {
-                      const isSelected = selectedRoom === room.id;
-                      return (
-                        <div key={room.id} className="space-y-0">
-                          <div
-                            onClick={() => setSelectedRoom(room.id)}
-                            className={`
-                              group relative overflow-hidden rounded-2xl cursor-pointer 
-                              transition-all duration-500 transform hover:scale-[1.02]
-                              ${
-                                isSelected
-                                  ? "ring-4 ring-[#70805A] shadow-2xl shadow-[#70805A]/20"
-                                  : "ring-1 ring-gray-200 hover:ring-2 hover:ring-gray-300 hover:shadow-xl"
-                              }
-                            `}
-                          >
-                            <div className="bg-white p-5 md:p-7">
-                              <div className="flex flex-col md:flex-row gap-6">
-                                {/* Image */}
-                                <div className="md:w-1/3 relative">
-                                  <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
-                                    <img
-                                      src={room.image}
-                                      alt={getRoomText(room.id, "imageAlt")}
-                                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                    
-                                    {/* Indicador de Selección - Esquina Superior Derecha */}
-                                    {isSelected && (
-                                      <div className="absolute top-3 right-3 z-10 animate-scaleIn">
-                                        <FaCheckCircle className="text-[#70805A] text-4xl drop-shadow-lg" />
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-
-                                {/* Content */}
-                                <div className="md:w-2/3 flex flex-col">
-                                  <div className="flex justify-between items-start mb-4">
-                                    <div className="flex-1">
-                                      <span className="inline-block bg-gradient-to-r from-principal to-principal/80 text-white px-3 py-1.5 rounded-full text-xs font-bold mb-3 shadow-sm">
-                                        {getRoomText(room.id, "highlight")}
-                                      </span>
-                                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                                        {getRoomText(room.id, "name")}
-                                      </h3>
-                                      <p className="text-sm md:text-base text-gray-600 italic">
-                                        {getRoomText(room.id, "tagline")}
-                                      </p>
-                                    </div>
-                                    <div className="text-right ml-4">
-                                      <div className="text-2xl md:text-3xl font-bold text-[#70805A]">
-                                        ${room.price}
-                                      </div>
-                                      <div className="text-xs md:text-sm text-gray-500 font-medium">
-                                        {t("booking.perNight")}
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <p className="text-sm md:text-base text-gray-700 mb-5 line-clamp-2 md:line-clamp-none">
-                                    {getRoomText(room.id, "description")}
-                                  </p>
-
-                                  {/* Features */}
-                                  <div className="flex flex-wrap gap-3 md:gap-4 mt-auto">
-                                    <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg text-sm">
-                                      <FaUserFriends className="text-[#70805A]" />
-                                      <span className="text-gray-700 font-medium">
-                                        {t("searchBar.accommodates", {
-                                          count: room.capacity,
-                                        })}
-                                      </span>
-                                    </div>
-                                    <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg text-sm">
-                                      <FaBath className="text-[#70805A]" />
-                                      <span className="text-gray-700 font-medium">
-                                        {room.id === "shared"
-                                          ? t("searchBar.bathroom.shared")
-                                          : t("searchBar.bathroom.private")}{" "}
-                                        {t("searchBar.bathroomLabel")}
-                                      </span>
-                                    </div>
-                                    <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg text-sm">
-                                      <MdMedicalServices className="text-[#70805A]" />
-                                      <span className="text-gray-700 font-medium">
-                                        {t("booking.assistance")}
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Next Button Below Selected Room */}
-                          {isSelected && (
-                            <div className="pt-4 animate-slideInUp">
-                              <button
-                                type="button"
-                                onClick={handleNextClick}
-                                className="w-full group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#70805A] to-[#5a6647] text-white font-bold rounded-2xl shadow-lg hover:shadow-[#70805A]/40 transition-all duration-300 transform hover:scale-[1.02]"
-                              >
-                                {t("booking.next")}
-                                <FaChevronRight className="transition-transform group-hover:translate-x-1" />
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Step 2: Enhanced Details Form */}
-              {step === 2 && (
-                <div className="space-y-8 animate-fadeIn">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#70805A] to-[#5a6647] flex items-center justify-center">
                       <FaCalendarAlt className="text-white text-lg" />
                     </div>
                     <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                      {t("booking.stayDetails")}
+                      {t("booking.selectDatesTitle")}
                     </h2>
                   </div>
 
-                  {/* Dates and Guests */}
+                  {/* Info de check-in/check-out */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-start gap-3">
+                    <FaInfoCircle className="text-blue-500 text-xl flex-shrink-0 mt-0.5" />
+                    <div className="text-sm text-blue-800">
+                      <p className="font-semibold mb-1">
+                        {t("booking.checkInOutInfo")}:
+                      </p>
+                      <p>• {t("booking.checkInTime")}: 2:00 PM (14:00 hrs)</p>
+                      <p>• {t("booking.checkOutTime")}: 11:00 AM</p>
+                    </div>
+                  </div>
+
+                  {/* Date Selection */}
                   <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
                     <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                       <FaCalendarAlt className="text-[#70805A]" />
-                      Stay Information
+                      {t("booking.selectDates")}
                     </h3>
-                    <div className="grid md:grid-cols-3 gap-5">
+                    <div className="grid md:grid-cols-2 gap-5">
                       <div className="group">
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           {t("booking.fields.checkIn")}
@@ -427,6 +881,7 @@ const BookingPageInner = () => {
                           min={todayValue}
                           className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
                           required
+                          disabled={status === "submitting"}
                         />
                       </div>
 
@@ -442,34 +897,232 @@ const BookingPageInner = () => {
                           min={formData.checkIn || todayValue}
                           className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
                           required
+                          disabled={status === "submitting"}
                         />
                       </div>
+                    </div>
 
-                      <div className="group">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          {t("booking.fields.guests")}
-                        </label>
-                        <select
-                          name="guests"
-                          value={formData.guests}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300 appearance-none bg-white cursor-pointer"
-                        >
-                          {[1, 2, 3, 4].map((num) => (
-                            <option key={num} value={num}>
-                              {num} {t("common.guest", { count: num })}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                    <div className="mt-6">
+                      <button
+                        type="button"
+                        onClick={searchAvailableRooms}
+                        disabled={
+                          isSearchingRooms ||
+                          !formData.checkIn ||
+                          !formData.checkOut
+                        }
+                        className="w-full bg-principal text-white py-4 rounded-xl font-semibold hover:bg-principal-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      >
+                        {isSearchingRooms ? (
+                          <>
+                            <svg
+                              className="animate-spin h-5 w-5 text-white"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              ></path>
+                            </svg>
+                            <span>{t("booking.searching")}</span>
+                          </>
+                        ) : (
+                          <>
+                            <FaSearch />
+                            <span>{t("booking.searchRooms")}</span>
+                          </>
+                        )}
+                      </button>
                     </div>
                   </div>
+
+                  {/* Room Selection - Solo se muestra después de buscar */}
+                  {hasSearched && (
+                    <div className="space-y-5 animate-fadeIn">
+                      <h3 className="text-xl font-bold text-gray-900 mb-4">
+                        {t("booking.selectRoomTitle")}
+                      </h3>
+
+                      {ROOMS.map((room) => {
+                        const isSelected = selectedRoom === room.id;
+                        const availabilityStatus = getRoomAvailabilityStatus(
+                          room.id,
+                        );
+                        const isAvailable = availabilityStatus === "available";
+
+                        if (!isAvailable && availabilityStatus !== "unknown") {
+                          return null; // No mostrar habitaciones no disponibles
+                        }
+
+                        return (
+                          <div key={room.id} className="space-y-0">
+                            <div
+                              onClick={() =>
+                                isAvailable && setSelectedRoom(room.id)
+                              }
+                              className={`
+                                group relative overflow-hidden rounded-2xl cursor-pointer 
+                                transition-all duration-500 transform hover:scale-[1.02]
+                                ${!isAvailable ? "opacity-50 cursor-not-allowed" : ""}
+                                ${
+                                  isSelected
+                                    ? "ring-4 ring-[#70805A] shadow-2xl shadow-[#70805A]/20"
+                                    : "ring-1 ring-gray-200 hover:ring-2 hover:ring-gray-300 hover:shadow-xl"
+                                }
+                              `}
+                            >
+                              <div className="bg-white p-5 md:p-7">
+                                <div className="flex flex-col md:flex-row gap-6">
+                                  {/* Image */}
+                                  <div className="md:w-1/3 relative">
+                                    <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
+                                      <img
+                                        src={room.image}
+                                        alt={getRoomText(room.id, "imageAlt")}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                      />
+                                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                                      {isSelected && (
+                                        <div className="absolute top-3 right-3 z-10 animate-scaleIn">
+                                          <FaCheckCircle className="text-[#70805A] text-4xl drop-shadow-lg" />
+                                        </div>
+                                      )}
+
+                                      {!isAvailable && (
+                                        <div className="absolute inset-0 bg-gray-500/50 flex items-center justify-center">
+                                          <span className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                                            {t("booking.notAvailable")}
+                                          </span>
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+
+                                  {/* Content */}
+                                  <div className="md:w-2/3 flex flex-col">
+                                    <div className="flex justify-between items-start mb-4">
+                                      <div className="flex-1">
+                                        <span className="inline-block bg-gradient-to-r from-principal to-principal/80 text-white px-3 py-1.5 rounded-full text-xs font-bold mb-3 shadow-sm">
+                                          {getRoomText(room.id, "highlight")}
+                                        </span>
+                                        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+                                          {getRoomText(room.id, "name")}
+                                        </h3>
+                                        <p className="text-sm md:text-base text-gray-600 italic">
+                                          {getRoomText(room.id, "tagline")}
+                                        </p>
+                                      </div>
+                                      <div className="text-right ml-4">
+                                        <div className="text-2xl md:text-3xl font-bold text-[#70805A]">
+                                          ${room.price}
+                                        </div>
+                                        <div className="text-xs md:text-sm text-gray-500 font-medium">
+                                          {t("booking.perNight")}
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <p className="text-sm md:text-base text-gray-700 mb-5 line-clamp-2 md:line-clamp-none">
+                                      {getRoomText(room.id, "description")}
+                                    </p>
+
+                                    <div className="flex flex-wrap gap-3 md:gap-4 mt-auto">
+                                      <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg text-sm">
+                                        <FaUserFriends className="text-[#70805A]" />
+                                        <span className="text-gray-700 font-medium">
+                                          {t("searchBar.accommodates", {
+                                            count: room.capacity,
+                                          })}
+                                        </span>
+                                      </div>
+                                      <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg text-sm">
+                                        <FaBath className="text-[#70805A]" />
+                                        <span className="text-gray-700 font-medium">
+                                          {room.id === "shared"
+                                            ? t("searchBar.bathroom.shared")
+                                            : t(
+                                                "searchBar.bathroom.private",
+                                              )}{" "}
+                                          {t("searchBar.bathroomLabel")}
+                                        </span>
+                                      </div>
+                                      <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg text-sm">
+                                        <MdMedicalServices className="text-[#70805A]" />
+                                        <span className="text-gray-700 font-medium">
+                                          {t("booking.assistance")}
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                      {ROOMS.filter(
+                        (room) =>
+                          getRoomAvailabilityStatus(room.id) === "available",
+                      ).length === 0 && (
+                        <div className="text-center py-12 bg-gray-50 rounded-2xl">
+                          <FaBed className="text-5xl text-gray-400 mx-auto mb-4" />
+                          <p className="text-gray-600 font-medium">
+                            {t("booking.noRoomsAvailable")}
+                          </p>
+                          <p className="text-sm text-gray-500 mt-2">
+                            {t("booking.tryDifferentDates")}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Mostrar error de validación si existe */}
+                  {validationError && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                      {validationError}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Step 2: Personal Details */}
+              {step === 2 && (
+                <div className="space-y-8 animate-fadeIn">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#70805A] to-[#5a6647] flex items-center justify-center">
+                      <FaUserFriends className="text-white text-lg" />
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                      {t("booking.detailsTitle")}
+                    </h2>
+                  </div>
+
+                  {/* Mostrar error de validación si existe */}
+                  {validationError && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                      {validationError}
+                    </div>
+                  )}
 
                   {/* Personal Details */}
                   <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
                     <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                       <FaUserFriends className="text-[#70805A]" />
-                      {t("booking.detailsTitle")}
+                      {t("booking.personalInformation")}
                     </h3>
 
                     <div className="grid md:grid-cols-2 gap-5">
@@ -485,6 +1138,7 @@ const BookingPageInner = () => {
                           placeholder="John Doe"
                           className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
                           required
+                          disabled={status === "submitting"}
                         />
                       </div>
 
@@ -500,6 +1154,7 @@ const BookingPageInner = () => {
                           placeholder="john@example.com"
                           className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
                           required
+                          disabled={status === "submitting"}
                         />
                       </div>
 
@@ -515,6 +1170,7 @@ const BookingPageInner = () => {
                           placeholder="+1 (555) 000-0000"
                           className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
                           required
+                          disabled={status === "submitting"}
                         />
                       </div>
 
@@ -529,6 +1185,7 @@ const BookingPageInner = () => {
                           rows={4}
                           placeholder={t("booking.specialRequestsPlaceholder")}
                           className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300 resize-none"
+                          disabled={status === "submitting"}
                         />
                       </div>
                     </div>
@@ -536,12 +1193,12 @@ const BookingPageInner = () => {
                 </div>
               )}
 
-              {/* Step 3: Enhanced Payment & Confirmation */}
+              {/* Step 3: Confirmation */}
               {step === 3 && (
                 <div className="space-y-8 animate-fadeIn">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#70805A] to-[#5a6647] flex items-center justify-center">
-                      <FaCreditCard className="text-white text-lg" />
+                      <FaCheck className="text-white text-lg" />
                     </div>
                     <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
                       {t("booking.confirmTitle")}
@@ -583,8 +1240,7 @@ const BookingPageInner = () => {
                               {t("booking.nights")}:
                             </span>
                             <span className="font-bold text-gray-900">
-                              {calculateNights()}{" "}
-                              {t("common.night", { count: calculateNights() })}
+                              {nights} {t("common.night", { count: nights })}
                             </span>
                           </div>
                           <div className="flex justify-between items-center py-2">
@@ -592,18 +1248,21 @@ const BookingPageInner = () => {
                               {t("booking.guests")}:
                             </span>
                             <span className="font-bold text-gray-900">
-                              {formData.guests}{" "}
+                              {DEFAULT_GUEST_COUNT}{" "}
                               {t("common.guest", {
-                                count: Number(formData.guests),
+                                count: DEFAULT_GUEST_COUNT,
                               })}
                             </span>
                           </div>
                           <div className="flex justify-between items-center py-2">
                             <span className="text-gray-600 font-medium">
-                              Room Subtotal:
+                              {t("booking.roomSubtotal")}:
                             </span>
                             <span className="font-bold text-gray-900">
-                              ${selectedRoomData.price * calculateNights() * Number(formData.guests)}
+                              $
+                              {selectedRoomData.price *
+                                nights *
+                                DEFAULT_GUEST_COUNT}
                             </span>
                           </div>
                           {selectedExtras.length > 0 && (
@@ -612,7 +1271,7 @@ const BookingPageInner = () => {
                                 {t("booking.extras")}:
                               </span>
                               <span className="font-bold text-gray-900">
-                                ${calculateExtrasTotal()}
+                                ${extrasTotal}
                               </span>
                             </div>
                           )}
@@ -620,8 +1279,10 @@ const BookingPageInner = () => {
                             <span className="text-gray-600 font-medium">
                               {t("booking.period")}:
                             </span>
-                            <span className="font-medium text-gray-900">
-                              {formData.checkIn} → {formData.checkOut}
+                            <span className="font-medium text-gray-900 text-right">
+                              {formData.checkIn} (2:00 PM)
+                              <br />
+                              {formData.checkOut} (11:00 AM)
                             </span>
                           </div>
                         </div>
@@ -632,7 +1293,7 @@ const BookingPageInner = () => {
                               {t("booking.total")}:
                             </span>
                             <span className="text-3xl font-bold text-[#70805A]">
-                              ${calculateTotal()}
+                              ${total}
                             </span>
                           </div>
                           <p className="text-sm text-gray-500">
@@ -644,7 +1305,7 @@ const BookingPageInner = () => {
                   </div>
 
                   {/* Recovery Garments */}
-                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
+                  {/* <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
                     <div className="flex items-center justify-between mb-6">
                       <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                         <span className="text-2xl">🩺</span>
@@ -652,13 +1313,13 @@ const BookingPageInner = () => {
                       </h3>
                       {selectedExtras.length > 0 && (
                         <span className="px-3 py-1 bg-[#70805A]/10 text-[#70805A] rounded-full text-sm font-semibold">
-                          {selectedExtras.length} selected
+                          {selectedExtras.length} {t("booking.selected")}
                         </span>
                       )}
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-5">
-                      {extras.map((extra) => {
+                      {EXTRAS.map((extra) => {
                         const isChecked = selectedExtras.includes(extra.id);
                         return (
                           <div
@@ -691,7 +1352,7 @@ const BookingPageInner = () => {
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-300 flex items-center justify-center">
                                   <span className="text-white text-sm font-semibold opacity-0 group-hover/img:opacity-100 transition-opacity duration-300">
-                                    View Gallery
+                                    {t("booking.viewGallery")}
                                   </span>
                                 </div>
                               </button>
@@ -710,9 +1371,10 @@ const BookingPageInner = () => {
                                       checked={isChecked}
                                       onChange={() => toggleExtra(extra.id)}
                                       className="w-5 h-5 text-[#70805A] focus:ring-[#70805A] rounded border-gray-300"
+                                      disabled={status === "submitting"}
                                     />
                                     <span className="text-sm font-semibold text-gray-700 group-hover/checkbox:text-[#70805A] transition-colors">
-                                      Add to booking
+                                      {t("booking.addToBooking")}
                                     </span>
                                   </label>
                                 </div>
@@ -722,67 +1384,10 @@ const BookingPageInner = () => {
                         );
                       })}
                     </div>
-                  </div>
-
-                  {/* Payment Method */}
-                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                      <FaCreditCard className="text-[#70805A]" />
-                      {t("booking.paymentMethod")}
-                    </h3>
-
-                    <div className="grid md:grid-cols-3 gap-4">
-                      {[
-                        {
-                          id: "credit-card",
-                          label: t("booking.paymentCard"),
-                          icon: "💳",
-                        },
-                        {
-                          id: "bank-transfer",
-                          label: t("booking.paymentTransfer"),
-                          icon: "🏦",
-                        },
-                        {
-                          id: "paypal",
-                          label: t("booking.paymentPayPal"),
-                          icon: "🔗",
-                        },
-                      ].map((method) => (
-                        <label
-                          key={method.id}
-                          className={`
-                            flex flex-col items-center justify-center gap-3 p-5 rounded-xl cursor-pointer 
-                            transition-all duration-300 transform hover:scale-105
-                            ${
-                              formData.paymentMethod === method.id
-                                ? "ring-2 ring-[#70805A] bg-[#70805A]/5 shadow-lg"
-                                : "ring-1 ring-gray-200 hover:ring-gray-300 bg-white"
-                            }
-                          `}
-                        >
-                          <input
-                            type="radio"
-                            name="paymentMethod"
-                            value={method.id}
-                            checked={formData.paymentMethod === method.id}
-                            onChange={handleInputChange}
-                            className="sr-only"
-                          />
-                          <span className="text-4xl">{method.icon}</span>
-                          <span className="font-semibold text-sm text-center">
-                            {method.label}
-                          </span>
-                          {formData.paymentMethod === method.id && (
-                            <FaCheck className="text-[#70805A]" />
-                          )}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
+                  </div> */}
 
                   {/* Cancellation Policy */}
-                  <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl p-6 md:p-8 border border-blue-200 shadow-md">
+                  {/* <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl p-6 md:p-8 border border-blue-200 shadow-md">
                     <h4 className="font-bold text-blue-900 mb-4 flex items-center gap-3 text-lg">
                       <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
                         <FaShieldAlt className="text-white" />
@@ -801,20 +1406,18 @@ const BookingPageInner = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
               )}
 
-              {/* Enhanced Navigation Buttons */}
+              {/* Navigation Buttons */}
               <div className="flex flex-col sm:flex-row justify-between gap-4 mt-12 pt-8 border-t-2 border-gray-200">
                 {step > 1 ? (
                   <button
                     type="button"
-                    onClick={() => {
-                      setStep(step - 1);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
-                    className="group flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-300 text-gray-700 font-bold rounded-full hover:border-[#70805A] hover:text-[#70805A] transition-all duration-300 transform hover:scale-105"
+                    onClick={() => handleStepChange(step - 1, setStep)}
+                    disabled={status === "submitting"}
+                    className="group flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-300 text-gray-700 font-bold rounded-full hover:border-[#70805A] hover:text-[#70805A] transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <FaChevronLeft className="transition-transform group-hover:-translate-x-1" />
                     {t("booking.back")}
@@ -825,20 +1428,53 @@ const BookingPageInner = () => {
 
                 <button
                   type="submit"
-                  disabled={!canProceed()}
+                  disabled={
+                    (step === 1 &&
+                      (!selectedRoom || !hasSearched || isSearchingRooms)) ||
+                    status === "submitting" ||
+                    (step === 2 && !!validationError)
+                  }
                   className={`
                     group flex items-center justify-center gap-3 px-10 py-4 font-bold rounded-full 
                     transition-all duration-300 transform hover:scale-105 shadow-lg
                     ${
-                      canProceed()
-                        ? step < 3
-                          ? "bg-gradient-to-r from-[#70805A] to-[#5a6647] text-white hover:shadow-[#70805A]/30 hover:shadow-2xl"
-                          : "bg-gradient-to-r from-[#70805A] to-[#5a6647] text-white hover:shadow-[#70805A]/30 hover:shadow-2xl"
+                      ((step === 1 &&
+                        selectedRoom &&
+                        hasSearched &&
+                        !isSearchingRooms) ||
+                        (step === 2 && !validationError) ||
+                        step === 3) &&
+                      status !== "submitting"
+                        ? "bg-gradient-to-r from-[#70805A] to-[#5a6647] text-white hover:shadow-[#70805A]/30 hover:shadow-2xl"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
                     }
                   `}
                 >
-                  {step < 3 ? (
+                  {status === "submitting" ? (
+                    <>
+                      <svg
+                        className="animate-spin h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      <span>{t("common.processing")}</span>
+                    </>
+                  ) : step < 3 ? (
                     <>
                       {t("booking.next")}
                       <FaChevronRight className="transition-transform group-hover:translate-x-1" />
@@ -854,7 +1490,7 @@ const BookingPageInner = () => {
             </form>
           </div>
 
-          {/* Enhanced Sidebar Summary */}
+          {/* Sidebar Summary */}
           <div className="lg:col-span-1">
             <div className="sticky top-32">
               <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-100">
@@ -896,17 +1532,20 @@ const BookingPageInner = () => {
                         {[
                           {
                             label: t("booking.checkIn"),
-                            value: formData.checkIn,
+                            value: `${formData.checkIn} (2:00 PM)`,
                           },
                           {
                             label: t("booking.checkOut"),
-                            value: formData.checkOut,
+                            value: `${formData.checkOut} (11:00 AM)`,
                           },
                           {
                             label: t("booking.nights"),
-                            value: calculateNights(),
+                            value: nights,
                           },
-                          { label: t("booking.guests"), value: formData.guests },
+                          {
+                            label: t("booking.guests"),
+                            value: `${DEFAULT_GUEST_COUNT} ${t("common.guest", { count: DEFAULT_GUEST_COUNT })}`,
+                          },
                         ].map((item) => (
                           <div
                             key={item.label}
@@ -929,16 +1568,16 @@ const BookingPageInner = () => {
                           {t("booking.estimatedTotal")}:
                         </span>
                         <span className="text-2xl font-bold text-[#70805A]">
-                          ${calculateTotal()}
+                          ${total}
                         </span>
                       </div>
                       {selectedExtras.length > 0 && (
                         <div className="mt-3 p-3 bg-[#70805A]/10 rounded-lg border border-[#70805A]/20">
                           <p className="text-xs font-semibold text-[#70805A] mb-2">
-                            Recovery Garments Added:
+                            {t("booking.extrasAdded")}:
                           </p>
                           {selectedExtras.map((id) => {
-                            const extra = extras.find((item) => item.id === id);
+                            const extra = EXTRAS.find((item) => item.id === id);
                             if (!extra) return null;
                             return (
                               <div
@@ -972,7 +1611,7 @@ const BookingPageInner = () => {
                   </div>
                 )}
 
-                {/* Enhanced Benefits */}
+                {/* Benefits */}
                 <div className="mt-8 pt-8 border-t-2 border-gray-200">
                   <h4 className="font-bold text-gray-900 mb-5 text-lg flex items-center gap-2">
                     <FaCheck className="text-[#70805A]" />
@@ -1016,7 +1655,7 @@ const BookingPageInner = () => {
                   </div>
                 </div>
 
-                {/* Enhanced Contact Info */}
+                {/* Contact Info */}
                 <div className="mt-8 p-5 bg-gradient-to-br from-principal/10 to-principal/5 rounded-xl border border-principal/20">
                   <p className="text-sm text-gray-700 text-center">
                     <span className="font-semibold">
@@ -1037,33 +1676,33 @@ const BookingPageInner = () => {
         </div>
       </div>
 
-      {/* Enhanced Modal Gallery */}
+      {/* Modal Gallery */}
       {galleryExtraId && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center animate-fadeIn"
           onClick={closeGallery}
         >
           {(() => {
-            const extra = extras.find((item) => item.id === galleryExtraId);
+            const extra = EXTRAS.find((item) => item.id === galleryExtraId);
             if (!extra) return null;
             const images = extra.images;
             const currentImage = images[galleryIndex] || images[0];
             return (
-              <div 
+              <div
                 className="w-full h-full flex flex-col"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Modern Header */}
+                {/* Header */}
                 <div className="bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4">
                   <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-1">
                         <span className="text-[#70805A] text-xs font-bold uppercase tracking-wider">
-                          Recovery Garment
+                          {t("booking.recoveryGarment")}
                         </span>
                         <span className="text-white/40">•</span>
                         <span className="text-white/60 text-xs font-medium">
-                          {galleryIndex + 1} of {images.length}
+                          {galleryIndex + 1} {t("common.of")} {images.length}
                         </span>
                       </div>
                       <h2 className="text-white text-sm md:text-base font-semibold truncate">
@@ -1083,19 +1722,18 @@ const BookingPageInner = () => {
                 {/* Main Image Area */}
                 <div className="flex-1 relative flex items-center justify-center p-4 md:p-8">
                   <div className="relative w-full h-full max-w-6xl max-h-[80vh] flex items-center justify-center">
-                    {/* Image */}
                     <img
                       src={currentImage}
-                      alt={`${extra.title} - Image ${galleryIndex + 1}`}
+                      alt={`${extra.title} - ${t("common.image")} ${galleryIndex + 1}`}
                       className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
                     />
-                    
-                    {/* Navigation Arrows - Desktop */}
+
+                    {/* Navigation Arrows */}
                     <button
                       type="button"
                       onClick={() =>
                         setGalleryIndex((prev) =>
-                          prev === 0 ? images.length - 1 : prev - 1
+                          prev === 0 ? images.length - 1 : prev - 1,
                         )
                       }
                       className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/90 hover:bg-white shadow-2xl items-center justify-center transition-all transform hover:scale-110 active:scale-95 backdrop-blur-sm"
@@ -1106,7 +1744,7 @@ const BookingPageInner = () => {
                       type="button"
                       onClick={() =>
                         setGalleryIndex((prev) =>
-                          prev === images.length - 1 ? 0 : prev + 1
+                          prev === images.length - 1 ? 0 : prev + 1,
                         )
                       }
                       className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/90 hover:bg-white shadow-2xl items-center justify-center transition-all transform hover:scale-110 active:scale-95 backdrop-blur-sm"
@@ -1114,20 +1752,20 @@ const BookingPageInner = () => {
                       <FaChevronRight className="text-gray-900 text-xl" />
                     </button>
 
-                    {/* Navigation Arrows - Mobile */}
+                    {/* Mobile Navigation */}
                     <div className="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4">
                       <button
                         type="button"
                         onClick={() =>
                           setGalleryIndex((prev) =>
-                            prev === 0 ? images.length - 1 : prev - 1
+                            prev === 0 ? images.length - 1 : prev - 1,
                           )
                         }
                         className="w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-xl flex items-center justify-center transition-all active:scale-95 backdrop-blur-sm"
                       >
                         <FaChevronLeft className="text-gray-900" />
                       </button>
-                      
+
                       <div className="px-4 py-2 rounded-full bg-black/70 backdrop-blur-sm">
                         <span className="text-white text-sm font-semibold">
                           {galleryIndex + 1} / {images.length}
@@ -1138,7 +1776,7 @@ const BookingPageInner = () => {
                         type="button"
                         onClick={() =>
                           setGalleryIndex((prev) =>
-                            prev === images.length - 1 ? 0 : prev + 1
+                            prev === images.length - 1 ? 0 : prev + 1,
                           )
                         }
                         className="w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-xl flex items-center justify-center transition-all active:scale-95 backdrop-blur-sm"
@@ -1162,13 +1800,14 @@ const BookingPageInner = () => {
                       </div>
                       <label className="flex items-center gap-3 cursor-pointer group">
                         <span className="text-white/80 text-sm font-medium group-hover:text-white transition-colors">
-                          Add to booking
+                          {t("booking.addToBooking")}
                         </span>
                         <input
                           type="checkbox"
                           checked={selectedExtras.includes(extra.id)}
                           onChange={() => toggleExtra(extra.id)}
                           className="w-5 h-5 text-[#70805A] focus:ring-[#70805A] rounded border-white/30 bg-white/10"
+                          disabled={status === "submitting"}
                         />
                       </label>
                     </div>
@@ -1191,7 +1830,7 @@ const BookingPageInner = () => {
                         >
                           <img
                             src={img}
-                            alt={`Thumbnail ${index + 1}`}
+                            alt={`${t("common.thumbnail")} ${index + 1}`}
                             className="w-20 h-20 md:w-24 md:h-24 object-cover"
                           />
                           {index === galleryIndex && (
@@ -1269,15 +1908,13 @@ const BookingPageInner = () => {
           animation: scaleIn 0.3s ease-out;
         }
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
 
-        /* Hide scrollbar for IE, Edge and Firefox */
         .scrollbar-hide {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>

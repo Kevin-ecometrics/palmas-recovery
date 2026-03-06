@@ -34,7 +34,12 @@
     "total": "Total",
     "totalLower": "total",
     "legal": "Legal",
-    "viewHotels": "Ver paquetes"
+    "viewHotels": "Ver paquetes",
+    "processing": "Procesando...",
+    "close": "Cerrar",
+    "of": "de",
+    "image": "Imagen",
+    "thumbnail": "Miniatura"
   },
   "brand": {
     "name": "Palmas Recovery",
@@ -151,7 +156,7 @@
       "subtitle": "La mejor atención post-operatorio en Tijuana",
       "cta": "Conoce más"
     }
-    },
+  },
   "audience": {
     "heading": {
       "titleLine1": "Casa de recuperación certificada en Tijuana",
@@ -175,11 +180,10 @@
         "label": "Ubicación segura, céntrica y discreta",
         "description": "Situado en una de las zonas más seguras del corazón de la ciudad, garantizando privacidad total y paz mental."
       },
-            "plazas": {
+      "plazas": {
         "label": "Todo lo que necesitas saber de tu visita",
         "description": "Hoteles de lujo, restaurantes exclusivos, spas, centros comerciales y hospitales líderes están a solo unos momentos para la comodidad de tu visita."
       }
-
     }
   },
   "banner": {
@@ -403,6 +407,49 @@
       "details": "Detalles",
       "confirm": "Confirmar"
     },
+    "selectDatesTitle": "Selecciona tus fechas",
+    "selectDates": "Seleccionar fechas",
+    "searchRooms": "Buscar habitaciones disponibles",
+    "searching": "Buscando...",
+    "notAvailable": "No disponible",
+    "noRoomsAvailable": "No hay habitaciones disponibles para las fechas seleccionadas",
+    "tryDifferentDates": "Por favor intenta con otras fechas",
+    "selected": "seleccionados",
+    "viewGallery": "Ver galería",
+    "addToBooking": "Agregar a reserva",
+    "recoveryGarment": "Prenda de recuperación",
+    "checkInOutInfo": "Información de entrada / salida",
+    "checkInTime": "Hora de entrada",
+    "checkOutTime": "Hora de salida",
+    "checkingAvailability": "Verificando disponibilidad...",
+    "roomSubtotal": "Subtotal de la habitación",
+    "extrasAdded": "Extras añadidos",
+    "personalInformation": "Información personal",
+    "success": "Reserva confirmada",
+    "successMessage": "Tu reservación está confirmada. Nos pondremos en contacto pronto.",
+    "confirmationDetails": "Detalles de la confirmación",
+    "confirmationNumber": "Número de confirmación",
+    "important": "Importante",
+    "emailSent": "Hemos enviado los detalles de tu reserva a tu correo electrónico. Por favor revisa tu bandeja de entrada.",
+    "newBooking": "Hacer nueva reserva",
+    "errors": {
+      "checkInRequired": "Por favor selecciona una fecha de entrada.",
+      "checkOutRequired": "Por favor selecciona una fecha de salida.",
+      "fullNameRequired": "Por favor ingresa tu nombre completo.",
+      "emailRequired": "Por favor ingresa tu correo electrónico.",
+      "phoneRequired": "Por favor ingresa tu número de teléfono.",
+      "invalidEmail": "Por favor ingresa un correo electrónico válido.",
+      "checkInPast": "La fecha de entrada no puede estar en el pasado.",
+      "checkOutAfterCheckIn": "La fecha de salida debe ser posterior a la fecha de entrada.",
+      "roomNotAvailable": "La habitación no está disponible para las fechas seleccionadas.",
+      "selectRoomRequired": "Por favor selecciona una habitación para continuar.",
+      "roomNotFound": "No se encontró la habitación seleccionada.",
+      "server": "Ocurrió un error al procesar tu reserva. Por favor intenta nuevamente.",
+      "unknown": "Ocurrió un error inesperado.",
+      "selectedRoomNotAvailable": "La habitación seleccionada ya no está disponible",
+      "searchRoomsFirst": "Por favor busca habitaciones disponibles primero",
+      "availabilityCheckFailed": "Error al verificar disponibilidad"
+    },
     "selectRoomTitle": "Selecciona tu habitación",
     "perNight": "por noche",
     "roomDescription": "Descripción de la habitación",
@@ -412,7 +459,7 @@
     "checkIn": "Entrada",
     "checkOut": "Salida",
     "guests": "Huéspedes",
-    "period": "Periodo",
+    "period": "Período",
     "to": "a",
     "specialRequests": "Solicitudes especiales",
     "assistance": "Asistencia 24/7",
@@ -461,6 +508,7 @@
       "No-show: se cobra la estancia completa"
     ],
     "fields": {
+      "room": "Habitación",
       "checkIn": "Fecha de entrada",
       "checkOut": "Fecha de salida",
       "guests": "Número de huéspedes",

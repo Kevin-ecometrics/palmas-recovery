@@ -34,7 +34,12 @@
     "total": "Total",
     "totalLower": "total",
     "legal": "Legal",
-    "viewHotels": "View packages"
+    "viewHotels": "View packages",
+    "processing": "Processing...",
+    "close": "Close",
+    "of": "of",
+    "image": "Image",
+    "thumbnail": "Thumbnail"
   },
   "brand": {
     "name": "Palmas Recovery",
@@ -175,7 +180,7 @@
         "label": "Safe, central & discreet location",
         "description": "Situated in one of the safest areas in the heart of the city for total privacy and peace of mind."
       },
-        "plazas": {
+      "plazas": {
         "label": "Everything your guest needs nearby",
         "description": "Luxury hotels, upscale restaurants, spas, shopping centers, and leading hospitals are just moments away for the comfort of your companion."
       }
@@ -303,9 +308,9 @@
     "prev": "Previous image",
     "next": "Next image"
   },
-"destinations": {
-  "title": "Recovery Rooms & Wellness"
-},
+  "destinations": {
+    "title": "Recovery Rooms & Wellness"
+  },
   "rooms": {
     "shared": {
       "name": "Shared Room",
@@ -402,6 +407,49 @@
       "details": "Details",
       "confirm": "Confirm"
     },
+    "selectDatesTitle": "Select Your Dates",
+    "selectDates": "Select Dates",
+    "searchRooms": "Search Available Rooms",
+    "searching": "Searching...",
+    "notAvailable": "Not Available",
+    "noRoomsAvailable": "No rooms available for the selected dates",
+    "tryDifferentDates": "Please try different dates",
+    "selected": "selected",
+    "viewGallery": "View Gallery",
+    "addToBooking": "Add to booking",
+    "recoveryGarment": "Recovery Garment",
+    "checkInOutInfo": "Check-in / check-out information",
+    "checkInTime": "Check-in time",
+    "checkOutTime": "Check-out time",
+    "checkingAvailability": "Checking availability...",
+    "roomSubtotal": "Room subtotal",
+    "extrasAdded": "Extras added",
+    "personalInformation": "Personal Information",
+    "success": "Booking confirmed!",
+    "successMessage": "Your reservation is confirmed. We'll reach out shortly.",
+    "confirmationDetails": "Confirmation details",
+    "confirmationNumber": "Confirmation number",
+    "important": "Important",
+    "emailSent": "We've sent the details of your booking to your email. Please check your inbox.",
+    "newBooking": "Make a New Booking",
+    "errors": {
+      "checkInRequired": "Please select a check-in date.",
+      "checkOutRequired": "Please select a check-out date.",
+      "fullNameRequired": "Please enter your full name.",
+      "emailRequired": "Please enter your email address.",
+      "phoneRequired": "Please enter your phone number.",
+      "invalidEmail": "Please enter a valid email address.",
+      "checkInPast": "Check-in cannot be in the past.",
+      "checkOutAfterCheckIn": "Check-out must be after check-in.",
+      "roomNotAvailable": "The room is not available for the selected dates.",
+      "selectRoomRequired": "Please select a room to continue.",
+      "roomNotFound": "Selected room not found.",
+      "server": "An error occurred while processing your booking. Please try again.",
+      "unknown": "An unexpected error occurred.",
+      "selectedRoomNotAvailable": "The selected room is no longer available",
+      "searchRoomsFirst": "Please search for available rooms first",
+      "availabilityCheckFailed": "Error checking availability"
+    },
     "selectRoomTitle": "Select Your Room",
     "perNight": "per night",
     "roomDescription": "Room Description",
@@ -460,6 +508,7 @@
       "No-show policy: full stay charge"
     ],
     "fields": {
+      "room": "Room",
       "checkIn": "Check-in date",
       "checkOut": "Check-out date",
       "guests": "Number of guests",

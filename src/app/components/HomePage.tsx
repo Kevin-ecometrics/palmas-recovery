@@ -39,7 +39,7 @@ export default function HomePage() {
     if (!footerRef.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => setFooterVisible(entry.isIntersecting),
-      { root: null, threshold: 0.1 }
+      { root: null, threshold: 0.1 },
     );
 
     observer.observe(footerRef.current);
@@ -50,7 +50,7 @@ export default function HomePage() {
     <div className="bg-white relative text-black">
       <div className="relative">
         <Hero />
-        <SearchBar floating={showNavbar} hidden={footerVisible} />
+        {/* <SearchBar floating={showNavbar} hidden={footerVisible} /> */}
       </div>
       <AnimationHero />
       <div
@@ -64,13 +64,12 @@ export default function HomePage() {
       </div>
       <Banner />
       <section className="relative px-6 md:px-12 py-20 lg:py-24 bg-[#fffaf6]">
-
- <header className="mb-12 ml-12 md:ml-24 lg:ml-32 mr-6 md:mr-12">
-  <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.15] tracking-tight text-left">
-    {t("home.pleasure.titleLine1")}
-    <br />
-  </h2>
-</header>
+        <header className="mb-12 ml-12 md:ml-24 lg:ml-32 mr-6 md:mr-12">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.15] tracking-tight text-left">
+            {t("home.pleasure.titleLine1")}
+            <br />
+          </h2>
+        </header>
 
         <div className="max-w-6xl mx-auto">
           <div className="space-y-10">
