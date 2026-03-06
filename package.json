@@ -11,6 +11,7 @@
     "@fontsource-variable/montserrat": "^5.2.8",
     "@next/third-parties": "^16.1.6",
     "@react-three/fiber": "^9.4.0",
+    "axios": "^1.13.6",
     "gsap": "^3.13.0",
     "gsap-scroll": ".",
     "i18next": "^25.8.0",
