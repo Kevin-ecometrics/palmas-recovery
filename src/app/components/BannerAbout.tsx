@@ -8,17 +8,18 @@ import { useTranslation } from "react-i18next";
 const Banner: React.FC = () => {
   const { t, i18n } = useTranslation();
   // Rotating titles for both languages
-  const titles = i18n.language === "es"
-    ? [
-        t("bannerAbout.title1"),
-        t("bannerAbout.title2"),
-        t("bannerAbout.title3")
-      ]
-    : [
-        t("bannerAbout.title1"),
-        t("bannerAbout.title2"),
-        t("bannerAbout.title3")
-      ];
+  const titles =
+    i18n.language === "es"
+      ? [
+          t("bannerAbout.title1"),
+          t("bannerAbout.title2"),
+          t("bannerAbout.title3"),
+        ]
+      : [
+          t("bannerAbout.title1"),
+          t("bannerAbout.title2"),
+          t("bannerAbout.title3"),
+        ];
   const [currentTitle, setCurrentTitle] = useState(0);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const Banner: React.FC = () => {
   return (
     <motion.div
       className="relative w-full h-[400px] md:h-[500px] bg-cover bg-center overflow-hidden"
-      style={{ backgroundColor: '#222' }}
+      style={{ backgroundColor: "#222" }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -71,13 +72,14 @@ const Banner: React.FC = () => {
         </motion.p>
 
         {/* Botón centrado */}
-        <motion.button
+        <motion.a
+          href="/about"
           className="mx-auto bg-transparent border-2 border-white text-white py-3 px-8 rounded-full text-lg flex items-center justify-center hover:bg-white hover:text-black transition duration-300"
           whileHover={{ scale: 1.1 }}
         >
           {t("bannerAbout.button")}
           <FaArrowRight className="ml-2" />
-        </motion.button>
+        </motion.a>
       </div>
     </motion.div>
   );

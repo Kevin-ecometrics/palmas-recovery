@@ -153,7 +153,7 @@
     },
     "heroVideo": {
       "words": ["Rest", "Recover", "Renew"],
-      "subtitle": "Best post-op care with in-house doctors in Tijuana",
+      "subtitle": "The best post-op care with in-house doctors in Tijuana",
       "cta": "Learn more"
     }
   },
@@ -161,7 +161,8 @@
     "heading": {
       "titleLine1": "Certified Recovery House in Tijuana",
       "titleLine2": "",
-      "description": "Proudly founded by doctors who put your health first, we combine medical expertise with personalized care to ensure a safe, comfortable, and high-quality recovery experience."
+      "description": "Proudly founded by doctors who put your health first, we combine medical expertise with personalized care to ensure a safe, comfortable, and high-quality recovery experience.",
+      "description2": "Experience the Advantages of Staying in a Professional Recovery House in Tijuana: "
     },
     "items": {
       "linea": {
@@ -189,7 +190,8 @@
   "banner": {
     "exclusive": "Exclusive Benefits:",
     "items": [
-      "Your Recovery, Our Priority",
+      "Your Recovery",
+      "Our Priority",
       "Flexible booking",
       "In-House Doctors",
       "24/7 Certified Nursing"

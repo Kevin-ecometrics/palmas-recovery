@@ -29,7 +29,7 @@ const ITEMS: Item[] = [
     id: "estancia",
     labelKey: "audience.items.estancia.label",
     descriptionKey: "audience.items.estancia.description",
-    image: "/estancia.jpg", 
+    image: "/estancia.jpg",
     alt: "Estancia",
     color: "#4CAF73",
     bgColor: "#4CAF73",
@@ -39,7 +39,7 @@ const ITEMS: Item[] = [
     id: "pago",
     labelKey: "audience.items.pago.label",
     descriptionKey: "audience.items.pago.description",
-    image: "/pago.png", 
+    image: "/pago.png",
     alt: "Pago",
     color: "#1F6F8B",
     bgColor: "#1F6F8B",
@@ -49,7 +49,7 @@ const ITEMS: Item[] = [
     id: "ubicacion",
     labelKey: "audience.items.ubicacion.label",
     descriptionKey: "audience.items.ubicacion.description",
-    image: "/ubicacion.jpg", 
+    image: "/ubicacion.jpg",
     alt: "Ubicación",
     color: "#7DB9A2",
     bgColor: "#7DB9A2",
@@ -61,7 +61,7 @@ const ITEMS: Item[] = [
     descriptionKey: "audience.items.plazas.description",
     image: "/plazas.jpg",
     alt: "Plazas",
-    color: "#6B8E6B", 
+    color: "#6B8E6B",
     bgColor: "#6B8E6B",
     href: "/reservar",
   },
@@ -85,7 +85,7 @@ export default function AudienceSelector() {
       }}
     >
       <div className="mx-auto w-full max-w-7xl px-4 md:px-6">
-        <div className="max-w-md">
+        <div className="">
           <h2 className="text-4xl md:text-5xl font-serif text-[#1a1a1a] leading-[1.2]">
             {t("audience.heading.titleLine1")}
             <br />
@@ -94,6 +94,9 @@ export default function AudienceSelector() {
           <p className="mt-6 text-sm md:text-base text-[#1a1a1a] leading-relaxed">
             {t("audience.heading.description")}
           </p>
+          <h4 className="mt-4 font-bold text-lg md:text-xl text-[#1a1a1a] leading-relaxed">
+            {t("audience.heading.description2")}
+          </h4>
         </div>
       </div>
 
@@ -101,7 +104,7 @@ export default function AudienceSelector() {
         <ul className="flex flex-col space-y-4 md:space-y-6 py-4 md:py-6">
           {ITEMS.map((item, index) => {
             const isActive = activeId === item.id;
-            
+
             // Ajustes específicos para las últimas 2 imágenes en desktop
             const isLastTwoItems = index >= 3; // Índices 3 y 4
             const desktopAdjustment = isLastTwoItems ? "md:top-[-10%]" : "";
@@ -132,11 +135,15 @@ export default function AudienceSelector() {
                         alt={t(item.labelKey)}
                         className={`absolute left-0 w-full h-auto object-cover ${desktopAdjustment}`}
                         style={{
-                          // Para móvil: todas las imágenes igual
-                          // Para desktop: últimas 2 imágenes más arriba
                           height: "115%",
                           minHeight: expandedHeight,
                           top: "0",
+                        }}
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          backgroundColor: "rgba(0, 0, 0, 0.5)",
                         }}
                       />
                     </div>
@@ -155,7 +162,9 @@ export default function AudienceSelector() {
                         fontWeight: 300,
                         letterSpacing: "-0.02em",
                         marginBottom: isActive ? "0.75rem" : "0",
-                        textShadow: isActive ? "0 2px 4px rgba(0,0,0,0.3)" : "none",
+                        textShadow: isActive
+                          ? "0 2px 4px rgba(0,0,0,0.3)"
+                          : "none",
                       }}
                     >
                       {t(item.labelKey)}
@@ -165,9 +174,9 @@ export default function AudienceSelector() {
                       <div className="animate-in fade-in duration-300 flex flex-col items-center">
                         <p
                           className="text-white text-base md:text-lg mb-5 leading-relaxed max-w-2xl uppercase tracking-wide"
-                          style={{ 
+                          style={{
                             fontSize: "0.85rem",
-                            textShadow: "0 1px 2px rgba(0,0,0,0.5)"
+                            textShadow: "0 1px 2px rgba(0,0,0,0.5)",
                           }}
                         >
                           {t(item.descriptionKey)}

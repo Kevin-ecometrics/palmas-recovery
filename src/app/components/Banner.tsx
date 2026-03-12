@@ -83,7 +83,7 @@ const Banner: React.FC = () => {
               <React.Fragment key={index}>
                 <div className="flex items-center mx-6 group">
                   <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
-                  <span className="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">
+                  <span className="text-xl font-medium text-slate-700 group-hover:text-slate-900 transition-colors">
                     {item}
                   </span>
                 </div>

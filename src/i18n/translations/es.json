@@ -161,7 +161,8 @@
     "heading": {
       "titleLine1": "Casa de recuperación certificada en Tijuana",
       "titleLine2": "",
-      "description": "Fundada con orgullo por médicos que priorizan tu salud, combinamos experiencia médica con atención personalizada para garantizar una recuperación segura, cómoda y de la más alta calidad."
+      "description": "Fundada con orgullo por médicos que priorizan tu salud, combinamos experiencia médica con atención personalizada para garantizar una recuperación segura, cómoda y de la más alta calidad.",
+      "description2": "Experimenta las ventajas de hospedarte en una casa de recuperación profesional en Tijuana:"
     },
     "items": {
       "linea": {
@@ -189,7 +190,8 @@
   "banner": {
     "exclusive": "Beneficios exclusivos:",
     "items": [
-      "Tu recuperación, nuestra prioridad",
+      "Tu recuperación", 
+      "nuestra prioridad",
       "Reservas flexibles",
       "Enfermería certificada 24/7",
       "Médicos internos"

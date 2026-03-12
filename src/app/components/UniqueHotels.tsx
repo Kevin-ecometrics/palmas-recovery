@@ -4,11 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-const IMAGES = [
-  "/doctor1.jpg",
-  "/doctor2.jpg",
-  "/doctor3.jpg",
-];
+const IMAGES = ["/doctor1.jpg", "/doctor2.jpg", "/doctor3.jpg"];
 
 const variants = {
   enter: (direction: number) => ({
@@ -28,7 +24,9 @@ const variants = {
 export default function UniqueHotels() {
   const [[index, direction], setIndex] = useState<[number, number]>([0, 0]);
   const { t } = useTranslation();
-  const bullets = t("uniqueHotels.bullets", { returnObjects: true }) as string[];
+  const bullets = t("uniqueHotels.bullets", {
+    returnObjects: true,
+  }) as string[];
 
   const paginate = (newDirection: number) => {
     setIndex(([prev]) => {
@@ -65,7 +63,6 @@ export default function UniqueHotels() {
         <div className="relative w-full max-w-xl mx-auto">
           {/* CONTENEDOR PRINCIPAL CON ALTURA FIJA */}
           <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden rounded-xl">
-            
             {/* IMAGEN PRINCIPAL */}
             <AnimatePresence initial={false} custom={direction}>
               <motion.img
@@ -114,13 +111,12 @@ export default function UniqueHotels() {
                 <button
                   key={i}
                   onClick={() => setIndex([i, i > index ? 1 : -1])}
-                  className={`w-2 h-2 rounded-full transition-all ${i === index ? 'bg-white w-6' : 'bg-white/60 hover:bg-white'}`}
+                  className={`w-2 h-2 rounded-full transition-all ${i === index ? "bg-white w-6" : "bg-white/60 hover:bg-white"}`}
                   aria-label={`Go to image ${i + 1}`}
                 />
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </section>

@@ -10,6 +10,7 @@ interface Destination {
   name: string;
   priceText: string;
   image: string;
+  url?: string;
 }
 
 const destinations: Destination[] = [
@@ -17,65 +18,58 @@ const destinations: Destination[] = [
     id: 1,
     name: "Shared Room",
     priceText: "$170 dlls / night",
-    image:
-      "/habitacion_compartida.jpg",
+    image: "/habitacion_compartida.jpg",
+    url: "/rooms",
   },
   {
     id: 2,
     name: "Private Room",
     priceText: "$180 dlls / night",
-    image:
-      "/habitacion_privada.jpg",
+    image: "/habitacion_privada.jpg",
+    url: "/rooms",
   },
   {
     id: 3,
     name: "VIP Suite",
     priceText: "$200 dlls / night",
-    image:
-      "/habitacion_vip.jpg",
+    image: "/habitacion_vip.jpg",
+    url: "/rooms",
   },
   {
     id: 4,
     name: "Lymphatic massage",
     priceText: "$60 dlls",
-    image:
-      "/lymphatic.jpg", // Masaje de drenaje linfático
+    image: "/lymphatic.jpg", // Masaje de drenaje linfático
   },
   {
     id: 5,
     name: "5 Lymphatic massages package",
     priceText: "$270 dlls",
-    image:
-      "/5massages.jpeg", // Promoción de 5 tipos de masajes
+    image: "/5massages.jpeg", // Promoción de 5 tipos de masajes
   },
   {
     id: 6,
     name: "Original Recovery bra sytle No. B01G",
     priceText: "$80 dlls",
-    image:
-      "/extra1-1.png", 
+    image: "/extra1-1.png",
   },
   {
     id: 7,
     name: "Open Bust Vest 3/4 Lengh Sleeves Style No. FVOM",
     priceText: "$80 dlls",
-    image:
-      "/extra2-1.png", 
+    image: "/extra2-1.png",
   },
   {
     id: 8,
-    name:
-      "Reinforced Girdle with High Back and Layered Panels Short Lenght Style No. SFBHRS",
+    name: "Reinforced Girdle with High Back and Layered Panels Short Lenght Style No. SFBHRS",
     priceText: "$140 dlls",
-    image:
-      "/extra3-1.png", 
+    image: "/extra3-1.png",
   },
   {
     id: 9,
     name: "Girdle With High Back No Closures Short Lenght Style No. SFBHS2",
     priceText: "$140 dlls",
-    image:
-      "/extra4-1.png", 
+    image: "/extra4-1.png",
   },
 ];
 
@@ -159,7 +153,10 @@ export default function HotelDestinationsScroll() {
             const isOdd = index % 2 === 1;
 
             return (
-              <div key={item.id} className="flex-none w-[260px] sm:w-[300px] md:w-[360px] snap-start">
+              <div
+                key={item.id}
+                className="flex-none w-[260px] sm:w-[300px] md:w-[360px] snap-start"
+              >
                 <div className="flex flex-col gap-4">
                   {/* TEXTO ARRIBA */}
                   {isOdd && (
@@ -175,23 +172,25 @@ export default function HotelDestinationsScroll() {
 
                   {/* IMAGEN */}
                   <div className="relative rounded-xl overflow-hidden">
-                    <motion.img
-                      src={item.image}
-                      alt={item.name}
-                      draggable={false}
-                      className={`w-full object-cover ${
-                        imageHeights[index % imageHeights.length]
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.6 }}
-                    />
+                    <a href={item.url || "#"}>
+                      <motion.img
+                        src={item.image}
+                        alt={item.name}
+                        draggable={false}
+                        className={`w-full object-cover ${
+                          imageHeights[index % imageHeights.length]
+                        }`}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.6 }}
+                      />
 
-                    <motion.button
-                      className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-sm"
-                      whileHover={{ rotate: 90, scale: 1.1 }}
-                    >
-                      <IoAdd className="w-4 h-4 text-gray-800" />
-                    </motion.button>
+                      <motion.button
+                        className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-sm"
+                        whileHover={{ rotate: 90, scale: 1.1 }}
+                      >
+                        <IoAdd className="w-4 h-4 text-gray-800" />
+                      </motion.button>
+                    </a>
                   </div>
 
                   {/* TEXTO ABAJO */}

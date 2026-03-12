@@ -86,18 +86,19 @@ export default function HomePage() {
               {/* Texto */}
               <div className="space-y-6">
                 <div>
+                  <div className="text-gray-600 leading-relaxed space-y-4 text-base mb-4">
+                    {pleasureParagraphs.slice(0, 1).map((paragraph, index) => (
+                      <p key={index}>{paragraph}</p>
+                    ))}
+                  </div>
                   <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-4 leading-snug">
                     {t("home.pleasure.subtitleLine1")}
                     <br />
                     {t("home.pleasure.subtitleLine2")}
                   </h3>
-                  <div className="text-gray-600 leading-relaxed space-y-4 text-base">
-                    {pleasureParagraphs.slice(0, 1).map((paragraph, index) => (
-                      <p key={index}>{paragraph}</p>
-                    ))}
-                  </div>
+
                   <a
-                    href="#about"
+                    href="/about"
                     className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-900 border-b border-gray-900/50 hover:border-gray-900 transition-colors"
                   >
                     {t("home.pleasure.more")}
@@ -108,14 +109,13 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
+      <UniqueHotels />
+      <BannerAbout />
       <Room />
       <AudienceSelector />
       <Blogs />
-      <UniqueHotels />
-      <About />
       <InfiniteImageBanner />
-      <BannerAbout />
+      <About />
       <BannerWithImage />
       <div ref={footerRef}>
         <Footer />
