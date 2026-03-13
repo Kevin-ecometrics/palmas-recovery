@@ -34,7 +34,8 @@ const Navbar: React.FC = () => {
     },
     {
       icon: FaFacebookF,
-      url: "https://www.facebook.com/palmasrecovery/",
+      url: "https://www.facebook.com/@palmasrecovery/",
+
       label: "Facebook",
     },
   ];
@@ -44,6 +45,7 @@ const Navbar: React.FC = () => {
     { label: t("navbar.items.book"), path: "/book" },
     { label: t("navbar.items.services"), path: "/services" },
     { label: t("navbar.items.contact"), path: "/contact" },
+    { label: t("navbar.items.about"), path: "/about" },
     //{ label: t("navbar.items.panorama"), path: "/panorama" },
   ];
 
