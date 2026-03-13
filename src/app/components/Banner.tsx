@@ -60,7 +60,7 @@ const Banner: React.FC = () => {
         {/* Parte FIJA a la izquierda */}
         <div className="w-full sm:w-[15%] flex-shrink-0 px-4 sm:px-8 z-10 relative">
           <div className="inline-flex items-center gap-3 text-black px-3 sm:px-5 py-2.5 rounded">
-            <div className="w-1 h-6 bg-blue-500 rounded-full"></div>
+            <div className="w-1 h-6 bg-wine rounded-full"></div>
             <span className="text-xs sm:text-sm font-semibold tracking-wide uppercase whitespace-nowrap">
               {t("banner.exclusive")}
             </span>
@@ -82,7 +82,7 @@ const Banner: React.FC = () => {
             {[...items, ...items].map((item, index) => (
               <React.Fragment key={index}>
                 <div className="flex items-center mx-6 group">
-                  <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                  <div className="w-1.5 h-1.5 bg-wine rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
                   <span className="text-xl font-medium text-slate-700 group-hover:text-slate-900 transition-colors">
                     {item}
                   </span>

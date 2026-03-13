@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { usePathname } from "next/navigation";
 
 interface Destination {
   id: number;
@@ -12,66 +13,6 @@ interface Destination {
   image: string;
   url?: string;
 }
-
-const destinations: Destination[] = [
-  {
-    id: 1,
-    name: "Shared Room",
-    priceText: "$170 dlls / night",
-    image: "/habitacion_compartida.jpg",
-    url: "/rooms",
-  },
-  {
-    id: 2,
-    name: "Private Room",
-    priceText: "$180 dlls / night",
-    image: "/habitacion_privada.jpg",
-    url: "/rooms",
-  },
-  {
-    id: 3,
-    name: "VIP Suite",
-    priceText: "$200 dlls / night",
-    image: "/habitacion_vip.jpg",
-    url: "/rooms",
-  },
-  {
-    id: 4,
-    name: "Lymphatic massage",
-    priceText: "$60 dlls",
-    image: "/lymphatic.jpg", // Masaje de drenaje linfático
-  },
-  {
-    id: 5,
-    name: "5 Lymphatic massages package",
-    priceText: "$270 dlls",
-    image: "/5massages.jpeg", // Promoción de 5 tipos de masajes
-  },
-  {
-    id: 6,
-    name: "Original Recovery bra sytle No. B01G",
-    priceText: "$80 dlls",
-    image: "/extra1-1.png",
-  },
-  {
-    id: 7,
-    name: "Open Bust Vest 3/4 Lengh Sleeves Style No. FVOM",
-    priceText: "$80 dlls",
-    image: "/extra2-1.png",
-  },
-  {
-    id: 8,
-    name: "Reinforced Girdle with High Back and Layered Panels Short Lenght Style No. SFBHRS",
-    priceText: "$140 dlls",
-    image: "/extra3-1.png",
-  },
-  {
-    id: 9,
-    name: "Girdle With High Back No Closures Short Lenght Style No. SFBHS2",
-    priceText: "$140 dlls",
-    image: "/extra4-1.png",
-  },
-];
 
 const imageHeights = [
   "h-[260px] sm:h-[420px]",
@@ -110,6 +51,68 @@ export default function HotelDestinationsScroll() {
   const stopDragging = () => {
     isDragging.current = false;
   };
+
+  const pathname = usePathname();
+
+  const destinations: Destination[] = [
+    {
+      id: 1,
+      name: "Shared Room",
+      priceText: "$170 dlls / night",
+      image: "/habitacion_compartida.jpg",
+      url: pathname === "/en/" ? "/rooms" : "/cuartos",
+    },
+    {
+      id: 2,
+      name: "Private Room",
+      priceText: "$180 dlls / night",
+      image: "/habitacion_privada.jpg",
+      url: pathname === "/en/" ? "/rooms" : "/cuartos",
+    },
+    {
+      id: 3,
+      name: "VIP Suite",
+      priceText: "$200 dlls / night",
+      image: "/habitacion_vip.jpg",
+      url: pathname === "/en/" ? "/rooms" : "/cuartos",
+    },
+    {
+      id: 4,
+      name: "Lymphatic massage",
+      priceText: "$60 dlls",
+      image: "/lymphatic.jpg", // Masaje de drenaje linfático
+    },
+    {
+      id: 5,
+      name: "5 Lymphatic massages package",
+      priceText: "$270 dlls",
+      image: "/5massages.jpeg", // Promoción de 5 tipos de masajes
+    },
+    {
+      id: 6,
+      name: "Original Recovery bra sytle No. B01G",
+      priceText: "$80 dlls",
+      image: "/extra1-1.png",
+    },
+    {
+      id: 7,
+      name: "Open Bust Vest 3/4 Lengh Sleeves Style No. FVOM",
+      priceText: "$80 dlls",
+      image: "/extra2-1.png",
+    },
+    {
+      id: 8,
+      name: "Reinforced Girdle with High Back and Layered Panels Short Lenght Style No. SFBHRS",
+      priceText: "$140 dlls",
+      image: "/extra3-1.png",
+    },
+    {
+      id: 9,
+      name: "Girdle With High Back No Closures Short Lenght Style No. SFBHS2",
+      priceText: "$140 dlls",
+      image: "/extra4-1.png",
+    },
+  ];
 
   /* -------------------------------------------- */
 
@@ -172,7 +175,7 @@ export default function HotelDestinationsScroll() {
 
                   {/* IMAGEN */}
                   <div className="relative rounded-xl overflow-hidden">
-                    <a href={item.url || "#"}>
+                    <a href={item.url || "#"} className="block">
                       <motion.img
                         src={item.image}
                         alt={item.name}

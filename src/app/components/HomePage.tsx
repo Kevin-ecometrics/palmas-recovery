@@ -15,6 +15,7 @@ import InfiniteImageBanner from "./InfiniteImageBanner";
 import BannerAbout from "./BannerAbout";
 import BannerWithImage from "./BannerWithImage";
 import Blogs from "./Blogs";
+import { usePathname } from "next/navigation";
 
 export default function HomePage() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -24,6 +25,8 @@ export default function HomePage() {
   const pleasureParagraphs = t("home.pleasure.paragraphs", {
     returnObjects: true,
   }) as string[];
+
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleHeroScroll = (e: Event) => {
@@ -98,7 +101,7 @@ export default function HomePage() {
                   </h3>
 
                   <a
-                    href="/about"
+                    href={pathname === "/en/" ? "/about" : "/nosotros"}
                     className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-900 border-b border-gray-900/50 hover:border-gray-900 transition-colors"
                   >
                     {t("home.pleasure.more")}

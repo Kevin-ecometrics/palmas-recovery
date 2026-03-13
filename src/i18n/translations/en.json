@@ -442,6 +442,7 @@
       "phoneRequired": "Please enter your phone number.",
       "invalidEmail": "Please enter a valid email address.",
       "checkInPast": "Check-in cannot be in the past.",
+      "checkInTodayAfter2PM": "Check-in today is only available until 2:00 PM.",
       "checkOutAfterCheckIn": "Check-out must be after check-in.",
       "roomNotAvailable": "The room is not available for the selected dates.",
       "selectRoomRequired": "Please select a room to continue.",

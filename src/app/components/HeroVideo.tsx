@@ -31,6 +31,8 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
+  const aboutLink = currentLanguage === "en" ? "/about" : "/nosotros";
+
   return (
     <section
       id="home"
@@ -111,7 +113,9 @@ export default function Hero() {
 
             <button
               className="group relative px-6 sm:px-10 py-3 sm:py-4 bg-transparent border-2 rounded-xl border-white text-white text-sm sm:text-lg font-normal tracking-wide overflow-hidden transition-all duration-500 hover:border-white"
-              onClick={() => router.push("/rooms")}
+              onClick={() =>
+                router.push(getLocalizedPath(aboutLink, currentLanguage))
+              }
             >
               <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
                 {t("home.heroVideo.cta")}

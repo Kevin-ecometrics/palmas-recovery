@@ -10,7 +10,9 @@ export default function ImprovedSections() {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
-  const testimonials = t("about.testimonials", { returnObjects: true }) as Array<{
+  const testimonials = t("about.testimonials", {
+    returnObjects: true,
+  }) as Array<{
     name: string;
     story: string;
     rating: number;
@@ -44,7 +46,7 @@ export default function ImprovedSections() {
                 className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group"
               >
                 <div className="flex items-center justify-between mb-6">
-                  <div className="text-5xl bg-principal text-white rounded-full w-16 h-16 flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
+                  <div className="text-5xl bg-principal text-white bg-wine rounded-full w-16 h-16 flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
                     {testimonial.avatar}
                   </div>
                   <div className="flex gap-1">
@@ -52,12 +54,6 @@ export default function ImprovedSections() {
                       <FaStar key={i} className="w-5 h-5 text-yellow-400" />
                     ))}
                   </div>
-                </div>
-
-                <div className="mb-4 px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg inline-block">
-                  <span className="text-sm font-semibold text-principal">
-                    {testimonial.procedure}
-                  </span>
                 </div>
 
                 <p className="text-gray-700 mb-6 italic leading-relaxed text-lg">
@@ -75,7 +71,7 @@ export default function ImprovedSections() {
 
       {/* CTA Section */}
       <section className="py-24 bg-principal text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-blush/80" />
 
         <div className="container mx-auto px-8 text-center relative z-10">
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
@@ -90,7 +86,7 @@ export default function ImprovedSections() {
               onClick={() =>
                 router.push(getLocalizedPath("/panorama", currentLang))
               }
-              className="group bg-white text-principal px-10 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:scale-105 flex items-center justify-center gap-3"
+              className="group bg-white text-wine px-10 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:scale-105 flex items-center justify-center gap-3"
             >
               <FaCalendarAlt className="w-5 h-5 group-hover:scale-110 transition-transform" />
               {t("about.cta.schedule")}
@@ -99,7 +95,7 @@ export default function ImprovedSections() {
               onClick={() =>
                 router.push(getLocalizedPath("/contact", currentLang))
               }
-              className="group border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-principal transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3"
+              className="group border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-wine transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3"
             >
               <FaPhone className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               {t("about.cta.contact")}

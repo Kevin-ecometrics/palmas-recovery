@@ -9,9 +9,8 @@ type Item = {
   descriptionKey: string;
   image: string;
   alt: string;
-  color: string;
-  bgColor: string;
   href: string;
+  bg: string;
 };
 
 const ITEMS: Item[] = [
@@ -21,9 +20,8 @@ const ITEMS: Item[] = [
     descriptionKey: "audience.items.linea.description",
     image: "/linea.jpg",
     alt: "Linea",
-    color: "#0E5A3A",
-    bgColor: "#0E5A3A",
     href: "/reservar",
+    bg: "bg-wine",
   },
   {
     id: "estancia",
@@ -31,9 +29,8 @@ const ITEMS: Item[] = [
     descriptionKey: "audience.items.estancia.description",
     image: "/estancia.jpg",
     alt: "Estancia",
-    color: "#4CAF73",
-    bgColor: "#4CAF73",
     href: "/reservar",
+    bg: "bg-blush",
   },
   {
     id: "pago",
@@ -41,9 +38,8 @@ const ITEMS: Item[] = [
     descriptionKey: "audience.items.pago.description",
     image: "/pago.png",
     alt: "Pago",
-    color: "#1F6F8B",
-    bgColor: "#1F6F8B",
     href: "/reservar",
+    bg: "bg-olive-dark",
   },
   {
     id: "ubicacion",
@@ -51,9 +47,8 @@ const ITEMS: Item[] = [
     descriptionKey: "audience.items.ubicacion.description",
     image: "/ubicacion.jpg",
     alt: "Ubicación",
-    color: "#7DB9A2",
-    bgColor: "#7DB9A2",
     href: "/reservar",
+    bg: "bg-sage",
   },
   {
     id: "plazas",
@@ -61,9 +56,8 @@ const ITEMS: Item[] = [
     descriptionKey: "audience.items.plazas.description",
     image: "/plazas.jpg",
     alt: "Plazas",
-    color: "#6B8E6B",
-    bgColor: "#6B8E6B",
     href: "/reservar",
+    bg: "bg-cream",
   },
 ];
 
@@ -73,28 +67,28 @@ export default function AudienceSelector() {
 
   const collapsedHeight = "84px";
   const expandedHeight = "260px";
-  const expandedHeightMd = "280px";
 
   const activeItem = ITEMS.find((item) => item.id === activeId);
 
   return (
     <section
-      className="relative w-full py-14 md:py-20 transition-colors duration-300"
-      style={{
-        backgroundColor: activeItem ? activeItem.bgColor : "#ffffff",
-      }}
+      className={`relative w-full py-14 md:py-20 transition-colors duration-500 ${
+        activeItem ? activeItem.bg : "bg-cream"
+      }`}
     >
       <div className="mx-auto w-full max-w-7xl px-4 md:px-6">
-        <div className="">
-          <h2 className="text-4xl md:text-5xl font-serif text-[#1a1a1a] leading-[1.2]">
+        <div>
+          <h2 className="text-4xl md:text-5xl font-serif text-wine leading-[1.2]">
             {t("audience.heading.titleLine1")}
             <br />
             {t("audience.heading.titleLine2")}
           </h2>
-          <p className="mt-6 text-sm md:text-base text-[#1a1a1a] leading-relaxed">
+
+          <p className="mt-6 text-sm md:text-base text-wine leading-relaxed">
             {t("audience.heading.description")}
           </p>
-          <h4 className="mt-4 font-bold text-lg md:text-xl text-[#1a1a1a] leading-relaxed">
+
+          <h4 className="mt-4 font-bold text-lg md:text-xl text-wine leading-relaxed">
             {t("audience.heading.description2")}
           </h4>
         </div>
@@ -105,8 +99,7 @@ export default function AudienceSelector() {
           {ITEMS.map((item, index) => {
             const isActive = activeId === item.id;
 
-            // Ajustes específicos para las últimas 2 imágenes en desktop
-            const isLastTwoItems = index >= 3; // Índices 3 y 4
+            const isLastTwoItems = index >= 3;
             const desktopAdjustment = isLastTwoItems ? "md:top-[-10%]" : "";
 
             return (
@@ -123,11 +116,9 @@ export default function AudienceSelector() {
                 <div className="relative w-full flex items-center justify-center cursor-pointer">
                   {isActive && (
                     <div
-                      className="absolute inset-0 left-0 right-0 w-full overflow-hidden transition-opacity duration-300"
+                      className="absolute inset-0 w-full overflow-hidden transition-opacity duration-300"
                       style={{
-                        opacity: isActive ? 1 : 0,
                         height: expandedHeight,
-                        top: 0,
                       }}
                     >
                       <img
@@ -137,15 +128,10 @@ export default function AudienceSelector() {
                         style={{
                           height: "115%",
                           minHeight: expandedHeight,
-                          top: "0",
                         }}
                       />
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          backgroundColor: "rgba(0, 0, 0, 0.5)",
-                        }}
-                      />
+
+                      <div className="absolute inset-0 bg-black/50" />
                     </div>
                   )}
 
@@ -156,9 +142,10 @@ export default function AudienceSelector() {
                     }}
                   >
                     <h3
-                      className="text-2xl md:text-3xl lg:text-4xl font-serif transition-colors duration-300"
+                      className={`text-2xl md:text-3xl lg:text-4xl font-serif transition-colors duration-300 ${
+                        isActive ? "text-white" : "text-wine"
+                      }`}
                       style={{
-                        color: isActive ? "#ffffff" : "#1a1a1a",
                         fontWeight: 300,
                         letterSpacing: "-0.02em",
                         marginBottom: isActive ? "0.75rem" : "0",
@@ -172,24 +159,16 @@ export default function AudienceSelector() {
 
                     {isActive && (
                       <div className="animate-in fade-in duration-300 flex flex-col items-center">
-                        <p
-                          className="text-white text-base md:text-lg mb-5 leading-relaxed max-w-2xl uppercase tracking-wide"
-                          style={{
-                            fontSize: "0.85rem",
-                            textShadow: "0 1px 2px rgba(0,0,0,0.5)",
-                          }}
-                        >
+                        <p className="text-white text-base md:text-lg mb-5 leading-relaxed max-w-2xl uppercase tracking-wide text-sm">
                           {t(item.descriptionKey)}
                         </p>
 
                         <a
                           href={item.href}
-                          className="inline-flex items-center gap-2 bg-white text-gray-900 px-6 py-2.5 rounded-full font-medium hover:bg-opacity-90 transition-all duration-200 text-sm"
-                          style={{
-                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.25)",
-                          }}
+                          className="inline-flex items-center gap-2 bg-white text-wine px-6 py-2.5 rounded-full font-medium hover:bg-blush transition-all duration-200 text-sm shadow-lg"
                         >
                           {t("common.viewHotels")}
+
                           <svg
                             width="18"
                             height="18"

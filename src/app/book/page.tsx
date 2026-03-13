@@ -410,117 +410,119 @@ const SuccessModal = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-fadeIn">
       <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slideInUp">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white text-center">
-          <FaCheckCircle className="text-6xl mx-auto mb-4" />
+        <div className="bg-wine p-6 text-white text-center">
+          <FaCheckCircle className="text-6xl mx-auto mb-4 text-white" />
           <h2 className="text-3xl font-bold mb-2">{t("booking.success")}</h2>
-          <p className="text-green-100">{t("booking.successMessage")}</p>
+          <p className="text-cream">{t("booking.successMessage")}</p>
         </div>
 
         <div className="p-6">
           <div className="bg-gray-50 rounded-xl p-6 mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
+            <h3 className="text-xl font-bold text-wine mb-4">
               {t("booking.confirmationDetails")}
             </h3>
 
             <div className="space-y-3">
               <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                <span className="text-gray-600 font-medium">
+                <span className="text-olive-dark font-medium">
                   {t("booking.confirmationNumber")}:
                 </span>
-                <span className="font-bold text-principal">
+                <span className="font-bold text-wine">
                   {confirmationData?.confirmationNumber}
                 </span>
               </div>
 
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 font-medium">
+                <span className="text-olive-dark font-medium">
                   {t("booking.fields.room")}:
                 </span>
-                <span className="font-semibold">
+                <span className="font-semibold text-olive-dark">
                   {getRoomName(confirmationData?.roomId)}
                 </span>
               </div>
 
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 font-medium">
+                <span className="text-olive-dark font-medium">
                   {t("booking.fields.checkIn")}:
                 </span>
-                <span className="font-semibold">
+                <span className="font-semibold text-olive-dark">
                   {confirmationData?.checkIn}
                 </span>
               </div>
 
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 font-medium">
+                <span className="text-olive-dark font-medium">
                   {t("booking.fields.checkOut")}:
                 </span>
-                <span className="font-semibold">
+                <span className="font-semibold text-olive-dark">
                   {confirmationData?.checkOut}
                 </span>
               </div>
 
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 font-medium">
+                <span className="text-olive-dark font-medium">
                   {t("booking.nights")}:
                 </span>
-                <span className="font-semibold">
+                <span className="font-semibold text-olive-dark">
                   {confirmationData?.nights}{" "}
                   {t("common.night", { count: confirmationData?.nights })}
                 </span>
               </div>
 
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 font-medium">
+                <span className="text-olive-dark font-medium">
                   {t("booking.guests")}:
                 </span>
-                <span className="font-semibold">
+                <span className="font-semibold text-olive-dark">
                   {confirmationData?.guests ?? 1}{" "}
                   {t("common.guest", { count: confirmationData?.guests ?? 1 })}
                 </span>
               </div>
 
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 font-medium">
+                <span className="text-olive-dark font-medium">
                   {t("booking.fields.fullName")}:
                 </span>
-                <span className="font-semibold">
+                <span className="font-semibold text-olive-dark">
                   {confirmationData?.fullName}
                 </span>
               </div>
 
               <div className="flex justify-between items-center py-2">
-                <span className="text-gray-600 font-medium">
+                <span className="text-olive-dark font-medium">
                   {t("booking.fields.email")}:
                 </span>
-                <span className="font-semibold">{confirmationData?.email}</span>
+                <span className="font-semibold text-olive-dark">
+                  {confirmationData?.email}
+                </span>
               </div>
 
               {confirmationData?.extras &&
                 confirmationData.extras.length > 0 && (
                   <div className="flex justify-between items-center py-2">
-                    <span className="text-gray-600 font-medium">
+                    <span className="text-olive-dark font-medium">
                       {t("booking.extras")}:
                     </span>
-                    <span className="font-semibold">
+                    <span className="font-semibold text-olive-dark">
                       ${confirmationData?.extrasTotal}
                     </span>
                   </div>
                 )}
 
               <div className="flex justify-between items-center py-2 border-t border-gray-200 mt-2">
-                <span className="text-xl font-bold text-gray-900">
+                <span className="text-xl font-bold text-olive-dark">
                   {t("booking.total")}:
                 </span>
-                <span className="text-3xl font-bold text-principal">
+                <span className="text-3xl font-bold text-wine">
                   ${confirmationData?.total}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
-            <p className="text-sm text-blue-800">
-              <strong>{t("booking.important")}:</strong>{" "}
+          <div className="bg-cream border border-wine/20 rounded-xl p-4 mb-6">
+            <p className="text-sm text-olive-dark">
+              <strong className="text-wine">{t("booking.important")}:</strong>{" "}
               {t("booking.emailSent")}
             </p>
           </div>
@@ -528,16 +530,10 @@ const SuccessModal = ({
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={onNewBooking}
-              className="flex-1 bg-principal text-white py-3 rounded-xl font-semibold hover:bg-principal-dark transition-colors"
+              className="flex-1 bg-wine text-white py-3 rounded-xl font-semibold hover:bg-wine/90 transition-colors"
             >
               {t("booking.newBooking")}
             </button>
-            {/* <button
-              onClick={onClose}
-              className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
-            >
-              {t("booking.close")}
-            </button> */}
           </div>
         </div>
       </div>
@@ -570,6 +566,13 @@ const BookingPageInner = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const today = new Date();
+  const currentHour = today.getHours();
+
+  // Si son las 14 horas o más, usar mañana como fecha mínima
+  if (currentHour >= 14) {
+    today.setDate(today.getDate() + 1);
+  }
+
   const todayValue = `${today.getFullYear()}-${String(
     today.getMonth() + 1,
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
@@ -749,12 +752,12 @@ const BookingPageInner = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
       {/* Mostrar mensajes de estado */}
       {status === "success" && !showSuccessModal && (
-        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg animate-slideInDown">
+        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-sage text-white px-6 py-3 rounded-full shadow-lg animate-slideInDown">
           <div className="flex items-center gap-2">
             <FaCheckCircle className="text-white" />
             <span className="font-medium">{t("booking.success")}</span>
@@ -763,7 +766,7 @@ const BookingPageInner = () => {
       )}
 
       {status === "error" && errorText && (
-        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-red-500 text-white px-6 py-3 rounded-full shadow-lg animate-slideInDown">
+        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-wine text-white px-6 py-3 rounded-full shadow-lg animate-slideInDown">
           <div className="flex items-center gap-2">
             <FaTimes className="text-white" />
             <span className="font-medium">{errorText}</span>
@@ -781,12 +784,12 @@ const BookingPageInner = () => {
       />
 
       {/* Progress Bar */}
-      <div className="bg-white/80 backdrop-blur-sm border-b shadow-sm pt-24 md:pt-28 sticky top-0 z-40">
+      <div className="bg-white border-b border-gray-200 shadow-sm pt-24 md:pt-28 sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between relative">
             <div className="absolute top-6 left-0 right-0 h-1 bg-gray-200 rounded-full -z-10" />
             <div
-              className="absolute top-6 left-0 h-1 bg-gradient-to-r from-principal to-principal/80 rounded-full transition-all duration-700 ease-out -z-10"
+              className="absolute top-6 left-0 h-1 bg-wine rounded-full transition-all duration-700 ease-out -z-10"
               style={{ width: `${((step - 1) / 2) * 100}%` }}
             />
 
@@ -795,21 +798,21 @@ const BookingPageInner = () => {
                 <div
                   className={`
                     w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg
-                    shadow-lg transition-all duration-500 transform
+                    shadow-md transition-all duration-500 transform
                     ${
                       step > num
-                        ? "bg-gradient-to-br from-green-500 to-green-600 text-white scale-100"
+                        ? "bg-wine text-white"
                         : step === num
-                          ? "bg-gradient-to-br from-principal to-principal/90 text-white scale-110 ring-4 ring-principal/30"
-                          : "bg-white text-gray-400 border-2 border-gray-300 scale-90"
+                          ? "bg-wine text-white scale-110 ring-4 ring-wine/20"
+                          : "bg-white text-gray-400 border-2 border-gray-300"
                     }
                   `}
                 >
-                  {step > num ? <FaCheck /> : num}
+                  {step > num ? <FaCheck className="text-white" /> : num}
                 </div>
                 <span
-                  className={`mt-3 text-xs md:text-sm font-semibold transition-colors duration-300 ${
-                    step >= num ? "text-gray-900" : "text-gray-400"
+                  className={`mt-3 text-xs md:text-sm font-medium transition-colors duration-300 ${
+                    step >= num ? "text-wine" : "text-gray-400"
                   }`}
                 >
                   {num === 1
@@ -829,10 +832,10 @@ const BookingPageInner = () => {
           {/* Main Form */}
           <div className="lg:col-span-2">
             <div className="mb-8 md:mb-12">
-              <h1 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-5xl font-serif font-bold text-wine mb-3">
                 {t("booking.title")}
               </h1>
-              <p className="text-base md:text-lg text-gray-600">
+              <p className="text-base md:text-lg text-olive-dark">
                 {t("booking.subtitle")}
               </p>
             </div>
@@ -842,19 +845,19 @@ const BookingPageInner = () => {
               {step === 1 && (
                 <div className="space-y-6 animate-fadeIn">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#70805A] to-[#5a6647] flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-wine flex items-center justify-center">
                       <FaCalendarAlt className="text-white text-lg" />
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                    <h2 className="text-2xl md:text-3xl font-bold text-wine">
                       {t("booking.selectDatesTitle")}
                     </h2>
                   </div>
 
                   {/* Info de check-in/check-out */}
-                  <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-start gap-3">
-                    <FaInfoCircle className="text-blue-500 text-xl flex-shrink-0 mt-0.5" />
-                    <div className="text-sm text-blue-800">
-                      <p className="font-semibold mb-1">
+                  <div className="bg-cream border border-wine/20 rounded-xl p-4 flex items-start gap-3">
+                    <FaInfoCircle className="text-wine text-xl flex-shrink-0 mt-0.5" />
+                    <div className="text-sm text-olive-dark">
+                      <p className="font-semibold mb-1 text-wine">
                         {t("booking.checkInOutInfo")}:
                       </p>
                       <p>• {t("booking.checkInTime")}: 2:00 PM (14:00 hrs)</p>
@@ -863,14 +866,14 @@ const BookingPageInner = () => {
                   </div>
 
                   {/* Date Selection */}
-                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                      <FaCalendarAlt className="text-[#70805A]" />
+                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200">
+                    <h3 className="text-xl font-bold text-wine mb-6 flex items-center gap-2">
+                      <FaCalendarAlt className="text-wine" />
                       {t("booking.selectDates")}
                     </h3>
                     <div className="grid md:grid-cols-2 gap-5">
                       <div className="group">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-olive-dark mb-2">
                           {t("booking.fields.checkIn")}
                         </label>
                         <input
@@ -879,14 +882,14 @@ const BookingPageInner = () => {
                           value={formData.checkIn}
                           onChange={handleInputChange}
                           min={todayValue}
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
                       </div>
 
                       <div className="group">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-olive-dark mb-2">
                           {t("booking.fields.checkOut")}
                         </label>
                         <input
@@ -895,7 +898,7 @@ const BookingPageInner = () => {
                           value={formData.checkOut}
                           onChange={handleInputChange}
                           min={formData.checkIn || todayValue}
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
@@ -911,7 +914,7 @@ const BookingPageInner = () => {
                           !formData.checkIn ||
                           !formData.checkOut
                         }
-                        className="w-full bg-principal text-white py-4 rounded-xl font-semibold hover:bg-principal-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="w-full bg-wine text-white py-4 rounded-xl font-semibold hover:bg-wine/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                       >
                         {isSearchingRooms ? (
                           <>
@@ -950,7 +953,7 @@ const BookingPageInner = () => {
                   {/* Room Selection - Solo se muestra después de buscar */}
                   {hasSearched && (
                     <div className="space-y-5 animate-fadeIn">
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">
+                      <h3 className="text-xl font-bold text-wine mb-4">
                         {t("booking.selectRoomTitle")}
                       </h3>
 
@@ -977,8 +980,8 @@ const BookingPageInner = () => {
                                 ${!isAvailable ? "opacity-50 cursor-not-allowed" : ""}
                                 ${
                                   isSelected
-                                    ? "ring-4 ring-[#70805A] shadow-2xl shadow-[#70805A]/20"
-                                    : "ring-1 ring-gray-200 hover:ring-2 hover:ring-gray-300 hover:shadow-xl"
+                                    ? "ring-4 ring-wine shadow-2xl shadow-wine/20"
+                                    : "ring-1 ring-gray-200 hover:ring-2 hover:ring-wine/50 hover:shadow-xl"
                                 }
                               `}
                             >
@@ -996,13 +999,13 @@ const BookingPageInner = () => {
 
                                       {isSelected && (
                                         <div className="absolute top-3 right-3 z-10 animate-scaleIn">
-                                          <FaCheckCircle className="text-[#70805A] text-4xl drop-shadow-lg" />
+                                          <FaCheckCircle className="text-wine text-4xl drop-shadow-lg" />
                                         </div>
                                       )}
 
                                       {!isAvailable && (
                                         <div className="absolute inset-0 bg-gray-500/50 flex items-center justify-center">
-                                          <span className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                                          <span className="bg-wine text-white px-4 py-2 rounded-full text-sm font-bold">
                                             {t("booking.notAvailable")}
                                           </span>
                                         </div>
@@ -1014,21 +1017,21 @@ const BookingPageInner = () => {
                                   <div className="md:w-2/3 flex flex-col">
                                     <div className="flex justify-between items-start mb-4">
                                       <div className="flex-1">
-                                        <span className="inline-block bg-gradient-to-r from-principal to-principal/80 text-white px-3 py-1.5 rounded-full text-xs font-bold mb-3 shadow-sm">
+                                        <span className="inline-block bg-wine text-white px-3 py-1.5 rounded-full text-xs font-bold mb-3 shadow-sm">
                                           {getRoomText(room.id, "highlight")}
                                         </span>
-                                        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+                                        <h3 className="text-xl md:text-2xl font-bold text-wine mb-2">
                                           {getRoomText(room.id, "name")}
                                         </h3>
-                                        <p className="text-sm md:text-base text-gray-600 italic">
+                                        <p className="text-sm md:text-base text-olive-dark italic">
                                           {getRoomText(room.id, "tagline")}
                                         </p>
                                       </div>
                                       <div className="text-right ml-4">
-                                        <div className="text-2xl md:text-3xl font-bold text-[#70805A]">
+                                        <div className="text-2xl md:text-3xl font-bold text-wine">
                                           ${room.price}
                                         </div>
-                                        <div className="text-xs md:text-sm text-gray-500 font-medium">
+                                        <div className="text-xs md:text-sm text-olive-dark font-medium">
                                           {t("booking.perNight")}
                                         </div>
                                       </div>
@@ -1039,17 +1042,17 @@ const BookingPageInner = () => {
                                     </p>
 
                                     <div className="flex flex-wrap gap-3 md:gap-4 mt-auto">
-                                      <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg text-sm">
-                                        <FaUserFriends className="text-[#70805A]" />
-                                        <span className="text-gray-700 font-medium">
+                                      <div className="flex items-center gap-2 px-3 py-2 bg-cream rounded-lg text-sm">
+                                        <FaUserFriends className="text-wine" />
+                                        <span className="text-olive-dark font-medium">
                                           {t("searchBar.accommodates", {
                                             count: room.capacity,
                                           })}
                                         </span>
                                       </div>
-                                      <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg text-sm">
-                                        <FaBath className="text-[#70805A]" />
-                                        <span className="text-gray-700 font-medium">
+                                      <div className="flex items-center gap-2 px-3 py-2 bg-cream rounded-lg text-sm">
+                                        <FaBath className="text-wine" />
+                                        <span className="text-olive-dark font-medium">
                                           {room.id === "shared"
                                             ? t("searchBar.bathroom.shared")
                                             : t(
@@ -1058,9 +1061,9 @@ const BookingPageInner = () => {
                                           {t("searchBar.bathroomLabel")}
                                         </span>
                                       </div>
-                                      <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg text-sm">
-                                        <MdMedicalServices className="text-[#70805A]" />
-                                        <span className="text-gray-700 font-medium">
+                                      <div className="flex items-center gap-2 px-3 py-2 bg-cream rounded-lg text-sm">
+                                        <MdMedicalServices className="text-wine" />
+                                        <span className="text-olive-dark font-medium">
                                           {t("booking.assistance")}
                                         </span>
                                       </div>
@@ -1077,12 +1080,12 @@ const BookingPageInner = () => {
                         (room) =>
                           getRoomAvailabilityStatus(room.id) === "available",
                       ).length === 0 && (
-                        <div className="text-center py-12 bg-gray-50 rounded-2xl">
-                          <FaBed className="text-5xl text-gray-400 mx-auto mb-4" />
-                          <p className="text-gray-600 font-medium">
+                        <div className="text-center py-12 bg-cream rounded-2xl">
+                          <FaBed className="text-5xl text-wine/30 mx-auto mb-4" />
+                          <p className="text-wine font-medium">
                             {t("booking.noRoomsAvailable")}
                           </p>
-                          <p className="text-sm text-gray-500 mt-2">
+                          <p className="text-sm text-olive-dark mt-2">
                             {t("booking.tryDifferentDates")}
                           </p>
                         </div>
@@ -1092,7 +1095,7 @@ const BookingPageInner = () => {
 
                   {/* Mostrar error de validación si existe */}
                   {validationError && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                    <div className="bg-wine/10 border border-wine text-wine px-4 py-3 rounded-lg">
                       {validationError}
                     </div>
                   )}
@@ -1103,31 +1106,31 @@ const BookingPageInner = () => {
               {step === 2 && (
                 <div className="space-y-8 animate-fadeIn">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#70805A] to-[#5a6647] flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-wine flex items-center justify-center">
                       <FaUserFriends className="text-white text-lg" />
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                    <h2 className="text-2xl md:text-3xl font-bold text-wine">
                       {t("booking.detailsTitle")}
                     </h2>
                   </div>
 
                   {/* Mostrar error de validación si existe */}
                   {validationError && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                    <div className="bg-wine/10 border border-wine text-wine px-4 py-3 rounded-lg">
                       {validationError}
                     </div>
                   )}
 
                   {/* Personal Details */}
-                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                      <FaUserFriends className="text-[#70805A]" />
+                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200">
+                    <h3 className="text-xl font-bold text-wine mb-6 flex items-center gap-2">
+                      <FaUserFriends className="text-wine" />
                       {t("booking.personalInformation")}
                     </h3>
 
                     <div className="grid md:grid-cols-2 gap-5">
                       <div className="md:col-span-2 group">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-olive-dark mb-2">
                           {t("booking.fields.fullName")}
                         </label>
                         <input
@@ -1136,14 +1139,14 @@ const BookingPageInner = () => {
                           value={formData.fullName}
                           onChange={handleInputChange}
                           placeholder="John Doe"
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
                       </div>
 
                       <div className="group">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-olive-dark mb-2">
                           {t("booking.fields.email")}
                         </label>
                         <input
@@ -1152,14 +1155,14 @@ const BookingPageInner = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           placeholder="john@example.com"
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
                       </div>
 
                       <div className="group">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-olive-dark mb-2">
                           {t("booking.fields.phone")}
                         </label>
                         <input
@@ -1168,14 +1171,14 @@ const BookingPageInner = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           placeholder="+1 (555) 000-0000"
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
                       </div>
 
                       <div className="md:col-span-2 group">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-olive-dark mb-2">
                           {t("booking.fields.specialRequests")}
                         </label>
                         <textarea
@@ -1184,7 +1187,7 @@ const BookingPageInner = () => {
                           onChange={handleInputChange}
                           rows={4}
                           placeholder={t("booking.specialRequestsPlaceholder")}
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-principal focus:border-principal transition-all duration-300 group-hover:border-gray-300 resize-none"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark resize-none"
                           disabled={status === "submitting"}
                         />
                       </div>
@@ -1197,37 +1200,37 @@ const BookingPageInner = () => {
               {step === 3 && (
                 <div className="space-y-8 animate-fadeIn">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#70805A] to-[#5a6647] flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-wine flex items-center justify-center">
                       <FaCheck className="text-white text-lg" />
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                    <h2 className="text-2xl md:text-3xl font-bold text-wine">
                       {t("booking.confirmTitle")}
                     </h2>
                   </div>
 
                   {/* Order Summary */}
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200">
-                    <h3 className="text-xl font-bold text-gray-900 mb-6">
+                  <div className="bg-cream rounded-2xl p-6 md:p-8 shadow-lg border border-wine/20">
+                    <h3 className="text-xl font-bold text-wine mb-6">
                       {t("booking.summary")}
                     </h3>
 
                     {selectedRoomData && (
                       <div className="space-y-5">
-                        <div className="flex items-center gap-4 pb-5 border-b-2 border-gray-200">
+                        <div className="flex items-center gap-4 pb-5 border-b-2 border-wine/20">
                           <img
                             src={selectedRoomData.image}
                             alt={getRoomText(selectedRoomData.id, "imageAlt")}
                             className="w-24 h-24 object-cover rounded-xl shadow-md"
                           />
                           <div className="flex-1">
-                            <h4 className="font-bold text-gray-900 text-lg">
+                            <h4 className="font-bold text-wine text-lg">
                               {getRoomText(selectedRoomData.id, "name")}
                             </h4>
                             <div className="flex items-baseline gap-2 mt-1">
-                              <span className="text-2xl font-bold text-[#70805A]">
+                              <span className="text-2xl font-bold text-wine">
                                 ${selectedRoomData.price}
                               </span>
-                              <span className="text-sm text-gray-500">
+                              <span className="text-sm text-olive-dark">
                                 {t("booking.perNight")}
                               </span>
                             </div>
@@ -1236,18 +1239,18 @@ const BookingPageInner = () => {
 
                         <div className="space-y-3 py-4">
                           <div className="flex justify-between items-center py-2">
-                            <span className="text-gray-600 font-medium">
+                            <span className="text-olive-dark font-medium">
                               {t("booking.nights")}:
                             </span>
-                            <span className="font-bold text-gray-900">
+                            <span className="font-bold text-wine">
                               {nights} {t("common.night", { count: nights })}
                             </span>
                           </div>
                           <div className="flex justify-between items-center py-2">
-                            <span className="text-gray-600 font-medium">
+                            <span className="text-olive-dark font-medium">
                               {t("booking.guests")}:
                             </span>
-                            <span className="font-bold text-gray-900">
+                            <span className="font-bold text-wine">
                               {DEFAULT_GUEST_COUNT}{" "}
                               {t("common.guest", {
                                 count: DEFAULT_GUEST_COUNT,
@@ -1255,10 +1258,10 @@ const BookingPageInner = () => {
                             </span>
                           </div>
                           <div className="flex justify-between items-center py-2">
-                            <span className="text-gray-600 font-medium">
+                            <span className="text-olive-dark font-medium">
                               {t("booking.roomSubtotal")}:
                             </span>
-                            <span className="font-bold text-gray-900">
+                            <span className="font-bold text-wine">
                               $
                               {selectedRoomData.price *
                                 nights *
@@ -1267,19 +1270,19 @@ const BookingPageInner = () => {
                           </div>
                           {selectedExtras.length > 0 && (
                             <div className="flex justify-between items-center py-2">
-                              <span className="text-gray-600 font-medium">
+                              <span className="text-olive-dark font-medium">
                                 {t("booking.extras")}:
                               </span>
-                              <span className="font-bold text-gray-900">
+                              <span className="font-bold text-wine">
                                 ${extrasTotal}
                               </span>
                             </div>
                           )}
                           <div className="flex justify-between items-center py-2">
-                            <span className="text-gray-600 font-medium">
+                            <span className="text-olive-dark font-medium">
                               {t("booking.period")}:
                             </span>
-                            <span className="font-medium text-gray-900 text-right">
+                            <span className="font-medium text-olive-dark text-right">
                               {formData.checkIn} (2:00 PM)
                               <br />
                               {formData.checkOut} (11:00 AM)
@@ -1287,137 +1290,33 @@ const BookingPageInner = () => {
                           </div>
                         </div>
 
-                        <div className="pt-5 border-t-2 border-gray-200">
+                        <div className="pt-5 border-t-2 border-wine/20">
                           <div className="flex justify-between items-center mb-2">
-                            <span className="text-xl font-bold text-gray-900">
+                            <span className="text-xl font-bold text-wine">
                               {t("booking.total")}:
                             </span>
-                            <span className="text-3xl font-bold text-[#70805A]">
+                            <span className="text-3xl font-bold text-wine">
                               ${total}
                             </span>
                           </div>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-olive-dark">
                             {t("booking.taxesIncluded")}
                           </p>
                         </div>
                       </div>
                     )}
                   </div>
-
-                  {/* Recovery Garments */}
-                  {/* <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                        <span className="text-2xl">🩺</span>
-                        {t("booking.extras")}
-                      </h3>
-                      {selectedExtras.length > 0 && (
-                        <span className="px-3 py-1 bg-[#70805A]/10 text-[#70805A] rounded-full text-sm font-semibold">
-                          {selectedExtras.length} {t("booking.selected")}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-5">
-                      {EXTRAS.map((extra) => {
-                        const isChecked = selectedExtras.includes(extra.id);
-                        return (
-                          <div
-                            key={extra.id}
-                            className={`
-                              relative group rounded-2xl overflow-hidden transition-all duration-300
-                              ${
-                                isChecked
-                                  ? "ring-2 ring-[#70805A] shadow-lg shadow-[#70805A]/20"
-                                  : "ring-1 ring-gray-200 hover:ring-gray-300 hover:shadow-md"
-                              }
-                            `}
-                          >
-                            {isChecked && (
-                              <div className="absolute top-3 right-3 z-10 bg-[#70805A] text-white rounded-full p-1.5 shadow-lg">
-                                <FaCheck className="text-xs" />
-                              </div>
-                            )}
-
-                            <div className="bg-white p-4">
-                              <button
-                                type="button"
-                                onClick={() => openGallery(extra.id, 0)}
-                                className="w-full mb-4 relative overflow-hidden rounded-xl group/img"
-                              >
-                                <img
-                                  src={extra.images[0]}
-                                  alt={extra.title}
-                                  className="w-full h-48 object-cover transition-transform duration-500 group-hover/img:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 transition-colors duration-300 flex items-center justify-center">
-                                  <span className="text-white text-sm font-semibold opacity-0 group-hover/img:opacity-100 transition-opacity duration-300">
-                                    {t("booking.viewGallery")}
-                                  </span>
-                                </div>
-                              </button>
-
-                              <div className="space-y-3">
-                                <h4 className="font-semibold text-gray-900 text-sm leading-snug line-clamp-2">
-                                  {extra.title}
-                                </h4>
-                                <div className="flex items-center justify-between">
-                                  <span className="text-xl font-bold text-[#70805A]">
-                                    ${extra.price}
-                                  </span>
-                                  <label className="flex items-center gap-2 cursor-pointer group/checkbox">
-                                    <input
-                                      type="checkbox"
-                                      checked={isChecked}
-                                      onChange={() => toggleExtra(extra.id)}
-                                      className="w-5 h-5 text-[#70805A] focus:ring-[#70805A] rounded border-gray-300"
-                                      disabled={status === "submitting"}
-                                    />
-                                    <span className="text-sm font-semibold text-gray-700 group-hover/checkbox:text-[#70805A] transition-colors">
-                                      {t("booking.addToBooking")}
-                                    </span>
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div> */}
-
-                  {/* Cancellation Policy */}
-                  {/* <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl p-6 md:p-8 border border-blue-200 shadow-md">
-                    <h4 className="font-bold text-blue-900 mb-4 flex items-center gap-3 text-lg">
-                      <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
-                        <FaShieldAlt className="text-white" />
-                      </div>
-                      {t("booking.cancellationTitle")}
-                    </h4>
-                    <ul className="space-y-2.5 text-blue-900">
-                      {(
-                        t("booking.cancellationItems", {
-                          returnObjects: true,
-                        }) as string[]
-                      ).map((item, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <FaCheck className="text-[#70805A] mt-1 flex-shrink-0" />
-                          <span className="text-sm">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div> */}
                 </div>
               )}
 
               {/* Navigation Buttons */}
-              <div className="flex flex-col sm:flex-row justify-between gap-4 mt-12 pt-8 border-t-2 border-gray-200">
+              <div className="flex flex-col sm:flex-row justify-between gap-4 mt-12 pt-8 border-t-2 border-wine/20">
                 {step > 1 ? (
                   <button
                     type="button"
                     onClick={() => handleStepChange(step - 1, setStep)}
                     disabled={status === "submitting"}
-                    className="group flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-300 text-gray-700 font-bold rounded-full hover:border-[#70805A] hover:text-[#70805A] transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="group flex items-center justify-center gap-2 px-8 py-4 border-2 border-wine text-wine font-bold rounded-full hover:bg-wine hover:text-white transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <FaChevronLeft className="transition-transform group-hover:-translate-x-1" />
                     {t("booking.back")}
@@ -1445,7 +1344,7 @@ const BookingPageInner = () => {
                         (step === 2 && !validationError) ||
                         step === 3) &&
                       status !== "submitting"
-                        ? "bg-gradient-to-r from-[#70805A] to-[#5a6647] text-white hover:shadow-[#70805A]/30 hover:shadow-2xl"
+                        ? "bg-wine text-white hover:shadow-wine/30 hover:shadow-2xl"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
                     }
                   `}
@@ -1493,12 +1392,12 @@ const BookingPageInner = () => {
           {/* Sidebar Summary */}
           <div className="lg:col-span-1">
             <div className="sticky top-32">
-              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-100">
+              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl border border-wine/10">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#70805A] to-[#5a6647] flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-wine flex items-center justify-center">
                     <FaBed className="text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">
+                  <h3 className="text-2xl font-bold text-wine">
                     {t("booking.summary")}
                   </h3>
                 </div>
@@ -1511,7 +1410,7 @@ const BookingPageInner = () => {
                         alt={getRoomText(selectedRoomData.id, "imageAlt")}
                         className="w-full h-48 object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-wine/80 to-transparent" />
                       <div className="absolute bottom-4 left-4 right-4">
                         <h4 className="font-bold text-white text-lg mb-1">
                           {getRoomText(selectedRoomData.id, "name")}
@@ -1520,7 +1419,7 @@ const BookingPageInner = () => {
                           <span className="text-2xl font-bold text-white">
                             ${selectedRoomData.price}
                           </span>
-                          <span className="text-sm text-white/90">
+                          <span className="text-sm text-cream">
                             {t("common.perNight")}
                           </span>
                         </div>
@@ -1528,7 +1427,7 @@ const BookingPageInner = () => {
                     </div>
 
                     {formData.checkIn && formData.checkOut && (
-                      <div className="space-y-3 p-4 bg-gray-50 rounded-xl">
+                      <div className="space-y-3 p-4 bg-cream rounded-xl">
                         {[
                           {
                             label: t("booking.checkIn"),
@@ -1551,10 +1450,10 @@ const BookingPageInner = () => {
                             key={item.label}
                             className="flex justify-between items-center"
                           >
-                            <span className="text-sm text-gray-600 font-medium">
+                            <span className="text-sm text-olive-dark font-medium">
                               {item.label}:
                             </span>
-                            <span className="text-sm font-bold text-gray-900">
+                            <span className="text-sm font-bold text-wine">
                               {item.value}
                             </span>
                           </div>
@@ -1562,18 +1461,18 @@ const BookingPageInner = () => {
                       </div>
                     )}
 
-                    <div className="pt-6 border-t-2 border-gray-200">
+                    <div className="pt-6 border-t-2 border-wine/20">
                       <div className="flex justify-between items-center mb-3">
-                        <span className="text-lg font-bold text-gray-900">
+                        <span className="text-lg font-bold text-wine">
                           {t("booking.estimatedTotal")}:
                         </span>
-                        <span className="text-2xl font-bold text-[#70805A]">
+                        <span className="text-2xl font-bold text-wine">
                           ${total}
                         </span>
                       </div>
                       {selectedExtras.length > 0 && (
-                        <div className="mt-3 p-3 bg-[#70805A]/10 rounded-lg border border-[#70805A]/20">
-                          <p className="text-xs font-semibold text-[#70805A] mb-2">
+                        <div className="mt-3 p-3 bg-cream rounded-lg border border-wine/20">
+                          <p className="text-xs font-semibold text-wine mb-2">
                             {t("booking.extrasAdded")}:
                           </p>
                           {selectedExtras.map((id) => {
@@ -1582,12 +1481,12 @@ const BookingPageInner = () => {
                             return (
                               <div
                                 key={extra.id}
-                                className="flex justify-between items-center text-xs text-gray-700 mb-1"
+                                className="flex justify-between items-center text-xs text-olive-dark mb-1"
                               >
                                 <span className="truncate flex-1">
                                   {extra.title.substring(0, 30)}...
                                 </span>
-                                <span className="font-bold ml-2">
+                                <span className="font-bold text-wine ml-2">
                                   ${extra.price}
                                 </span>
                               </div>
@@ -1595,26 +1494,26 @@ const BookingPageInner = () => {
                           })}
                         </div>
                       )}
-                      <p className="text-xs text-gray-500 mt-2">
+                      <p className="text-xs text-olive-dark mt-2">
                         {t("booking.taxesIncludedShort")}
                       </p>
                     </div>
                   </div>
                 ) : (
                   <div className="text-center py-12">
-                    <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
-                      <FaBed className="text-3xl text-gray-400" />
+                    <div className="w-20 h-20 rounded-full bg-cream flex items-center justify-center mx-auto mb-4">
+                      <FaBed className="text-3xl text-wine/30" />
                     </div>
-                    <p className="text-gray-500 font-medium">
+                    <p className="text-olive-dark font-medium">
                       {t("booking.selectRoomHelper")}
                     </p>
                   </div>
                 )}
 
                 {/* Benefits */}
-                <div className="mt-8 pt-8 border-t-2 border-gray-200">
-                  <h4 className="font-bold text-gray-900 mb-5 text-lg flex items-center gap-2">
-                    <FaCheck className="text-[#70805A]" />
+                <div className="mt-8 pt-8 border-t-2 border-wine/20">
+                  <h4 className="font-bold text-wine mb-5 text-lg flex items-center gap-2">
+                    <FaCheck className="text-wine" />
                     {t("booking.included")}
                   </h4>
                   <div className="space-y-4">
@@ -1622,32 +1521,26 @@ const BookingPageInner = () => {
                       {
                         icon: MdMedicalServices,
                         text: t("roomDetail.medicalAssistance"),
-                        color: "text-[#70805A]",
                       },
                       {
                         icon: FaUtensils,
                         text: t("roomDetail.allMeals"),
-                        color: "text-[#70805A]",
                       },
                       {
                         icon: MdCleaningServices,
                         text: t("roomDetail.dailyCleaning"),
-                        color: "text-[#70805A]",
                       },
                       {
                         icon: MdSupportAgent,
                         text: t("booking.personalizedSupport"),
-                        color: "text-[#70805A]",
                       },
                     ].map((benefit, index) => (
                       <div
                         key={index}
-                        className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                        className="flex items-center gap-3 p-3 bg-cream rounded-lg hover:bg-cream/80 transition-colors"
                       >
-                        <benefit.icon
-                          className={`text-xl ${benefit.color} flex-shrink-0`}
-                        />
-                        <span className="text-sm font-medium text-gray-700">
+                        <benefit.icon className="text-xl text-wine flex-shrink-0" />
+                        <span className="text-sm font-medium text-olive-dark">
                           {benefit.text}
                         </span>
                       </div>
@@ -1656,14 +1549,14 @@ const BookingPageInner = () => {
                 </div>
 
                 {/* Contact Info */}
-                <div className="mt-8 p-5 bg-gradient-to-br from-principal/10 to-principal/5 rounded-xl border border-principal/20">
-                  <p className="text-sm text-gray-700 text-center">
-                    <span className="font-semibold">
+                <div className="mt-8 p-5 bg-cream rounded-xl border border-wine/20">
+                  <p className="text-sm text-olive-dark text-center">
+                    <span className="font-semibold text-wine">
                       {t("roomDetail.needHelp")}
                     </span>{" "}
                     <Link
                       href={getLocalizedPath("/contact", currentLang)}
-                      className="text-principal font-bold hover:underline inline-flex items-center gap-1 group"
+                      className="text-wine font-bold hover:underline inline-flex items-center gap-1 group"
                     >
                       {t("common.contactUs")}
                       <FaChevronRight className="text-xs transition-transform group-hover:translate-x-1" />
@@ -1697,7 +1590,7 @@ const BookingPageInner = () => {
                   <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-1">
-                        <span className="text-[#70805A] text-xs font-bold uppercase tracking-wider">
+                        <span className="text-sage text-xs font-bold uppercase tracking-wider">
                           {t("booking.recoveryGarment")}
                         </span>
                         <span className="text-white/40">•</span>
@@ -1738,7 +1631,7 @@ const BookingPageInner = () => {
                       }
                       className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/90 hover:bg-white shadow-2xl items-center justify-center transition-all transform hover:scale-110 active:scale-95 backdrop-blur-sm"
                     >
-                      <FaChevronLeft className="text-gray-900 text-xl" />
+                      <FaChevronLeft className="text-wine text-xl" />
                     </button>
                     <button
                       type="button"
@@ -1749,7 +1642,7 @@ const BookingPageInner = () => {
                       }
                       className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/90 hover:bg-white shadow-2xl items-center justify-center transition-all transform hover:scale-110 active:scale-95 backdrop-blur-sm"
                     >
-                      <FaChevronRight className="text-gray-900 text-xl" />
+                      <FaChevronRight className="text-wine text-xl" />
                     </button>
 
                     {/* Mobile Navigation */}
@@ -1763,7 +1656,7 @@ const BookingPageInner = () => {
                         }
                         className="w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-xl flex items-center justify-center transition-all active:scale-95 backdrop-blur-sm"
                       >
-                        <FaChevronLeft className="text-gray-900" />
+                        <FaChevronLeft className="text-wine" />
                       </button>
 
                       <div className="px-4 py-2 rounded-full bg-black/70 backdrop-blur-sm">
@@ -1781,7 +1674,7 @@ const BookingPageInner = () => {
                         }
                         className="w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-xl flex items-center justify-center transition-all active:scale-95 backdrop-blur-sm"
                       >
-                        <FaChevronRight className="text-gray-900" />
+                        <FaChevronRight className="text-wine" />
                       </button>
                     </div>
                   </div>
@@ -1793,7 +1686,7 @@ const BookingPageInner = () => {
                     {/* Price and Add to Cart */}
                     <div className="flex items-center justify-between mb-4 px-2">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-2xl font-bold text-[#70805A]">
+                        <span className="text-2xl font-bold text-sage">
                           ${extra.price}
                         </span>
                         <span className="text-white/60 text-sm">USD</span>
@@ -1806,7 +1699,7 @@ const BookingPageInner = () => {
                           type="checkbox"
                           checked={selectedExtras.includes(extra.id)}
                           onChange={() => toggleExtra(extra.id)}
-                          className="w-5 h-5 text-[#70805A] focus:ring-[#70805A] rounded border-white/30 bg-white/10"
+                          className="w-5 h-5 text-wine focus:ring-wine rounded border-white/30 bg-white/10"
                           disabled={status === "submitting"}
                         />
                       </label>
@@ -1823,7 +1716,7 @@ const BookingPageInner = () => {
                             relative flex-shrink-0 rounded-lg overflow-hidden transition-all transform
                             ${
                               index === galleryIndex
-                                ? "ring-3 ring-[#70805A] scale-105 shadow-xl shadow-[#70805A]/30"
+                                ? "ring-3 ring-wine scale-105 shadow-xl shadow-wine/30"
                                 : "ring-2 ring-white/20 hover:ring-white/40 opacity-60 hover:opacity-100"
                             }
                           `}
@@ -1834,7 +1727,7 @@ const BookingPageInner = () => {
                             className="w-20 h-20 md:w-24 md:h-24 object-cover"
                           />
                           {index === galleryIndex && (
-                            <div className="absolute inset-0 bg-[#70805A]/20 border-2 border-[#70805A] rounded-lg" />
+                            <div className="absolute inset-0 bg-wine/20 border-2 border-wine rounded-lg" />
                           )}
                         </button>
                       ))}

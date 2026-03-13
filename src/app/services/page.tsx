@@ -51,21 +51,21 @@ const ServicesPage: React.FC = () => {
     <div className="min-h-screen bg-white">
       <Navbar />
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-principal via-principal to-principal/90 text-white py-24 px-6 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-wine via-wine to-wine/90 text-white py-24 px-6 overflow-hidden">
         {/* Decorative background pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-cream rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-cream rounded-full blur-3xl"></div>
         </div>
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
-          <p className="text-white/90 font-semibold tracking-widest text-sm mb-6 uppercase animate-fade-in">
+          <p className="text-cream font-semibold tracking-widest text-sm mb-6 uppercase animate-fade-in">
             {t("services.heroLabel")}
           </p>
           <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight">
             {t("services.heroTitle")}
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-cream max-w-3xl mx-auto leading-relaxed">
             {t("services.heroSubtitle")}
           </p>
         </div>
@@ -76,26 +76,26 @@ const ServicesPage: React.FC = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {whyChooseUs.map((item, index) => (
             <div key={index} className="text-center group">
-              <div className="inline-block text-principal text-4xl mb-3 transform group-hover:scale-110 transition-transform">
+              <div className="inline-block text-wine text-4xl mb-3 transform group-hover:scale-110 transition-transform">
                 {statIcons[index]}
               </div>
-              <div className="text-3xl md:text-4xl font-bold text-principal mb-1">
+              <div className="text-3xl md:text-4xl font-bold text-wine mb-1">
                 {item.stat}
               </div>
-              <div className="text-gray-600 font-medium">{item.label}</div>
+              <div className="text-olive-dark font-medium">{item.label}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Core Services Section */}
-      <div className="py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
+      <div className="py-20 px-6 bg-gradient-to-b from-cream to-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-wine mb-4">
               {t("services.sectionTitle")}
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-olive-dark max-w-2xl mx-auto">
               {t("services.sectionSubtitle")}
             </p>
           </div>
@@ -106,19 +106,19 @@ const ServicesPage: React.FC = () => {
                 key={index}
                 onClick={() =>
                   setActiveService((current) =>
-                    current === index ? null : index
+                    current === index ? null : index,
                   )
                 }
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer group border-2 border-transparent hover:border-principal break-inside-avoid mb-8"
+                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer group border-2 border-transparent hover:border-wine break-inside-avoid mb-8"
               >
                 <div className="p-8">
-                  <div className="text-principal text-5xl mb-4 transform group-hover:scale-110 transition-transform">
+                  <div className="text-wine text-5xl mb-4 transform group-hover:scale-110 transition-transform">
                     {serviceIcons[index]}
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-principal transition-colors">
+                  <h3 className="text-xl font-bold text-wine mb-3 group-hover:text-wine transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="text-olive-dark leading-relaxed mb-4">
                     {service.description}
                   </p>
 
@@ -130,11 +130,11 @@ const ServicesPage: React.FC = () => {
                         : "max-h-0 opacity-0"
                     }`}
                   >
-                    <div className="pt-4 border-t border-gray-200 space-y-2">
+                    <div className="pt-4 border-t border-wine/20 space-y-2">
                       {service.details.map((detail, idx) => (
                         <div key={idx} className="flex items-start gap-2">
-                          <FaCheckCircle className="text-principal mt-1 flex-shrink-0" />
-                          <span className="text-sm text-gray-700">
+                          <FaCheckCircle className="text-wine mt-1 flex-shrink-0" />
+                          <span className="text-sm text-olive-dark">
                             {detail}
                           </span>
                         </div>
@@ -142,7 +142,7 @@ const ServicesPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <button className="mt-4 text-principal font-semibold text-sm flex items-center gap-2 hover:gap-3 transition-all">
+                  <button className="mt-4 text-wine font-semibold text-sm flex items-center gap-2 hover:gap-3 transition-all">
                     {activeService === index
                       ? t("common.showLess")
                       : t("common.learnMore")}
@@ -162,12 +162,12 @@ const ServicesPage: React.FC = () => {
       </div>
 
       {/* Mission & Vision - Redesigned */}
-      <div className="py-20 px-6 bg-principal text-white relative overflow-hidden">
+      <div className="py-20 px-6 bg-wine text-white relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
-            <div className="absolute top-0 left-0 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div className="absolute top-0 left-0 w-72 h-72 bg-cream rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-72 h-72 bg-cream rounded-full blur-3xl"></div>
           </div>
         </div>
 
@@ -176,38 +176,38 @@ const ServicesPage: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4">
               {t("services.commitmentTitle")}
             </h2>
-            <p className="text-white/90 text-lg max-w-2xl mx-auto">
+            <p className="text-cream text-lg max-w-2xl mx-auto">
               {t("services.commitmentSubtitle")}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Mission */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/20 hover:bg-white/15 transition-all">
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-cream/20 hover:bg-white/15 transition-all">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                  <FaHeartbeat className="text-3xl" />
+                <div className="w-16 h-16 bg-cream/20 rounded-full flex items-center justify-center">
+                  <FaHeartbeat className="text-3xl text-cream" />
                 </div>
-                <h3 className="text-3xl font-serif font-bold">
+                <h3 className="text-3xl font-serif font-bold text-cream">
                   {t("services.missionTitle")}
                 </h3>
               </div>
-              <p className="text-white/95 text-lg leading-relaxed">
+              <p className="text-cream text-lg leading-relaxed">
                 {t("services.missionText")}
               </p>
             </div>
 
             {/* Vision */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/20 hover:bg-white/15 transition-all">
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-cream/20 hover:bg-white/15 transition-all">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                  <FaAward className="text-3xl" />
+                <div className="w-16 h-16 bg-cream/20 rounded-full flex items-center justify-center">
+                  <FaAward className="text-3xl text-cream" />
                 </div>
-                <h3 className="text-3xl font-serif font-bold">
+                <h3 className="text-3xl font-serif font-bold text-cream">
                   {t("services.visionTitle")}
                 </h3>
               </div>
-              <p className="text-white/95 text-lg leading-relaxed">
+              <p className="text-cream text-lg leading-relaxed">
                 {t("services.visionText")}
               </p>
             </div>
@@ -216,18 +216,20 @@ const ServicesPage: React.FC = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="py-20 px-6 bg-gradient-to-b from-white to-gray-50">
+      <div className="py-20 px-6 bg-gradient-to-b from-white to-cream">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-wine mb-6">
             {t("services.ctaTitle")}
           </h2>
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-olive-dark mb-10 max-w-2xl mx-auto leading-relaxed">
             {t("services.ctaSubtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => router.push(getLocalizedPath("/book", currentLang))}
-              className="bg-principal text-white px-10 py-4 rounded-lg font-bold hover:bg-principal/90 transition-all text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              onClick={() =>
+                router.push(getLocalizedPath("/book", currentLang))
+              }
+              className="bg-wine text-white px-10 py-4 rounded-lg font-bold hover:bg-wine/90 transition-all text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               {t("services.ctaBook")}
             </button>
@@ -235,14 +237,17 @@ const ServicesPage: React.FC = () => {
               onClick={() =>
                 router.push(getLocalizedPath("/contact", currentLang))
               }
-              className="border-2 border-principal text-principal px-10 py-4 rounded-lg font-bold hover:bg-principal hover:text-white transition-all text-lg"
+              className="border-2 border-wine text-wine px-10 py-4 rounded-lg font-bold hover:bg-wine hover:text-white transition-all text-lg"
             >
               {t("services.ctaContact")}
             </button>
           </div>
-          <p className="mt-8 text-gray-500 text-sm">
-            {t("services.ctaQuestions")} {" "}
-            <a href="tel:16199679558" className="text-principal font-semibold">
+          <p className="mt-8 text-olive-dark text-sm">
+            {t("services.ctaQuestions")}{" "}
+            <a
+              href="tel:16199679558"
+              className="text-wine font-semibold hover:underline"
+            >
               +1 619-967-9558
             </a>
           </p>

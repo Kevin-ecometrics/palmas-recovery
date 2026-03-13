@@ -40,7 +40,7 @@ export default function UniqueHotels() {
   };
 
   return (
-    <section className="bg-[#cdc6e3] py-16 md:py-32 overflow-hidden">
+    <section className="bg-cream py-16 md:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-8 md:gap-16 items-center px-4 md:px-6">
         {/* LEFT – STATIC TEXT */}
         <div className="max-w-none md:-ml-8 lg:-ml-12">

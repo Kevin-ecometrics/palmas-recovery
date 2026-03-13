@@ -1,9 +1,11 @@
 import React from "react";
-
+import Navbar from "@/app/components/Navbar";
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      <section className="container mx-auto px-6 py-20">
+      <Navbar />
+
+      <section className="container mx-auto px-6 py-28">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
             We founded Palmas Recovery in 2021 with a shared vision: to redefine

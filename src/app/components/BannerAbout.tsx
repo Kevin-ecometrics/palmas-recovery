@@ -4,10 +4,14 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { usePathname } from "next/navigation";
 
 const Banner: React.FC = () => {
   const { t, i18n } = useTranslation();
   // Rotating titles for both languages
+
+  const pathname = usePathname();
+
   const titles =
     i18n.language === "es"
       ? [
@@ -73,7 +77,7 @@ const Banner: React.FC = () => {
 
         {/* Botón centrado */}
         <motion.a
-          href="/about"
+          href={pathname === "/en/" ? "/about" : "/nosotros"}
           className="mx-auto bg-transparent border-2 border-white text-white py-3 px-8 rounded-full text-lg flex items-center justify-center hover:bg-white hover:text-black transition duration-300"
           whileHover={{ scale: 1.1 }}
         >

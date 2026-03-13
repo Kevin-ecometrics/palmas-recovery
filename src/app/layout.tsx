@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Script from "next/script";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
@@ -9,6 +10,12 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
+export const metadata: Metadata = {
+  title: "Palmas Recovery Tijuana | 24/7 Nursing & In-House Doctors",
+  description:
+    "10 mins from the border. Expert pain management, private transport, lymphatic drainage & anti-inflammatory meals designed for optimal recovery.",
+};
+
 const META_PIXEL_ID = "743057892204187";
 
 export default function RootLayout({
@@ -19,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/fav.ico" type="image/x-icon" />
         {META_PIXEL_ID && (
           <Script id="meta-pixel" strategy="afterInteractive">
             {`!function(f,b,e,v,n,t,s)

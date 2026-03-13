@@ -1,13 +1,15 @@
- "use client";
+"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const BannerWithImage: React.FC = () => {
   const { t } = useTranslation();
-  
+  const pathname = usePathname();
+
   return (
     <div className="relative min-h-screen lg:min-h-[90vh] flex items-center overflow-hidden bg-white">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -17,10 +19,7 @@ const BannerWithImage: React.FC = () => {
 
       <div className="relative w-full max-w-[1400px] mx-auto py-12 px-6 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
-          
           <div className="lg:col-span-6 space-y-8 lg:pr-8">
-
-            
             <motion.h1
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] tracking-tight text-left"
               initial={{ opacity: 0, y: 30 }}
@@ -32,7 +31,6 @@ const BannerWithImage: React.FC = () => {
               </span>
             </motion.h1>
 
-            
             <motion.p
               className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed text-left"
               initial={{ opacity: 0, y: 30 }}
@@ -49,17 +47,24 @@ const BannerWithImage: React.FC = () => {
               className="flex justify-start"
             >
               <Link
-                href="/reservar/"
+                href={pathname === "/en/" ? "/rooms" : "/habitaciones"}
                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold text-white bg-black rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/30 hover:-translate-y-1 active:translate-y-0"
               >
-                <span className="relative z-10">{t("bannerWithImage.button")}</span>
-                <svg 
-                  className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <span className="relative z-10">
+                  {t("bannerWithImage.button")}
+                </span>
+                <svg
+                  className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-black scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </Link>
@@ -75,7 +80,7 @@ const BannerWithImage: React.FC = () => {
             >
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-3xl opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-500" />
-                
+
                 <div className="relative bg-white rounded-3xl p-2 shadow-2xl">
                   <div className="relative aspect-[16/11] rounded-2xl overflow-hidden">
                     <img
@@ -90,7 +95,6 @@ const BannerWithImage: React.FC = () => {
               </div>
             </motion.div>
           </div>
-
         </div>
       </div>
     </div>
