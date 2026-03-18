@@ -300,15 +300,15 @@
     "title": "At Palmas Recovery",
     "description": "Enjoy a stress-free recovery in a space created to support healing, privacy, and total comfort:",
     "bullets": [
-      "+ Private and shared suites with adjustable beds, A/C, and high-speed Wi-Fi",
-      "+ Elevator access for effortless mobility",
-      "+ Private transportation to the hospital and post-op appointments",
-      "+ Spacious, serene common areas with wide hallways and full in-room privacy",
-      "+ Fresh laundry service included during your stay",
-      "+ On-site boutique with post-surgical garments and recovery supplements",
-      "+ Chef-prepared anti-inflammatory meals: 3 nourishing meals + 2 snacks daily",
-      "+ Complimentary hydration station with wellness drinks and healing teas"
-    ],
+  "+ <strong>Private and shared suites</strong> with adjustable beds, A/C, and high-speed Wi-Fi",
+  "+ <strong>Elevator access</strong> for effortless mobility",
+  "+ <strong>Private transportation</strong> to the hospital and post-op appointments",
+  "+ Spacious, serene common areas with <strong>full in-room privacy</strong>",
+  "+ <strong>Fresh laundry service</strong> included during your stay",
+  "+ <strong>On-site boutique</strong> with post-surgical garments and recovery supplements",
+  "+ <strong>Chef-prepared anti-inflammatory meals</strong>: 3 nourishing meals + 2 snacks daily",
+  "+ <strong>Complimentary hydration station</strong> with wellness drinks and healing teas"
+],
     "prev": "Previous image",
     "next": "Next image"
   },

@@ -4,6 +4,12 @@ import { FaHotel, FaSuitcase, FaArrowRight } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import Link from "next/link";
 
+const BLOG_IMAGES = [
+  "/blog1.png", // Entrada de blog 1
+  "/blog2.jpg", // Entrada de blog 2
+  "/blog3.jpg", // Entrada de blog 3
+];
+
 const featuredPosts = [
   {
     id: "blog1",
@@ -11,7 +17,7 @@ const featuredPosts = [
     excerpt:
       "Tu checklist completo para una recuperación sin estrés. Prepárate como un profesional con nuestra guía esencial.",
     category: "Preparación",
-    image: "/habitacion_compartida.jpg",
+    image: BLOG_IMAGES[0],
     icon: <FaSuitcase className="text-xl" />,
   },
   {
@@ -20,7 +26,7 @@ const featuredPosts = [
     excerpt:
       "Guía completa para elegir la mejor temporada para tu procedimiento estético y recuperación en México.",
     category: "Planeación",
-    image: "/habitacion_privada.jpg",
+    image: BLOG_IMAGES[1],
     icon: <FaCalendarAlt className="text-xl" />,
   },
   {
@@ -30,7 +36,7 @@ const featuredPosts = [
     excerpt:
       "Conoce las diferencias clave entre el cuidado profesional postoperatorio y un alojamiento tradicional.",
     category: "Cuidado de recuperación",
-    image: "/habitacion_vip.jpg",
+    image: BLOG_IMAGES[2],
     icon: <FaHotel className="text-xl" />,
   },
 ];

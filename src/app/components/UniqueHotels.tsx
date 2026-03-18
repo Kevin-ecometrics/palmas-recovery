@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 
 const IMAGES = ["/doctor1.jpg", "/doctor2.jpg", "/doctor3.jpg"];
 
@@ -54,7 +54,9 @@ export default function UniqueHotels() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 md:gap-x-10 text-base md:text-lg">
             {bullets.map((item, idx) => (
-              <p key={idx}>{item}</p>
+              <p key={idx}>
+                <Trans>{item}</Trans>
+              </p>
             ))}
           </div>
         </div>

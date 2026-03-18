@@ -4,6 +4,12 @@ import { FaHotel, FaSuitcase, FaArrowRight, FaUserMd } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import Link from "next/link";
 
+const BLOG_IMAGES = [
+  "/blog1.png", // Entrada de blog 1
+  "/blog2.jpg", // Entrada de blog 2
+  "/blog3.jpg", // Entrada de blog 3
+];
+
 const featuredPosts = [
   {
     id: "blog1",
@@ -11,7 +17,7 @@ const featuredPosts = [
     excerpt:
       "Your complete checklist for a stress-free recovery experience. Prepare like a pro with our essential packing guide.",
     category: "Recovery Preparation",
-    image: "/habitacion_compartida.jpg",
+    image: BLOG_IMAGES[0],
     icon: <FaSuitcase className="text-xl" />,
   },
   {
@@ -20,7 +26,7 @@ const featuredPosts = [
     excerpt:
       "A comprehensive guide to choosing the optimal season for your cosmetic procedure and recovery in Mexico.",
     category: "Planning Guide",
-    image: "/habitacion_privada.jpg",
+    image: BLOG_IMAGES[1],
     icon: <FaCalendarAlt className="text-xl" />,
   },
   {
@@ -30,7 +36,7 @@ const featuredPosts = [
     excerpt:
       "Understanding the critical differences between professional recovery care and standard hotel accommodations.",
     category: "Recovery Care",
-    image: "/habitacion_vip.jpg",
+    image: BLOG_IMAGES[2],
     icon: <FaHotel className="text-xl" />,
   },
 ];

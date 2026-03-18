@@ -299,16 +299,16 @@
   "uniqueHotels": {
     "title": "En Palmas Recovery",
     "description": "Disfruta de una recuperación sin estrés en un espacio creado para apoyar la sanación, la privacidad y el confort total:",
-    "bullets": [
-      "+ Suites privadas y compartidas con camas ajustables, A/C y Wi-Fi de alta velocidad",
-      "+ Acceso por elevador para movilidad sin esfuerzo",
-      "+ Transporte privado al hospital y citas post-operatorias",
-      "+ Áreas comunes espaciosas y serenas con pasillos amplios y privacidad total en la habitación",
-      "+ Servicio de lavandería incluido durante tu estancia",
-      "+ Boutique en el lugar con prendas postquirúrgicas y suplementos de recuperación",
-      "+ Comidas antiinflamatorias preparadas por chefs: 3 comidas nutritivas + 2 snacks diarios",
-      "+ Estación de hidratación complementaria con bebidas de bienestar y tés curativos"
-    ],
+   "bullets": [
+  "+ <strong>Suites privadas y compartidas</strong> con camas ajustables, A/C y Wi-Fi de alta velocidad",
+  "+ <strong>Acceso por elevador</strong> para movilidad sin esfuerzo",
+  "+ <strong>Transporte privado</strong> al hospital y citas post-operatorias",
+  "+ Áreas comunes espaciosas y serenas con <strong>privacidad total en la habitación</strong>",
+  "+ <strong>Servicio de lavandería</strong> incluido durante tu estancia",
+  "+ <strong>Boutique en el lugar</strong> con prendas postquirúrgicas y suplementos",
+  "+ <strong>Comidas antiinflamatorias preparadas por chefs</strong>: 3 comidas + 2 snacks diarios",
+  "+ <strong>Estación de hidratación</strong> con bebidas de bienestar y tés curativos"
+],
     "prev": "Imagen anterior",
     "next": "Imagen siguiente"
   },
