@@ -1,35 +1,35 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { FaHotel, FaSuitcase, FaArrowRight, FaUserMd } from "react-icons/fa";
+import { FaHotel, FaSuitcase, FaArrowRight } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import Link from "next/link";
 
 const featuredPosts = [
   {
     id: "blog1",
-    title: "What to Pack for Your Post-Op Recovery House",
+    title: "Qué empacar para tu casa de recuperación postoperatoria",
     excerpt:
-      "Your complete checklist for a stress-free recovery experience. Prepare like a pro with our essential packing guide.",
-    category: "Recovery Preparation",
+      "Tu checklist completo para una recuperación sin estrés. Prepárate como un profesional con nuestra guía esencial.",
+    category: "Preparación",
     image: "/habitacion_compartida.jpg",
     icon: <FaSuitcase className="text-xl" />,
   },
   {
     id: "blog2",
-    title: "When is the Best Time for Plastic Surgery in Mexico?",
+    title: "¿Cuál es el mejor momento para una cirugía plástica en México?",
     excerpt:
-      "A comprehensive guide to choosing the optimal season for your cosmetic procedure and recovery in Mexico.",
-    category: "Planning Guide",
+      "Guía completa para elegir la mejor temporada para tu procedimiento estético y recuperación en México.",
+    category: "Planeación",
     image: "/habitacion_privada.jpg",
     icon: <FaCalendarAlt className="text-xl" />,
   },
   {
     id: "blog3",
     title:
-      "Recovery House vs. Hotel: Why Your Healing Depends on Professional Care",
+      "Casa de recuperación vs. hotel: por qué tu recuperación depende del cuidado profesional",
     excerpt:
-      "Understanding the critical differences between professional recovery care and standard hotel accommodations.",
-    category: "Recovery Care",
+      "Conoce las diferencias clave entre el cuidado profesional postoperatorio y un alojamiento tradicional.",
+    category: "Cuidado de recuperación",
     image: "/habitacion_vip.jpg",
     icon: <FaHotel className="text-xl" />,
   },
@@ -51,20 +51,20 @@ export default function BlogHome() {
           <div className="inline-flex items-center gap-2 mb-6">
             <div className="w-12 h-px bg-[#657251]"></div>
             <span className="text-[#657251] font-semibold tracking-wider uppercase text-sm">
-              Recovery Insights
+              Insights de Recuperación
             </span>
             <div className="w-12 h-px bg-[#657251]"></div>
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 mb-6 leading-tight">
-            Your Guide to
+            Tu guía para
             <br />
-            <span className="text-[#657251]">Surgical Recovery</span>
+            <span className="text-[#657251]">la recuperación quirúrgica</span>
           </h1>
 
           <p className="text-gray-600 text-xl max-w-3xl mx-auto">
-            Expert advice, practical tips, and essential information for your
-            post-operative recovery journey in Mexico.
+            Consejos expertos, recomendaciones prácticas e información esencial
+            para tu proceso de recuperación postoperatoria en México.
           </p>
         </div>
       </div>
@@ -75,10 +75,10 @@ export default function BlogHome() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">
-              Articles
+              Artículos
             </h2>
             <div className="flex items-center gap-2 text-[#657251]">
-              <span className="text-sm font-medium">Latest Insights</span>
+              <span className="text-sm font-medium">Últimos insights</span>
               <div className="w-8 h-px bg-[#657251]"></div>
             </div>
           </div>
@@ -112,10 +112,10 @@ export default function BlogHome() {
                   <p className="text-gray-600 mb-6">{post.excerpt}</p>
 
                   <Link
-                    href={`/blog/${post.id}`}
+                    href={`/articulos/${post.id}`}
                     className="inline-flex items-center gap-2 text-[#657251] font-medium hover:text-[#657251]/80 transition-colors group/btn"
                   >
-                    Read Article
+                    Leer artículo
                     <FaArrowRight className="group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>

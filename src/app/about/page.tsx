@@ -41,6 +41,18 @@ export default function AboutPage() {
         </div>
       )}
 
+      <section className="bg-white py-32">
+        <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-cream/20">
+            <img
+              src="/logo.png"
+              alt="Palmas Recovery Logo"
+              className=" object-contain drop-shadow-lg"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* COEPRIS Accreditation Section */}
       <section className="bg-gradient-to-br from-cream to-blush/20 py-16">
         <div className="container mx-auto px-6">

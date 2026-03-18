@@ -2,12 +2,17 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import type { Variants } from "motion/react";
-import { FaInstagram, FaTiktok, FaFacebookF, FaPhone } from "react-icons/fa";
+import {
+  FaInstagram,
+  FaTiktok,
+  FaFacebookF,
+  FaPhone,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { RiMenuFill, RiCloseFill } from "react-icons/ri";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
-import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,17 +40,22 @@ const Navbar: React.FC = () => {
     {
       icon: FaFacebookF,
       url: "https://www.facebook.com/@palmasrecovery/",
-
       label: "Facebook",
+    },
+    {
+      icon: FaWhatsapp,
+      url: "https://wa.me/+526645408660",
+      label: "WhatsApp",
     },
   ];
 
   const navItems = [
-    { label: t("navbar.items.home"), path: "/" },
+    // { label: t("navbar.items.home"), path: "/" },
     { label: t("navbar.items.book"), path: "/book" },
     { label: t("navbar.items.services"), path: "/services" },
     { label: t("navbar.items.contact"), path: "/contact" },
     { label: t("navbar.items.about"), path: "/about" },
+    { label: t("navbar.items.blogs"), path: "/blog" },
     //{ label: t("navbar.items.panorama"), path: "/panorama" },
   ];
 
@@ -157,6 +167,27 @@ const Navbar: React.FC = () => {
 
         {/* Links desktop + Logo */}
         <nav className="hidden md:flex items-center text-sm tracking-widest font-medium">
+          {/* Logo después de PANORAMA */}
+          <motion.div
+            custom={navItems.length}
+            initial="hidden"
+            animate="visible"
+            variants={navItemVariants}
+            className="ml-4"
+          >
+            <button
+              onClick={() => router.push(getLocalizedPath("/", currentLang))}
+              className="flex items-center"
+            >
+              <figure>
+                <img
+                  src="/logo-palmas.png"
+                  alt="Icono del logotipo de la Clínica"
+                  className="h-12 w-auto object-contain h transition-opacity"
+                />
+              </figure>
+            </button>
+          </motion.div>
           {navItems.map((item, i) => (
             <React.Fragment key={item.label}>
               <motion.div
@@ -184,28 +215,6 @@ const Navbar: React.FC = () => {
               )}
             </React.Fragment>
           ))}
-
-          {/* Logo después de PANORAMA */}
-          <motion.div
-            custom={navItems.length}
-            initial="hidden"
-            animate="visible"
-            variants={navItemVariants}
-            className="ml-4"
-          >
-            <button
-              onClick={() => router.push(getLocalizedPath("/", currentLang))}
-              className="flex items-center"
-            >
-              <figure>
-                <img
-                  src="/logo.png"
-                  alt="Icono del logotipo de la Clínica"
-                  className="h-10 w-auto object-contain hover:opacity-80 transition-opacity"
-                />
-              </figure>
-            </button>
-          </motion.div>
         </nav>
 
         {/* Redes */}

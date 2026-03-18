@@ -65,7 +65,7 @@ export default function AnimationHero() {
           onUpdate: (self) => {
             const index = Math.min(
               Math.floor(self.progress * slides.length),
-              slides.length - 1
+              slides.length - 1,
             );
             setCurrentSlide(index);
           },
@@ -85,7 +85,7 @@ export default function AnimationHero() {
         tl.to(
           titles[i - 1],
           { autoAlpha: 0, y: -60, duration: 1.2, ease: "power2.inOut" },
-          startTime
+          startTime,
         );
         tl.to(
           masks[i - 1],
@@ -94,12 +94,12 @@ export default function AnimationHero() {
             duration: 2.2,
             ease: "power3.inOut",
           },
-          startTime
+          startTime,
         );
         tl.to(
           images[i - 1],
           { scale: 1.4, duration: 2.2, ease: "power3.inOut" },
-          startTime
+          startTime,
         );
 
         // Animaciones del slide actual
@@ -111,17 +111,17 @@ export default function AnimationHero() {
             duration: mainDuration,
             ease: "power3.out",
           },
-          startTime + 1.2
+          startTime + 1.2,
         );
         tl.to(
           images[i],
           { scale: 1, duration: mainDuration, ease: "power3.out" },
-          startTime + 1.2
+          startTime + 1.2,
         );
         tl.to(
           titles[i],
           { autoAlpha: 1, y: 0, duration: 1.5, ease: "power3.out" },
-          startTime + 2
+          startTime + 2,
         );
 
         accumulatedTime += mainDuration; // siguiente slide empieza después de la duración principal
@@ -138,7 +138,7 @@ export default function AnimationHero() {
       const rect = section.getBoundingClientRect();
       const showNavbar = rect.bottom <= window.innerHeight * 0.3;
       window.dispatchEvent(
-        new CustomEvent("heroScroll", { detail: { showNavbar } })
+        new CustomEvent("heroScroll", { detail: { showNavbar } }),
       );
     };
 
@@ -213,7 +213,7 @@ export default function AnimationHero() {
               {slide.description}
             </p>
             <div className="mt-8 pointer-events-auto">
-              <Link href={getTourPath(slide.id, currentLang)}>
+              {/* <Link href={getTourPath(slide.id, currentLang)}>
                 <span
                   className="group relative inline-flex px-10 py-4 
       bg-transparent border-2 border-white rounded-xl 
@@ -221,7 +221,7 @@ export default function AnimationHero() {
       overflow-hidden transition-all duration-500"
                 >
                   <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
-                  {t("home.hero.viewTour")}
+                    {t("home.hero.viewTour")}
                   </span>
 
                   <span
@@ -229,7 +229,7 @@ export default function AnimationHero() {
         group-hover:translate-x-0 transition-transform duration-500 ease-out"
                   />
                 </span>
-              </Link>
+              </Link> */}
             </div>
           </div>
         ))}
@@ -244,8 +244,8 @@ export default function AnimationHero() {
               i === currentSlide
                 ? "w-12 bg-white"
                 : i < currentSlide
-                ? "w-8 bg-white/50"
-                : "w-8 bg-white/20"
+                  ? "w-8 bg-white/50"
+                  : "w-8 bg-white/20"
             }`}
           />
         ))}
