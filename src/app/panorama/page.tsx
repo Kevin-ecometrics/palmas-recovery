@@ -28,7 +28,7 @@ function SpherePanorama({ image, rotation }: { image: string; rotation: any }) {
         setLoading(false);
       },
       undefined,
-      (error) => console.error("Error al cargar la textura:", error)
+      (error) => console.error("Error al cargar la textura:", error),
     );
   }, [image]);
 
@@ -64,7 +64,8 @@ export default function Panorama360() {
   const { t } = useTranslation();
 
   const images = [
-    { src: "/studio_small_09_4k.jpg", key: "studio" },
+    { src: "/360/tst.jpg", key: "studio" },
+    { src: "/360/test.jpg", key: "playRoom" },
     { src: "/empty_play_room_2k.jpg", key: "playRoom" },
     { src: "/river_alcove_4k.jpg", key: "riverAlcove" },
     { src: "/moon_lab_4k.jpg", key: "moonLab" },

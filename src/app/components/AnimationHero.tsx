@@ -28,11 +28,13 @@ export default function AnimationHero() {
   const getSlideImage = (id: string) => {
     switch (id) {
       case "shared-room":
-        return "/habitacion_compartida.jpg";
+        return "/shared.jpg";
       case "private-room":
-        return "/habitacion_privada.jpg";
+        return "/vip-suite.jpg";
+
       case "vip-suite":
-        return "/habitacion_vip.jpg";
+        return "/private.jpg";
+
       default:
         return "/habitacion_compartida.jpg";
     }
