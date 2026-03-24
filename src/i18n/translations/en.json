@@ -761,6 +761,7 @@
       "description": "A quiet, elegant room designed for uninterrupted recovery, personal attention, and complete peace of mind.",
       "book": "BOOK THIS ROOM",
       "ask": "ASK A QUESTION",
+      "tour": "Take a virtual tour",
       "highlightsLabel": "Designed for Recovery",
       "highlightsTitle": "Private Comforts",
       "highlightsSubtitle": "Ideal for guests who value privacy and personalized support.",
@@ -819,6 +820,8 @@
       "description": "A welcoming, peaceful space designed for recovery with attentive care, elegant finishes, and a warm community atmosphere.",
       "book": "BOOK THIS ROOM",
       "ask": "ASK A QUESTION",
+            "tour": "Take a virtual tour",
+
       "highlightsLabel": "Designed for Recovery",
       "highlightsTitle": "What You'll Love",
       "highlightsSubtitle": "A balanced blend of privacy, companionship, and comfort — with every detail curated for healing.",
@@ -877,6 +880,8 @@
       "description": "Indulge in a spacious, private suite featuring elevated comfort, refined amenities, and priority care throughout your recovery.",
       "book": "BOOK THIS SUITE",
       "ask": "ASK A QUESTION",
+            "tour": "Take a virtual tour",
+
       "highlightsLabel": "Elevated Comfort",
       "highlightsTitle": "The VIP Difference",
       "highlightsSubtitle": "A premium experience for guests seeking the highest level of care and comfort.",

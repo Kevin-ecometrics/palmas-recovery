@@ -761,6 +761,7 @@
       "description": "Una habitación tranquila y elegante diseñada para una recuperación sin interrupciones, atención personal y total tranquilidad.",
       "book": "RESERVAR ESTA HABITACIÓN",
       "ask": "HACER UNA PREGUNTA",
+      "tour": "Ver tour virtual",
       "highlightsLabel": "Diseñada para la recuperación",
       "highlightsTitle": "Comodidad privada",
       "highlightsSubtitle": "Ideal para huéspedes que valoran la privacidad y el apoyo personalizado.",
@@ -819,6 +820,8 @@
       "description": "Un espacio acogedor y tranquilo diseñado para la recuperación con atención dedicada, acabados elegantes y un ambiente comunitario cálido.",
       "book": "RESERVAR ESTA HABITACIÓN",
       "ask": "HACER UNA PREGUNTA",
+            "tour": "Ver tour virtual",
+
       "highlightsLabel": "Diseñada para la recuperación",
       "highlightsTitle": "Lo que te encantará",
       "highlightsSubtitle": "Una mezcla equilibrada de privacidad, compañía y comodidad con cada detalle pensado para sanar.",
@@ -877,6 +880,8 @@
       "description": "Disfruta una suite amplia y privada con mayor confort, amenidades refinadas y atención prioritaria durante tu recuperación.",
       "book": "RESERVAR ESTA SUITE",
       "ask": "HACER UNA PREGUNTA",
+            "tour": "Ver tour virtual",
+
       "highlightsLabel": "Confort elevado",
       "highlightsTitle": "La diferencia VIP",
       "highlightsSubtitle": "Una experiencia premium para quienes buscan el más alto nivel de cuidado y comodidad.",

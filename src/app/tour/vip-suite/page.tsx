@@ -10,7 +10,9 @@ import { getLocalizedPath } from "@/i18n/routeMap";
 export default function VipSuitePage() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
-  const highlights = t("tour.vip.highlights", { returnObjects: true }) as Array<{
+  const highlights = t("tour.vip.highlights", {
+    returnObjects: true,
+  }) as Array<{
     title: string;
     desc: string;
   }>;
@@ -52,10 +54,10 @@ export default function VipSuitePage() {
                 {t("tour.vip.book")}
               </Link>
               <Link
-                href={getLocalizedPath("/contact", currentLang)}
+                href={getLocalizedPath("/tour/360/vip", currentLang)}
                 className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-white hover:text-wine transition-all text-center"
               >
-                {t("tour.vip.ask")}
+                {t("tour.vip.tour")}
               </Link>
             </div>
           </div>

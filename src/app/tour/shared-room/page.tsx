@@ -10,11 +10,15 @@ import { getLocalizedPath } from "@/i18n/routeMap";
 export default function SharedRoomPage() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
-  const highlights = t("tour.shared.highlights", { returnObjects: true }) as Array<{
+  const highlights = t("tour.shared.highlights", {
+    returnObjects: true,
+  }) as Array<{
     title: string;
     desc: string;
   }>;
-  const features = t("tour.shared.features", { returnObjects: true }) as string[];
+  const features = t("tour.shared.features", {
+    returnObjects: true,
+  }) as string[];
   const faq = t("tour.shared.faq", { returnObjects: true }) as Array<{
     q: string;
     a: string;
@@ -25,7 +29,7 @@ export default function SharedRoomPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-principal via-principal/90 to-olive-dark text-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-wine via-principal to-olive-dark text-white">
         <div className="absolute inset-0 opacity-15">
           <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-white blur-3xl"></div>
           <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-white blur-3xl"></div>
@@ -38,7 +42,9 @@ export default function SharedRoomPage() {
             </p>
             <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight mb-6">
               {t("tour.shared.title")}
-              <span className="block text-cream">{t("tour.shared.subtitle")}</span>
+              <span className="block text-cream">
+                {t("tour.shared.subtitle")}
+              </span>
             </h1>
             <p className="text-lg md:text-xl text-white/90 max-w-xl leading-relaxed">
               {t("tour.shared.description")}
@@ -47,15 +53,15 @@ export default function SharedRoomPage() {
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Link
                 href={getLocalizedPath("/book", currentLang)}
-                className="bg-white text-principal px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-cream transition-all shadow-lg text-center"
+                className="bg-white text-wine px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-cream transition-all shadow-lg text-center"
               >
                 {t("tour.shared.book")}
               </Link>
               <Link
-                href={getLocalizedPath("/contact", currentLang)}
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-white hover:text-principal transition-all text-center"
+                href={getLocalizedPath("/tour/360/shared", currentLang)}
+                className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-white hover:text-wine transition-all text-center"
               >
-                {t("tour.shared.ask")}
+                {t("tour.shared.tour")}
               </Link>
             </div>
           </div>
@@ -136,13 +142,13 @@ export default function SharedRoomPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href={getLocalizedPath("/book", currentLang)}
-                className="bg-principal text-white px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-principal/90 transition-all text-center"
+                className="bg-wine text-white px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-principal/90 transition-all text-center"
               >
                 {t("tour.shared.reserve")}
               </Link>
               <Link
                 href={getLocalizedPath("/rooms", currentLang)}
-                className="border-2 border-principal text-principal px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-principal hover:text-white transition-all text-center"
+                className="border-2 border-principal text-principal px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-wine hover:text-white transition-all text-center"
               >
                 {t("tour.shared.viewAll")}
               </Link>
@@ -197,7 +203,7 @@ export default function SharedRoomPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-20 px-6 bg-principal text-white">
+      <section className="py-16 md:py-20 px-6 bg-wine text-white">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">
             {t("tour.shared.ctaTitle")}
@@ -208,13 +214,13 @@ export default function SharedRoomPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href={getLocalizedPath("/book", currentLang)}
-              className="bg-white text-principal px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-cream transition-all shadow-lg text-center"
+              className="bg-white text-wine px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-cream transition-all shadow-lg text-center"
             >
               {t("tour.shared.ctaBook")}
             </Link>
             <Link
               href={getLocalizedPath("/contact", currentLang)}
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-white hover:text-principal transition-all text-center"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-white hover:text-wine transition-all text-center"
             >
               {t("tour.shared.ctaTalk")}
             </Link>

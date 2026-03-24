@@ -215,7 +215,7 @@ export default function AnimationHero() {
               {slide.description}
             </p>
             <div className="mt-8 pointer-events-auto">
-              {/* <Link href={getTourPath(slide.id, currentLang)}>
+              <Link href={getTourPath(slide.id, currentLang)}>
                 <span
                   className="group relative inline-flex px-10 py-4 
       bg-transparent border-2 border-white rounded-xl 
@@ -231,7 +231,7 @@ export default function AnimationHero() {
         group-hover:translate-x-0 transition-transform duration-500 ease-out"
                   />
                 </span>
-              </Link> */}
+              </Link>
             </div>
           </div>
         ))}

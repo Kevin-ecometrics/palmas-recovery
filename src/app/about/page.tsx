@@ -10,6 +10,8 @@ import {
   FaSearchPlus,
   FaExpand,
 } from "react-icons/fa";
+import Footer from "../components/Footer";
+import Link from "next/link";
 
 export default function AboutPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -153,18 +155,24 @@ export default function AboutPage() {
 
       {/* Rest of the page content */}
       <section className="container mx-auto px-6 py-28">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 text-wine">
-            We founded Palmas Recovery in 2021 with a shared vision: to redefine
-            the post-operative experience.
-          </h2>
+        <div className="max-w-8xl mx-auto">
+          <div className="md:grid grid-cols-2">
+            <header className="text-4xl md:text-5xl font-bold text-start mb-8 text-wine">
+              We founded Palmas Recovery in 2021 with a shared vision: to
+              redefine the post-operative experience.
+            </header>
+            <div></div>
+          </div>
 
-          <div className="space-y-6 text-lg leading-relaxed text-olive-dark">
-            <h4 className="text-2xl font-semibold text-wine">
-              With more than eight years of experience in medical hospitality
-              and strong collaboration with top plastic surgeons in Mexico, we
-              prioritize your post-operative concerns and goals.
-            </h4>
+          <div className="space-y-6 text-lg leading-relaxed text-olive-dark ">
+            <div className="md:grid grid-cols-2">
+              <div></div>
+              <h4 className="text-2xl font-light text-wine">
+                With more than eight years of experience in medical hospitality
+                and strong collaboration with top plastic surgeons in Mexico, we
+                prioritize your post-operative concerns and goals.
+              </h4>
+            </div>
 
             <p>
               We understand that recovery is most effective when approached
@@ -175,61 +183,106 @@ export default function AboutPage() {
 
             <p>Your needs are at the core of everything we do.</p>
 
-            <div className="pt-10">
-              <h3 className="text-3xl font-bold mb-4 text-wine">Mission</h3>
-              <p className="text-xl font-semibold text-olive-dark">
-                Our mission is to provide an efficient, timely, and welcoming
-                environment that feels like a second home.
-              </p>
-              <h3 className="text-2xl font-semibold mt-8 text-wine">
-                We are committed to helping you achieve an optimal recovery,
-                ensuring you return home with peace of mind.
-              </h3>
+            <div className="py-16 px-6 md:px-16">
+              <div className="grid md:grid-cols-2 items-center gap-12">
+                {/* IMÁGENES */}
+                <div className="relative w-full max-w-xl">
+                  {/* Imagen principal */}
+                  <img
+                    src="https://www.oneshothotels.com/data/webp/historia-sobre-one-shot-hotels-hoteles-con-encanto-2949-4c85d93456192e5e4e69e0acb0c39fc2.webp"
+                    alt=""
+                    className="w-full h-[420px] object-cover rounded-xl"
+                  />
+
+                  {/* Imagen superpuesta */}
+                  <img
+                    src="https://www.oneshothotels.com/data/webp/one-shot-hotels-nuestra-historia182-41251cc7d4deb29bfc1a964e51d3190a.webp"
+                    alt=""
+                    className="
+          absolute
+          -bottom-16
+          right-[-40px]
+          w-[65%]
+          h-[260px]
+          object-cover
+          rounded-xl
+          shadow-2xl
+        "
+                  />
+                </div>
+
+                {/* TEXTO (SIN CAMBIOS) */}
+                <div className="pt-10 max-w-lg">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4 text-wine">
+                    Mission
+                  </h3>
+
+                  <p className="text-xl font-semilight text-olive-dark">
+                    Our mission is to provide an efficient, timely, and
+                    welcoming environment that feels like a second home.
+                  </p>
+
+                  <h3 className="text-2xl font-semilight mt-8 text-wine mb-4">
+                    We are committed to helping you achieve an optimal recovery,
+                    ensuring you return home with peace of mind.
+                  </h3>
+                  <Link
+                    href="/"
+                    className="text-wine hover:text-olive-dark transition-colors font-medium mt-4 inline-block"
+                  >
+                    Read more
+                  </Link>
+                </div>
+              </div>
             </div>
 
-            <div className="pt-12">
-              <h2 className="text-4xl font-bold mb-8 text-wine">
+            <div className="pt-16 px-6 md:px-12">
+              <h2 className="text-4xl font-bold mb-10 text-wine">
                 Our Core Pillars
               </h2>
 
-              <div className="space-y-10">
-                <div className="border-l-4 border-sage pl-6">
-                  <h3 className="text-2xl font-semibold text-wine">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* CARD 1 */}
+                <div className="bg-blush p-8 rounded-sm">
+                  <h3 className="text-2xl font-semibold text-wine mb-4">
                     Safety and Accreditation:
                   </h3>
-                  <h4 className="mt-2 text-lg text-olive-dark">
+                  <p className="text-olive-dark leading-relaxed">
                     Your health is our top priority. We ensure that all care is
                     supported by our professional expertise and the highest
                     medical accreditations in our team.
-                  </h4>
+                  </p>
                 </div>
 
-                <div className="border-l-4 border-blush pl-6">
-                  <h3 className="text-2xl font-semibold text-wine">
+                {/* CARD 2 */}
+                <div className="bg-cream p-8 rounded-sm">
+                  <h3 className="text-2xl font-semibold text-wine mb-4">
                     Expert Support:
                   </h3>
-                  <h4 className="mt-2 text-lg text-olive-dark">
+                  <p className="text-olive-dark leading-relaxed">
                     We provide continuous, expert guidance throughout your
                     recovery journey. We don't just monitor your progress; we
                     actively navigate this journey alongside you.
-                  </h4>
+                  </p>
                 </div>
 
-                <div className="border-l-4 border-olive-dark pl-6">
-                  <h3 className="text-2xl font-semibold text-wine">
+                {/* CARD 3 */}
+                <div className="bg-wine p-8 rounded-sm">
+                  <h3 className="text-2xl font-semibold text-white mb-4">
                     Flexibility and Adaptability:
                   </h3>
-                  <h4 className="mt-2 text-lg text-olive-dark">
+                  <p className="text-white/90 leading-relaxed">
                     We understand that each person's healing process is unique.
                     Our services are fully adaptable, with no minimum or maximum
                     stay required, to meet your individual needs.
-                  </h4>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
