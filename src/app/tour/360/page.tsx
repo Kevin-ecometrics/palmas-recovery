@@ -8,7 +8,7 @@ import {
   useSpring,
 } from "framer-motion";
 import Navbar from "@/app/components/Navbar";
-import { ROOMS } from "@/app/rooms/rooms.data";
+import { ROOMS } from "@/app/components/data/rooms.data";
 import { useTranslation } from "react-i18next";
 import {
   getRoomIdFromPath,
@@ -25,6 +25,11 @@ type RoomAccent = {
 
 function getAccent(roomId: string): RoomAccent {
   switch (roomId) {
+    case "lobby":
+      return {
+        accentLight: "bg-emerald-100 text-emerald-800 border-emerald-200",
+        accentDot: "bg-emerald-500",
+      };
     case "private":
       return {
         accentLight: "bg-amber-100 text-amber-800 border-amber-200",
@@ -100,7 +105,6 @@ export default function Page() {
   const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
   const [active, setActive] = useState(0);
   const [hoveredThumb, setHoveredThumb] = useState<number | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
@@ -114,13 +118,25 @@ export default function Page() {
     const tag = t(`rooms.${room.id}.tag`);
     const beds = t(`rooms.${room.id}.beds`, { defaultValue: room.beds });
     const size = t(`rooms.${room.id}.size`, { defaultValue: room.size });
-    const amenities = t(`rooms.${room.id}.amenities`, {
+
+    // Ensure amenities is always an array
+    let amenities = t(`rooms.${room.id}.amenities`, {
       returnObjects: true,
       defaultValue: room.amenities,
-    }) as string[];
-    const features = t(`rooms.${room.id}.features`, {
+    });
+    if (!Array.isArray(amenities)) {
+      amenities = room.amenities;
+    }
+
+    // Ensure features is always an array
+    let features = t(`rooms.${room.id}.features`, {
       returnObjects: true,
-    }) as string[];
+      defaultValue: room.features,
+    });
+    if (!Array.isArray(features)) {
+      features = room.features;
+    }
+
     const { accentLight, accentDot } = getAccent(room.id);
 
     return {
@@ -136,8 +152,8 @@ export default function Page() {
       capacity: room.capacity,
       beds,
       size,
-      amenities,
-      features,
+      amenities: amenities as string[],
+      features: features as string[],
       tag,
       accentLight,
       accentDot,
@@ -186,13 +202,8 @@ export default function Page() {
   };
 
   useEffect(() => {
-    // Check on page load
     handleHashChange();
-
-    // Listen for hash changes (in case user navigates with back/forward buttons)
     window.addEventListener("hashchange", handleHashChange);
-
-    // Clean up event when component unmounts
     return () => {
       window.removeEventListener("hashchange", handleHashChange);
     };
@@ -274,35 +285,51 @@ export default function Page() {
                 {tour.description}
               </p>
 
-              {/* Room details */}
+              {/* Room details - Using translations */}
               <div className="grid grid-cols-2 gap-3 mb-8 md:mb-10">
                 <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
                   <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
-                    {t("common.perNight")}
+                    {tour.id === "lobby"
+                      ? t("rooms.lobby.labels.area")
+                      : t("common.perNight")}
                   </div>
                   <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
-                    ${tour.price}
+                    {tour.id === "lobby"
+                      ? t("rooms.lobby.labels.commonSpace")
+                      : `$${tour.price}`}
                   </div>
                 </div>
                 <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
                   <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
-                    {t("roomDetail.capacity")}
+                    {tour.id === "lobby"
+                      ? t("rooms.lobby.labels.access")
+                      : t("roomDetail.capacity")}
                   </div>
                   <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
-                    {t("searchBar.accommodates", { count: tour.capacity })}
+                    {tour.id === "lobby"
+                      ? t("rooms.lobby.labels.allGuests")
+                      : t("searchBar.accommodates", {
+                          count: tour.capacity || 0,
+                        })}
                   </div>
                 </div>
                 <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
                   <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
-                    {t("roomDetail.bedType")}
+                    {tour.id === "lobby"
+                      ? t("rooms.lobby.labels.service")
+                      : t("roomDetail.bedType")}
                   </div>
                   <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
-                    {tour.beds}
+                    {tour.id === "lobby"
+                      ? t("rooms.lobby.labels.reception247")
+                      : tour.beds}
                   </div>
                 </div>
                 <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
                   <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
-                    {t("roomDetail.roomSize")}
+                    {tour.id === "lobby"
+                      ? t("rooms.lobby.labels.area")
+                      : t("roomDetail.roomSize")}
                   </div>
                   <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
                     {tour.size}
@@ -312,42 +339,46 @@ export default function Page() {
 
               {/* Features grid */}
               <div className="grid grid-cols-2 gap-2 mb-8 md:mb-10">
-                {tour.features.map((f) => (
-                  <div key={f} className="flex items-center gap-2">
-                    <svg
-                      className="w-3 h-3 text-stone-400 flex-shrink-0"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span className="font-[DM_Sans] text-xs text-stone-500 font-normal">
-                      {f}
-                    </span>
-                  </div>
-                ))}
+                {Array.isArray(tour.features) &&
+                  tour.features.map((f) => (
+                    <div key={f} className="flex items-center gap-2">
+                      <svg
+                        className="w-3 h-3 text-stone-400 flex-shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      <span className="font-[DM_Sans] text-xs text-stone-500 font-normal">
+                        {f}
+                      </span>
+                    </div>
+                  ))}
               </div>
 
               {/* Amenities */}
               <div className="mb-8 md:mb-10">
                 <div className="font-[DM_Sans] text-[10px] tracking-[0.25em] uppercase text-stone-400 mb-3">
-                  {t("roomsPage.amenitiesTitle")}
+                  {tour.id === "lobby"
+                    ? t("rooms.lobby.labels.services")
+                    : t("roomsPage.amenitiesTitle")}
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                  {tour.amenities.map((a) => (
-                    <div key={a} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
-                      <span className="font-[DM_Sans] text-xs text-stone-500 font-normal">
-                        {a}
-                      </span>
-                    </div>
-                  ))}
+                  {Array.isArray(tour.amenities) &&
+                    tour.amenities.map((a) => (
+                      <div key={a} className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
+                        <span className="font-[DM_Sans] text-xs text-stone-500 font-normal">
+                          {a}
+                        </span>
+                      </div>
+                    ))}
                 </div>
               </div>
 
-              {/* CTA — magnetic on desktop */}
+              {/* CTA - Show for all rooms including lobby */}
               <motion.a
                 ref={ctaMag.ref as React.RefObject<HTMLAnchorElement>}
                 href={tour.href}
@@ -375,7 +406,9 @@ export default function Page() {
                 >
                   <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
                 </svg>
-                {t("tour360.startTour")}
+                {tour.id === "lobby"
+                  ? t("tour360.viewLobby")
+                  : t("tour360.startTour")}
                 <svg
                   className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200"
                   viewBox="0 0 24 24"
@@ -450,7 +483,7 @@ export default function Page() {
             </motion.div>
           </AnimatePresence>
 
-          {/* 360° floating badge */}
+          {/* 360° floating badge - Show for all including lobby */}
           <motion.div
             className="absolute top-4 right-4 md:top-6 md:right-6 z-10 flex items-center gap-2 px-3 py-2 md:px-4 md:py-2.5 bg-white/90 backdrop-blur-md border border-white/60 rounded-full shadow-lg"
             initial={{ opacity: 0, scale: 0.8, y: -10 }}
@@ -466,7 +499,9 @@ export default function Page() {
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
             </motion.svg>
             <span className="font-[DM_Sans] text-[10px] font-semibold tracking-[0.18em] uppercase text-stone-700">
-              {t("tour360.badge")}
+              {tour.id === "lobby"
+                ? t("tour360.viewLobby")
+                : t("tour360.badge")}
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           </motion.div>
@@ -555,7 +590,7 @@ export default function Page() {
           ))}
         </div>
 
-        {/* Swipe hint */}
+        {/* Swipe hint - Show for all */}
         <p className="font-[DM_Sans] text-[9px] tracking-[0.25em] uppercase text-stone-300">
           {t("tour360.swipeHint")}
         </p>

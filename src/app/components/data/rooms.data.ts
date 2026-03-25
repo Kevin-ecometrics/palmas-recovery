@@ -6,17 +6,39 @@ export type Room = {
   description: string;
   image: string;
   imageAlt: string;
-  price: number;
-  capacity: number;
+  price: number | null;
+  capacity: number | null;
   beds: string;
   size: string;
-  amenities: string[]; 
+  amenities: string[];
   features: string[];
   highlight: string;
 };
 
-
 export const ROOMS: Room[] = [
+  {
+    id: "lobby",
+    name: "Lobby",
+    subtitle: "WELCOME",
+    tagline: "Your Arrival Experience",
+    description:
+      "Step into our welcoming lobby, designed to provide comfort and tranquility from the moment you arrive. A space where hospitality meets healing.",
+    image: "/lobby.jpg",
+    imageAlt: "Hotel Lobby",
+    price: null,
+    capacity: null,
+    beds: "N/A",
+    size: "Common Area",
+    amenities: [
+      "Reception Desk",
+      "Comfortable Seating",
+      "Welcome Drinks",
+      "Wi-Fi",
+      "Information Desk",
+    ],
+    features: ["24/7 Reception", "Concierge Service", "Guest Relations"],
+    highlight: "WELCOME",
+  },
   {
     id: "shared",
     name: "Shared Room",
@@ -89,4 +111,3 @@ export const ROOMS: Room[] = [
     highlight: "PREMIUM",
   },
 ] satisfies Room[];
-

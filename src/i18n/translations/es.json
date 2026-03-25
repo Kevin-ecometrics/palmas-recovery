@@ -318,6 +318,36 @@
     "title": "Habitaciones de recuperación + bienestar"
   },
   "rooms": {
+    "lobby": {
+      "name": "Lobby",
+      "tagDescription": "Bienvenida",
+      "description": "Ingresa a nuestro acogedor lobby, diseñado para brindar comodidad y tranquilidad desde el momento de tu llegada. Un espacio donde la hospitalidad se encuentra con la sanación.",
+      "tag": "BIENVENIDA",
+      "imageAlt": "Lobby del Hotel",
+      "beds": "N/A",
+      "size": "Área Común",
+      "amenities": [
+        "Recepción",
+        "Asientos Confortables",
+        "Bebidas de Bienvenida",
+        "Wi-Fi",
+        "Mesa de Información"
+      ],
+      "features": [
+        "Recepción 24/7",
+        "Servicio de Conserjería",
+        "Relaciones con Huéspedes"
+      ],
+      "labels": {
+        "area": "Área",
+        "commonSpace": "Espacio Común",
+        "access": "Acceso",
+        "allGuests": "Todos los Huéspedes",
+        "service": "Servicio",
+        "reception247": "Recepción 24/7",
+        "services": "Servicios"
+      }
+    },
     "shared": {
       "name": "Habitación Compartida",
       "subtitle": "POPULAR",
@@ -376,6 +406,8 @@
   },
   "tour360": {
     "startTour": "Iniciar tour 360°",
+    "viewLobby": "Iniciar tour lobby 360°",
+
     "badge": "Tour 360°",
     "swipeHint": "desliza la imagen para navegar"
   },
@@ -762,6 +794,27 @@
     ]
   },
   "tour": {
+    "lobby": {
+  "name": "Lobby",
+  "tagDescription": "Bienvenida",
+  "description": "Ingresa a nuestro acogedor lobby, diseñado para brindar comodidad y tranquilidad desde el momento de tu llegada. Un espacio donde la hospitalidad se encuentra con la sanación.",
+  "tag": "BIENVENIDA",
+  "imageAlt": "Lobby del Hotel",
+  "beds": "N/A",
+  "size": "Área Común",
+  "amenities": [
+    "Recepción",
+    "Asientos Confortables",
+    "Bebidas de Bienvenida",
+    "Wi-Fi",
+    "Mesa de Información"
+  ],
+  "features": [
+    "Recepción 24/7",
+    "Servicio de Conserjería",
+    "Relaciones con Huéspedes"
+  ]
+},
     "private": {
       "heroLabel": "Tour • Habitación Privada",
       "title": "Habitación Privada",
@@ -949,7 +1002,14 @@
       "playRoom": "Sala de juegos",
       "riverAlcove": "Alcoba del río",
       "moonLab": "Laboratorio lunar",
-      "germanTown": "Pueblo alemán"
+      "germanTown": "Pueblo alemán",
+      "room": "Cuarto",
+      "bathroom": "Baño",
+      "hallway": "Pasillo",
+      "entrance": "Entrada",
+      "commonArea": "Área común",
+      "sharedSpace": "Espacio común",
+      "nurseStation": "Estación de enfermeras"
     }
   },
   "notFound": {

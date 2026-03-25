@@ -318,6 +318,36 @@
     "title": "Recovery Rooms & Wellness"
   },
   "rooms": {
+    "lobby": {
+      "name": "Lobby",
+      "tagDescription": "Welcome",
+      "description": "Step into our welcoming lobby, designed to provide comfort and tranquility from the moment you arrive. A space where hospitality meets healing.",
+      "tag": "WELCOME",
+      "imageAlt": "Hotel Lobby",
+      "beds": "N/A",
+      "size": "Common Area",
+      "amenities": [
+        "Reception Desk",
+        "Comfortable Seating",
+        "Welcome Drinks",
+        "Wi-Fi",
+        "Information Desk"
+      ],
+      "features": [
+        "24/7 Reception",
+        "Concierge Service",
+        "Guest Relations"
+      ],
+      "labels": {
+        "area": "Area",
+        "commonSpace": "Common Space",
+        "access": "Access",
+        "allGuests": "All Guests",
+        "service": "Service",
+        "reception247": "24/7 Reception",
+        "services": "Services"
+      }
+    },
     "shared": {
       "name": "Shared Room",
       "subtitle": "POPULAR",
@@ -376,6 +406,7 @@
   },
   "tour360": {
     "startTour": "Start 360° Tour",
+    "viewLobby": "Start 360° Lobby Tour",
     "badge": "360° Tour",
     "swipeHint": "swipe image to navigate"
   },
@@ -762,6 +793,27 @@
     ]
   },
   "tour": {
+    "lobby": {
+      "name": "Lobby",
+      "tagDescription": "Welcome",
+      "description": "Step into our welcoming lobby, designed to provide comfort and tranquility from the moment you arrive. A space where hospitality meets healing.",
+      "tag": "WELCOME",
+      "imageAlt": "Hotel Lobby",
+      "beds": "N/A",
+      "size": "Common Area",
+      "amenities": [
+        "Reception Desk",
+        "Comfortable Seating",
+        "Welcome Drinks",
+        "Wi-Fi",
+        "Information Desk"
+      ],
+      "features": [
+        "24/7 Reception",
+        "Concierge Service",
+        "Guest Relations"
+      ]
+    },
     "private": {
       "heroLabel": "Tour • Private Room",
       "title": "Private Room",
@@ -946,10 +998,17 @@
     "dragHint": "Drag to explore • 360°",
     "labels": {
       "studio": "Studio",
-      "playRoom": "Play Room",
+      "playRoom": "Playroom",
       "riverAlcove": "River Alcove",
       "moonLab": "Moon Lab",
-      "germanTown": "German Town"
+      "germanTown": "German Town",
+      "room": "Room",
+      "bathroom": "Bathroom",
+      "hallway": "Hallway",
+      "entrance": "Entrance",
+      "commonArea": "Common Area",
+      "sharedSpace": "Shared Space",
+      "nurseStation": "Nurse Station"
     }
   },
   "notFound": {

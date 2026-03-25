@@ -6,7 +6,7 @@ import { FaUsers, FaBed } from "react-icons/fa";
 import { MdZoomOutMap } from "react-icons/md";
 import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/Navbar";
-import { ROOMS, Room as RoomType } from "./rooms.data";
+import { ROOMS, Room as RoomType } from "../components/data/rooms.data";
 import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
 import { getTourPath, getRoomTourPath } from "@/i18n/slugRoutes";
@@ -66,7 +66,7 @@ export default function RoomsPage() {
           </div>
 
           {/* Room Cards */}
-          {ROOMS.map((room, index) => (
+          {ROOMS.slice(1, 4).map((room, index) => (
             <div key={room.id} className="mb-32 last:mb-0">
               {(() => {
                 const name = t(`rooms.${room.id}.name`);
@@ -161,7 +161,7 @@ export default function RoomsPage() {
                           <FaUsers className="text-principal text-xl mt-1 flex-shrink-0" />
                           <span className="text-gray-800 text-sm leading-relaxed">
                             {t("searchBar.accommodates", {
-                              count: room.capacity,
+                              count: room.capacity || 0,
                             })}
                           </span>
                         </div>
@@ -198,7 +198,7 @@ export default function RoomsPage() {
                       </Link>
                       <Link
                         href={getRoomTourPath(room.id, currentLang)}
-                        className="group/btn relative w-full bg-black text-white font-bold py-5 overflow-hidden transition-all hover:shadow-2xl rounded-full text-center"
+                        className="group/btn relative w-full bg-wine text-white font-bold py-5 overflow-hidden transition-all hover:shadow-2xl rounded-full text-center"
                       >
                         <span className="relative z-10 tracking-wider text-sm">
                           {t("roomsPage.viewAllTours")}

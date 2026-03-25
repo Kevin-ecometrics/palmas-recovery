@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
+import Link from "next/link";
 const NotFound: React.FC = () => {
-  const router = useRouter();
   const { t } = useTranslation();
 
   return (
@@ -19,12 +18,12 @@ const NotFound: React.FC = () => {
       <p className="text-slate-600 mb-8 max-w-lg">
         {t("notFound.description")}
       </p>
-      <button
-        onClick={() => router.push("/")}
-        className="bg-gradient-to-r from-principal to-secundario text-white font-semibold py-3 px-6 rounded-lg hover:from-hover cursor-pointer hover:to-principal transition-all duration-200 transform hover:scale-[1.05]"
+      <Link
+        href="/"
+        className="bg-wine text-white font-semibold py-3 px-6 rounded-lg hover:from-hover cursor-pointer hover:to-principal transition-all duration-200 transform hover:scale-[1.05]"
       >
         {t("notFound.cta")}
-      </button>
+      </Link>
     </div>
   );
 };

@@ -27,7 +27,7 @@ import {
 } from "react-icons/md";
 import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/Navbar";
-import { ROOMS } from "../rooms/rooms.data";
+import { ROOMS } from "../components/data/rooms.data";
 import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
 import { Suspense } from "react";
