@@ -477,6 +477,7 @@
     "emailSent": "Hemos enviado los detalles de tu reserva a tu correo electrónico. Por favor revisa tu bandeja de entrada.",
     "newBooking": "Hacer nueva reserva",
     "errors": {
+      "roomNotBookable": "Esta área no está disponible para reserva. Por favor selecciona una habitación.",
       "checkInRequired": "Por favor selecciona una fecha de entrada.",
       "checkOutRequired": "Por favor selecciona una fecha de salida.",
       "fullNameRequired": "Por favor ingresa tu nombre completo.",

@@ -476,6 +476,7 @@
     "emailSent": "We've sent the details of your booking to your email. Please check your inbox.",
     "newBooking": "Make a New Booking",
     "errors": {
+      "roomNotBookable": "This area is not available for booking. Please select a room.",
       "checkInRequired": "Please select a check-in date.",
       "checkOutRequired": "Please select a check-out date.",
       "fullNameRequired": "Please enter your full name.",

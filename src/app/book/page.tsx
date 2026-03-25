@@ -107,7 +107,7 @@ const checkBulkAvailability = async (
     const response = await axios.post(`${apiBaseUrl}/api/bulk-availability`, {
       checkIn,
       checkOut,
-      roomIds: ROOMS.map((r) => r.id),
+      roomIds: ROOMS.filter((room) => room.price !== null).map((r) => r.id),
     });
     return response.data;
   } catch (error) {
@@ -227,7 +227,12 @@ const calculateTotal = (
   selectedExtras: string[],
   guests = 1,
 ): number => {
-  if (!selectedRoomData || calculateNights(checkIn, checkOut) <= 0) return 0;
+  if (
+    !selectedRoomData ||
+    selectedRoomData.price === null ||
+    calculateNights(checkIn, checkOut) <= 0
+  )
+    return 0;
   const numberOfGuests = guests || 1;
   const roomTotal =
     selectedRoomData.price *
@@ -307,6 +312,11 @@ const handleFinalSubmit = async (
     const roomData = ROOMS.find((r) => r.id === selectedRoom);
     if (!roomData) {
       throw new Error(t("booking.errors.roomNotFound"));
+    }
+
+    // Verificar si el precio es null (como en el lobby)
+    if (roomData.price === null) {
+      throw new Error(t("booking.errors.roomNotBookable"));
     }
 
     // Verificar disponibilidad nuevamente
@@ -396,12 +406,12 @@ const SuccessModal = ({
 
   const getRoomName = (roomId: string) => {
     switch (roomId) {
-      case "standard":
-        return t("rooms.standard.name");
-      case "deluxe":
-        return t("rooms.deluxe.name");
+      case "private":
+        return t("rooms.private.name");
       case "shared":
         return t("rooms.shared.name");
+      case "vip":
+        return t("rooms.vip.name");
       default:
         return roomId;
     }
@@ -504,7 +514,7 @@ const SuccessModal = ({
                       {t("booking.extras")}:
                     </span>
                     <span className="font-semibold text-olive-dark">
-                      ${confirmationData?.extrasTotal}
+                      ${calculateExtrasTotal(confirmationData.extras)}
                     </span>
                   </div>
                 )}
@@ -591,7 +601,10 @@ const BookingPageInner = () => {
   // Obtener room param de URL
   useEffect(() => {
     const roomParam = searchParams.get("room");
-    if (roomParam && ROOMS.some((r) => r.id === roomParam)) {
+    if (
+      roomParam &&
+      ROOMS.some((r) => r.id === roomParam && r.price !== null)
+    ) {
       setSelectedRoom(roomParam);
     }
   }, [searchParams]);
@@ -750,6 +763,9 @@ const BookingPageInner = () => {
     if (!hasSearched) return "unknown";
     return availableRooms[roomId] ? "available" : "unavailable";
   };
+
+  // Filtrar habitaciones que tienen precio (excluir lobby)
+  const bookableRooms = ROOMS.filter((room) => room.price !== null);
 
   return (
     <div className="min-h-screen bg-white">
@@ -957,7 +973,7 @@ const BookingPageInner = () => {
                         {t("booking.selectRoomTitle")}
                       </h3>
 
-                      {ROOMS.map((room) => {
+                      {bookableRooms.map((room) => {
                         const isSelected = selectedRoom === room.id;
                         const availabilityStatus = getRoomAvailabilityStatus(
                           room.id,
@@ -965,7 +981,7 @@ const BookingPageInner = () => {
                         const isAvailable = availabilityStatus === "available";
 
                         if (!isAvailable && availabilityStatus !== "unknown") {
-                          return null; // No mostrar habitaciones no disponibles
+                          return null;
                         }
 
                         return (
@@ -1046,7 +1062,7 @@ const BookingPageInner = () => {
                                         <FaUserFriends className="text-wine" />
                                         <span className="text-olive-dark font-medium">
                                           {t("searchBar.accommodates", {
-                                            count: room.capacity,
+                                            count: room.capacity ?? 0,
                                           })}
                                         </span>
                                       </div>
@@ -1076,7 +1092,7 @@ const BookingPageInner = () => {
                         );
                       })}
 
-                      {ROOMS.filter(
+                      {bookableRooms.filter(
                         (room) =>
                           getRoomAvailabilityStatus(room.id) === "available",
                       ).length === 0 && (
@@ -1197,24 +1213,25 @@ const BookingPageInner = () => {
               )}
 
               {/* Step 3: Confirmation */}
-              {step === 3 && (
-                <div className="space-y-8 animate-fadeIn">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-wine flex items-center justify-center">
-                      <FaCheck className="text-white text-lg" />
+              {step === 3 &&
+                selectedRoomData &&
+                selectedRoomData.price !== null && (
+                  <div className="space-y-8 animate-fadeIn">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 rounded-full bg-wine flex items-center justify-center">
+                        <FaCheck className="text-white text-lg" />
+                      </div>
+                      <h2 className="text-2xl md:text-3xl font-bold text-wine">
+                        {t("booking.confirmTitle")}
+                      </h2>
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-wine">
-                      {t("booking.confirmTitle")}
-                    </h2>
-                  </div>
 
-                  {/* Order Summary */}
-                  <div className="bg-cream rounded-2xl p-6 md:p-8 shadow-lg border border-wine/20">
-                    <h3 className="text-xl font-bold text-wine mb-6">
-                      {t("booking.summary")}
-                    </h3>
+                    {/* Order Summary */}
+                    <div className="bg-cream rounded-2xl p-6 md:p-8 shadow-lg border border-wine/20">
+                      <h3 className="text-xl font-bold text-wine mb-6">
+                        {t("booking.summary")}
+                      </h3>
 
-                    {selectedRoomData && (
                       <div className="space-y-5">
                         <div className="flex items-center gap-4 pb-5 border-b-2 border-wine/20">
                           <img
@@ -1304,10 +1321,9 @@ const BookingPageInner = () => {
                           </p>
                         </div>
                       </div>
-                    )}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* Navigation Buttons */}
               <div className="flex flex-col sm:flex-row justify-between gap-4 mt-12 pt-8 border-t-2 border-wine/20">
@@ -1331,7 +1347,9 @@ const BookingPageInner = () => {
                     (step === 1 &&
                       (!selectedRoom || !hasSearched || isSearchingRooms)) ||
                     status === "submitting" ||
-                    (step === 2 && !!validationError)
+                    (step === 2 && !!validationError) ||
+                    (step === 3 &&
+                      (!selectedRoomData || selectedRoomData.price === null))
                   }
                   className={`
                     group flex items-center justify-center gap-3 px-10 py-4 font-bold rounded-full 
@@ -1342,7 +1360,9 @@ const BookingPageInner = () => {
                         hasSearched &&
                         !isSearchingRooms) ||
                         (step === 2 && !validationError) ||
-                        step === 3) &&
+                        (step === 3 &&
+                          selectedRoomData &&
+                          selectedRoomData.price !== null)) &&
                       status !== "submitting"
                         ? "bg-wine text-white hover:shadow-wine/30 hover:shadow-2xl"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -1402,7 +1422,7 @@ const BookingPageInner = () => {
                   </h3>
                 </div>
 
-                {selectedRoomData ? (
+                {selectedRoomData && selectedRoomData.price !== null ? (
                   <div className="space-y-6">
                     <div className="relative overflow-hidden rounded-xl">
                       <img
