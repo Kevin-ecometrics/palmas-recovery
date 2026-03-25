@@ -5,78 +5,48 @@ import {
   motion,
   AnimatePresence,
   useMotionValue,
-  useTransform,
   useSpring,
 } from "framer-motion";
 import Navbar from "@/app/components/Navbar";
+import { ROOMS } from "@/app/rooms/rooms.data";
+import { useTranslation } from "react-i18next";
+import {
+  getRoomIdFromPath,
+  getRoomTourPath,
+  getTourPath,
+} from "@/i18n/slugRoutes";
 
-const TOURS = [
-  {
-    id: 1,
-    index: "01",
-    name: "Private\nRoom",
-    nameFlat: "Private Room",
-    subtitle: "Privacy & Rest",
-    description:
-      "Space designed for those seeking complete privacy during their process. Single bed, private bathroom, natural ventilation, and an atmosphere of absolute calm.",
-    cover:
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90",
-    features: [
-      "Single bed",
-      "Private bathroom",
-      "Climate control",
-      "Natural light",
-    ],
-    tag: "PRIVATE",
-    accentLight: "bg-amber-100 text-amber-800 border-amber-200",
-    accentDot: "bg-amber-500",
-    href: "/tour/360/private",
-  },
-  {
-    id: 2,
-    index: "02",
-    name: "Shared\nRoom",
-    nameFlat: "Shared Room",
-    subtitle: "Community & Support",
-    description:
-      "A warm environment where recovery is experienced together. Share the journey with people who understand your path. Spacious and well-ventilated area.",
-    cover:
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1200&q=90",
-    features: [
-      "2–4 people",
-      "Private lockers",
-      "Shared bathroom",
-      "Social area",
-    ],
-    tag: "SHARED",
-    accentLight: "bg-sky-100 text-sky-800 border-sky-200",
-    accentDot: "bg-sky-500",
-    href: "/tour/360/shared",
-  },
-  {
-    id: 3,
-    index: "03",
-    name: "VIP\nSuite",
-    nameFlat: "VIP Suite",
-    subtitle: "Exceptional Comfort",
-    description:
-      "The most complete experience in the center. Spacious room with premium finishes, private living area, and all services included for recovery without limits.",
-    cover:
-      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1200&q=90",
-    features: [
-      "Full suite",
-      "Private living room",
-      "TV & entertainment",
-      "Personalized service",
-    ],
-    tag: "VIP",
-    accentLight: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    accentDot: "bg-yellow-500",
-    href: "/tour/360/vip",
-  },
-];
+const TOTAL = ROOMS.length;
 
-const TOTAL = TOURS.length;
+type RoomAccent = {
+  accentLight: string;
+  accentDot: string;
+};
+
+function getAccent(roomId: string): RoomAccent {
+  switch (roomId) {
+    case "private":
+      return {
+        accentLight: "bg-amber-100 text-amber-800 border-amber-200",
+        accentDot: "bg-amber-500",
+      };
+    case "shared":
+      return {
+        accentLight: "bg-sky-100 text-sky-800 border-sky-200",
+        accentDot: "bg-sky-500",
+      };
+    case "vip":
+      return {
+        accentLight: "bg-yellow-100 text-yellow-800 border-yellow-200",
+        accentDot: "bg-yellow-500",
+      };
+    default:
+      return {
+        accentLight: "bg-stone-100 text-stone-800 border-stone-200",
+        accentDot: "bg-stone-500",
+      };
+  }
+}
 
 /* ── Magnetic button hook ── */
 function useMagnetic(strength = 0.35) {
@@ -125,43 +95,55 @@ function Spotlight() {
   );
 }
 
-/* ── Parallax image on hover ── */
-function ParallaxImage({ src, alt }: { src: string; alt: string }) {
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const rx = useTransform(my, [-1, 1], ["-3deg", "3deg"]);
-  const ry = useTransform(mx, [-1, 1], ["3deg", "-3deg"]);
-
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    mx.set(((e.clientX - r.left) / r.width - 0.5) * 2);
-    my.set(((e.clientY - r.top) / r.height - 0.5) * 2);
-  };
-  const onLeave = () => {
-    mx.set(0);
-    my.set(0);
-  };
-
-  return (
-    <motion.div
-      className="absolute inset-0 cursor-none"
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
-    >
-      <img src={src} alt={alt} className="w-full h-full object-cover" />
-    </motion.div>
-  );
-}
-
 export default function Page() {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
   const [active, setActive] = useState(0);
   const [hoveredThumb, setHoveredThumb] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
-  const tour = TOURS[active];
+  const room = ROOMS[active];
+
+  const tour = (() => {
+    const index = String(active + 1).padStart(2, "0");
+    const nameFlat = t(`rooms.${room.id}.name`);
+    const subtitle = t(`rooms.${room.id}.tagDescription`);
+    const description = t(`rooms.${room.id}.description`);
+    const tag = t(`rooms.${room.id}.tag`);
+    const beds = t(`rooms.${room.id}.beds`, { defaultValue: room.beds });
+    const size = t(`rooms.${room.id}.size`, { defaultValue: room.size });
+    const amenities = t(`rooms.${room.id}.amenities`, {
+      returnObjects: true,
+      defaultValue: room.amenities,
+    }) as string[];
+    const features = t(`rooms.${room.id}.features`, {
+      returnObjects: true,
+    }) as string[];
+    const { accentLight, accentDot } = getAccent(room.id);
+
+    return {
+      id: room.id,
+      index,
+      name: nameFlat,
+      nameFlat,
+      subtitle,
+      description,
+      cover: room.image,
+      coverAlt: t(`rooms.${room.id}.imageAlt`),
+      price: room.price,
+      capacity: room.capacity,
+      beds,
+      size,
+      amenities,
+      features,
+      tag,
+      accentLight,
+      accentDot,
+      href: getTourPath(room.id, currentLang),
+    };
+  })();
 
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 100);
@@ -172,19 +154,11 @@ export default function Page() {
     const newActive = ((next % TOTAL) + TOTAL) % TOTAL;
     setActive(newActive);
 
-    // Update hash based on selected room
-    const tour = TOURS[newActive];
-    let hash = "";
-
-    if (tour.id === 1) {
-      hash = "#private";
-    } else if (tour.id === 2) {
-      hash = "#shared";
-    } else if (tour.id === 3) {
-      hash = "#vip";
-    }
-
-    // Update hash without causing scroll (replaceState prevents page movement)
+    const nextRoom = ROOMS[newActive];
+    const pathWithHash = getRoomTourPath(nextRoom.id, currentLang);
+    const hash = pathWithHash.includes("#")
+      ? `#${pathWithHash.split("#").pop() || ""}`
+      : "";
     window.history.replaceState(null, "", hash);
   };
 
@@ -204,20 +178,11 @@ export default function Page() {
 
   const handleHashChange = () => {
     const hash = window.location.hash.toLowerCase();
-    let newActive = active; // Keep current by default
-
-    if (hash === "#private") {
-      newActive = 0;
-    } else if (hash === "#shared") {
-      newActive = 1;
-    } else if (hash === "#vip") {
-      newActive = 2;
-    }
-
-    // Only update if it actually changed to avoid unnecessary re-renders
-    if (newActive !== active) {
-      setActive(newActive);
-    }
+    const raw = hash.replace(/^#/, "");
+    if (!raw) return;
+    const roomId = getRoomIdFromPath(raw);
+    const idx = ROOMS.findIndex((r) => r.id === roomId);
+    if (idx >= 0 && idx !== active) setActive(idx);
   };
 
   useEffect(() => {
@@ -240,40 +205,45 @@ export default function Page() {
 
       {/* ── PAGE WRAPPER ── */}
       <div
-        className="pt-[65px] md:pt-[73px] min-h-screen flex flex-col md:grid md:grid-cols-[1fr_1.1fr] md:h-screen"
+        className="pt-[65px] md:pt-[73px] min-h-screen flex flex-col md:grid md:grid-cols-[1fr_1.1fr]"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         {/* ══ LEFT / INFO ══ */}
-        <div className="order-2 md:order-1 flex flex-col justify-between px-6 py-8 md:px-12 md:py-10 border-r border-stone-200/60 overflow-hidden">
+        <div className="order-2 md:order-1 flex flex-col justify-between px-6 py-8 md:px-12 md:py-10 border-r border-stone-200/60">
           {/* Top: tour list / selector */}
-          <div className="hidden md:flex flex-col gap-1">
-            {TOURS.map((t, i) => (
-              <button
-                key={t.id}
-                onClick={() => goTo(i)}
-                className={`group flex items-center gap-4 px-3 py-3 rounded-xl text-left transition-all duration-300 cursor-pointer border-none bg-transparent ${
-                  i === active ? "bg-stone-100" : "hover:bg-stone-50"
-                }`}
-              >
-                <span
-                  className={`w-1.5 h-6 rounded-full transition-all duration-300 flex-shrink-0 ${
-                    i === active
-                      ? t.accentDot
-                      : "bg-stone-200 group-hover:bg-stone-300"
-                  }`}
-                />
-                <span
-                  className={`font-[DM_Sans] text-xs tracking-[0.2em] uppercase transition-colors duration-200 ${
-                    i === active
-                      ? "text-stone-900 font-medium"
-                      : "text-stone-400 group-hover:text-stone-600"
+          <div className="hidden md:flex flex-row gap-1">
+            {ROOMS.map((r, i) => {
+              const index = String(i + 1).padStart(2, "0");
+              const nameFlat = t(`rooms.${r.id}.name`);
+              const { accentDot } = getAccent(r.id);
+              return (
+                <button
+                  key={r.id}
+                  onClick={() => goTo(i)}
+                  className={`group flex items-center gap-4 px-3 py-3 rounded-xl text-left transition-all duration-300 cursor-pointer border-none bg-transparent ${
+                    i === active ? "bg-stone-100" : "hover:bg-stone-50"
                   }`}
                 >
-                  {t.index} — {t.nameFlat}
-                </span>
-              </button>
-            ))}
+                  <span
+                    className={`w-1.5 h-6 rounded-full transition-all duration-300 flex-shrink-0 ${
+                      i === active
+                        ? accentDot
+                        : "bg-stone-200 group-hover:bg-stone-300"
+                    }`}
+                  />
+                  <span
+                    className={`font-[DM_Sans] text-xs tracking-[0.2em] uppercase transition-colors duration-200 ${
+                      i === active
+                        ? "text-stone-900 font-medium"
+                        : "text-stone-400 group-hover:text-stone-600"
+                    }`}
+                  >
+                    {index} — {nameFlat}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Center: main content */}
@@ -286,18 +256,6 @@ export default function Page() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Tag + index */}
-              <div className="flex items-center gap-3 mb-5 md:mb-6">
-                <span
-                  className={`font-[DM_Sans] text-[10px] font-medium tracking-[0.25em] uppercase border px-2.5 py-1 rounded-full ${tour.accentLight}`}
-                >
-                  {tour.tag}
-                </span>
-                <span className="font-[DM_Sans] text-[10px] text-stone-300 tracking-[0.3em]">
-                  {tour.index} / {String(TOTAL).padStart(2, "0")}
-                </span>
-              </div>
-
               {/* Title — big editorial serif */}
               <h1 className="font-[Playfair_Display] font-medium text-stone-900 leading-[1] tracking-tight mb-3 text-[clamp(40px,7vw,72px)] whitespace-pre-line">
                 {tour.name}
@@ -315,6 +273,42 @@ export default function Page() {
               <p className="font-[DM_Sans] text-sm font-light leading-[1.9] text-stone-500 mb-8 max-w-sm">
                 {tour.description}
               </p>
+
+              {/* Room details */}
+              <div className="grid grid-cols-2 gap-3 mb-8 md:mb-10">
+                <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
+                  <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
+                    {t("common.perNight")}
+                  </div>
+                  <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
+                    ${tour.price}
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
+                  <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
+                    {t("roomDetail.capacity")}
+                  </div>
+                  <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
+                    {t("searchBar.accommodates", { count: tour.capacity })}
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
+                  <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
+                    {t("roomDetail.bedType")}
+                  </div>
+                  <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
+                    {tour.beds}
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
+                  <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
+                    {t("roomDetail.roomSize")}
+                  </div>
+                  <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
+                    {tour.size}
+                  </div>
+                </div>
+              </div>
 
               {/* Features grid */}
               <div className="grid grid-cols-2 gap-2 mb-8 md:mb-10">
@@ -334,6 +328,23 @@ export default function Page() {
                     </span>
                   </div>
                 ))}
+              </div>
+
+              {/* Amenities */}
+              <div className="mb-8 md:mb-10">
+                <div className="font-[DM_Sans] text-[10px] tracking-[0.25em] uppercase text-stone-400 mb-3">
+                  {t("roomsPage.amenitiesTitle")}
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {tour.amenities.map((a) => (
+                    <div key={a} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
+                      <span className="font-[DM_Sans] text-xs text-stone-500 font-normal">
+                        {a}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* CTA — magnetic on desktop */}
@@ -364,7 +375,7 @@ export default function Page() {
                 >
                   <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
                 </svg>
-                Start 360° Tour
+                {t("tour360.startTour")}
                 <svg
                   className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200"
                   viewBox="0 0 24 24"
@@ -393,13 +404,13 @@ export default function Page() {
               >
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
-              {TOURS[(active - 1 + TOTAL) % TOTAL].nameFlat}
+              {t(`rooms.${ROOMS[(active - 1 + TOTAL) % TOTAL].id}.name`)}
             </button>
             <button
               onClick={() => goTo(active + 1)}
               className="group flex items-center gap-2 font-[DM_Sans] text-xs text-stone-400 hover:text-stone-900 transition-colors cursor-pointer bg-transparent border-none p-0"
             >
-              {TOURS[(active + 1) % TOTAL].nameFlat}
+              {t(`rooms.${ROOMS[(active + 1) % TOTAL].id}.name`)}
               <svg
                 className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                 viewBox="0 0 24 24"
@@ -426,7 +437,11 @@ export default function Page() {
               transition={{ duration: 0.7 }}
               style={{ transformStyle: "preserve-3d" }}
             >
-              <ParallaxImage src={tour.cover} alt={tour.nameFlat} />
+              <img
+                src={tour.cover}
+                alt={tour.coverAlt}
+                className="w-full h-full object-cover"
+              />
 
               {/* Dark vignette bottom */}
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent pointer-events-none" />
@@ -451,7 +466,7 @@ export default function Page() {
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
             </motion.svg>
             <span className="font-[DM_Sans] text-[10px] font-semibold tracking-[0.18em] uppercase text-stone-700">
-              360° Tour
+              {t("tour360.badge")}
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           </motion.div>
@@ -480,7 +495,7 @@ export default function Page() {
 
           {/* Desktop: thumbnail strip inside image */}
           <div className="absolute bottom-6 right-6 z-10 hidden md:flex flex-col gap-2">
-            {TOURS.map((t, i) => (
+            {ROOMS.map((r, i) => (
               <motion.button
                 key={i}
                 onClick={() => goTo(i)}
@@ -495,8 +510,8 @@ export default function Page() {
                 whileTap={{ scale: 0.95 }}
               >
                 <img
-                  src={t.cover}
-                  alt={t.nameFlat}
+                  src={r.image}
+                  alt={t(`rooms.${r.id}.imageAlt`)}
                   className="w-full h-full object-cover"
                 />
                 {hoveredThumb === i && i !== active && (
@@ -525,7 +540,7 @@ export default function Page() {
       <div className="md:hidden flex flex-col items-center gap-4 px-6 pt-4 pb-8">
         {/* Tour selector tabs */}
         <div className="flex gap-2 w-full">
-          {TOURS.map((t, i) => (
+          {ROOMS.map((r, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
@@ -535,14 +550,14 @@ export default function Page() {
                   : "bg-stone-100 text-stone-400 hover:bg-stone-200"
               }`}
             >
-              {t.index}
+              {t(`rooms.${r.id}.name`)}
             </button>
           ))}
         </div>
 
         {/* Swipe hint */}
         <p className="font-[DM_Sans] text-[9px] tracking-[0.25em] uppercase text-stone-300">
-          swipe image to navigate
+          {t("tour360.swipeHint")}
         </p>
       </div>
     </main>

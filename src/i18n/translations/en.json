@@ -374,6 +374,11 @@
     "viewAllTours": "VIEW ALL ROOM TOURS",
     "limited": "Limited availability • Instant confirmation"
   },
+  "tour360": {
+    "startTour": "Start 360° Tour",
+    "badge": "360° Tour",
+    "swipeHint": "swipe image to navigate"
+  },
   "roomDetail": {
     "exploreMore": "EXPLORE MORE",
     "discoverOtherSuites": "Discover Our Other Luxury Suites",

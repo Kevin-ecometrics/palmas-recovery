@@ -374,6 +374,11 @@
     "viewAllTours": "VER TODOS LOS RECORRIDOS",
     "limited": "Disponibilidad limitada • Confirmación inmediata"
   },
+  "tour360": {
+    "startTour": "Iniciar tour 360°",
+    "badge": "Tour 360°",
+    "swipeHint": "desliza la imagen para navegar"
+  },
   "roomDetail": {
     "exploreMore": "EXPLORA MÁS",
     "discoverOtherSuites": "Descubre nuestras otras suites de lujo",

@@ -10,7 +10,7 @@ export type Room = {
   capacity: number;
   beds: string;
   size: string;
-  amenities: string[]; // Cambiar a string[] genérico
+  amenities: string[]; 
   features: string[];
   highlight: string;
 };
@@ -88,5 +88,5 @@ export const ROOMS: Room[] = [
     features: ["Maximum Privacy", "Premium Amenities"],
     highlight: "PREMIUM",
   },
-] as const;
+] satisfies Room[];
 
