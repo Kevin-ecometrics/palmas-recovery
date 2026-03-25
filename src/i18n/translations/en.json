@@ -64,7 +64,9 @@
       "contact": "CONTACT US",
       "panorama": "PANORAMA",
       "about": "ABOUT US",
-      "blogs": "BLOG"
+      "blogs": "BLOG",
+      "rooms": "ROOMS",
+      "tour": "TOURS"
     },
     "logoAlt": "Palmas Recovery logo",
     "phoneAria": "Call Palmas Recovery"
@@ -99,7 +101,7 @@
   },
   "home": {
     "pleasure": {
-      "titleLine1": "The top choice Recovery House chosen by double board–certified surgeons",
+      "titleLine1": "The top choice Recovery House by surgeons",
       "subtitleLine1": "At Palma’s Recovery House , we ensure superior results and a seamless transition to wellness.",
       "subtitleLine2": "",
       "paragraphs": [
@@ -132,19 +134,19 @@
     "hero": {
       "slides": [
         {
-          "id": "shared-room",
+          "id": "shared",
           "title": "Shared Room",
           "subtitle": "Community & Connection",
           "description": "Experience healing in a supportive group environment"
         },
         {
-          "id": "private-room",
+          "id": "private",
           "title": "Private Room",
           "subtitle": "Personal Sanctuary",
           "description": "Your own space for reflection and recovery"
         },
         {
-          "id": "vip-suite",
+          "id": "vip",
           "title": "VIP Suite",
           "subtitle": "Ultimate Comfort",
           "description": "Premium amenities for an elevated experience"
@@ -368,7 +370,8 @@
     "discoverTitle": "Discover Your Place of Healing",
     "discoverDescription": "Each suite is designed to nurture your recovery with serenity, comfort, and personalized care.",
     "amenitiesTitle": "Luxury Amenities",
-    "viewDetails": "VIEW DETAILS",
+    "viewDetails": "VIEW ROOM TOUR",
+    "viewAllTours": "VIEW ALL ROOM TOURS",
     "limited": "Limited availability • Instant confirmation"
   },
   "roomDetail": {
@@ -952,5 +955,27 @@
   "testPage": {
     "title": "Content that follows",
     "description": "Here the scroll is released. The image finished its animation and now the content flows normally downward."
+  },
+  "bannerHero": {
+    "about": {
+      "title": "About",
+      "description": "We’re inspired by beauty and culture, which we infuse into spaces designed to create unique moments"
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contact us today to book your stay or if you have any questions. We’re here to support you every step of the way during your recovery."
+    },
+    "services": {
+      "title": "Services",
+      "description": "Our comprehensive post-surgical care services are designed to support your recovery journey with medical excellence and personalized attention."
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "description": "Please review our terms and conditions carefully before using our services. They outline important information about bookings, cancellations, and our policies."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "We are committed to protecting your personal information and your right to privacy. Please read our privacy policy to understand how we collect, use, and protect your data."
+    }
   }
 }

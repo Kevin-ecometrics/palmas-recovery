@@ -25,11 +25,11 @@ export const ROUTE_PAIRS: Array<{ key: RouteKey; es: string; en: string }> = [
   { key: "privacy", es: "/privacidad", en: "/privacy" },
   { key: "terms", es: "/terminos", en: "/terms" },
   { key: "rooms", es: "/habitaciones", en: "/rooms" },
-  { key: "tour", es: "/recorrido", en: "/tour" },
+  { key: "tour", es: "/recorrido/360", en: "/tour/360" },
   { key: "blog", es: "/articulos", en: "/blog" },
   { key: "about", es: "/nosotros", en: "/about" },
   { key: "tourshared", es: "/tour/360/shared", en: "/tour/360/shared" },
-  { key: "tourprivate", es: "/tour/360/private", en: "/tour/360/private" },
+  { key: "tourprivate", es: "/tour/360/dsa", en: "/tour/360/private" },
   { key: "tourvip", es: "/tour/360/vip", en: "/tour/360/vip" },
 ];
 

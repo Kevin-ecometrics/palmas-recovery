@@ -5,6 +5,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useTranslation } from "react-i18next";
+import Hero from "../components/Hero";
 
 // Tipo para el payload del formulario
 interface ContactFormPayload {
@@ -150,6 +151,11 @@ const ContactPage: React.FC = () => {
   return (
     <div className="bg-white">
       <Navbar />
+      <Hero
+        title={t("bannerHero.contact.title")}
+        description={t("bannerHero.contact.description")}
+        height="h-[80dvh]"
+      />
       <div className="min-h-screen bg-white py-20 px-6 md:px-20">
         {/* Título */}
         <div className="text-center mb-16">

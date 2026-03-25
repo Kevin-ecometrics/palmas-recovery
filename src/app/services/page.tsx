@@ -1,4 +1,5 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import {
@@ -17,6 +18,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
+import Hero from "../components/Hero";
 
 const ServicesPage: React.FC = () => {
   const [activeService, setActiveService] = useState<number | null>(null);
@@ -50,15 +52,21 @@ const ServicesPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
+      <Hero
+        title={t("bannerHero.services.title")}
+        description={t("bannerHero.services.description")}
+        height="h-[80dvh]"
+      />
+
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-wine via-wine to-wine/90 text-white py-24 px-6 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-wine via-wine to-wine/90 text-white py-24 px-6 overflow-hidden">
         {/* Decorative background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-cream rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-cream rounded-full blur-3xl"></div>
         </div>
 
-        <div className="max-w-5xl mx-auto text-center relative z-10">
+        <div className="max-w-5xl mx-auto text-center relative z-10 py-8">
           <p className="text-cream font-semibold tracking-widest text-sm mb-6 uppercase animate-fade-in">
             {t("services.heroLabel")}
           </p>
@@ -69,10 +77,10 @@ const ServicesPage: React.FC = () => {
             {t("services.heroSubtitle")}
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Stats Bar */}
-      <div className="bg-white border-y border-gray-200 py-12 px-6">
+      <section className="bg-white border-y border-gray-200 py-12 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {whyChooseUs.map((item, index) => (
             <div key={index} className="text-center group">
@@ -86,10 +94,10 @@ const ServicesPage: React.FC = () => {
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
       {/* Core Services Section */}
-      <div className="py-20 px-6 bg-gradient-to-b from-cream to-white">
+      <section className="py-20 px-6 bg-gradient-to-b from-cream to-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-wine mb-4">
@@ -159,10 +167,10 @@ const ServicesPage: React.FC = () => {
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Mission & Vision - Redesigned */}
-      <div className="py-20 px-6 bg-wine text-white relative overflow-hidden">
+      <section className="py-20 px-6 bg-wine text-white relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
@@ -213,10 +221,10 @@ const ServicesPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* CTA Section */}
-      <div className="py-20 px-6 bg-gradient-to-b from-white to-cream">
+      <section className="py-20 px-6 bg-gradient-to-b from-white to-cream">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-wine mb-6">
             {t("services.ctaTitle")}
@@ -252,7 +260,7 @@ const ServicesPage: React.FC = () => {
             </a>
           </p>
         </div>
-      </div>
+      </section>
       <Footer />
     </div>
   );

@@ -5,7 +5,7 @@ import {
   getPathLang,
   normalizePath,
 } from "./src/i18n/routeMap";
-import { getRoomPath, getTourPath } from "./src/i18n/slugRoutes";
+import { getTourPath } from "./src/i18n/slugRoutes";
 
 const isPublicAsset = (pathname: string) =>
   pathname.startsWith("/_next") ||
@@ -46,15 +46,7 @@ export function middleware(request: NextRequest) {
         }
       }
 
-      if (pathname.startsWith("/habitaciones/")) {
-        const id = normalizePath(pathname).split("/")[2] || "";
-        const target = withTrailingSlash(getRoomPath(id, "en"), trailing);
-        if (target !== pathname) {
-          const url = request.nextUrl.clone();
-          url.pathname = target;
-          return NextResponse.redirect(url);
-        }
-      }
+
     }
 
     return NextResponse.next();

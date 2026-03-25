@@ -64,7 +64,9 @@
       "contact": "CONTÁCTANOS",
       "panorama": "PANORAMA",
       "about": "NOSOTROS",
-      "blogs": "BLOG"
+      "blogs": "BLOG",
+      "rooms": "HABITACIONES",
+      "tour": "RECORRIDOS"
     },
     "logoAlt": "Logo de Palmas Recovery",
     "phoneAria": "Llamar a Palmas Recovery"
@@ -99,7 +101,7 @@
   },
   "home": {
     "pleasure": {
-      "titleLine1": "La casa de recuperación preferida por cirujanos con doble certificación",
+      "titleLine1": "La casa de recuperación preferida por cirujanos",
       "subtitleLine1": "En Palmas Recovery House garantizamos resultados superiores y una transición fluida hacia tu bienestar.",
       "subtitleLine2": "",
       "paragraphs": [
@@ -132,19 +134,19 @@
     "hero": {
       "slides": [
         {
-          "id": "shared-room",
+          "id": "shared",
           "title": "Habitación Compartida",
           "subtitle": "Comunidad y Conexión",
           "description": "Vive la recuperación en un entorno grupal de apoyo"
         },
         {
-          "id": "private-room",
+          "id": "private",
           "title": "Habitación Privada",
           "subtitle": "Santuario Personal",
           "description": "Tu propio espacio para reflexionar y sanar"
         },
         {
-          "id": "vip-suite",
+          "id": "vip",
           "title": "Suite VIP",
           "subtitle": "Máximo Confort",
           "description": "Amenidades premium para una experiencia superior"
@@ -193,7 +195,7 @@
     "exclusive": "Beneficios exclusivos:",
     "items": [
       "Tu recuperación", 
-      "nuestra prioridad",
+      "Nuestra prioridad",
       "Reservas flexibles",
       "Enfermería certificada 24/7",
       "Médicos internos"
@@ -368,7 +370,8 @@
     "discoverTitle": "Descubre tu lugar de sanación",
     "discoverDescription": "Cada suite está diseñada para nutrir tu recuperación con serenidad, comodidad y atención personalizada.",
     "amenitiesTitle": "Amenidades de lujo",
-    "viewDetails": "VER DETALLES",
+    "viewDetails": "VER RECORRIDO",
+    "viewAllTours": "VER TODOS LOS RECORRIDOS",
     "limited": "Disponibilidad limitada • Confirmación inmediata"
   },
   "roomDetail": {
@@ -952,5 +955,28 @@
   "testPage": {
     "title": "Contenido que sigue",
     "description": "Aquí ya se libera el scroll. La imagen terminó su animación y ahora el contenido fluye normalmente hacia abajo."
+  },
+  "bannerHero": {
+    "about": {
+      "title": "Sobre Nosotros",
+      "description": "Nos inspiramos en la belleza y la cultura, que plasmamos en espacios diseñados para crear momentos únicos"
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "Contáctanos hoy para reservar tu estancia o para cualquier pregunta que tengas. Estamos aquí para ayudarte en cada paso de tu proceso de recuperación."
+    },
+    "services": {
+      "title": "Servicios",
+      "description": "Nuestros completos servicios de cuidados posoperatorios están diseñados para acompañarle en su proceso de recuperación con excelencia médica y una atención personalizada."
+    },
+    "terms": {
+      "title": "Términos y Condiciones",
+      "description": "Por favor revisa nuestros términos y condiciones antes de usar nuestros servicios para asegurarte de entender nuestras políticas y procedimientos."
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "description": "En Palmas Recovery, respetamos tu privacidad y estamos comprometidos a proteger tu información personal. Lee nuestra política de privacidad para entender cómo recopilamos, usamos y protegemos tus datos."
+    }
   }
+
 }

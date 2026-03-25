@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import { useTranslation } from "react-i18next";
+import Hero from "../components/Hero";
 
 export default function PrivacyPage() {
   const { t } = useTranslation();
@@ -17,6 +18,11 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
+      <Hero
+        title={t("bannerHero.privacy.title")}
+        description={t("bannerHero.privacy.description")}
+        height="h-[80dvh]"
+      />
       <main className="bg-gradient-to-b from-white via-[#fffaf6] to-white">
         <div className="max-w-6xl mx-auto px-6 pt-28 pb-20">
           <div className="text-center mb-14">
@@ -45,7 +51,9 @@ export default function PrivacyPage() {
                   type="button"
                   aria-expanded={openIndex === index}
                   onClick={() =>
-                    setOpenIndex((current) => (current === index ? null : index))
+                    setOpenIndex((current) =>
+                      current === index ? null : index,
+                    )
                   }
                   className="flex w-full items-center justify-between px-5 py-4 text-left text-gray-900 font-semibold"
                 >

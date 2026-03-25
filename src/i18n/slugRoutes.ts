@@ -20,18 +20,18 @@ const TOUR_SLUG_MAP_REVERSE: Record<string, string> = Object.fromEntries(
   Object.entries(TOUR_SLUG_MAP).map(([en, es]) => [es, en])
 );
 
-export const getRoomPath = (roomId: string, lang: Lang) => {
-  if (lang === "es") {
-    return `/habitaciones/${ROOM_ID_MAP[roomId] || roomId}`;
-  }
-  return `/rooms/${ROOM_ID_MAP_REVERSE[roomId] || roomId}`;
-};
-
 export const getTourPath = (slug: string, lang: Lang) => {
   if (lang === "es") {
-    return `/recorrido/${TOUR_SLUG_MAP[slug] || slug}`;
+    return `/recorrido/360/${TOUR_SLUG_MAP[slug] || slug}`;
   }
-  return `/tour/${TOUR_SLUG_MAP_REVERSE[slug] || slug}`;
+  return `/tour/360/${TOUR_SLUG_MAP_REVERSE[slug] || slug}`;
+};
+
+export const getRoomTourPath = (roomId: string, lang: Lang) => {
+  if (lang === "es") {
+    return `/recorrido/360/#${ROOM_ID_MAP[roomId] || roomId}`;
+  }
+  return `/tour/360/#${ROOM_ID_MAP_REVERSE[roomId] || roomId}`;
 };
 
 export const getRoomIdFromPath = (roomId: string) => {

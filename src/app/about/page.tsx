@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import Hero from "../components/Hero";
 
 export default function AboutPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -19,7 +20,11 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <Navbar />
-
+      <Hero
+        title="About Us"
+        description="We’re inspired by beauty and culture, which we infuse into spaces designed to create unique moments"
+        height="h-[80dvh]"
+      />
       {/* Modal for full image */}
       {modalOpen && (
         <div

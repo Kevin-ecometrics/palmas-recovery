@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import { FaHotel, FaSuitcase, FaArrowRight, FaUserMd } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import Link from "next/link";
+import Hero from "../components/Hero";
 
 const BLOG_IMAGES = [
   "/blog1.png", // Entrada de blog 1
@@ -46,6 +47,11 @@ export default function BlogHome() {
     <>
       <Navbar />
 
+      <Hero
+        title="Blogs"
+        description="Palmas Recovery blogs: Your go-to source for expert insights, practical tips, and essential information to guide you through your post-operative recovery journey in Mexico."
+        height="h-[80dvh]"
+      />
       {/* Hero */}
       <div className="relative bg-gradient-to-br from-[#657251]/10 via-white to-[#657251]/5 pt-24 pb-20 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
