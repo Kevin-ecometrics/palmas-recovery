@@ -51,6 +51,7 @@ export default function BlogHome() {
         title="Blogs"
         description="Articulos Palmas Recovery: consejos expertos, recomendaciones prácticas e información esencial para tu proceso de recuperación postoperatoria en México."
         height="h-[80dvh]"
+        imageSrc="/blog_palmas_banner.webp"
       />
       {/* Hero */}
       <div className="relative bg-gradient-to-br from-[#657251]/10 via-white to-[#657251]/5 pt-24 pb-20 overflow-hidden">

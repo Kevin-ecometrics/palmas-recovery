@@ -155,6 +155,7 @@ const ContactPage: React.FC = () => {
         title={t("bannerHero.contact.title")}
         description={t("bannerHero.contact.description")}
         height="h-[80dvh]"
+        imageSrc="/contact_palmas_banner.webp"
       />
       <div className="min-h-screen bg-white py-20 px-6 md:px-20">
         {/* Título */}

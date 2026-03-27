@@ -24,6 +24,7 @@ export default function AboutPage() {
         title="Sobre Nosotros"
         description="Nos inspiramos en la belleza y la cultura, que plasmamos en espacios diseñados para crear momentos únicos"
         height="h-[80dvh]"
+        imageSrc="/about_palmas_banner.webp"
       />
       {/* Modal for full image */}
       {modalOpen && (

@@ -56,6 +56,7 @@ const ServicesPage: React.FC = () => {
         title={t("bannerHero.services.title")}
         description={t("bannerHero.services.description")}
         height="h-[80dvh]"
+        imageSrc="/services_palmas_banner.webp"
       />
 
       {/* Hero Section */}
