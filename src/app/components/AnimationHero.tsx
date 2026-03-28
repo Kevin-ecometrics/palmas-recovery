@@ -30,9 +30,10 @@ export default function AnimationHero() {
       case "shared":
         return "/shared.jpg";
       case "private":
-        return "/vip-suite.jpg";
-      case "vip":
         return "/private.jpg";
+
+      case "vip":
+        return "/vip-suite.jpg";
 
       default:
         return "/habitacion_compartida.jpg";

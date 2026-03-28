@@ -72,8 +72,9 @@ export const ROOMS: Room[] = [
     tagline: "Your Personal Sanctuary",
     description:
       "Find tranquility and privacy in your own recovery space. Our private rooms offer modern medical comfort.",
-    image: "/habitacion_privada.jpg",
     imageAlt: "Private Room",
+        image: "/habitacion_vip.jpg",
+
     price: 180,
     capacity: 1,
     beds: "Adjustable Medical Bed",
@@ -94,7 +95,8 @@ export const ROOMS: Room[] = [
     tagline: "The Ultimate Luxury Experience",
     description:
       "Immerse yourself in unmatched comfort and privacy. Premium furnishings combined with top-tier medical care.",
-    image: "/habitacion_vip.jpg",
+        image: "/habitacion_privada.jpg",
+
     imageAlt: "VIP Suite",
     price: 200,
     capacity: 1,

@@ -65,15 +65,16 @@ export default function HotelDestinationsScroll() {
     {
       id: 2,
       name: "Private Room",
+      image: "/habitacion_vip.jpg",
       priceText: "$180 dlls / night",
-      image: "/habitacion_privada.jpg",
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
     },
     {
       id: 3,
       name: "VIP Suite",
       priceText: "$200 dlls / night",
-      image: "/habitacion_vip.jpg",
+      image: "/habitacion_privada.jpg",
+
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
     },
     {
