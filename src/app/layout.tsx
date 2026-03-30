@@ -14,6 +14,22 @@ export const metadata: Metadata = {
   title: "Palmas Recovery Tijuana | 24/7 Nursing & In-House Doctors",
   description:
     "10 mins from the border. Expert pain management, private transport, lymphatic drainage & anti-inflammatory meals designed for optimal recovery.",
+  keywords: [
+    "Casa de recuperación en Tijuana",
+    "Surgery aftercare Tijuana",
+    "post-op recovery home Mexico",
+    "Casa de recuperación",
+    "BBL recovery house Tijuana",
+    "Mommy Makeover aftercare",
+    "tummy tuck recovery home",
+    "Affordable recovery house Tijuana",
+    "All-inclusive surgery recovery packages",
+    "Safe post-op housing Mexico",
+    "Best recovery home in Tijuana",
+    "Certified recovery house Tijuana",
+    "Recovery house with lymphatic massage",
+    "Post-op meal plans Tijuana",
+  ],
 };
 
 const META_PIXEL_ID = "743057892204187";
