@@ -30,6 +30,20 @@ export const metadata: Metadata = {
     "Recovery house with lymphatic massage",
     "Post-op meal plans Tijuana",
   ],
+  alternates: {
+    canonical: "https://www.palmasrecovery.com",
+  },
+  authors: [
+    {
+      name: "Palmas Recovery",
+      url: "https://www.palmasrecovery.com",
+    },
+  ],
+  publisher: "Ecommetrica",
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 const META_PIXEL_ID = "743057892204187";

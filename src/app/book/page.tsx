@@ -598,7 +598,7 @@ const BookingPageInner = () => {
     paymentMethod: "credit-card",
   });
 
-  // Obtener room param de URL
+  // Obtener room param de URL y step
   useEffect(() => {
     const roomParam = searchParams.get("room");
     if (
@@ -607,7 +607,58 @@ const BookingPageInner = () => {
     ) {
       setSelectedRoom(roomParam);
     }
+
+    // Manejar el step desde la URL
+    const stepParam = searchParams.get("step");
+    if (stepParam) {
+      const stepNumber = parseInt(stepParam);
+      if (stepNumber === 2 || stepNumber === 3) {
+        setStep(stepNumber);
+      }
+    }
   }, [searchParams]);
+
+  // Manejar fechas desde URL
+  useEffect(() => {
+    const checkInParam = searchParams.get("checkIn");
+    const checkOutParam = searchParams.get("checkOut");
+    const guestsParam = searchParams.get("guests");
+
+    if (checkInParam && checkOutParam) {
+      setFormData((prev) => ({
+        ...prev,
+        checkIn: checkInParam,
+        checkOut: checkOutParam,
+      }));
+
+      // Verificar disponibilidad automáticamente si tenemos fechas
+      const checkAvailabilityOnLoad = async () => {
+        try {
+          const availability = await checkBulkAvailability(
+            checkInParam,
+            checkOutParam,
+          );
+          setAvailableRooms(availability);
+          setHasSearched(true);
+
+          // Si hay una habitación preseleccionada pero no está disponible, limpiar
+          if (selectedRoom && availability[selectedRoom] === false) {
+            setSelectedRoom(null);
+            setValidationError(t("booking.errors.selectedRoomNotAvailable"));
+          }
+        } catch (error) {
+          console.error("Error checking availability on load:", error);
+        }
+      };
+
+      checkAvailabilityOnLoad();
+    }
+
+    if (guestsParam) {
+      // Aquí puedes manejar múltiples huéspedes si es necesario
+      // Por ahora se usa DEFAULT_GUEST_COUNT
+    }
+  }, [searchParams, selectedRoom, t]);
 
   const selectedRoomData = selectedRoom
     ? (ROOMS.find((r) => r.id === selectedRoom) ?? null)
@@ -649,6 +700,17 @@ const BookingPageInner = () => {
     } finally {
       setIsSearchingRooms(false);
     }
+  };
+
+  const formatDateDisplay = (dateString: string) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toLocaleDateString(currentLang === "es" ? "es-MX" : "en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
   };
 
   const handleInputChange = async (
@@ -1130,6 +1192,36 @@ const BookingPageInner = () => {
                     </h2>
                   </div>
 
+                  {/* Resumen de la reserva - visible en paso 2 */}
+                  {selectedRoomData &&
+                    formData.checkIn &&
+                    formData.checkOut && (
+                      <div className="bg-cream rounded-xl p-4 mb-6 border border-wine/20">
+                        <h3 className="font-semibold text-wine mb-2 flex items-center gap-2">
+                          <FaInfoCircle className="text-wine" />
+                          {t("booking.bookingSummary")}
+                        </h3>
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          <p className="text-olive-dark">
+                            <strong>{t("booking.fields.room")}:</strong>{" "}
+                            {getRoomText(selectedRoomData.id, "name")}
+                          </p>
+                          <p className="text-olive-dark">
+                            <strong>{t("booking.dates")}:</strong>{" "}
+                            {formatDateDisplay(formData.checkIn)} -{" "}
+                            {formatDateDisplay(formData.checkOut)}
+                          </p>
+                          <p className="text-olive-dark">
+                            <strong>{t("booking.nights")}:</strong> {nights}{" "}
+                            {t("common.night", { count: nights })}
+                          </p>
+                          <p className="text-olive-dark">
+                            <strong>{t("booking.total")}:</strong> ${total}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
                   {/* Mostrar error de validación si existe */}
                   {validationError && (
                     <div className="bg-wine/10 border border-wine text-wine px-4 py-3 rounded-lg">
@@ -1300,9 +1392,9 @@ const BookingPageInner = () => {
                               {t("booking.period")}:
                             </span>
                             <span className="font-medium text-olive-dark text-right">
-                              {formData.checkIn} (2:00 PM)
+                              {formatDateDisplay(formData.checkIn)} (2:00 PM)
                               <br />
-                              {formData.checkOut} (11:00 AM)
+                              {formatDateDisplay(formData.checkOut)} (11:00 AM)
                             </span>
                           </div>
                         </div>
@@ -1451,11 +1543,11 @@ const BookingPageInner = () => {
                         {[
                           {
                             label: t("booking.checkIn"),
-                            value: `${formData.checkIn} (2:00 PM)`,
+                            value: `${formatDateDisplay(formData.checkIn)} (2:00 PM)`,
                           },
                           {
                             label: t("booking.checkOut"),
-                            value: `${formData.checkOut} (11:00 AM)`,
+                            value: `${formatDateDisplay(formData.checkOut)} (11:00 AM)`,
                           },
                           {
                             label: t("booking.nights"),

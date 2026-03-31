@@ -53,7 +53,7 @@ export default function HomePage() {
     <div className="bg-white relative text-black">
       <div className="relative">
         <Hero />
-        {/* <SearchBar floating={showNavbar} hidden={footerVisible} /> */}
+        <SearchBar floating={showNavbar} hidden={footerVisible} />
       </div>
       <AnimationHero />
       <div

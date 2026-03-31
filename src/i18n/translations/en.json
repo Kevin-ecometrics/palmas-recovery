@@ -1,5 +1,13 @@
 {
   "common": {
+    "night": "night",
+    "nights": "nights",
+    "guest": "guest",
+    "guests": "guests",
+    "wifi": "WiFi",
+    "tv": "TV",
+    "edit": "Edit",
+    "airConditioning": "Air Conditioning",
     "language": "Language",
     "english": "EN",
     "spanish": "ES",
@@ -445,6 +453,8 @@
   "booking": {
     "title": "Book Your Stay",
     "subtitle": "Complete the details to reserve your recovery space.",
+    "dates": "Dates",
+    "bookingSummary": "Your Booking Summary",
     "steps": {
       "select": "Select",
       "details": "Details",
@@ -1042,5 +1052,26 @@
       "title": "Privacy Policy",
       "description": "We are committed to protecting your personal information and your right to privacy. Please read our privacy policy to understand how we collect, use, and protect your data."
     }
+  },
+  
+  "searchResults": {
+    "searching": "Searching availability...",
+    "backToHome": "Back to home",
+    "title": "Available Rooms",
+    "promo": "Promo",
+    "checkingAvailability": "Checking availability...",
+    "available": "Available",
+    "noRoomsAvailable": "No rooms available",
+    "noRoomsMessage": "Sorry, we couldn't find any available rooms for your selected dates.",
+    "searchOtherDates": "Search other dates",
+    "notAvailable": "Not available for these dates",
+    "totalFor": "Total for",
+    "selected": "Selected",
+    "select": "Select",
+    "bookNow": "Book Now",
+        "updateSearch": "Update Search",
+    "tryOtherDates": "Try Other Dates"
   }
+
+
 }

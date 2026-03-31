@@ -1,6 +1,13 @@
 {
   "common": {
-    "language": "Idioma",
+    "night": "noche",
+    "nights": "noches",
+    "guests": "huéspedes",
+    "wifi": "WiFi",
+    "tv": "TV",
+        "edit": "Editar",
+    "airConditioning": "Aire Acondicionado",
+    "guest": "Huésped",
     "english": "EN",
     "spanish": "ES",
     "openMenu": "Abrir menú",
@@ -446,6 +453,8 @@
   "booking": {
     "title": "Reserva tu estancia",
     "subtitle": "Completa los detalles para apartar tu espacio de recuperación.",
+    "dates": "Fechas",
+    "bookingSummary": "Resumen de tu reserva",
     "steps": {
       "select": "Seleccionar",
       "details": "Detalles",
@@ -1043,6 +1052,28 @@
       "title": "Política de Privacidad",
       "description": "En Palmas Recovery, respetamos tu privacidad y estamos comprometidos a proteger tu información personal. Lee nuestra política de privacidad para entender cómo recopilamos, usamos y protegemos tus datos."
     }
+    
+  },
+  
+  "searchResults": {
+    "searching": "Buscando disponibilidad...",
+    "backToHome": "Volver al inicio",
+    "title": "Habitaciones Disponibles",
+    "promo": "Promo",
+    "checkingAvailability": "Verificando disponibilidad...",
+    "available": "Disponibles",
+    "noRoomsAvailable": "No hay habitaciones disponibles",
+    "noRoomsMessage": "Lo sentimos, no encontramos habitaciones disponibles para las fechas seleccionadas.",
+    "searchOtherDates": "Buscar otras fechas",
+    "notAvailable": "No disponibles para estas fechas",
+    "totalFor": "Total por",
+    "selected": "Seleccionada",
+    "select": "Seleccionar",
+    "bookNow": "Reservar",
+       "updateSearch": "Actualizar Búsqueda",
+    "tryOtherDates": "Probar Otras Fechas"
   }
+
+
 
 }

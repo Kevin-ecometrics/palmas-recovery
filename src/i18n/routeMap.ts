@@ -14,7 +14,8 @@ export type RouteKey =
   | "about"
   | "tourshared"
   | "tourprivate"
-  | "tourvip";
+  | "tourvip"
+  | "search";
 
 export const ROUTE_PAIRS: Array<{ key: RouteKey; es: string; en: string }> = [
   { key: "home", es: "/es", en: "/en" },
@@ -31,6 +32,7 @@ export const ROUTE_PAIRS: Array<{ key: RouteKey; es: string; en: string }> = [
   { key: "tourshared", es: "/tour/360/shared", en: "/tour/360/shared" },
   { key: "tourprivate", es: "/tour/360/dsa", en: "/tour/360/private" },
   { key: "tourvip", es: "/tour/360/vip", en: "/tour/360/vip" },
+  { key: "search", es: "/busqueda", en: "/search-results" },
 ];
 
 const routeMap = ROUTE_PAIRS.reduce<Record<RouteKey, { es: string; en: string }>>(
