@@ -50,7 +50,8 @@ interface BookingPayload {
 
 interface Extra {
   id: string;
-  title: string;
+  titleKey: string;
+  descriptionKey: string;
   price: number;
   images: string[];
 }
@@ -66,31 +67,47 @@ interface AvailableRoom {
   available: boolean;
 }
 
-// Datos de extras
+// Datos de extras con claves de traducción para título y descripción
 const EXTRAS: Extra[] = [
   {
+    id: "lymphatic",
+    titleKey: "extras.lymphatic.title",
+    descriptionKey: "extras.lymphatic.description",
+    price: 60,
+    images: ["/lymphatic.jpg"],
+  },
+  {
+    id: "5massages",
+    titleKey: "extras.fiveMassages.title",
+    descriptionKey: "extras.fiveMassages.description",
+    price: 270,
+    images: ["/5massages.jpeg"],
+  },
+  {
     id: "b01g",
-    title: "ORIGINAL RECOVERY BRA - STYLE NO. B01G",
+    titleKey: "extras.b01g.title",
+    descriptionKey: "extras.b01g.description",
     price: 80,
     images: ["/extra1-1.png", "/extra1-2.png", "/extra1-3.png"],
   },
   {
     id: "fvom",
-    title: "OPEN BUST VEST - 3/4 LENGTH SLEEVES - STYLE NO. FVOM",
+    titleKey: "extras.fvom.title",
+    descriptionKey: "extras.fvom.description",
     price: 80,
     images: ["/extra2-1.png", "/extra2-2.png", "/extra2-3.png"],
   },
   {
     id: "sfbhrs",
-    title:
-      "REINFORCED GIRDLE WITH HIGH-BACK AND LAYERED PANELS - SHORT LENGTH - STYLES NO. SFBHRS",
+    titleKey: "extras.sfbhrs.title",
+    descriptionKey: "extras.sfbhrs.description",
     price: 140,
     images: ["/extra3-1.png", "/Extra3-2.png", "/extra3-3.png"],
   },
   {
     id: "sfbhs2",
-    title:
-      "GIRDLE WITH HIGH-BACK - NO CLOSURES - SHORT LENGHT - STYLE NO. SFBHS2",
+    titleKey: "extras.sfbhs2.title",
+    descriptionKey: "extras.sfbhs2.description",
     price: 140,
     images: ["/extra4-1.png", "/extra4-2.png", "/extra4-3.png"],
   },
@@ -417,6 +434,16 @@ const SuccessModal = ({
     }
   };
 
+  const getExtraTitle = (extraId: string) => {
+    const extra = EXTRAS.find((e) => e.id === extraId);
+    return extra ? t(extra.titleKey) : extraId;
+  };
+
+  const getExtraDescription = (extraId: string) => {
+    const extra = EXTRAS.find((e) => e.id === extraId);
+    return extra ? t(extra.descriptionKey) : "";
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-fadeIn">
       <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slideInUp">
@@ -509,14 +536,38 @@ const SuccessModal = ({
 
               {confirmationData?.extras &&
                 confirmationData.extras.length > 0 && (
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-olive-dark font-medium">
-                      {t("booking.extras")}:
-                    </span>
-                    <span className="font-semibold text-olive-dark">
-                      ${calculateExtrasTotal(confirmationData.extras)}
-                    </span>
-                  </div>
+                  <>
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-olive-dark font-medium">
+                        {t("booking.extras")}:
+                      </span>
+                      <span className="font-semibold text-olive-dark">
+                        ${calculateExtrasTotal(confirmationData.extras)}
+                      </span>
+                    </div>
+                    <div className="mt-2 space-y-2">
+                      {confirmationData.extras.map((extraId: string) => {
+                        const extra = EXTRAS.find((e) => e.id === extraId);
+                        if (!extra) return null;
+                        return (
+                          <div
+                            key={extra.id}
+                            className="flex flex-col gap-1 text-sm text-olive-dark pl-4 border-l-2 border-wine/30"
+                          >
+                            <div className="flex items-center gap-2">
+                              <FaCheck className="text-wine text-xs" />
+                              <span className="font-semibold">
+                                {t(extra.titleKey)}
+                              </span>
+                            </div>
+                            <p className="text-xs text-olive-dark/80 pl-5">
+                              {t(extra.descriptionKey)}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </>
                 )}
 
               <div className="flex justify-between items-center py-2 border-t border-gray-200 mt-2">
@@ -1180,7 +1231,7 @@ const BookingPageInner = () => {
                 </div>
               )}
 
-              {/* Step 2: Personal Details */}
+              {/* Step 2: Personal Details & Extras */}
               {step === 2 && (
                 <div className="space-y-8 animate-fadeIn">
                   <div className="flex items-center gap-3 mb-6">
@@ -1218,6 +1269,12 @@ const BookingPageInner = () => {
                           <p className="text-olive-dark">
                             <strong>{t("booking.total")}:</strong> ${total}
                           </p>
+                          {selectedExtras.length > 0 && (
+                            <p className="text-olive-dark col-span-2">
+                              <strong>{t("booking.extras")}:</strong> $
+                              {extrasTotal}
+                            </p>
+                          )}
                         </div>
                       </div>
                     )}
@@ -1301,6 +1358,100 @@ const BookingPageInner = () => {
                       </div>
                     </div>
                   </div>
+
+                  {/* Extras Section */}
+                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200">
+                    <h3 className="text-xl font-bold text-wine mb-6 flex items-center gap-2">
+                      <FaCreditCard className="text-wine" />
+                      {t("booking.extraServices")}
+                    </h3>
+
+                    <div className="space-y-4">
+                      {EXTRAS.map((extra) => (
+                        <div
+                          key={extra.id}
+                          className="border border-gray-200 rounded-xl p-4 hover:border-wine/30 transition-all"
+                        >
+                          <div className="flex flex-col md:flex-row gap-4">
+                            {/* Imagen del extra */}
+                            <div className="md:w-24 h-24 relative">
+                              <img
+                                src={extra.images[0]}
+                                alt={t(extra.titleKey)}
+                                className="w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                                onClick={() => openGallery(extra.id, 0)}
+                              />
+                              {extra.images.length > 1 && (
+                                <button
+                                  onClick={() => openGallery(extra.id, 0)}
+                                  className="absolute bottom-1 right-1 bg-black/70 text-white text-xs px-2 py-1 rounded-full"
+                                >
+                                  +{extra.images.length}
+                                </button>
+                              )}
+                            </div>
+
+                            {/* Información del extra */}
+                            <div className="flex-1">
+                              <div className="flex justify-between items-start">
+                                <div className="flex-1">
+                                  <h4 className="font-bold text-wine text-lg mb-1">
+                                    {t(extra.titleKey)}
+                                  </h4>
+                                  <p className="text-sm text-olive-dark mb-2">
+                                    {t(extra.descriptionKey)}
+                                  </p>
+                                  <p className="text-2xl font-bold text-wine">
+                                    ${extra.price}
+                                  </p>
+                                </div>
+                                <label className="flex items-center gap-2 cursor-pointer ml-4">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedExtras.includes(extra.id)}
+                                    onChange={() => toggleExtra(extra.id)}
+                                    className="w-5 h-5 text-wine focus:ring-wine rounded"
+                                  />
+                                  <span className="text-sm text-olive-dark">
+                                    {selectedExtras.includes(extra.id)
+                                      ? t("common.selected")
+                                      : t("common.select")}
+                                  </span>
+                                </label>
+                              </div>
+
+                              {/* Galería de imágenes miniaturas */}
+                              {extra.images.length > 1 && (
+                                <div className="flex gap-2 mt-3">
+                                  {extra.images.slice(0, 3).map((img, idx) => (
+                                    <button
+                                      key={idx}
+                                      onClick={() => openGallery(extra.id, idx)}
+                                      className="w-12 h-12 rounded-lg overflow-hidden hover:ring-2 hover:ring-wine transition-all"
+                                    >
+                                      <img
+                                        src={img}
+                                        alt=""
+                                        className="w-full h-full object-cover"
+                                      />
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {selectedExtras.length > 0 && (
+                      <div className="mt-6 p-4 bg-cream rounded-lg">
+                        <p className="font-semibold text-wine">
+                          {t("booking.extrasTotal")}: ${extrasTotal}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -1377,16 +1528,86 @@ const BookingPageInner = () => {
                                 DEFAULT_GUEST_COUNT}
                             </span>
                           </div>
-                          {selectedExtras.length > 0 && (
-                            <div className="flex justify-between items-center py-2">
-                              <span className="text-olive-dark font-medium">
-                                {t("booking.extras")}:
+
+                          {/* Extras Section in Confirmation */}
+                          <div className="mt-4 pt-4 border-t border-wine/20">
+                            <div className="flex justify-between items-center mb-3">
+                              <span className="text-lg font-bold text-wine">
+                                {t("booking.extras")}
                               </span>
-                              <span className="font-bold text-wine">
-                                ${extrasTotal}
-                              </span>
+                              <button
+                                type="button"
+                                onClick={() => handleStepChange(2, setStep)}
+                                className="text-sm text-wine hover:text-wine/80 underline"
+                              >
+                                {t("booking.modifyExtras")}
+                              </button>
                             </div>
-                          )}
+
+                            {selectedExtras.length === 0 ? (
+                              <div className="text-center py-4 bg-white/50 rounded-lg">
+                                <p className="text-sm text-olive-dark">
+                                  {t("booking.noExtrasSelected")}
+                                </p>
+                                <button
+                                  type="button"
+                                  onClick={() => handleStepChange(2, setStep)}
+                                  className="mt-2 text-wine text-sm font-semibold hover:underline"
+                                >
+                                  {t("booking.addExtras")}
+                                </button>
+                              </div>
+                            ) : (
+                              <div className="space-y-3">
+                                {selectedExtras.map((extraId) => {
+                                  const extra = EXTRAS.find(
+                                    (e) => e.id === extraId,
+                                  );
+                                  if (!extra) return null;
+                                  return (
+                                    <div
+                                      key={extra.id}
+                                      className="flex justify-between items-center p-3 bg-white rounded-lg"
+                                    >
+                                      <div className="flex-1">
+                                        <div className="flex items-center gap-3">
+                                          <div className="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                                            <img
+                                              src={extra.images[0]}
+                                              alt={t(extra.titleKey)}
+                                              className="w-full h-full object-cover"
+                                            />
+                                          </div>
+                                          <div className="flex-1">
+                                            <p className="font-semibold text-wine text-sm">
+                                              {t(extra.titleKey)}
+                                            </p>
+                                            <p className="text-xs text-olive-dark line-clamp-1">
+                                              {t(extra.descriptionKey)}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div className="text-right ml-3">
+                                        <span className="font-bold text-wine">
+                                          ${extra.price}
+                                        </span>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                                <div className="flex justify-between items-center pt-2 mt-2 border-t border-wine/20">
+                                  <span className="font-semibold text-olive-dark">
+                                    {t("booking.extrasTotal")}:
+                                  </span>
+                                  <span className="font-bold text-wine text-lg">
+                                    ${extrasTotal}
+                                  </span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
                           <div className="flex justify-between items-center py-2">
                             <span className="text-olive-dark font-medium">
                               {t("booking.period")}:
@@ -1593,14 +1814,19 @@ const BookingPageInner = () => {
                             return (
                               <div
                                 key={extra.id}
-                                className="flex justify-between items-center text-xs text-olive-dark mb-1"
+                                className="flex flex-col gap-1 text-xs text-olive-dark mb-2 pb-2 border-b border-wine/10 last:border-0"
                               >
-                                <span className="truncate flex-1">
-                                  {extra.title.substring(0, 30)}...
-                                </span>
-                                <span className="font-bold text-wine ml-2">
-                                  ${extra.price}
-                                </span>
+                                <div className="flex justify-between items-center">
+                                  <span className="font-medium truncate flex-1">
+                                    {t(extra.titleKey)}
+                                  </span>
+                                  <span className="font-bold text-wine ml-2">
+                                    ${extra.price}
+                                  </span>
+                                </div>
+                                <p className="text-xs text-olive-dark/80 line-clamp-1">
+                                  {t(extra.descriptionKey)}
+                                </p>
                               </div>
                             );
                           })}
@@ -1710,9 +1936,12 @@ const BookingPageInner = () => {
                           {galleryIndex + 1} {t("common.of")} {images.length}
                         </span>
                       </div>
-                      <h2 className="text-white text-sm md:text-base font-semibold truncate">
-                        {extra.title}
+                      <h2 className="text-white text-lg md:text-xl font-bold truncate">
+                        {t(extra.titleKey)}
                       </h2>
+                      <p className="text-white/70 text-sm mt-1 line-clamp-2">
+                        {t(extra.descriptionKey)}
+                      </p>
                     </div>
                     <button
                       type="button"
@@ -1729,7 +1958,7 @@ const BookingPageInner = () => {
                   <div className="relative w-full h-full max-w-6xl max-h-[80vh] flex items-center justify-center">
                     <img
                       src={currentImage}
-                      alt={`${extra.title} - ${t("common.image")} ${galleryIndex + 1}`}
+                      alt={`${t(extra.titleKey)} - ${t("common.image")} ${galleryIndex + 1}`}
                       className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
                     />
 

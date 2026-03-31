@@ -1,5 +1,6 @@
 {
   "common": {
+        "selected": "Seleccionado",
     "night": "noche",
     "nights": "noches",
     "guests": "huéspedes",
@@ -455,6 +456,11 @@
     "subtitle": "Completa los detalles para apartar tu espacio de recuperación.",
     "dates": "Fechas",
     "bookingSummary": "Resumen de tu reserva",
+        "extraServices": "Servicios adicionales",
+    "extrasTotal": "Total extras",
+    "noExtrasSelected": "No has seleccionado servicios adicionales",
+    "addExtras": "Agregar servicios adicionales",
+    "modifyExtras": "Modificar extras",
     "steps": {
       "select": "Seleccionar",
       "details": "Detalles",
@@ -1072,8 +1078,35 @@
     "bookNow": "Reservar",
        "updateSearch": "Actualizar Búsqueda",
     "tryOtherDates": "Probar Otras Fechas"
-  }
+  },
 
+  "extras": {
+    "lymphatic": {
+      "title": "Masaje Linfático",
+      "description": "Masaje especializado para reducir inflamación y mejorar la circulación"
+    },
+    "fiveMassages": {
+      "title": "Paquete de 5 Masajes Linfáticos",
+      "description": "5 sesiones de masaje linfático con un 10% de descuento"
+    },
+    "b01g": {
+      "title": "BRA DE RECUPERACIÓN",
+      "description": "Sujetador de recuperación original - Estilo N° B01G. Proporciona soporte óptimo y compresión suave."
+    },
+    "fvom": {
+      "title": "CHALECO DE BUSTO ABIERTO",
+      "description": "Chaleco con mangas 3/4 - Estilo N° FVOM. Diseñado para máxima comodidad y facilidad de uso."
+    },
+    "sfbhrs": {
+      "title": "FAJA REFORZADA",
+      "description": "Faja con espalda alta y paneles en capas - Largo corto - Estilo N° SFBHRS. Compresión avanzada para resultados óptimos."
+    },
+    "sfbhs2": {
+      "title": "FAJA CON ESPALDA ALTA",
+      "description": "Faja sin cierres - Largo corto - Estilo N° SFBHS2. Diseño sin cierres para máxima comodidad."
+    }
+  
+}
 
 
 }

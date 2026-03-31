@@ -1,5 +1,7 @@
 {
   "common": {
+        "selected": "Selected",
+
     "night": "night",
     "nights": "nights",
     "guest": "guest",
@@ -454,6 +456,12 @@
     "title": "Book Your Stay",
     "subtitle": "Complete the details to reserve your recovery space.",
     "dates": "Dates",
+    "extraServices": "Extra services",
+    "extrasTotal": "Extras total",
+    "noExtrasSelected": "No extra services selected",
+    "addExtras": "Add extra services",
+    "modifyExtras": "Modify extras",
+
     "bookingSummary": "Your Booking Summary",
     "steps": {
       "select": "Select",
@@ -1071,7 +1079,35 @@
     "bookNow": "Book Now",
         "updateSearch": "Update Search",
     "tryOtherDates": "Try Other Dates"
-  }
+  },
+  
+  "extras": {
+    "lymphatic": {
+      "title": "Lymphatic Massage",
+      "description": "Specialized massage to reduce inflammation and improve circulation"
+    },
+    "fiveMassages": {
+      "title": "5 Lymphatic Massages Package",
+      "description": "5 lymphatic massage sessions with 10% discount"
+    },
+    "b01g": {
+      "title": "RECOVERY BRA",
+      "description": "Original recovery bra - Style No. B01G. Provides optimal support and gentle compression."
+    },
+    "fvom": {
+      "title": "OPEN BUST VEST",
+      "description": "Open bust vest with 3/4 length sleeves - Style No. FVOM. Designed for maximum comfort and ease of use."
+    },
+    "sfbhrs": {
+      "title": "REINFORCED GIRDLE",
+      "description": "Reinforced girdle with high-back and layered panels - Short length - Style No. SFBHRS. Advanced compression for optimal results."
+    },
+    "sfbhs2": {
+      "title": "HIGH-BACK GIRDLE",
+      "description": "High-back girdle with no closures - Short length - Style No. SFBHS2. Closure-free design for maximum comfort."
+    }
+  
+}
 
 
 }
