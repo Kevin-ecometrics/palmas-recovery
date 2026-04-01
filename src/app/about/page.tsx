@@ -77,7 +77,7 @@ export default function AboutPage() {
                   </div>
 
                   <h3 className="text-2xl md:text-3xl font-bold text-wine mb-4">
-                    Endorsed by COEPRIS
+                    Endorsed by COFEPRIS
                   </h3>
 
                   <p className="text-olive-dark/80 mb-6">
