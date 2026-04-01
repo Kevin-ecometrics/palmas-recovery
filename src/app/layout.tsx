@@ -11,6 +11,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.palmasrecovery.com"),
   title: "Palmas Recovery Tijuana | 24/7 Nursing & In-House Doctors",
   description:
     "10 mins from the border. Expert pain management, private transport, lymphatic drainage & anti-inflammatory meals designed for optimal recovery.",
