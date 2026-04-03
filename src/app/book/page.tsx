@@ -311,6 +311,7 @@ const handleFinalSubmit = async (
   formData: any,
   selectedRoom: string | null,
   selectedExtras: string[],
+  guestCount: number,
   t: (key: string) => string,
   setStatus: (status: "idle" | "submitting" | "success" | "error") => void,
   setErrorText: (error: string | null) => void,
@@ -354,7 +355,7 @@ const handleFinalSubmit = async (
       formData.checkIn,
       formData.checkOut,
       selectedExtras,
-      1,
+      guestCount,
     );
 
     // Preparar payload para la API
@@ -362,7 +363,7 @@ const handleFinalSubmit = async (
       roomId: selectedRoom,
       checkIn: formData.checkIn,
       checkOut: formData.checkOut,
-      guests: 1,
+      guests: guestCount,
       fullName: formData.fullName,
       email: formData.email,
       phone: formData.phone,
@@ -637,7 +638,9 @@ const BookingPageInner = () => {
   const todayValue = `${today.getFullYear()}-${String(
     today.getMonth() + 1,
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
   const DEFAULT_GUEST_COUNT = 1;
+  const [guestCount, setGuestCount] = useState<number>(DEFAULT_GUEST_COUNT);
 
   const [formData, setFormData] = useState({
     checkIn: "",
@@ -705,9 +708,12 @@ const BookingPageInner = () => {
       checkAvailabilityOnLoad();
     }
 
+    // Leer guests desde URL
     if (guestsParam) {
-      // Aquí puedes manejar múltiples huéspedes si es necesario
-      // Por ahora se usa DEFAULT_GUEST_COUNT
+      const parsedGuests = parseInt(guestsParam);
+      if (!isNaN(parsedGuests) && parsedGuests >= 0) {
+        setGuestCount(parsedGuests);
+      }
     }
   }, [searchParams, selectedRoom, t]);
 
@@ -814,7 +820,7 @@ const BookingPageInner = () => {
     formData.checkIn,
     formData.checkOut,
     selectedExtras,
-    1,
+    guestCount,
   );
 
   const handleNextClick = async () => {
@@ -850,6 +856,7 @@ const BookingPageInner = () => {
         formData,
         selectedRoom,
         selectedExtras,
+        guestCount,
         t,
         setStatus,
         setErrorText,
@@ -1511,10 +1518,8 @@ const BookingPageInner = () => {
                               {t("booking.guests")}:
                             </span>
                             <span className="font-bold text-wine">
-                              {DEFAULT_GUEST_COUNT}{" "}
-                              {t("common.guest", {
-                                count: DEFAULT_GUEST_COUNT,
-                              })}
+                              {guestCount}{" "}
+                              {t("common.guest", { count: guestCount })}
                             </span>
                           </div>
                           <div className="flex justify-between items-center py-2">
@@ -1522,10 +1527,7 @@ const BookingPageInner = () => {
                               {t("booking.roomSubtotal")}:
                             </span>
                             <span className="font-bold text-wine">
-                              $
-                              {selectedRoomData.price *
-                                nights *
-                                DEFAULT_GUEST_COUNT}
+                              ${selectedRoomData.price * nights * guestCount}
                             </span>
                           </div>
 
@@ -1776,7 +1778,7 @@ const BookingPageInner = () => {
                           },
                           {
                             label: t("booking.guests"),
-                            value: `${DEFAULT_GUEST_COUNT} ${t("common.guest", { count: DEFAULT_GUEST_COUNT })}`,
+                            value: `${guestCount} ${t("common.guest", { count: guestCount })}`,
                           },
                         ].map((item) => (
                           <div

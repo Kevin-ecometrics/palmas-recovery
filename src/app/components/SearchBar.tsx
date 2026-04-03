@@ -244,8 +244,8 @@ function GuestsDropdown({
         <div className="flex items-center gap-2.5">
           <button
             type="button"
-            onClick={() => onChange(Math.max(1, guests - 1))}
-            disabled={guests <= 1}
+            onClick={() => onChange(Math.max(0, guests - 1))} // Cambiado de 1 a 0
+            disabled={guests <= 0} // Cambiado de 1 a 0
             className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-gray-400 hover:text-gray-800 disabled:opacity-25 disabled:cursor-not-allowed transition-all"
           >
             <FaMinus size={8} />
@@ -419,7 +419,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
 
   const [filters, setFilters] = useState<SearchFilters>({
     roomType: "shared",
-    guests: 1,
+    guests: 0,
     duration: "3",
     promoCode: "",
   });
@@ -438,7 +438,6 @@ export default function SearchBar({ floating, hidden = false }: Props) {
       setFilters((prev) => ({
         ...prev,
         roomType: value,
-        guests: newRoom ? Math.min(prev.guests, newRoom.capacity) : prev.guests,
       }));
     } else {
       setFilters((prev) => ({ ...prev, [key]: value }));
@@ -479,7 +478,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
           relative bg-wine text-white backdrop-blur-xl
           border border-white/20 rounded-2xl shadow-2xl
           w-[92vw] max-w-full md:w-auto overflow-visible
-          ${floating ? "md:max-w-4xl" : "md:max-w-5xl"}
+          ${floating ? "md:max-w-5xl" : "md:max-w-5xl"}
         `}
       >
         {/* Mobile toggle */}
