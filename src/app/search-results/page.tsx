@@ -8,12 +8,10 @@ import {
   FaUserFriends,
   FaBed,
   FaBath,
-  FaCheck,
   FaArrowLeft,
   FaSpinner,
   FaShieldAlt,
   FaSearch,
-  FaTimes,
 } from "react-icons/fa";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
@@ -73,31 +71,109 @@ const SearchResultsInner = () => {
   const [duration, setDuration] = useState(initialDuration);
   const [isClient, setIsClient] = useState(false);
 
-  // Calcular fecha mínima (hoy + si son más de 14hrs)
-  const getMinDate = () => {
-    const today = new Date();
-    const currentHour = today.getHours();
-    if (currentHour >= 14) {
-      today.setDate(today.getDate() + 1);
+  // ==================== FUNCIONES DE FECHAS CORREGIDAS ====================
+
+  // Obtener la fecha actual en formato local YYYY-MM-DD sin problemas de zona horaria
+  const getCurrentLocalDate = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  // Obtener fecha de check-in base (considerando hora actual)
+  const getBaseCheckInDate = () => {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes();
+
+    // Crear fecha base (hoy)
+    const checkInDate = new Date(now);
+
+    // Si son las 14:00 o más, el check-in es mañana
+    if (currentHour >= 14 || (currentHour === 13 && currentMinutes >= 0)) {
+      checkInDate.setDate(checkInDate.getDate() + 1);
     }
-    return today.toISOString().split("T")[0];
+
+    // Resetear hora a 00:00:00 para evitar problemas de zona horaria
+    checkInDate.setHours(0, 0, 0, 0);
+
+    return checkInDate;
+  };
+
+  // Formatear fecha a YYYY-MM-DD usando fecha local
+  const formatDateToLocalYYYYMMDD = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   };
 
   // Calcular fechas basadas en duración
   const calculateDatesFromDuration = (days: number) => {
+    const checkInDate = getBaseCheckInDate();
+
+    // Fecha de check-out: check-in + días
+    const checkOutDate = new Date(checkInDate);
+    checkOutDate.setDate(checkOutDate.getDate() + days);
+    checkOutDate.setHours(0, 0, 0, 0);
+
+    return {
+      checkIn: formatDateToLocalYYYYMMDD(checkInDate),
+      checkOut: formatDateToLocalYYYYMMDD(checkOutDate),
+    };
+  };
+
+  // Calcular duración entre dos fechas
+  const calculateDurationBetweenDates = (
+    startDateStr: string,
+    endDateStr: string,
+  ) => {
+    const start = new Date(startDateStr);
+    const end = new Date(endDateStr);
+    const diffTime = Math.abs(end.getTime() - start.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  };
+
+  // Obtener fecha mínima para el input (hoy o mañana según hora)
+  const getMinSelectableDate = () => {
     const today = new Date();
     const currentHour = today.getHours();
+
+    // Si son más de 14 horas, la fecha mínima es mañana
     if (currentHour >= 14) {
       today.setDate(today.getDate() + 1);
     }
-    const checkInDate = new Date(today);
-    const checkOutDate = new Date(today);
-    checkOutDate.setDate(checkOutDate.getDate() + days);
-    return {
-      checkIn: checkInDate.toISOString().split("T")[0],
-      checkOut: checkOutDate.toISOString().split("T")[0],
-    };
+
+    return formatDateToLocalYYYYMMDD(today);
   };
+
+  // Validar si una fecha es válida (no anterior a hoy/mañana según hora)
+  const isValidCheckInDate = (dateStr: string) => {
+    const minDate = getMinSelectableDate();
+    return dateStr >= minDate;
+  };
+
+  // Formatear fecha para mostrar (ej: "mar 7 de abr")
+  const formatDateForDisplay = (dateStr: string) => {
+    if (!dateStr) return "";
+    const [year, month, day] = dateStr.split("-");
+    // Crear fecha en UTC para evitar problemas de zona horaria
+    const date = new Date(
+      Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)),
+    );
+
+    return date.toLocaleDateString(currentLang === "es" ? "es-MX" : "en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    });
+  };
+
+  // ==================== EFECTOS ====================
 
   // Inicializar fechas
   useEffect(() => {
@@ -172,38 +248,36 @@ const SearchResultsInner = () => {
     }
   }, [roomsData, checkIn, checkOut]);
 
-  // Actualizar duración cuando cambian las fechas
+  // Actualizar duración cuando cambian las fechas manualmente
   useEffect(() => {
     if (checkIn && checkOut) {
-      const start = new Date(checkIn);
-      const end = new Date(checkOut);
-      const diffTime = Math.abs(end.getTime() - start.getTime());
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays > 0) {
-        setDuration(diffDays);
+      const newDuration = calculateDurationBetweenDates(checkIn, checkOut);
+      if (newDuration > 0 && newDuration !== duration) {
+        setDuration(newDuration);
       }
     }
   }, [checkIn, checkOut]);
 
-  // Formatear fechas para mostrar
-  const formatDate = (date: string) => {
-    if (!date) return "";
-    const d = new Date(date);
-    return d.toLocaleDateString(currentLang === "es" ? "es-MX" : "en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-    });
-  };
-
-  // Calcular precio total
-  const getTotalPrice = (room: Room) => {
-    return room.price * duration;
-  };
+  // ==================== MANEJADORES ====================
 
   // Manejar búsqueda con nuevas fechas
   const handleSearch = () => {
     if (tempCheckIn && tempCheckOut) {
+      // Validar que la fecha de check-in no sea menor que la fecha mínima
+      if (!isValidCheckInDate(tempCheckIn)) {
+        const minDate = getMinSelectableDate();
+        alert(
+          `Check-in no puede ser antes del ${formatDateForDisplay(minDate)}`,
+        );
+        return;
+      }
+
+      // Validar que check-out sea después de check-in
+      if (tempCheckOut <= tempCheckIn) {
+        alert("La fecha de salida debe ser después de la fecha de entrada");
+        return;
+      }
+
       setCheckIn(tempCheckIn);
       setCheckOut(tempCheckOut);
       setShowDatePicker(false);
@@ -221,35 +295,84 @@ const SearchResultsInner = () => {
     setDuration(days);
   };
 
+  // Manejar cambio de fecha de check-in
+  const handleTempCheckInChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newCheckIn = e.target.value;
+    setTempCheckIn(newCheckIn);
+
+    // Si el check-out es menor o igual al nuevo check-in, actualizar check-out a check-in + 1 día
+    if (tempCheckOut && tempCheckOut <= newCheckIn) {
+      const newCheckOutDate = new Date(newCheckIn);
+      newCheckOutDate.setDate(newCheckOutDate.getDate() + 1);
+      const newCheckOut = formatDateToLocalYYYYMMDD(newCheckOutDate);
+      setTempCheckOut(newCheckOut);
+
+      // Actualizar la duración
+      const newDuration = calculateDurationBetweenDates(
+        newCheckIn,
+        newCheckOut,
+      );
+      setDuration(newDuration);
+    } else if (tempCheckOut && newCheckIn) {
+      // Recalcular duración con las nuevas fechas
+      const newDuration = calculateDurationBetweenDates(
+        newCheckIn,
+        tempCheckOut,
+      );
+      if (newDuration > 0) {
+        setDuration(newDuration);
+      }
+    }
+  };
+
+  // Manejar cambio de fecha de check-out
+  const handleTempCheckOutChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newCheckOut = e.target.value;
+    setTempCheckOut(newCheckOut);
+
+    // Recalcular duración con las nuevas fechas
+    if (tempCheckIn && newCheckOut) {
+      const newDuration = calculateDurationBetweenDates(
+        tempCheckIn,
+        newCheckOut,
+      );
+      if (newDuration > 0) {
+        setDuration(newDuration);
+      }
+    }
+  };
+
   // Manejar cambio de huéspedes
   const handleGuestsChange = (newGuests: number) => {
-    if (newGuests >= 1 && newGuests <= 10) {
+    if (newGuests >= 0 && newGuests <= 10) {
       setGuests(newGuests);
     }
   };
 
   // Manejar reserva
   const handleBookNow = (roomId: string) => {
+    const finalGuests = guests < 0 ? 0 : guests;
+
     const params = new URLSearchParams({
       room: roomId,
       checkIn,
       checkOut,
-      guests: guests.toString(),
+      guests: finalGuests.toString(),
       promo: promoCode,
       step: "2",
     });
     router.push(`${getRouteByKey("book", currentLang)}?${params.toString()}`);
   };
 
-  // Habitaciones disponibles
+  // Filtrar habitaciones
   const availableRoomsList = roomsData.filter(
     (room) => availableRooms[room.id] === true,
   );
-
   const unavailableRoomsList = roomsData.filter(
     (room) => availableRooms[room.id] === false,
   );
 
+  // Renderizado condicional inicial
   if (!isClient) {
     return (
       <>
@@ -284,7 +407,7 @@ const SearchResultsInner = () => {
               {t("searchResults.title")}
             </h1>
 
-            {/* Selector de fechas mejorado */}
+            {/* Selector de fechas */}
             <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
               {/* Fechas actuales */}
               <div className="flex flex-wrap items-center justify-start gap-4 mb-4">
@@ -295,7 +418,9 @@ const SearchResultsInner = () => {
                   <div className="flex items-center gap-2 bg-cream px-4 py-2 rounded-full">
                     <FaCalendarAlt className="text-wine" />
                     <span className="font-medium">
-                      {formatDate(checkIn)} - {formatDate(checkOut)}
+                      {checkIn && checkOut
+                        ? `${formatDateForDisplay(checkIn)} - ${formatDateForDisplay(checkOut)}`
+                        : "Seleccionar fechas"}
                     </span>
                     <span className="text-gray-400">•</span>
                     <span>
@@ -310,33 +435,6 @@ const SearchResultsInner = () => {
                     {showDatePicker ? t("common.close") : t("common.edit")}
                   </span>
                 </div>
-
-                {/* Selector de huéspedes */}
-                {/* <div className="flex items-center gap-2 bg-cream px-4 py-2 rounded-full">
-                  <FaUserFriends className="text-wine" />
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => handleGuestsChange(guests - 1)}
-                      disabled={guests <= 1}
-                      className="w-6 h-6 rounded-full bg-white text-wine flex items-center justify-center hover:bg-wine hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      -
-                    </button>
-                    <span className="font-medium min-w-[3rem] text-center">
-                      {guests}{" "}
-                      {guests === 1
-                        ? t("common.guest")
-                        : t("common.guests", { count: guests })}
-                    </span>
-                    <button
-                      onClick={() => handleGuestsChange(guests + 1)}
-                      disabled={guests >= 10}
-                      className="w-6 h-6 rounded-full bg-white text-wine flex items-center justify-center hover:bg-wine hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div> */}
               </div>
 
               {/* Panel de selección de fechas */}
@@ -350,8 +448,8 @@ const SearchResultsInner = () => {
                       <input
                         type="date"
                         value={tempCheckIn}
-                        onChange={(e) => setTempCheckIn(e.target.value)}
-                        min={getMinDate()}
+                        onChange={handleTempCheckInChange}
+                        min={getMinSelectableDate()}
                         className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine"
                       />
                     </div>
@@ -362,37 +460,56 @@ const SearchResultsInner = () => {
                       <input
                         type="date"
                         value={tempCheckOut}
-                        onChange={(e) => setTempCheckOut(e.target.value)}
-                        min={tempCheckIn || getMinDate()}
+                        onChange={handleTempCheckOutChange}
+                        min={tempCheckIn || getMinSelectableDate()}
                         className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine"
                       />
                     </div>
                   </div>
 
+                  {/* Preview de fechas seleccionadas */}
+                  {tempCheckIn && tempCheckOut && (
+                    <div className="text-sm text-gray-500 mb-4 p-3 bg-gray-50 rounded-lg">
+                      <span className="font-medium">Fechas seleccionadas:</span>{" "}
+                      {formatDateForDisplay(tempCheckIn)} →{" "}
+                      {formatDateForDisplay(tempCheckOut)} ({duration}{" "}
+                      {duration === 1 ? "noche" : "noches"})
+                    </div>
+                  )}
+
                   {/* Opciones rápidas de duración */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {[1, 2, 3, 4, 5, 7].map((days) => (
-                      <button
-                        key={days}
-                        onClick={() => handleQuickDurationChange(days)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                          duration === days
-                            ? "bg-wine text-white"
-                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                        }`}
-                      >
-                        {days}{" "}
-                        {days === 1
-                          ? t("common.night")
-                          : t("common.nights", { count: days })}
-                      </button>
-                    ))}
+                    {[1, 2, 3, 4, 5, 7].map((days) => {
+                      const {
+                        checkIn: previewCheckIn,
+                        checkOut: previewCheckOut,
+                      } = calculateDatesFromDuration(days);
+                      const isSelected = duration === days;
+
+                      return (
+                        <button
+                          key={days}
+                          onClick={() => handleQuickDurationChange(days)}
+                          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                            isSelected
+                              ? "bg-wine text-white"
+                              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                          }`}
+                        >
+                          {days}{" "}
+                          {days === 1
+                            ? t("common.night")
+                            : t("common.nights", { count: days })}
+                        </button>
+                      );
+                    })}
                   </div>
 
                   <div className="flex gap-3">
                     <button
                       onClick={handleSearch}
-                      className="flex-1 bg-wine text-white py-3 rounded-xl font-semibold hover:bg-wine/90 transition-colors"
+                      disabled={!tempCheckIn || !tempCheckOut}
+                      className="flex-1 bg-wine text-white py-3 rounded-xl font-semibold hover:bg-wine/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {t("searchResults.updateSearch")}
                     </button>
@@ -401,6 +518,9 @@ const SearchResultsInner = () => {
                         setShowDatePicker(false);
                         setTempCheckIn(checkIn);
                         setTempCheckOut(checkOut);
+                        setDuration(
+                          calculateDurationBetweenDates(checkIn, checkOut),
+                        );
                       }}
                       className="px-6 py-3 border-2 border-gray-300 rounded-xl font-semibold hover:bg-gray-50 transition-colors"
                     >
@@ -444,7 +564,7 @@ const SearchResultsInner = () => {
                         room={room}
                         duration={duration}
                         guests={guests}
-                        totalPrice={getTotalPrice(room)}
+                        totalPrice={room.price * duration}
                         isSelected={selectedRoom === room.id}
                         onSelect={() => setSelectedRoom(room.id)}
                         onBook={() => handleBookNow(room.id)}
@@ -687,11 +807,7 @@ const RoomCard = ({
                   onClick={onSelect}
                   className={`
                     px-5 py-2 rounded-full font-medium transition-all
-                    ${
-                      isSelected
-                        ? "bg-wine text-white"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                    }
+                    ${isSelected ? "bg-wine text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}
                   `}
                 >
                   {isSelected

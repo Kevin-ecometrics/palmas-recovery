@@ -113,6 +113,100 @@ const EXTRAS: Extra[] = [
   },
 ];
 
+// ==================== FUNCIONES DE FECHAS CORREGIDAS ====================
+
+// Formatear fecha a YYYY-MM-DD usando fecha local
+const formatDateToLocalYYYYMMDD = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+// Formatear fecha para mostrar (ej: "mar 7 de abr")
+const formatDateForDisplay = (
+  dateStr: string,
+  locale: string = "es-MX",
+): string => {
+  if (!dateStr) return "";
+  const [year, month, day] = dateStr.split("-");
+  // Crear fecha en UTC para evitar problemas de zona horaria
+  const date = new Date(
+    Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)),
+  );
+
+  return date.toLocaleDateString(locale, {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+};
+
+// Obtener fecha mínima para check-in (hoy o mañana según hora actual)
+const getMinCheckInDate = (): string => {
+  const now = new Date();
+  const currentHour = now.getHours();
+
+  // Si son las 14:00 o más, el check-in es mañana
+  if (currentHour >= 14) {
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return formatDateToLocalYYYYMMDD(tomorrow);
+  }
+
+  return formatDateToLocalYYYYMMDD(now);
+};
+
+// Calcular número de noches entre dos fechas
+const calculateNights = (checkIn: string, checkOut: string): number => {
+  if (!checkIn || !checkOut) return 0;
+  const start = new Date(checkIn);
+  const end = new Date(checkOut);
+  const diffTime = end.getTime() - start.getTime();
+  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+};
+
+// Validar fechas
+const validateDates = (
+  checkIn: string,
+  checkOut: string,
+  t: (key: string) => string,
+): { isValid: boolean; errorMessage: string | null } => {
+  if (!checkIn) {
+    return {
+      isValid: false,
+      errorMessage: t("booking.errors.checkInRequired"),
+    };
+  }
+  if (!checkOut) {
+    return {
+      isValid: false,
+      errorMessage: t("booking.errors.checkOutRequired"),
+    };
+  }
+
+  const minDate = getMinCheckInDate();
+
+  if (checkIn < minDate) {
+    return {
+      isValid: false,
+      errorMessage: t("booking.errors.checkInPast"),
+    };
+  }
+
+  if (checkOut <= checkIn) {
+    return {
+      isValid: false,
+      errorMessage: t("booking.errors.checkOutAfterCheckIn"),
+    };
+  }
+
+  return { isValid: true, errorMessage: null };
+};
+
+// ==================== FUNCIONES DE API ====================
+
 // Función para verificar disponibilidad de múltiples habitaciones
 const checkBulkAvailability = async (
   checkIn: string,
@@ -154,43 +248,7 @@ const checkAvailability = async (
   }
 };
 
-// Función para validar fechas
-const validateDates = (
-  checkIn: string,
-  checkOut: string,
-  t: (key: string) => string,
-): { isValid: boolean; errorMessage: string | null } => {
-  if (!checkIn) {
-    return {
-      isValid: false,
-      errorMessage: t("booking.errors.checkInRequired"),
-    };
-  }
-  if (!checkOut) {
-    return {
-      isValid: false,
-      errorMessage: t("booking.errors.checkOutRequired"),
-    };
-  }
-
-  const checkInDate = new Date(checkIn);
-  const checkOutDate = new Date(checkOut);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  if (checkInDate < today) {
-    return { isValid: false, errorMessage: t("booking.errors.checkInPast") };
-  }
-
-  if (checkOutDate <= checkInDate) {
-    return {
-      isValid: false,
-      errorMessage: t("booking.errors.checkOutAfterCheckIn"),
-    };
-  }
-
-  return { isValid: true, errorMessage: null };
-};
+// ==================== FUNCIONES DE VALIDACIÓN Y CÁLCULO ====================
 
 // Función para validar el formulario paso 2
 const validateStep2 = (
@@ -217,15 +275,6 @@ const validateStep2 = (
   }
 
   return { isValid: true, errorMessage: null };
-};
-
-// Función para calcular noches
-const calculateNights = (checkIn: string, checkOut: string): number => {
-  if (!checkIn || !checkOut) return 0;
-  const checkInDate = new Date(checkIn);
-  const checkOutDate = new Date(checkOut);
-  const diff = checkOutDate.getTime() - checkInDate.getTime();
-  return Math.ceil(diff / (1000 * 3600 * 24));
 };
 
 // Función para calcular total de extras
@@ -406,7 +455,8 @@ const handleFinalSubmit = async (
   }
 };
 
-// Modal de éxito
+// ==================== MODAL DE ÉXITO ====================
+
 const SuccessModal = ({
   isOpen,
   onClose,
@@ -438,11 +488,6 @@ const SuccessModal = ({
   const getExtraTitle = (extraId: string) => {
     const extra = EXTRAS.find((e) => e.id === extraId);
     return extra ? t(extra.titleKey) : extraId;
-  };
-
-  const getExtraDescription = (extraId: string) => {
-    const extra = EXTRAS.find((e) => e.id === extraId);
-    return extra ? t(extra.descriptionKey) : "";
   };
 
   return (
@@ -484,7 +529,7 @@ const SuccessModal = ({
                   {t("booking.fields.checkIn")}:
                 </span>
                 <span className="font-semibold text-olive-dark">
-                  {confirmationData?.checkIn}
+                  {formatDateForDisplay(confirmationData?.checkIn, "es-MX")}
                 </span>
               </div>
 
@@ -493,7 +538,7 @@ const SuccessModal = ({
                   {t("booking.fields.checkOut")}:
                 </span>
                 <span className="font-semibold text-olive-dark">
-                  {confirmationData?.checkOut}
+                  {formatDateForDisplay(confirmationData?.checkOut, "es-MX")}
                 </span>
               </div>
 
@@ -561,9 +606,6 @@ const SuccessModal = ({
                                 {t(extra.titleKey)}
                               </span>
                             </div>
-                            <p className="text-xs text-olive-dark/80 pl-5">
-                              {t(extra.descriptionKey)}
-                            </p>
                           </div>
                         );
                       })}
@@ -603,6 +645,8 @@ const SuccessModal = ({
   );
 };
 
+// ==================== COMPONENTE PRINCIPAL ====================
+
 const BookingPageInner = () => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
@@ -627,17 +671,8 @@ const BookingPageInner = () => {
   const [hasSearched, setHasSearched] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const today = new Date();
-  const currentHour = today.getHours();
-
-  // Si son las 14 horas o más, usar mañana como fecha mínima
-  if (currentHour >= 14) {
-    today.setDate(today.getDate() + 1);
-  }
-
-  const todayValue = `${today.getFullYear()}-${String(
-    today.getMonth() + 1,
-  ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+  // Fecha mínima para check-in
+  const minCheckInDate = getMinCheckInDate();
 
   const DEFAULT_GUEST_COUNT = 1;
   const [guestCount, setGuestCount] = useState<number>(DEFAULT_GUEST_COUNT);
@@ -672,40 +707,44 @@ const BookingPageInner = () => {
     }
   }, [searchParams]);
 
-  // Manejar fechas desde URL
+  // Manejar fechas desde URL (CORREGIDO)
   useEffect(() => {
     const checkInParam = searchParams.get("checkIn");
     const checkOutParam = searchParams.get("checkOut");
     const guestsParam = searchParams.get("guests");
 
     if (checkInParam && checkOutParam) {
-      setFormData((prev) => ({
-        ...prev,
-        checkIn: checkInParam,
-        checkOut: checkOutParam,
-      }));
+      // Validar que las fechas sean correctas antes de usarlas
+      const validation = validateDates(checkInParam, checkOutParam, t);
+      if (validation.isValid) {
+        setFormData((prev) => ({
+          ...prev,
+          checkIn: checkInParam,
+          checkOut: checkOutParam,
+        }));
 
-      // Verificar disponibilidad automáticamente si tenemos fechas
-      const checkAvailabilityOnLoad = async () => {
-        try {
-          const availability = await checkBulkAvailability(
-            checkInParam,
-            checkOutParam,
-          );
-          setAvailableRooms(availability);
-          setHasSearched(true);
+        // Verificar disponibilidad automáticamente si tenemos fechas
+        const checkAvailabilityOnLoad = async () => {
+          try {
+            const availability = await checkBulkAvailability(
+              checkInParam,
+              checkOutParam,
+            );
+            setAvailableRooms(availability);
+            setHasSearched(true);
 
-          // Si hay una habitación preseleccionada pero no está disponible, limpiar
-          if (selectedRoom && availability[selectedRoom] === false) {
-            setSelectedRoom(null);
-            setValidationError(t("booking.errors.selectedRoomNotAvailable"));
+            // Si hay una habitación preseleccionada pero no está disponible, limpiar
+            if (selectedRoom && availability[selectedRoom] === false) {
+              setSelectedRoom(null);
+              setValidationError(t("booking.errors.selectedRoomNotAvailable"));
+            }
+          } catch (error) {
+            console.error("Error checking availability on load:", error);
           }
-        } catch (error) {
-          console.error("Error checking availability on load:", error);
-        }
-      };
+        };
 
-      checkAvailabilityOnLoad();
+        checkAvailabilityOnLoad();
+      }
     }
 
     // Leer guests desde URL
@@ -757,17 +796,6 @@ const BookingPageInner = () => {
     } finally {
       setIsSearchingRooms(false);
     }
-  };
-
-  const formatDateDisplay = (dateString: string) => {
-    if (!dateString) return "";
-    const date = new Date(dateString);
-    return date.toLocaleDateString(currentLang === "es" ? "es-MX" : "en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
   };
 
   const handleInputChange = async (
@@ -1017,7 +1045,7 @@ const BookingPageInner = () => {
                           name="checkIn"
                           value={formData.checkIn}
                           onChange={handleInputChange}
-                          min={todayValue}
+                          min={minCheckInDate}
                           className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
@@ -1033,7 +1061,7 @@ const BookingPageInner = () => {
                           name="checkOut"
                           value={formData.checkOut}
                           onChange={handleInputChange}
-                          min={formData.checkIn || todayValue}
+                          min={formData.checkIn || minCheckInDate}
                           className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
@@ -1266,8 +1294,15 @@ const BookingPageInner = () => {
                           </p>
                           <p className="text-olive-dark">
                             <strong>{t("booking.dates")}:</strong>{" "}
-                            {formatDateDisplay(formData.checkIn)} -{" "}
-                            {formatDateDisplay(formData.checkOut)}
+                            {formatDateForDisplay(
+                              formData.checkIn,
+                              currentLang === "es" ? "es-MX" : "en-US",
+                            )}{" "}
+                            -{" "}
+                            {formatDateForDisplay(
+                              formData.checkOut,
+                              currentLang === "es" ? "es-MX" : "en-US",
+                            )}
                           </p>
                           <p className="text-olive-dark">
                             <strong>{t("booking.nights")}:</strong> {nights}{" "}
@@ -1615,9 +1650,17 @@ const BookingPageInner = () => {
                               {t("booking.period")}:
                             </span>
                             <span className="font-medium text-olive-dark text-right">
-                              {formatDateDisplay(formData.checkIn)} (2:00 PM)
+                              {formatDateForDisplay(
+                                formData.checkIn,
+                                currentLang === "es" ? "es-MX" : "en-US",
+                              )}{" "}
+                              (2:00 PM)
                               <br />
-                              {formatDateDisplay(formData.checkOut)} (11:00 AM)
+                              {formatDateForDisplay(
+                                formData.checkOut,
+                                currentLang === "es" ? "es-MX" : "en-US",
+                              )}{" "}
+                              (11:00 AM)
                             </span>
                           </div>
                         </div>
@@ -1763,36 +1806,47 @@ const BookingPageInner = () => {
 
                     {formData.checkIn && formData.checkOut && (
                       <div className="space-y-3 p-4 bg-cream rounded-xl">
-                        {[
-                          {
-                            label: t("booking.checkIn"),
-                            value: `${formatDateDisplay(formData.checkIn)} (2:00 PM)`,
-                          },
-                          {
-                            label: t("booking.checkOut"),
-                            value: `${formatDateDisplay(formData.checkOut)} (11:00 AM)`,
-                          },
-                          {
-                            label: t("booking.nights"),
-                            value: nights,
-                          },
-                          {
-                            label: t("booking.guests"),
-                            value: `${guestCount} ${t("common.guest", { count: guestCount })}`,
-                          },
-                        ].map((item) => (
-                          <div
-                            key={item.label}
-                            className="flex justify-between items-center"
-                          >
-                            <span className="text-sm text-olive-dark font-medium">
-                              {item.label}:
-                            </span>
-                            <span className="text-sm font-bold text-wine">
-                              {item.value}
-                            </span>
-                          </div>
-                        ))}
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-olive-dark font-medium">
+                            {t("booking.checkIn")}:
+                          </span>
+                          <span className="text-sm font-bold text-wine">
+                            {formatDateForDisplay(
+                              formData.checkIn,
+                              currentLang === "es" ? "es-MX" : "en-US",
+                            )}{" "}
+                            (2:00 PM)
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-olive-dark font-medium">
+                            {t("booking.checkOut")}:
+                          </span>
+                          <span className="text-sm font-bold text-wine">
+                            {formatDateForDisplay(
+                              formData.checkOut,
+                              currentLang === "es" ? "es-MX" : "en-US",
+                            )}{" "}
+                            (11:00 AM)
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-olive-dark font-medium">
+                            {t("booking.nights")}:
+                          </span>
+                          <span className="text-sm font-bold text-wine">
+                            {nights}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-olive-dark font-medium">
+                            {t("booking.guests")}:
+                          </span>
+                          <span className="text-sm font-bold text-wine">
+                            {guestCount}{" "}
+                            {t("common.guest", { count: guestCount })}
+                          </span>
+                        </div>
                       </div>
                     )}
 
@@ -1826,9 +1880,6 @@ const BookingPageInner = () => {
                                     ${extra.price}
                                   </span>
                                 </div>
-                                <p className="text-xs text-olive-dark/80 line-clamp-1">
-                                  {t(extra.descriptionKey)}
-                                </p>
                               </div>
                             );
                           })}
