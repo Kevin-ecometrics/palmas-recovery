@@ -84,8 +84,9 @@ const BannerWithImage: React.FC = () => {
                 <div className="relative bg-white rounded-3xl p-2 shadow-2xl">
                   <div className="relative aspect-[16/11] rounded-2xl overflow-hidden">
                     <img
-                      src="/Palmas Recovery Doctores.jpg"
-                      alt={t("bannerWithImage.imageAlt")}
+                      src="/Palmas Recovery creada por medicos y atendida por medicos.jpg"
+                      alt="Palmas Recovery es una casa de recuperación creado por médicos y atendida por médicos con años de experiencia en cuidados "
+                      title="Palmas Recovery es una casa de recuperación creado por médicos y atendida por médicos con años de experiencia en cuidados "
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />

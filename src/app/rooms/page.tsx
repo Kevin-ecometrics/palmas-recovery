@@ -250,7 +250,7 @@ export default function RoomsPage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url(${heroRoom?.image ?? "/images/hero-bg.jpg"})`,
+            backgroundImage: `url("${heroRoom.image}")`,
             animation: "kenBurns 20s ease-in-out infinite alternate",
           }}
         />

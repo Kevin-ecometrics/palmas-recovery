@@ -23,7 +23,7 @@ export const ROOMS: Room[] = [
     tagline: "Your Arrival Experience",
     description:
       "Step into our welcoming lobby, designed to provide comfort and tranquility from the moment you arrive. A space where hospitality meets healing.",
-    image: "/lobby.jpg",
+    image: "/La mejor casa de recuperacion para bbl tummy tuck mommy makeover y mas.jpg",
     imageAlt: "Hotel Lobby",
     price: null,
     capacity: null,
@@ -46,7 +46,7 @@ export const ROOMS: Room[] = [
     tagline: "Comfortable & Affordable",
     description:
       "Experience exceptional care in a shared space designed for comfort and connection. Ideal for guests seeking professional recovery services.",
-    image: "/habitacion_compartida.jpg",
+    image: "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.jpg",
     imageAlt: "Shared Room",
     price: 170,
     capacity: 4,
@@ -73,7 +73,7 @@ export const ROOMS: Room[] = [
     description:
       "Find tranquility and privacy in your own recovery space. Our private rooms offer modern medical comfort.",
     imageAlt: "Private Room",
-        image: "/habitacion_vip.jpg",
+        image: "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.jpg",
 
     price: 180,
     capacity: 1,
@@ -95,7 +95,7 @@ export const ROOMS: Room[] = [
     tagline: "The Ultimate Luxury Experience",
     description:
       "Immerse yourself in unmatched comfort and privacy. Premium furnishings combined with top-tier medical care.",
-        image: "/habitacion_privada.jpg",
+        image: "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.jpg",
 
     imageAlt: "VIP Suite",
     price: 200,

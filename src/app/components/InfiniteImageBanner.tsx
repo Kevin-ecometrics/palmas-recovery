@@ -5,34 +5,79 @@ import { FaInstagram } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 const IMAGES_TOP = [
-  "/mommy makeover/mommy 1.jpg",
-  "/mommy makeover/MOMMY 2.jpg",
-  "/mommy makeover/MOMMY 3.jpg",
-  "/mommy makeover/MOMMY 4.jpg",
-  "/mommy makeover/MOMMY 5.jpg",
-  "/mommy makeover/MOMMY FINAL.jpg",
+  {
+    src: "/mommy makeover/Visita nuestras redes sociales para mas contenido de Palmas Recovery.jpg",
+    alt: "Visita nuestras redes sociales para mas contenido sobre cuidados postquirúrgicos en Palmas Recovery ",
+  },
+  {
+    src: "/mommy makeover/Conoce que hacer cada semana despues de tu mommy makeover con Palmas Recovery.jpg",
+    alt: "En Palmas recovery te damos toda la información que necesitas saber sobre tu recuperación semana tras semana ",
+  },
+  {
+    src: "/mommy makeover/En palmas Recovery tu recuperacion es nuestra prioridad.jpg",
+    alt: "En Palmas tu recuperacion es esencial y sera proridad durante tu estadia  ",
+  },
+  {
+    src: "/mommy makeover/En Palmas entendemos el proceso de recuperacion y te apoyamos en cada etapa.jpg",
+    alt: "En Palmas Recovery entendemos el proceso de recuperación y te acompanamos en cada momento para  ",
+  },
+  {
+    src: "/mommy makeover/Recuperate sin preocupaciones de un mommy makeover en Palmas Recovery.jpg",
+    alt: "En palmas recovery nuestro equipo de doctores y enfermeras harán de tu recuperación de mommy makeover la mejor experiencia ",
+  },
+  {
+    src: "/mommy makeover/Visita palmasrecovery en instagram para mas contenido y consejos.jpg",
+    alt: "Visita palmasrecovery en Instagram para mas consejos y recomendaciones postquirúrgicas  ",
+  },
 ];
 
 const IMAGES_BOTTOM = [
-  "/POST PALMAS RECOVERY SERVICES/PALMAS POST 1.jpg",
-  "/POST PALMAS RECOVERY SERVICES/POST 2.jpg",
-  "/process for a BBL/BBL 1.1.jpg",
-  "/process for a BBL/BBL 1.2.jpg",
-  "/process for a BBL/BBL 6.1.jpg",
-  "/process for a BBL/BBL 7.1.jpg",
-  "/process for a BBL/BBL3.1.jpg",
-  "/process for a BBL/BBL4.1.jpg",
-  "/process for a BBL/BBL5.1.jpg",
+  {
+    src: "/POST PALMAS RECOVERY SERVICES/La mejor recuperacion es con palmas recovery.jpg",
+    alt: "Visita las redes sociales de palmas para conocer la mejor casa de recuperacion Palmas Recovery ",
+  },
+  {
+    src: "/POST PALMAS RECOVERY SERVICES/Palmas recovery tiene paquetes todo includo para tu cuidado.jpg",
+    alt: "Descubre los paquetes todo incluido de palmas recovery ",
+  },
+  {
+    src: "/process for a BBL/Conoce todo sobre el proceso de recuperacion de un BBL con Palmas.jpg",
+    alt: "En Palmas Recovery te damos una guía fácil sobre que esperar en tu proceso de recuperación de un BBL  ",
+  },
+  {
+    src: "/process for a BBL/Durante tu recuperacion tras un BBL es normal enfrenter alguna incomodidad por ello en palmas nos encargamos de todo para tu relajacion.jpg",
+    alt: "Durante tu recuperacion tras un BBL es normal enfrentar alguna incomodidad por ello en palmas nos encargamos de todo desde medicamentos, alimentación cuidados para que sea una recuperacion agradable y relajada ",
+  },
+  {
+    src: "/process for a BBL/Una recuperacion y cuidados expertos son esenciales para tener el mejor resultado en tu BBL.jpg",
+    alt: "Es importante cuidados expertos de Palmas Recovery  durante tu primera semana post BBL para tener los mejores resultados ",
+  },
+  {
+    src: "/process for a BBL/No te recuperes solo hazlo con supervision de expertos en Palmas Recovery.jpg",
+    alt: "En Palmas Recovery nuestros doctores y enfermeras cuidan de ti después de tu BBL ",
+  },
+  {
+    src: "/process for a BBL/Es importante cuidados expertos de Palmas Recovery  durante tu primera semana post BBL.jpg",
+    alt: "EL Palmas recovery brindamos atención especializada para cirugias como BBL ",
+  },
+  {
+    src: "/process for a BBL/En Palmas Recovery cuidados de ti en las primeras etapas despues de tu BBL.jpg",
+    alt: "En palmas Recovery te brindamos cuidados especializados con medicos certificados para los mejores resultados de tu BBL ",
+  },
+  {
+    src: "/process for a BBL/En Palmas Recovery cuidados de ti despues de tu BBL.jpg",
+    alt: "No te recuperes solo hazlo con supervision de medicos expertos y enfermeras en Palmas Recovery ",
+  },
 ];
 
-const FALLBACK_IMAGE = "/logo.png";
+const FALLBACK_IMAGE = "/Casa de recuperacion palmas recovery en Tijuana  .png";
 
 function MarqueeRow({
   images,
   direction = "left",
   speed = 40,
 }: {
-  images: string[];
+  images: Array<{ src: string; alt: string }>;
   direction?: "left" | "right";
   speed?: number;
 }) {
@@ -62,8 +107,9 @@ function MarqueeRow({
             style={{ borderRadius: "2px" }}
           >
             <img
-              src={src}
-              alt="Gallery"
+              src={src.src}
+              alt={src.alt}
+              title={src.alt}
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               draggable={false}
               onError={(event) => {

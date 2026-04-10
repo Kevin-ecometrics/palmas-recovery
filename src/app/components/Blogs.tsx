@@ -6,9 +6,18 @@ import Link from "next/link";
 import { getLocalizedPath } from "@/i18n/routeMap";
 
 const BLOG_IMAGES = [
-  "/blog1.png", // Entrada de blog 1
-  "/blog2.jpg", // Entrada de blog 2
-  "/blog3.jpg", // Entrada de blog 3
+  {
+    src: "/Todo lo que debes saber para una estadia comoda en Palmas Recovery.webp",
+    alt: "Empaca con estos consejos para disfrutar al maximo tu estadia en una casa de recuperación como Palmas Recovery ",
+  },
+  {
+    src: "/Conoce la mejor temporada para operarte y recuperarte en Tijuana con Palmas Recovery.jpg",
+    alt: "Disfuta del mejor clima, conoce que temporada es ideal para para tu recuperación con Palmas recovery ",
+  },
+  {
+    src: "/Descubre los beneficios de los cuidados especializados con Palmas Recovery.jpg",
+    alt: "Disfuta del mejor clima, conoce que temporada es ideal para para tu recuperación con Palmas recovery ",
+  },
 ];
 
 export default function Blogs() {
@@ -59,8 +68,9 @@ export default function Blogs() {
                   <div className="overflow-hidden">
                     <div className="relative h-44 sm:h-52 w-full overflow-hidden rounded-xl md:rounded-none">
                       <img
-                        src={BLOG_IMAGES[index % BLOG_IMAGES.length]}
-                        alt={item.title}
+                        src={BLOG_IMAGES[index % BLOG_IMAGES.length].src}
+                        alt={BLOG_IMAGES[index % BLOG_IMAGES.length].alt}
+                        title={BLOG_IMAGES[index % BLOG_IMAGES.length].alt}
                         className="h-full w-full object-cover"
                       />
                       <span className="absolute bottom-3 right-3 bg-[#f0b16b] text-black text-xs font-semibold px-3 py-1 rounded-full">

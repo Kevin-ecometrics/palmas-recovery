@@ -74,42 +74,62 @@ const EXTRAS: Extra[] = [
     titleKey: "extras.lymphatic.title",
     descriptionKey: "extras.lymphatic.description",
     price: 60,
-    images: ["/lymphatic.jpg"],
+    images: [
+      "/Servicio de masaje linfatipo para una recuperacion efectiva en Palmas Recovery con una fisioterapeuta.jpg",
+    ],
   },
   {
     id: "5massages",
     titleKey: "extras.fiveMassages.title",
     descriptionKey: "extras.fiveMassages.description",
     price: 270,
-    images: ["/5massages.jpeg"],
+    images: [
+      "/Obten 5 masajes linfaticos postquirurgicos a precio especial seleccionando nuestro paquete en Palmas recovery en Tijuana.jpeg",
+    ],
   },
   {
     id: "b01g",
     titleKey: "extras.b01g.title",
     descriptionKey: "extras.b01g.description",
     price: 80,
-    images: ["/extra1-1.png", "/extra1-2.png", "/extra1-3.png"],
+    images: [
+      "/Anade a tu carrito un brasier de compresion postquirurgica con ajuste completo en Palmas Recovery.png",
+      "/Adquire tu brasier postoperatorio de cobertura completa con banda elastica y suave.png",
+      "/Brasier postquirurgico anti bacterial de venta en nuestra pagina web Palmas Recovery.png",
+    ],
   },
   {
     id: "fvom",
     titleKey: "extras.fvom.title",
     descriptionKey: "extras.fvom.description",
     price: 80,
-    images: ["/extra2-1.png", "/extra2-2.png", "/extra2-3.png"],
+    images: [
+      "/Faja torerita con apertura en el busto.png",
+      "/Compra la Faja torerita con mangas tres cuartos con cierre frontal en Palmas Recovery.png",
+      "/En palmas recovery puedes adquirir tu faja torerita postquirurgica para mayor comodidad.png",
+    ],
   },
   {
     id: "sfbhrs",
     titleKey: "extras.sfbhrs.title",
     descriptionKey: "extras.sfbhrs.description",
     price: 140,
-    images: ["/extra3-1.png", "/Extra3-2.png", "/extra3-3.png"],
+    images: [
+      "/Compra fácil tu Faja con espalda alta de short arriba de las rodillas en Palmas Recovery.png",
+      "/En PR encuentra la faja ideal para ti como nuestra faja de espalda alta arriba de las rodillas.png",
+      "/Compra facil tu faja en PR al mismo tiempo que reservas tu estancia.png",
+    ],
   },
   {
     id: "sfbhs2",
     titleKey: "extras.sfbhs2.title",
     descriptionKey: "extras.sfbhs2.description",
     price: 140,
-    images: ["/extra4-1.png", "/extra4-2.png", "/extra4-3.png"],
+    images: [
+      "/Compra la faja  con espalda alta sin costuras de short arriba de las rodillas.png",
+      "/La mejor calidad de fajas encuentralas en PR.png",
+      "/Faja postquirurgica sin costuras en Palmas Recovery.png",
+    ],
   },
 ];
 

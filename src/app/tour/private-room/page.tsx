@@ -70,7 +70,7 @@ export default function PrivateRoomPage() {
             <div className="absolute -inset-4 bg-white/20 blur-2xl rounded-3xl"></div>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20">
               <img
-                src="/habitacion_privada.jpg"
+                src="/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.jpg"
                 alt="Private recovery room"
                 className="w-full h-[360px] md:h-[420px] object-cover"
               />

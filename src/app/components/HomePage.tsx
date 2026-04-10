@@ -80,8 +80,9 @@ export default function HomePage() {
               {/* Imagen */}
               <div className="relative">
                 <img
-                  src="/salon.jpg"
-                  alt={t("home.pleasure.imageAlt")}
+                  src="/La casa de recuperacion numero uno para cirugias plasticas en Tijuana.jpg"
+                  alt="La casa de recuperación número uno para cirugía plástica en Tijuana hecha por médicos y enfermeras certificadas "
+                  title="La casa de recuperación número uno para cirugía plástica en Tijuana hecha por médicos y enfermeras certificadas "
                   className="w-full h-[420px] md:h-[520px] object-cover"
                 />
               </div>

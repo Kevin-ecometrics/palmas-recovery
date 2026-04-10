@@ -4,7 +4,26 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation, Trans } from "react-i18next";
 
-const IMAGES = ["/doctor1.jpg", "/doctor2.jpg", "/doctor3.jpg"];
+const IMAGES = [
+  {
+    src: "/La Dra Cecilia Cardenas y el Dr Raul Munoz son los pilares detras de Palmas Recovery.jpg",
+    alt: "La Dra. Cecilia Cárdenas y el Dr. Raúl Muñoz son los pilares detrás de Palmas Recovery",
+    title:
+      "La Dra. Cecilia Cárdenas y el Dr. Raúl Muñoz son los pilares detrás de Palmas Recovery",
+  },
+  {
+    src: "/La Dr Cecilia esta lista para cuidar de cada paciente en Palmas Recovery.jpg",
+    alt: "La Dra. Cecilia está lista para cuidar de cada paciente en Palmas Recovery",
+    title:
+      "La Dra. Cecilia está lista para cuidar de cada paciente en Palmas Recovery",
+  },
+  {
+    src: "/El Dr. Raul siempre a disposición de sus pacientes en Palmas Recovery.jpg",
+    alt: "El Dr. Raúl siempre a disposición de sus pacientes en Palmas Recovery",
+    title:
+      "El Dr. Raúl siempre a disposición de sus pacientes en Palmas Recovery",
+  },
+];
 
 const variants = {
   enter: (direction: number) => ({
@@ -69,8 +88,9 @@ export default function UniqueHotels() {
             <AnimatePresence initial={false} custom={direction}>
               <motion.img
                 key={index}
-                src={IMAGES[index]}
-                alt="Hotel"
+                src={IMAGES[index].src}
+                alt={IMAGES[index].alt}
+                title={IMAGES[index].title}
                 custom={direction}
                 variants={variants}
                 initial="enter"

@@ -66,7 +66,7 @@ export default function VipSuitePage() {
             <div className="absolute -inset-4 bg-white/20 blur-2xl rounded-3xl"></div>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20">
               <img
-                src="/habitacion_vip.jpg"
+                src="/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.jpg"
                 alt="VIP recovery suite"
                 className="w-full h-[360px] md:h-[420px] object-cover"
               />

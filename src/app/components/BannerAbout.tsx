@@ -43,8 +43,9 @@ const Banner: React.FC = () => {
     >
       {/* Imagen de fondo real */}
       <img
-        src="/lobby.jpg"
-        alt="Banner background"
+        src="/La mejor casa de recuperacion para bbl tummy tuck mommy makeover y mas.jpg"
+        alt="Los mejores cuidados post operatoriso de bbl, tummy tuck, Mommy Makeover y más en Palmas recovery "
+        title="Los mejores cuidados post operatoriso de bbl, tummy tuck, Mommy Makeover y más en Palmas recovery "
         className="absolute inset-0 w-full h-full object-cover object-center z-0"
         draggable={false}
       />

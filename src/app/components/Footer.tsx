@@ -35,7 +35,9 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
   };
 
   const isDark = variant === "dark";
-  const bgClass = isDark ? "bg-[#111111] text-white" : "bg-[#fffaf6] text-black";
+  const bgClass = isDark
+    ? "bg-[#111111] text-white"
+    : "bg-[#fffaf6] text-black";
   const borderClass = isDark ? "border-white/10" : "border-black/10";
   const mutedText = isDark ? "text-white/70" : "text-black/60";
   const linkHover = isDark ? "hover:text-white" : "hover:text-black";
@@ -87,7 +89,7 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
               <button
                 onClick={() =>
                   openExternal(
-                    "https://www.instagram.com/palmasrecovery/?hl=es"
+                    "https://www.instagram.com/palmasrecovery/?hl=es",
                   )
                 }
                 aria-label={t("footer.social.instagram")}
@@ -185,12 +187,14 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
         <div className={`w-full mt-auto border-t ${borderClass}`}>
           <div className="max-w-6xl mx-auto py-4 flex flex-col md:flex-row items-center justify-between gap-6">
             <img
-              src="/logoblanco.png"
-              alt="Logotipo de la Clínica en blanco"
+              src="/Palmas recovery cuidados postoperatorios en tijuana  Palmas recovery cuidados postoperatorios en tijuana.png"
+              alt="Palmas Recovery es una clinica de cuidados postoperatorios por médicos certificados en Tijuana"
+              title="Palmas Recovery es una clinica de cuidados postoperatorios por médicos certificados en Tijuana"
               className="h-32 md:h-40 w-auto"
             />
             <p className={`text-xs ${mutedText}`}>
-              &copy; {new Date().getFullYear()} {t("brand.name")}. {t("footer.rights")}
+              &copy; {new Date().getFullYear()} {t("brand.name")}.{" "}
+              {t("footer.rights")}
             </p>
           </div>
         </div>

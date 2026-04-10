@@ -18,8 +18,9 @@ const ITEMS: Item[] = [
     id: "linea",
     labelKey: "audience.items.linea.label",
     descriptionKey: "audience.items.linea.description",
-    image: "/linea.jpg",
-    alt: "Linea",
+    image:
+      "/Palmas recovery a solo 10 minutos de la linea, en la zona más centrica de la ciudad.webp",
+    alt: "Palmas Recovery se enucentra en la zona más segura y de fácil acceso y cruce a la linea fronteriza ",
     href: "/reservar",
     bg: "bg-wine",
   },
@@ -27,8 +28,9 @@ const ITEMS: Item[] = [
     id: "estancia",
     labelKey: "audience.items.estancia.label",
     descriptionKey: "audience.items.estancia.description",
-    image: "/estancia.jpg",
-    alt: "Estancia",
+    image:
+      "/Agenda los dias que necesitas despues de tu cirugia plastica el Palmas Recovery.jpg",
+    alt: "Agenda tus cuidados en una casa de recuperación con médicos y enfermeras certificadas  ",
     href: "/reservar",
     bg: "bg-blush",
   },
@@ -36,8 +38,9 @@ const ITEMS: Item[] = [
     id: "pago",
     labelKey: "audience.items.pago.label",
     descriptionKey: "audience.items.pago.description",
-    image: "/pago.png",
-    alt: "Pago",
+    image:
+      "/Paquetes todo incluidos y cuentas trasparentes al agendar tu estancia en Palmas Recovery.png",
+    alt: "Cuentas trasparentes y facilidades de pago al agendar tu estancia en Palmas Recovery ",
     href: "/reservar",
     bg: "bg-olive-dark",
   },
@@ -45,8 +48,9 @@ const ITEMS: Item[] = [
     id: "ubicacion",
     labelKey: "audience.items.ubicacion.label",
     descriptionKey: "audience.items.ubicacion.description",
-    image: "/ubicacion.jpg",
-    alt: "Ubicación",
+    image:
+      "/Palmas Recovery esta en el corazon de la ciudad cerca de plazas comerciales, hospitales y hoteles.jpg",
+    alt: "Palmas Recovery está en las zonas más seguras de la ciudad con plazas comerciales, hospitales y hoteles alrededor ",
     href: "/reservar",
     bg: "bg-sage",
   },
@@ -54,8 +58,8 @@ const ITEMS: Item[] = [
     id: "plazas",
     labelKey: "audience.items.plazas.label",
     descriptionKey: "audience.items.plazas.description",
-    image: "/plazas.jpg",
-    alt: "Plazas",
+    image: "/En PR disfruta de comodas amenidades para ti y tu acompanante.jpg",
+    alt: "En PR disfruta de comodas amenidades para ti y tu acompanante Gracias a su estrategica ubicacion ",
     href: "/reservar",
     bg: "bg-cream",
   },
@@ -99,9 +103,6 @@ export default function AudienceSelector() {
           {ITEMS.map((item, index) => {
             const isActive = activeId === item.id;
 
-            const isLastTwoItems = index >= 3;
-            const desktopAdjustment = isLastTwoItems ? "md:top-[-10%]" : "";
-
             return (
               <li
                 key={item.id}
@@ -113,27 +114,28 @@ export default function AudienceSelector() {
                 onMouseEnter={() => setActiveId(item.id)}
                 onMouseLeave={() => setActiveId(null)}
               >
-                <div className="relative w-full flex items-center justify-center cursor-pointer">
-                  {isActive && (
-                    <div
-                      className="absolute inset-0 w-full overflow-hidden transition-opacity duration-300"
+                <div className="relative w-full flex items-center justify-center cursor-pointer overflow-hidden">
+                  {/* Imagen de fondo siempre presente pero oculta cuando no está activa */}
+                  <div
+                    className={`absolute inset-0 w-full transition-opacity duration-300 ${
+                      isActive ? "opacity-100" : "opacity-0"
+                    }`}
+                    style={{
+                      height: expandedHeight,
+                    }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={t(item.alt)}
+                      title={t(item.alt)}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-full object-cover"
                       style={{
-                        height: expandedHeight,
+                        minHeight: expandedHeight,
                       }}
-                    >
-                      <img
-                        src={item.image}
-                        alt={t(item.labelKey)}
-                        className={`absolute left-0 w-full h-auto object-cover ${desktopAdjustment}`}
-                        style={{
-                          height: "115%",
-                          minHeight: expandedHeight,
-                        }}
-                      />
+                    />
 
-                      <div className="absolute inset-0 bg-black/50" />
-                    </div>
-                  )}
+                    <div className="absolute inset-0 bg-black/50" />
+                  </div>
 
                   <div
                     className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 transition-[height] duration-300"

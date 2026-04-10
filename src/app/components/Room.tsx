@@ -12,6 +12,7 @@ interface Destination {
   priceText: string;
   image: string;
   url?: string;
+  alt?: string;
 }
 
 const imageHeights = [
@@ -59,59 +60,82 @@ export default function HotelDestinationsScroll() {
       id: 1,
       name: "Shared Room",
       priceText: "$170 dlls / night",
-      image: "/habitacion_compartida.jpg",
+      image:
+        "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.jpg",
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
+      alt: "Conoce las comodas habitaciones compartidas para tu recuperación con precios accesibles en la mejor clínica de recuperación en Tijuana a 10 min del cruce fronterizo ",
     },
     {
       id: 2,
       name: "Private Room",
-      image: "/habitacion_vip.jpg",
+      image:
+        "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.jpg",
       priceText: "$180 dlls / night",
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
+      alt: "Amplia habitación con sofá para acompañante, closet y cama   hospitalaria con amplia vista y acompáñate con todas las amenidades incluidas en Tijuana ",
     },
     {
       id: 3,
       name: "VIP Suite",
       priceText: "$200 dlls / night",
-      image: "/habitacion_privada.jpg",
+      image:
+        "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.jpg",
 
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
+      alt: "En Palmas recovery contamos con habitaciones VIP con baño privada y excelente vista para tu comodidad  ",
     },
     {
       id: 4,
       name: "Lymphatic massage",
       priceText: "$60 dlls",
-      image: "/lymphatic.jpg", // Masaje de drenaje linfático
+      image:
+        "/Servicio de masaje linfatipo para una recuperacion efectiva en Palmas Recovery con una fisioterapeuta.jpg", // Masaje de drenaje linfático
+      url: pathname === "/en/" ? "/book" : "/reservar",
+      alt: "En Palmas recovery contamos con habitaciones VIP con baño privada y excelente vista para tu comodidad  ",
     },
     {
       id: 5,
       name: "5 Lymphatic massages package",
       priceText: "$270 dlls",
-      image: "/5massages.jpeg", // Promoción de 5 tipos de masajes
+      image:
+        "/Obten 5 masajes linfaticos postquirurgicos a precio especial seleccionando nuestro paquete en Palmas recovery en Tijuana.jpeg", // Promoción de 5 tipos de masajes
+      url: pathname === "/en/" ? "/book" : "/reservar",
+      alt: "Paquete de 5 masajes linfáticos para tu estadía con una masajista experta en nuestras instalaciones ",
     },
     {
       id: 6,
       name: "Original Recovery bra sytle No. B01G",
       priceText: "$80 dlls",
-      image: "/extra1-1.png",
+      image:
+        "/Anade a tu carrito un brasier de compresion postquirurgica con ajuste completo en Palmas Recovery.png",
+      url: pathname === "/en/" ? "/book" : "/reservar",
+      alt: "Puedes comprar en Palmas Recovery tu brasier lavable y de cierre frontal de compresión postquirgica  ",
     },
     {
       id: 7,
       name: "Open Bust Vest 3/4 Lengh Sleeves Style No. FVOM",
       priceText: "$80 dlls",
-      image: "/extra2-1.png",
+      image: "/Faja torerita con apertura en el busto.png",
+      url: pathname === "/en/" ? "/book" : "/reservar",
+      alt: "Compra tu faja torerita con apeetura en el busto en Palmas Recovery  ",
     },
     {
       id: 8,
       name: "Reinforced Girdle with High Back and Layered Panels Short Lenght Style No. SFBHRS",
       priceText: "$140 dlls",
-      image: "/extra3-1.png",
+      image:
+        "/Compra fácil tu Faja con espalda alta de short arriba de las rodillas en Palmas Recovery.png",
+      url: pathname === "/en/" ? "/book" : "/reservar",
+      alt: "Agenda tu estancia En Palmas Recovery y Compra fácil tu Faja con espalda alta de short arriba de las rodillas en",
     },
     {
       id: 9,
       name: "Girdle With High Back No Closures Short Lenght Style No. SFBHS2",
       priceText: "$140 dlls",
-      image: "/extra4-1.png",
+      image:
+        "/Compra la faja  con espalda alta sin costuras de short arriba de las rodillas.png",
+      url: pathname === "/en/" ? "/book" : "/reservar",
+      alt: "En PR puedes encontrar la faja que necesitas como la faja de espalda alta sin costuras",
     },
   ];
 
@@ -179,7 +203,8 @@ export default function HotelDestinationsScroll() {
                     <a href={item.url || "#"} className="block">
                       <motion.img
                         src={item.image}
-                        alt={item.name}
+                        alt={item.alt}
+                        title={item.alt}
                         draggable={false}
                         className={`w-full object-cover ${
                           imageHeights[index % imageHeights.length]

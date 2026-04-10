@@ -70,7 +70,7 @@ export default function SharedRoomPage() {
             <div className="absolute -inset-4 bg-white/20 blur-2xl rounded-3xl"></div>
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20">
               <img
-                src="/habitacion_compartida.jpg"
+                src="/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.jpg"
                 alt="Shared recovery room"
                 className="w-full h-[360px] md:h-[420px] object-cover"
               />

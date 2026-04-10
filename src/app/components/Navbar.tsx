@@ -184,7 +184,8 @@ const Navbar: React.FC = () => {
               <figure>
                 <img
                   src="/logo-palmas.png"
-                  alt="Icono del logotipo de la Clínica"
+                  alt="Palmas Recovery - La mejor casa de recuperación en Tijuana"
+                  title="Palmas Recovery - La mejor casa de recuperación en Tijuana"
                   className="h-12 w-auto object-contain h transition-opacity"
                 />
               </figure>
@@ -408,9 +409,9 @@ const Navbar: React.FC = () => {
 
           <div className="w-full text-principal text-6xl font-[serif]">
             <img
-              src="/logo.png"
-              alt="Icono del logotipo de la Clínica"
-              title="Icono del logotipo de la Clínica"
+              src="/Casa de recuperacion palmas recovery en Tijuana  .png"
+              alt="La mejor casa de recuperacion en Tijuana es Palmas recovery desde 2021 "
+              title="La mejor casa de recuperacion en Tijuana es Palmas recovery desde 2021 "
               className="w-auto h-auto mx-auto"
             />
           </div>

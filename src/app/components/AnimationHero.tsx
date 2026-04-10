@@ -23,20 +23,34 @@ export default function AnimationHero() {
     title: string;
     subtitle: string;
     description: string;
+    alt: string;
   }>;
 
   const getSlideImage = (id: string) => {
     switch (id) {
       case "shared":
-        return "/shared.jpg";
+        return "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.jpg";
       case "private":
-        return "/private.jpg";
+        return "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.jpg";
 
       case "vip":
-        return "/vip-suite.jpg";
+        return "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.jpg";
 
       default:
-        return "/habitacion_compartida.jpg";
+        return "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.jpg";
+    }
+  };
+
+  const getSlideAlt = (id: string) => {
+    switch (id) {
+      case "shared":
+        return "Conoce las comodas habitaciones compartidas para tu recuperación con precios accesibles en la mejor clínica de recuperación en Tijuana a 10 min del cruce fronterizo ";
+      case "private":
+        return "Amplia habitación con sofá para acompañante, closet y cama   hospitalaria con amplia vista y acompáñate con todas las amenidades incluidas en Tijuana ";
+      case "vip":
+        return "En Palmas recovery contamos con habitaciones VIP con baño privada y excelente vista para tu comodidad  ";
+      default:
+        return "Conoce las comodas habitaciones compartidas para tu recuperación con precios accesibles en la mejor clínica de recuperación en Tijuana a 10 min del cruce fronterizo";
     }
   };
 
@@ -189,7 +203,8 @@ export default function AnimationHero() {
               if (el) imagesRef.current[i] = el;
             }}
             src={getSlideImage(slide.id)}
-            alt={slide.title}
+            alt={getSlideAlt(slide.id)}
+            title={getSlideAlt(slide.id)}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70"></div>

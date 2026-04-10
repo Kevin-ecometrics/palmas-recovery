@@ -53,8 +53,9 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
           <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-cream/20">
             <img
-              src="/logo.png"
-              alt="Logo Palmas Recovery"
+              src="/Casa de recuperacion palmas recovery en Tijuana  .png"
+              alt="La mejor casa de recuperacion en Tijuana es Palmas recovery desde 2021 "
+              title="La mejor casa de recuperacion en Tijuana es Palmas recovery desde 2021 "
               className=" object-contain drop-shadow-lg"
             />
           </div>
