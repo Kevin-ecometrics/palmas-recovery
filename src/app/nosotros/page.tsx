@@ -49,15 +49,30 @@ export default function AboutPage() {
         </div>
       )}
 
-      <section className="bg-white py-32">
-        <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
-          <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-cream/20">
-            <img
-              src="/Palmas recovery cuidados postoperatorios en tijuana.png"
-              alt="Palmas Recovery desde el 2021 fue creado por médicos con enfermeras certificadas que brindan atención de excelencia a pacientes en Tijuana  "
-              title="Palmas Recovery desde el 2021 fue creado por médicos con enfermeras certificadas que brindan atención de excelencia a pacientes en Tijuana  "
-              className=" object-contain drop-shadow-lg"
-            />
+      <section className="bg-white py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="relative max-w-5xl mx-auto">
+            {/* Decorative corners */}
+            <div className="absolute -top-4 -left-4 w-16 h-16 border-l-2 border-t-2 border-wine/30" />
+            <div className="absolute -top-4 -right-4 w-16 h-16 border-r-2 border-t-2 border-wine/30" />
+            <div className="absolute -bottom-4 -left-4 w-16 h-16 border-l-2 border-b-2 border-wine/30" />
+            <div className="absolute -bottom-4 -right-4 w-16 h-16 border-r-2 border-b-2 border-wine/30" />
+
+            {/* Main container */}
+            <div className="relative bg-gradient-to-br from-cream/50 to-blush/20 rounded-3xl p-3 md:p-4 shadow-2xl">
+              {/* Inner frame */}
+              <div className="relative overflow-hidden rounded-2xl bg-white">
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-wine/5 via-transparent to-transparent z-10 pointer-events-none" />
+
+                <img
+                  src="/Casa de recuperacion palmas recovery en Tijuana  .png"
+                  alt="Palmas Recovery desde el 2021 fue creado por médicos con enfermeras certificadas que brinda atención de excelencia a pacientes en Tijuana"
+                  title="Palmas Recovery desde el 2021 fue creado por médicos con enfermeras certificadas que brinda atención de excelencia a pacientes en Tijuana"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

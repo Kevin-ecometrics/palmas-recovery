@@ -187,7 +187,7 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
         <div className={`w-full mt-auto border-t ${borderClass}`}>
           <div className="max-w-6xl mx-auto py-4 flex flex-col md:flex-row items-center justify-between gap-6">
             <img
-              src="/Palmas recovery cuidados postoperatorios en tijuana  Palmas recovery cuidados postoperatorios en tijuana.png"
+              src="/Palmas recovery cuidados postoperatorios en tijuana.png"
               alt="Palmas Recovery es una clinica de cuidados postoperatorios por médicos certificados en Tijuana"
               title="Palmas Recovery es una clinica de cuidados postoperatorios por médicos certificados en Tijuana"
               className="h-32 md:h-40 w-auto"

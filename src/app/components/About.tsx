@@ -26,15 +26,15 @@ export default function ImprovedSections() {
   }>;
 
   return (
-    <div id="about" className="bg-white">
-      {/* Patient Stories Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div id="about">
+      {/* Patient Stories Section - BLUSH */}
+      <section className="py-24 bg-cream">
         <div className="container mx-auto px-8">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-principal  bg-clip-text">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-wine">
               {t("about.patientStories.title")}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg text-wine/80">
               {t("about.patientStories.subtitle")}
             </p>
           </div>
@@ -43,15 +43,15 @@ export default function ImprovedSections() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group"
+                className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group"
               >
                 <div className="flex items-center justify-between mb-6">
-                  <div className="text-5xl bg-principal text-white bg-wine rounded-full w-16 h-16 flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
+                  <div className="bg-wine text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-2xl group-hover:scale-105 transition-transform">
                     {testimonial.avatar}
                   </div>
                   <div className="flex gap-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <FaStar key={i} className="w-5 h-5 text-yellow-400" />
+                      <FaStar key={i} className="w-5 h-5 text-yellow-500" />
                     ))}
                   </div>
                 </div>
@@ -60,7 +60,7 @@ export default function ImprovedSections() {
                   "{testimonial.story}"
                 </p>
 
-                <p className="font-bold text-lg text-hover">
+                <p className="font-bold text-lg text-wine">
                   {testimonial.name}
                 </p>
               </div>
@@ -69,15 +69,13 @@ export default function ImprovedSections() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-principal text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-blush/80" />
-
+      {/* CTA Section - WHITE */}
+      <section className="py-24 bg-white relative overflow-hidden">
         <div className="container mx-auto px-8 text-center relative z-10">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-wine">
             {t("about.cta.title")}
           </h2>
-          <p className="text-xl mb-12 max-w-2xl mx-auto opacity-95">
+          <p className="text-lg mb-12 max-w-2xl mx-auto text-gray-600">
             {t("about.cta.description")}
           </p>
 
@@ -86,7 +84,7 @@ export default function ImprovedSections() {
               onClick={() =>
                 router.push(getLocalizedPath("/panorama", currentLang))
               }
-              className="group bg-white text-wine px-10 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:scale-105 flex items-center justify-center gap-3"
+              className="group bg-wine text-white px-10 py-4 rounded-xl font-bold hover:bg-wine/90 transition-all duration-300 shadow-lg hover:scale-105 flex items-center justify-center gap-3"
             >
               <FaCalendarAlt className="w-5 h-5 group-hover:scale-110 transition-transform" />
               {t("about.cta.schedule")}
@@ -95,7 +93,7 @@ export default function ImprovedSections() {
               onClick={() =>
                 router.push(getLocalizedPath("/contact", currentLang))
               }
-              className="group border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-wine transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3"
+              className="group border-2 border-wine text-wine px-10 py-4 rounded-xl font-bold hover:bg-wine hover:text-white transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3"
             >
               <FaPhone className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               {t("about.cta.contact")}
@@ -104,21 +102,21 @@ export default function ImprovedSections() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+      {/* FAQ Section - BLUSH */}
+      <section className="py-24 bg-cream">
         <div className="container mx-auto px-8">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-principal">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-wine">
               {t("about.faq.title")}
             </h2>
-            <p className="text-xl text-gray-600">{t("about.faq.subtitle")}</p>
+            <p className="text-lg text-wine/80">{t("about.faq.subtitle")}</p>
           </div>
 
           <div className="max-w-4xl mx-auto space-y-4">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
               >
                 <button
                   onClick={() =>
@@ -126,11 +124,11 @@ export default function ImprovedSections() {
                   }
                   className="w-full p-6 md:p-8 text-left flex items-center justify-between group hover:bg-gray-50 transition-colors"
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 pr-8 group-hover:text-principal transition-colors">
+                  <h3 className="text-lg md:text-xl font-bold text-wine pr-8 group-hover:text-wine/80 transition-colors">
                     {faq.question}
                   </h3>
                   <FaChevronDown
-                    className={`w-5 h-5 md:w-6 md:h-6 text-principal transition-transform duration-300 flex-shrink-0 ${
+                    className={`w-5 h-5 md:w-6 md:h-6 text-wine transition-transform duration-300 flex-shrink-0 ${
                       expandedFaq === index ? "rotate-180" : ""
                     }`}
                   />
