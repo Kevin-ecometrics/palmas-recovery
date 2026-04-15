@@ -281,7 +281,7 @@ export default function Panorama360({
           <div className="w-5 h-5 md:w-7 md:h-7 border border-amber-500 rounded-full flex items-center justify-center relative">
             <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-amber-500 rounded-full" />
           </div>
-          <span className="font-['Cormorant_Garamond'] text-xs md:text-[15px] font-light tracking-[0.25em] md:tracking-[0.35em] text-amber-50 uppercase">
+          <span className=" text-xs md:text-[15px] font-light tracking-[0.25em] md:tracking-[0.35em] text-amber-50 uppercase">
             {brandName}
           </span>
         </div>
@@ -315,7 +315,7 @@ export default function Panorama360({
       {/* Compass - shows current orientation */}
       <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-1.5">
         <div className="w-8 h-8 md:w-10 md:h-10 border border-amber-50/15 rounded-full flex items-center justify-center relative">
-          <span className="font-['Cormorant_Garamond'] text-[8px] md:text-[10px] text-amber-500 tracking-[0.1em] absolute top-1">
+          <span className=" text-[8px] md:text-[10px] text-amber-500 tracking-[0.1em] absolute top-1">
             N
           </span>
           {/* Compass indicator */}
@@ -418,7 +418,7 @@ export default function Panorama360({
                 className="w-full h-full object-cover"
               />
               <span
-                className={`absolute bottom-0 left-0 right-0 px-1 py-0.5 md:px-1.5 md:py-1 font-['DM_Mono'] text-[6px] md:text-[8px] tracking-[0.08em] md:tracking-[0.12em] uppercase text-amber-50 bg-gradient-to-t from-black/90 to-transparent transition-opacity duration-300 truncate ${
+                className={`absolute bottom-0 left-0 right-0 px-1 py-0.5 md:px-1.5 md:py-1 text-[6px] md:text-[8px] tracking-[0.08em] md:tracking-[0.12em] uppercase text-amber-50 bg-gradient-to-t from-black/90 to-transparent transition-opacity duration-300 truncate ${
                   i === activeIndex
                     ? "opacity-100"
                     : "opacity-0 group-hover:opacity-100"

@@ -244,7 +244,7 @@ export default function Page() {
                     }`}
                   />
                   <span
-                    className={`font-[DM_Sans] text-xs tracking-[0.2em] uppercase transition-colors duration-200 ${
+                    className={`text-xs tracking-[0.2em] uppercase transition-colors duration-200 ${
                       i === active
                         ? "text-stone-900 font-medium"
                         : "text-stone-400 group-hover:text-stone-600"
@@ -268,12 +268,12 @@ export default function Page() {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
               {/* Title — big editorial serif */}
-              <h1 className="font-[Playfair_Display] font-medium text-stone-900 leading-[1] tracking-tight mb-3 text-[clamp(40px,7vw,72px)] whitespace-pre-line">
+              <h1 className=" font-medium text-stone-900 leading-[1] tracking-tight mb-3 text-[clamp(40px,7vw,72px)] whitespace-pre-line">
                 {tour.name}
               </h1>
 
               {/* Subtitle italic */}
-              <p className="font-[Playfair_Display] italic text-stone-400 text-lg md:text-xl mb-6 tracking-wide">
+              <p className=" italic text-stone-500 text-xl md:text-2xl mb-6 tracking-wide font-normal">
                 {tour.subtitle}
               </p>
 
@@ -281,31 +281,31 @@ export default function Page() {
               <div className="w-12 h-px bg-stone-300 mb-6" />
 
               {/* Description */}
-              <p className="font-[DM_Sans] text-sm font-light leading-[1.9] text-stone-500 mb-8 max-w-sm">
+              <p className="text-base md:text-lg font-light leading-[1.9] text-stone-600 mb-8 max-w-sm">
                 {tour.description}
               </p>
 
               {/* Room details - Using translations */}
               <div className="grid grid-cols-2 gap-3 mb-8 md:mb-10">
-                <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
-                  <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
+                <div className="rounded-2xl border border-stone-200 bg-white/60 px-5 py-4">
+                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-stone-400 mb-1">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.area")
                       : t("common.perNight")}
                   </div>
-                  <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
+                  <div className="text-base md:text-lg text-stone-900 font-medium">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.commonSpace")
                       : `$${tour.price}`}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
-                  <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
+                <div className="rounded-2xl border border-stone-200 bg-white/60 px-5 py-4">
+                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-stone-400 mb-1">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.access")
                       : t("roomDetail.capacity")}
                   </div>
-                  <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
+                  <div className="text-base md:text-lg text-stone-900 font-medium">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.allGuests")
                       : t("searchBar.accommodates", {
@@ -313,37 +313,37 @@ export default function Page() {
                         })}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
-                  <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
+                <div className="rounded-2xl border border-stone-200 bg-white/60 px-5 py-4">
+                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-stone-400 mb-1">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.service")
                       : t("roomDetail.bedType")}
                   </div>
-                  <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
+                  <div className="text-base md:text-lg text-stone-900 font-medium">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.reception247")
                       : tour.beds}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-stone-200 bg-white/60 px-4 py-3">
-                  <div className="font-[DM_Sans] text-[10px] tracking-[0.22em] uppercase text-stone-400">
+                <div className="rounded-2xl border border-stone-200 bg-white/60 px-5 py-4">
+                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-stone-400 mb-1">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.area")
                       : t("roomDetail.roomSize")}
                   </div>
-                  <div className="font-[DM_Sans] text-sm text-stone-900 font-medium">
+                  <div className="text-base md:text-lg text-stone-900 font-medium">
                     {tour.size}
                   </div>
                 </div>
               </div>
 
               {/* Features grid */}
-              <div className="grid grid-cols-2 gap-2 mb-8 md:mb-10">
+              <div className="grid grid-cols-2 gap-3 mb-8 md:mb-10">
                 {Array.isArray(tour.features) &&
                   tour.features.map((f) => (
-                    <div key={f} className="flex items-center gap-2">
+                    <div key={f} className="flex items-center gap-3">
                       <svg
-                        className="w-3 h-3 text-stone-400 flex-shrink-0"
+                        className="w-4 h-4 text-stone-400 flex-shrink-0"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -351,7 +351,7 @@ export default function Page() {
                       >
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
-                      <span className="font-[DM_Sans] text-xs text-stone-500 font-normal">
+                      <span className="text-sm text-stone-600 font-normal">
                         {f}
                       </span>
                     </div>
@@ -360,17 +360,17 @@ export default function Page() {
 
               {/* Amenities */}
               <div className="mb-8 md:mb-10">
-                <div className="font-[DM_Sans] text-[10px] tracking-[0.25em] uppercase text-stone-400 mb-3">
+                <div className="text-xs tracking-[0.25em] uppercase text-stone-400 mb-3">
                   {tour.id === "lobby"
                     ? t("rooms.lobby.labels.services")
                     : t("roomsPage.amenitiesTitle")}
                 </div>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-3">
                   {Array.isArray(tour.amenities) &&
                     tour.amenities.map((a) => (
-                      <div key={a} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-stone-300" />
-                        <span className="font-[DM_Sans] text-xs text-stone-500 font-normal">
+                      <div key={a} className="flex items-center gap-3">
+                        <span className="w-2 h-2 rounded-full bg-stone-300" />
+                        <span className="text-sm text-stone-600 font-normal">
                           {a}
                         </span>
                       </div>
@@ -385,7 +385,7 @@ export default function Page() {
                 onMouseMove={ctaMag.onMove}
                 onMouseLeave={ctaMag.onLeave}
                 style={{ x: ctaMag.sx, y: ctaMag.sy }}
-                className="group relative inline-flex items-center gap-3 font-[DM_Sans] text-xs font-medium tracking-[0.18em] uppercase text-stone-50 bg-stone-900 px-7 py-4 rounded-full overflow-hidden self-start no-underline w-full md:w-auto justify-center md:justify-start hover:shadow-2xl transition-shadow duration-300"
+                className="group relative inline-flex items-center gap-3 text-sm md:text-base font-medium tracking-[0.15em] uppercase text-stone-50 bg-stone-900 px-8 py-4 rounded-full overflow-hidden self-start no-underline w-full md:w-auto justify-center md:justify-start hover:shadow-2xl transition-shadow duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -426,7 +426,7 @@ export default function Page() {
           <div className="hidden md:flex items-center justify-between pt-6 border-t border-stone-100">
             <button
               onClick={() => goTo(active - 1)}
-              className="group flex items-center gap-2 font-[DM_Sans] text-xs text-stone-400 hover:text-stone-900 transition-colors cursor-pointer bg-transparent border-none p-0"
+              className="group flex items-center gap-2 text-sm text-stone-400 hover:text-stone-900 transition-colors cursor-pointer bg-transparent border-none p-0"
             >
               <svg
                 className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
@@ -441,7 +441,7 @@ export default function Page() {
             </button>
             <button
               onClick={() => goTo(active + 1)}
-              className="group flex items-center gap-2 font-[DM_Sans] text-xs text-stone-400 hover:text-stone-900 transition-colors cursor-pointer bg-transparent border-none p-0"
+              className="group flex items-center gap-2 text-sm text-stone-400 hover:text-stone-900 transition-colors cursor-pointer bg-transparent border-none p-0"
             >
               {t(`rooms.${ROOMS[(active + 1) % TOTAL].id}.name`)}
               <svg
@@ -491,14 +491,14 @@ export default function Page() {
             transition={{ delay: 0.6, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.svg
-              className="w-3.5 h-3.5 text-stone-700 fill-current"
+              className="w-4 h-4 md:w-3.5 md:h-3.5 text-stone-700 fill-current"
               viewBox="0 0 24 24"
               animate={{ rotate: 360 }}
               transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
             >
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
             </motion.svg>
-            <span className="font-[DM_Sans] text-[10px] font-semibold tracking-[0.18em] uppercase text-stone-700">
+            <span className="text-xs md:text-[10px] font-semibold tracking-[0.15em] uppercase text-stone-700">
               {tour.id === "lobby"
                 ? t("tour360.viewLobby")
                 : t("tour360.badge")}
@@ -517,11 +517,11 @@ export default function Page() {
                 transition={{ duration: 0.35 }}
               >
                 <span
-                  className={`inline-block font-[DM_Sans] text-[9px] font-medium tracking-[0.25em] uppercase border px-2.5 py-1 rounded-full mb-2 ${tour.accentLight}`}
+                  className={`inline-block text-[9px] font-medium tracking-[0.25em] uppercase border px-2.5 py-1 rounded-full mb-2 ${tour.accentLight}`}
                 >
                   {tour.tag}
                 </span>
-                <h2 className="font-[Playfair_Display] text-2xl font-medium text-white leading-tight drop-shadow-lg">
+                <h2 className=" text-2xl font-medium text-white leading-tight drop-shadow-lg">
                   {tour.nameFlat}
                 </h2>
               </motion.div>
@@ -579,7 +579,7 @@ export default function Page() {
             <button
               key={i}
               onClick={() => goTo(i)}
-              className={`flex-1 py-2.5 rounded-xl font-[DM_Sans] text-[10px] font-medium tracking-[0.1em] uppercase transition-all duration-300 cursor-pointer border-none ${
+              className={`flex-1 py-3 px-2 rounded-xl text-xs md:text-[10px] font-medium tracking-[0.1em] uppercase transition-all duration-300 cursor-pointer border-none ${
                 i === active
                   ? "bg-stone-900 text-stone-50"
                   : "bg-stone-100 text-stone-400 hover:bg-stone-200"
@@ -591,7 +591,7 @@ export default function Page() {
         </div>
 
         {/* Swipe hint - Show for all */}
-        <p className="font-[DM_Sans] text-[9px] tracking-[0.25em] uppercase text-stone-300">
+        <p className="text-xs tracking-[0.2em] uppercase text-stone-400">
           {t("tour360.swipeHint")}
         </p>
       </div>

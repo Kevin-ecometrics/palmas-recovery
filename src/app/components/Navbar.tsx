@@ -407,7 +407,7 @@ const Navbar: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-full text-principal text-6xl font-[serif]">
+          <div className="w-full text-principal text-6xl">
             <img
               src="/Casa de recuperacion palmas recovery en Tijuana  .png"
               alt="La mejor casa de recuperacion en Tijuana es Palmas recovery desde 2021 "

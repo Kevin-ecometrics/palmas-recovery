@@ -500,6 +500,7 @@
       "fullNameRequired": "Please enter your full name.",
       "emailRequired": "Please enter your email address.",
       "phoneRequired": "Please enter your phone number.",
+      "certifiedDoctorRequired": "Please enter the name of your certified plastic surgeon.",
       "invalidEmail": "Please enter a valid email address.",
       "checkInPast": "Check-in cannot be in the past.",
       "checkInTodayAfter2PM": "Check-in today is only available until 2:00 PM.",
@@ -578,7 +579,9 @@
       "fullName": "Full name",
       "email": "Email address",
       "phone": "Phone number",
-      "specialRequests": "Special requests"
+      "specialRequests": "Special requests",
+      "certifiedDoctor": "Certified plastic surgeon",
+      "certifiedDoctorPlaceholder": "Dr. John Smith"
     }
   },
   "searchBar": {

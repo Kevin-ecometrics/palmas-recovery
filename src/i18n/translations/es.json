@@ -498,6 +498,7 @@
       "fullNameRequired": "Por favor ingresa tu nombre completo.",
       "emailRequired": "Por favor ingresa tu correo electrónico.",
       "phoneRequired": "Por favor ingresa tu número de teléfono.",
+      "certifiedDoctorRequired": "Por favor ingresa el nombre de tu cirujano plástico certificado.",
       "invalidEmail": "Por favor ingresa un correo electrónico válido.",
       "checkInPast": "La fecha de entrada no puede estar en el pasado.",
       "checkInTodayAfter2PM": "El check-in hoy solo está disponible hasta las 2:00 PM.",
@@ -576,7 +577,9 @@
       "fullName": "Nombre completo",
       "email": "Correo electrónico",
       "phone": "Teléfono",
-      "specialRequests": "Solicitudes especiales"
+      "specialRequests": "Solicitudes especiales",
+      "certifiedDoctor": "Cirujano plástico certificado",
+      "certifiedDoctorPlaceholder": "Dr. Juan Pérez"
     }
   },
   "searchBar": {

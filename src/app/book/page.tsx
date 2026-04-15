@@ -41,6 +41,7 @@ interface BookingPayload {
   fullName: string;
   email: string;
   phone: string;
+  certifiedDoctor?: string;
   specialRequests?: string;
   extras: string[];
   total: number;
@@ -287,6 +288,9 @@ const validateStep2 = (
   if (!formData.phone) {
     return { isValid: false, errorMessage: t("booking.errors.phoneRequired") };
   }
+  if (!formData.certifiedDoctor) {
+    return { isValid: false, errorMessage: t("booking.errors.certifiedDoctorRequired") };
+  }
 
   // Validación de email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -366,6 +370,7 @@ const resetBookingForm = (
     fullName: "",
     email: "",
     phone: "",
+    certifiedDoctor: "",
     specialRequests: "",
     paymentMethod: "credit-card",
   });
@@ -436,6 +441,7 @@ const handleFinalSubmit = async (
       fullName: formData.fullName,
       email: formData.email,
       phone: formData.phone,
+      certifiedDoctor: formData.certifiedDoctor || undefined,
       specialRequests: formData.specialRequests,
       extras: selectedExtras,
       total,
@@ -600,6 +606,17 @@ const SuccessModal = ({
                 </span>
               </div>
 
+              {confirmationData?.certifiedDoctor && (
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-olive-dark font-medium">
+                    {t("booking.fields.certifiedDoctor")}:
+                  </span>
+                  <span className="font-semibold text-olive-dark">
+                    {confirmationData?.certifiedDoctor}
+                  </span>
+                </div>
+              )}
+
               {confirmationData?.extras &&
                 confirmationData.extras.length > 0 && (
                   <>
@@ -703,6 +720,7 @@ const BookingPageInner = () => {
     fullName: "",
     email: "",
     phone: "",
+    certifiedDoctor: "",
     specialRequests: "",
     paymentMethod: "credit-card",
   });
@@ -1398,6 +1416,22 @@ const BookingPageInner = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           placeholder="+1 (555) 000-0000"
+                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
+                          required
+                          disabled={status === "submitting"}
+                        />
+                      </div>
+
+                      <div className="md:col-span-2 group">
+                        <label className="block text-sm font-semibold text-olive-dark mb-2">
+                          {t("booking.fields.certifiedDoctor")}
+                        </label>
+                        <input
+                          type="text"
+                          name="certifiedDoctor"
+                          value={formData.certifiedDoctor}
+                          onChange={handleInputChange}
+                          placeholder={t("booking.fields.certifiedDoctorPlaceholder")}
                           className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
