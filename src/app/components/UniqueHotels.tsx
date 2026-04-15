@@ -60,31 +60,29 @@ export default function UniqueHotels() {
 
   return (
     <section className="bg-cream py-16 md:py-32 overflow-hidden">
-      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-8 md:gap-16 items-center px-4 md:px-6">
-        {/* LEFT – STATIC TEXT */}
-        <div className="max-w-none md:-ml-8 lg:-ml-12">
-          <h2 className="text-4xl md:text-5xl font-serif mb-6">
-            {t("uniqueHotels.title")}
-          </h2>
+      <div className="max-w-7xl mx-auto px-6 md:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-8 md:gap-16 items-center">
+          {/* LEFT – STATIC TEXT */}
+          <div>
+            <h2 className="text-4xl md:text-5xl font-serif mb-6">
+              {t("uniqueHotels.title")}
+            </h2>
 
-          <p className="text-base md:text-lg max-w-none mb-8 md:mb-10">
-            {t("uniqueHotels.description")}
-          </p>
+            <p className="text-base md:text-lg mb-8 md:mb-10">
+              {t("uniqueHotels.description")}
+            </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 md:gap-x-10 text-base md:text-lg">
-            {bullets.map((item, idx) => (
-              <p key={idx}>
-                <Trans>{item}</Trans>
-              </p>
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 md:gap-x-10 text-base md:text-lg">
+              {bullets.map((item, idx) => (
+                <p key={idx}>
+                  <Trans>{item}</Trans>
+                </p>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* RIGHT – FRAMER CAROUSEL - CONTENIDO DENTRO DEL CONTENEDOR */}
-        <div className="relative w-full max-w-xl mx-auto">
-          {/* CONTENEDOR PRINCIPAL CON ALTURA FIJA */}
+          {/* RIGHT – FRAMER CAROUSEL */}
           <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden rounded-xl">
-            {/* IMAGEN PRINCIPAL */}
             <AnimatePresence initial={false} custom={direction}>
               <motion.img
                 key={index}
@@ -105,10 +103,8 @@ export default function UniqueHotels() {
               />
             </AnimatePresence>
 
-            {/* OVERLAY PARA MEJOR VISIBILIDAD DE BOTONES */}
             <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
 
-            {/* BOTONES DE NAVEGACIÓN - DENTRO DE LA IMAGEN */}
             <div className="absolute bottom-4 right-4 flex gap-2 z-10">
               <button
                 onClick={() => paginate(-1)}
@@ -127,7 +123,6 @@ export default function UniqueHotels() {
               </button>
             </div>
 
-            {/* INDICADORES - DENTRO DE LA IMAGEN */}
             <div className="absolute bottom-4 left-4 flex gap-2 z-10">
               {IMAGES.map((_, i) => (
                 <button

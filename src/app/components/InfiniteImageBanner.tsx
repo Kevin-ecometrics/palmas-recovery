@@ -138,7 +138,7 @@ export default function InfiniteImageBanner() {
         <MarqueeRow images={IMAGES_TOP} direction="left" speed={40} />
 
         {/* CENTER CONTENT */}
-        <div className="relative py-20 px-6 text-center">
+        <div className="relative py-20 px-6 md:px-8 text-center">
           {/* Decorative thin line */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-8 bg-stone-300" />
 

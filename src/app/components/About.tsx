@@ -29,7 +29,7 @@ export default function ImprovedSections() {
     <div id="about">
       {/* Patient Stories Section - BLUSH */}
       <section className="py-24 bg-cream">
-        <div className="container mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-wine">
               {t("about.patientStories.title")}
@@ -39,7 +39,7 @@ export default function ImprovedSections() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
@@ -60,7 +60,7 @@ export default function ImprovedSections() {
                   "{testimonial.story}"
                 </p>
 
-                <p className="font-bold text-lg text-wine">
+                <p className="font-bold text-lg text-wine text-center">
                   {testimonial.name}
                 </p>
               </div>
@@ -71,7 +71,7 @@ export default function ImprovedSections() {
 
       {/* CTA Section - WHITE */}
       <section className="py-24 bg-white relative overflow-hidden">
-        <div className="container mx-auto px-8 text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-wine">
             {t("about.cta.title")}
           </h2>
@@ -104,7 +104,7 @@ export default function ImprovedSections() {
 
       {/* FAQ Section - BLUSH */}
       <section className="py-24 bg-cream">
-        <div className="container mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-wine">
               {t("about.faq.title")}

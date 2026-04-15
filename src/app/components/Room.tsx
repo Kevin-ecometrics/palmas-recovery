@@ -194,7 +194,7 @@ export default function HotelDestinationsScroll() {
           className={`
             flex gap-6 sm:gap-10 md:gap-14 overflow-x-auto md:overflow-hidden 
             select-none snap-x snap-mandatory md:snap-none touch-pan-x 
-            pr-6 md:pr-0 
+            pl-6 md:pl-4 pr-6 md:pr-0 
             [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]
             transition-all duration-300
             ${isDraggingState ? "cursor-grabbing" : "cursor-grab"}

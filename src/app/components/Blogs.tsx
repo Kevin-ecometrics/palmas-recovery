@@ -37,7 +37,7 @@ export default function Blogs() {
 
   return (
     <section className="pt-16 sm:pt-28 lg:pt-36 pb-20 sm:pb-32 lg:pb-48 bg-[#fffaf6]">
-      <div className="container mx-auto px-6 md:px-0">
+      <div className="max-w-7xl mx-auto px-6 md:px-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.2fr] gap-12 items-start">
           <div className="text-black">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif leading-tight mb-5 sm:mb-6">
@@ -47,7 +47,7 @@ export default function Blogs() {
               {t("blogs.subtitle")}
             </p>
             <Link
-              href={getLocalizedPath("/blog", currentLang)} // Cambiado de "/rooms" a "/blog"
+              href={getLocalizedPath("/blog", currentLang)}
               className="inline-flex items-center gap-2 rounded-full border border-black/20 px-6 py-3 text-sm font-semibold text-black hover:bg-black/5 transition"
             >
               {t("blogs.cta")}

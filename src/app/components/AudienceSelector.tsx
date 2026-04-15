@@ -77,7 +77,7 @@ export default function AudienceSelector() {
         activeItem ? activeItem.bg : "bg-cream"
       }`}
     >
-      <div className="mx-auto w-full max-w-7xl px-4 md:px-6">
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-0">
         <div>
           <h2
             className={`text-4xl md:text-5xl font-serif leading-[1.2] transition-colors duration-500 ease-in-out ${

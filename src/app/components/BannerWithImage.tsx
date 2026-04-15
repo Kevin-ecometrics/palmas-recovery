@@ -17,7 +17,7 @@ const BannerWithImage: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-50 rounded-full blur-3xl opacity-30 translate-y-1/3 -translate-x-1/4" />
       </div>
 
-      <div className="relative w-full max-w-[1400px] mx-auto py-12 px-6 lg:px-16">
+      <div className="relative w-full max-w-7xl mx-auto py-12 px-6 md:px-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           <div className="lg:col-span-6 space-y-8 lg:pr-8">
             <motion.h1

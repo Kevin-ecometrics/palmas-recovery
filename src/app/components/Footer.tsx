@@ -45,7 +45,7 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
   return (
     <footer className={`w-full min-h-screen flex flex-col ${bgClass}`}>
       <div className="w-full px-4 pt-14 pb-0 flex-1 flex flex-col">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
           <div>
             <h4 className="text-sm uppercase tracking-[0.2em] mb-4">
               {t("footer.linksTitle")}
@@ -132,7 +132,7 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
         </div>
 
         <div className={`w-full mt-3 pt-3 pb-3 border-t ${borderClass}`}>
-          <div className="max-w-6xl mx-auto flex flex-col items-start gap-8">
+          <div className="max-w-7xl mx-auto flex flex-col items-start gap-8">
             <div className="w-full overflow-hidden rounded-2xl border border-white/10">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!4v1770341021986!6m8!1m7!1sN-CYaVYhfuwqmBIsa4VYVA!2m2!1d32.53180523214883!2d-117.0158720135962!3f121.88!4f0!5f0.7820865974627469"
@@ -185,7 +185,7 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
         </div>
 
         <div className={`w-full mt-auto border-t ${borderClass}`}>
-          <div className="max-w-6xl mx-auto py-4 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-7xl mx-auto py-4 flex flex-col md:flex-row items-center justify-between gap-6">
             <img
               src="/Palmas recovery cuidados postoperatorios en tijuana.png"
               alt="Palmas Recovery es una clinica de cuidados postoperatorios por médicos certificados en Tijuana"
