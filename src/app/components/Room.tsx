@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { IoAdd } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -29,29 +29,8 @@ export default function HotelDestinationsScroll() {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
-  const [showCursor, setShowCursor] = useState(false);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-
-  /* ---------------- DRAG LOGIC ---------------- */
-  const onMouseDown = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    isDragging.current = true;
-    startX.current = e.pageX;
-    scrollLeft.current = containerRef.current.scrollLeft;
-  };
-
-  const onMouseMove = (e: React.MouseEvent) => {
-    setCursorPos({ x: e.clientX, y: e.clientY });
-
-    if (!isDragging.current || !containerRef.current) return;
-
-    const walk = (e.pageX - startX.current) * 1.2; // velocidad
-    containerRef.current.scrollLeft = scrollLeft.current - walk;
-  };
-
-  const stopDragging = () => {
-    isDragging.current = false;
-  };
+  const [isDraggingState, setIsDraggingState] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const pathname = usePathname();
 
@@ -80,7 +59,6 @@ export default function HotelDestinationsScroll() {
       priceText: "$200 dlls / night",
       image:
         "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.jpg",
-
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
       alt: "En Palmas recovery contamos con habitaciones VIP con baño privada y excelente vista para tu comodidad  ",
     },
@@ -89,7 +67,7 @@ export default function HotelDestinationsScroll() {
       name: "Lymphatic massage",
       priceText: "$60 dlls",
       image:
-        "/Servicio de masaje linfatipo para una recuperacion efectiva en Palmas Recovery con una fisioterapeuta.jpg", // Masaje de drenaje linfático
+        "/Servicio de masaje linfatipo para una recuperacion efectiva en Palmas Recovery con una fisioterapeuta.jpg",
       url: pathname === "/en/" ? "/book" : "/reservar",
       alt: "En Palmas recovery contamos con habitaciones VIP con baño privada y excelente vista para tu comodidad  ",
     },
@@ -98,7 +76,7 @@ export default function HotelDestinationsScroll() {
       name: "5 Lymphatic massages package",
       priceText: "$270 dlls",
       image:
-        "/Obten 5 masajes linfaticos postquirurgicos a precio especial seleccionando nuestro paquete en Palmas recovery en Tijuana.jpeg", // Promoción de 5 tipos de masajes
+        "/Obten 5 masajes linfaticos postquirurgicos a precio especial seleccionando nuestro paquete en Palmas recovery en Tijuana.jpeg",
       url: pathname === "/en/" ? "/book" : "/reservar",
       alt: "Paquete de 5 masajes linfáticos para tu estadía con una masajista experta en nuestras instalaciones ",
     },
@@ -139,26 +117,72 @@ export default function HotelDestinationsScroll() {
     },
   ];
 
-  /* -------------------------------------------- */
+  const TOTAL_DOTS = 7;
+
+  const getActiveDotIndex = () => {
+    const totalItems = destinations.length;
+    const ratio = currentIndex / (totalItems - 1);
+    const dotIndex = Math.round(ratio * (TOTAL_DOTS - 1));
+    return Math.min(Math.max(dotIndex, 0), TOTAL_DOTS - 1);
+  };
+
+  const scrollToDot = (dotIndex: number) => {
+    if (!containerRef.current) return;
+    const cardWidth = 300;
+    const gap = 24;
+    const targetItemIndex = Math.round((dotIndex / (TOTAL_DOTS - 1)) * (destinations.length - 1));
+    const scrollLeft = targetItemIndex * (cardWidth + gap);
+    containerRef.current.scrollTo({ left: scrollLeft, behavior: "smooth" });
+  };
+
+  const checkScrollPosition = useCallback(() => {
+    if (!containerRef.current) return;
+    const { scrollLeft: sLeft, scrollWidth, clientWidth } = containerRef.current;
+    const maxScroll = scrollWidth - clientWidth;
+
+    const cardWidth = 300;
+    const gap = 24;
+    
+    if (sLeft >= maxScroll - 10) {
+      setCurrentIndex(destinations.length - 1);
+    } else {
+      const newIndex = Math.round(sLeft / (cardWidth + gap));
+      setCurrentIndex(Math.min(newIndex, destinations.length - 1));
+    }
+  }, [destinations.length]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("scroll", checkScrollPosition, { passive: true });
+      checkScrollPosition();
+      return () => container.removeEventListener("scroll", checkScrollPosition);
+    }
+  }, [checkScrollPosition]);
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    isDragging.current = true;
+    startX.current = e.pageX;
+    scrollLeft.current = containerRef.current.scrollLeft;
+    setIsDraggingState(true);
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !containerRef.current) return;
+    const walk = (e.pageX - startX.current) * 1.2;
+    containerRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
+  const stopDragging = () => {
+    isDragging.current = false;
+    setIsDraggingState(false);
+  };
+
+  const scrollProgress = (currentIndex + 1) / destinations.length;
 
   return (
-    <section className="bg-[#f5f3ef] py-16 sm:py-20 px-6 sm:px-10 relative">
-      {/* CURSOR CUSTOM */}
-      {showCursor && (
-        <div
-          className="fixed z-50 pointer-events-none hidden md:block"
-          style={{
-            left: cursorPos.x,
-            top: cursorPos.y,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white text-lg font-semibold">
-            &lt;&gt;
-          </div>
-        </div>
-      )}
-
+    <section className="bg-[#f5f3ef] py-16 sm:py-20 px-4 sm:px-8 md:px-10 relative overflow-hidden">
       <div className="max-w-[1800px] mx-auto">
         <h1 className="text-2xl sm:text-3xl md:text-[42px] font-serif text-gray-800 mb-10 sm:mb-16 max-w-xl sm:max-w-3xl leading-snug whitespace-nowrap text-center mx-auto">
           {t("destinations.title")}
@@ -167,39 +191,58 @@ export default function HotelDestinationsScroll() {
         {/* DRAG CONTAINER */}
         <div
           ref={containerRef}
-          className="flex gap-6 sm:gap-10 md:gap-14 overflow-x-auto md:overflow-hidden select-none cursor-auto md:cursor-none snap-x snap-mandatory md:snap-none touch-pan-x pr-6 md:pr-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]"
+          className={`
+            flex gap-6 sm:gap-10 md:gap-14 overflow-x-auto md:overflow-hidden 
+            select-none snap-x snap-mandatory md:snap-none touch-pan-x 
+            pr-6 md:pr-0 
+            [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]
+            transition-all duration-300
+            ${isDraggingState ? "cursor-grabbing" : "cursor-grab"}
+          `}
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onMouseUp={stopDragging}
-          onMouseLeave={() => {
-            stopDragging();
-            setShowCursor(false);
-          }}
-          onMouseEnter={() => setShowCursor(true)}
+          onMouseLeave={stopDragging}
         >
           {destinations.map((item, index) => {
             const isOdd = index % 2 === 1;
+            const isActive = index === currentIndex;
 
             return (
               <div
                 key={item.id}
-                className="flex-none w-[260px] sm:w-[300px] md:w-[360px] snap-start"
+                className={`
+                  flex-none w-[260px] sm:w-[300px] md:w-[360px] snap-start
+                  transition-all duration-300
+                  ${isActive ? "scale-[1.02]" : "scale-100"}
+                `}
               >
                 <div className="flex flex-col gap-4">
                   {/* TEXTO ARRIBA */}
                   {isOdd && (
-                    <div>
-                      <h3 className="text-base sm:text-xl font-serif text-gray-800">
+                    <motion.div
+                      initial={{ opacity: 0.6 }}
+                      whileHover={{ opacity: 1 }}
+                      className="space-y-1"
+                    >
+                      <h3 className="text-base sm:text-xl font-serif text-gray-800 group-hover:text-wine transition-colors">
                         {item.name}
                       </h3>
                       <p className="text-xs sm:text-sm text-gray-500">
                         {item.priceText}
                       </p>
-                    </div>
+                    </motion.div>
                   )}
 
                   {/* IMAGEN */}
-                  <div className="relative rounded-xl overflow-hidden">
+                  <motion.div
+                    className={`
+                      relative rounded-xl overflow-hidden shadow-lg
+                      transition-shadow duration-300
+                      ${isActive ? "shadow-2xl shadow-wine/25" : "shadow-md"}
+                    `}
+                    whileHover={{ y: -4 }}
+                  >
                     <a href={item.url || "#"} className="block">
                       <motion.img
                         src={item.image}
@@ -209,34 +252,93 @@ export default function HotelDestinationsScroll() {
                         className={`w-full object-cover ${
                           imageHeights[index % imageHeights.length]
                         }`}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.08 }}
                         transition={{ duration: 0.6 }}
                       />
 
+                      {/* Overlay gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+
                       <motion.button
-                        className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-sm"
+                        className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2.5 shadow-md hover:bg-wine hover:text-white transition-colors"
                         whileHover={{ rotate: 90, scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                       >
-                        <IoAdd className="w-4 h-4 text-gray-800" />
+                        <IoAdd className="w-5 h-5 text-gray-800" />
                       </motion.button>
+
+                      {/* Badge */}
+                      {item.id <= 3 && (
+                        <div className="absolute bottom-4 left-4">
+                          <span
+                            className={`
+                            px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider
+                            ${item.id === 1 ? "bg-blush/90 text-wine" : ""}
+                            ${item.id === 2 ? "bg-sage/90 text-white" : ""}
+                            ${item.id === 3 ? "bg-wine/90 text-white" : ""}
+                          `}
+                          >
+                            {item.id === 1
+                              ? "Popular"
+                              : item.id === 2
+                                ? "Recommended"
+                                : "Premium"}
+                          </span>
+                        </div>
+                      )}
                     </a>
-                  </div>
+                  </motion.div>
 
                   {/* TEXTO ABAJO */}
                   {!isOdd && (
-                    <div>
+                    <motion.div
+                      initial={{ opacity: 0.6 }}
+                      whileHover={{ opacity: 1 }}
+                      className="space-y-1"
+                    >
                       <h3 className="text-base sm:text-xl font-serif text-gray-800">
                         {item.name}
                       </h3>
                       <p className="text-xs sm:text-sm text-gray-500">
                         {item.priceText}
                       </p>
-                    </div>
+                    </motion.div>
                   )}
                 </div>
               </div>
             );
           })}
+        </div>
+
+        {/* Indicadores de navegación */}
+        <div className="flex flex-col items-center mt-8 gap-4">
+          {/* Dots */}
+          <div className="flex items-center gap-2">
+            {Array.from({ length: TOTAL_DOTS }).map((_, index) => {
+              const isActive = index === getActiveDotIndex();
+              return (
+                <button
+                  key={index}
+                  onClick={() => scrollToDot(index)}
+                  className={`
+                    transition-all duration-300 rounded-full cursor-pointer
+                    ${isActive ? "w-8 h-3 bg-wine" : "w-3 h-3 bg-gray-300 hover:bg-gray-400"}
+                  `}
+                  aria-label={`Go to section ${index + 1}`}
+                />
+              );
+            })}
+          </div>
+
+          {/* Barra de progreso */}
+          <div className="w-48 sm:w-64 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-gradient-to-r from-wine to-blush rounded-full"
+              initial={false}
+              animate={{ width: `${scrollProgress * 100}%` }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
         </div>
       </div>
     </section>
