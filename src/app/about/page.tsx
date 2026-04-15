@@ -40,8 +40,8 @@ export default function AboutPage() {
           </button>
           <div className="relative max-w-4xl max-h-[90vh]">
             <img
-              src="/coepris.png"
-              alt="COEPRIS Certification"
+              src="/Palmas Recovery esta certificado por coepris.png"
+              alt="Palmas Recovery is a recovery house certified by COEPRIS meeting all hygiene, safety, and hospital and food service standards in Tijuana"
               className="w-full h-full object-contain"
               onClick={(e) => e.stopPropagation()}
             />
@@ -53,9 +53,9 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
           <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-cream/20">
             <img
-              src="/Casa de recuperacion palmas recovery en Tijuana  .png"
-              alt="La mejor casa de recuperacion en Tijuana es Palmas recovery desde 2021 "
-              title="La mejor casa de recuperacion en Tijuana es Palmas recovery desde 2021 "
+              src="/Palmas recovery cuidados postoperatorios en tijuana.png"
+              alt="Palmas Recovery since 2021 was created by doctors with certified nurses who provide excellent care to patients in Tijuana"
+              title="Palmas Recovery since 2021 was created by doctors with certified nurses who provide excellent care to patients in Tijuana"
               className=" object-contain drop-shadow-lg"
             />
           </div>
@@ -120,8 +120,8 @@ export default function AboutPage() {
                   {/* Image with zoom effect */}
                   <div className="relative z-10 bg-white/10 backdrop-blur-sm rounded-xl p-6 w-full h-full flex items-center justify-center transition-all duration-500 group-hover:scale-110">
                     <img
-                      src="/coepris.png"
-                      alt="COEPRIS Certification"
+                      src="/Palmas Recovery esta certificado por coepris.png"
+                      alt="Palmas Recovery is a recovery house certified by COEPRIS meeting all hygiene, safety, and hospital and food service standards in Tijuana"
                       className="max-w-full max-h-full object-contain filter drop-shadow-2xl"
                     />
                   </div>
@@ -196,15 +196,15 @@ export default function AboutPage() {
                 <div className="relative w-full max-w-xl">
                   {/* Imagen principal */}
                   <img
-                    src="https://www.oneshothotels.com/data/webp/historia-sobre-one-shot-hotels-hoteles-con-encanto-2949-4c85d93456192e5e4e69e0acb0c39fc2.webp"
-                    alt=""
+                    src="/Dr raul y dr cecilia al frente de palmas recovery.webp"
+                    alt="Dr. Cecilia and Dr. Raul are the directors and physicians in charge of protecting your health during your stay at Palmas Recovery"
                     className="w-full h-[420px] object-cover rounded-xl"
                   />
 
                   {/* Imagen superpuesta */}
                   <img
-                    src="https://www.oneshothotels.com/data/webp/one-shot-hotels-nuestra-historia182-41251cc7d4deb29bfc1a964e51d3190a.webp"
-                    alt=""
+                    src="/supervision y control de medicamento por doctores especializados en tijuana.webp"
+                    alt="Recover at the best recovery house in Tijuana with supervision from doctors who will provide specialized care and medication"
                     className="
           absolute
           -bottom-16
