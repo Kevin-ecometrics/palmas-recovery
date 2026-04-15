@@ -1,19 +1,18 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Head from "next/head";
 import { FaArrowLeft, FaUserMd, FaShieldAlt, FaBed, FaUtensils, FaCheckCircle, FaHospital, FaSpa, FaStethoscope, FaHeartbeat, FaAmbulance } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Blog3() {
 	return (
 		<>
-			<Head>
-				<title>Recovery House vs hotel: 3 Reasons professional care is Crucial</title>
-				<meta name="description" content="Your recovery space is part of your treatment. It's not just about where you'll sleep. Discover why true recovery requires medical expertise and supervision." />
-				<link rel="canonical" href="https://www.palmasrecovery.com/recovery-house-vs-hotel-3-reasons-professional-care-is-crucial" />
-				<meta name="keywords" content="Recovery, medical care, professional care, Tijuana, plastic surgery, Palmas Recovery House" />
-			</Head>
 			<Navbar />
+			<div className="relative w-full h-[60vh]">
+				<img src="/Recuperate mejor con expertos en el area de la salud con instalaciones de primer nivel para cuidados  postoperatorios.jpg" alt="Recover with health experts in first-class facilities for your post-operative care" className="w-full h-full object-cover" />
+				<div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+					<h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center px-4">Recovery House vs. Hotel: 3 Reasons Why Your Healing Depends on Professional Care</h1>
+				</div>
+			</div>
 			<div className="max-w-7xl mx-auto px-12 py-8">
 				<div className="mb-8">
 					<Link href="/blog" className="inline-flex items-center gap-2 text-[#70805a] hover:text-[#5f6f4a] transition-colors group">
@@ -21,7 +20,6 @@ export default function Blog3() {
 						Back to All Articles
 					</Link>
 				</div>
-				<h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">Recovery House vs. Hotel: 3 Reasons Why Your Healing Depends on Professional Care</h1>
 				
 				<p className="text-lg text-gray-700 mb-8">After a life-changing plastic surgery procedure, your environment matters just as much as your surgeon's skill. While many patients assume a luxury hotel is the best place to recover, the reality is that <span className="font-semibold text-[#70805a]">true recovery requires medical expertise and supervision</span>.<br/><br/>Your recovery space should promote rest, eliminate stress, and provide the right mix of comfort and functionality. Choosing a recovery house means choosing peace of mind. Here is why your post-operative journey deserves more than just a room with a view.</p>
 
@@ -41,7 +39,14 @@ export default function Blog3() {
 				<h2 className="text-2xl font-bold text-[#70805a] mt-12 mb-6 text-center">Only trust professionals when it comes to your health.</h2>
 
 				<h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mt-16 mb-6">3 Reasons Why Professional Care is Vital for Your Results</h1>
-
+				<div className="my-12 mx-auto max-w-4xl">
+					<div className="relative overflow-hidden rounded-2xl shadow-2xl">
+						<img src="/Monitoreo y atencion personalizada con medicos y enfermeras solo en palmas recovery.webp" alt="At Palmas Recovery you are always monitored and receiving personalized attention from nurses and doctors" className="w-full h-auto" />
+						<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+							<p className="text-white text-sm font-medium">At Palmas Recovery you are always monitored and receiving personalized attention from nurses and doctors</p>
+						</div>
+					</div>
+				</div>
 				<div className="space-y-10 mb-12">
 					<div className="bg-[#f2e9dc] rounded-xl p-8 shadow">
 						<div className="flex items-start gap-4 mb-4">

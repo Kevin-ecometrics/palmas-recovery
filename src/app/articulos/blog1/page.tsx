@@ -1,6 +1,5 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Head from "next/head";
 import {
   FaSuitcase,
   FaTshirt,
@@ -66,26 +65,19 @@ export default function Blog1() {
 
   return (
     <>
-      <Head>
-        <title>
-          ¿Qué empacar para tu casa de recuperación postoperatoria en Tijuana?
-        </title>
-        <meta
-          name="description"
-          content="¿Te hospedarás en una casa de recuperación después de tu cirugía plástica? Aquí te damos lo esencial para un viaje sin estrés para ti y tu acompañante."
-        />
-        <link
-          rel="canonical"
-          href="https://www.palmasrecovery.com/es/que-empacar-para-tu-casa-de-recuperacion-postoperatoria-en-tijuana"
-        />
-        <meta
-          name="keywords"
-          content="Recuperación, Tijuana, viaje, postoperatorio, empacar, cirugía, Palmas Recovery House"
-        />
-      </Head>
-
       <Navbar />
-
+      <div className="relative w-full h-[60vh]">
+        <img
+          src="/Viaja a tijuana para tu cirugia plastica y recupera en palmas recovery.webp"
+          alt="Viaja a Tijuana para tu cirugía plástica y recupérate en Palmas Recovery"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center px-4">
+            ¿Qué empacar para tu casa de recuperación postoperatoria?
+          </h1>
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-12 py-8">
         <div className="mb-8">
           <Link
@@ -96,10 +88,6 @@ export default function Blog1() {
             Volver a todos los artículos
           </Link>
         </div>
-
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
-          ¿Qué empacar para tu casa de recuperación postoperatoria?
-        </h1>
 
         <p className="text-lg text-gray-700 mb-8">
           Viajar para un procedimiento quirúrgico es un compromiso importante
@@ -189,7 +177,21 @@ export default function Blog1() {
           viajar ligero. Sin embargo, puedes llevar todo preparado para mayor
           tranquilidad.
         </p>
-
+        <div className="my-12 mx-auto max-w-4xl">
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <img
+              src="/Lo que no te puede faltar para tu recuperacion en palmas recovery house bbl1.webp"
+              alt="Trae tus básicos para una recuperación de primer nivel en Palmas Recovery House o cómpralos fácil en nuestra página web"
+              className="w-full h-auto"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <p className="text-white text-sm font-medium">
+                Trae tus básicos para una recuperación de primer nivel en Palmas
+                Recovery House o cómpralos fácil en nuestra página web
+              </p>
+            </div>
+          </div>
+        </div>
         <h2 className="text-3xl font-serif font-bold text-gray-900 mt-12 mb-6">
           Descubre por qué PALMAS RECOVERY es tu mejor opción
         </h2>
@@ -256,8 +258,45 @@ export default function Blog1() {
         {/* Navegación */}
         <div className="mt-16 pt-8 border-t border-gray-200">
           <div className="flex justify-between items-center mb-8">
-            <Link href="/articulos/blog3">Artículo anterior</Link>
-            <Link href="/articulos/blog2">Siguiente artículo</Link>
+            <div className="flex-1">
+              <Link
+                href="/articulos/blog3"
+                className="group inline-flex items-center gap-3 text-[#657251] hover:text-[#657251]/80 transition-colors"
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#657251] group-hover:bg-[#657251]/10 transition">
+                  <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Artículo anterior</p>
+                  <p className="font-semibold">
+                    Casa de Recuperación vs. Hotel
+                  </p>
+                </div>
+              </Link>
+            </div>
+            <div className="flex-1 flex justify-end">
+              <Link
+                href="/articulos/blog2"
+                className="group inline-flex items-center gap-3 text-[#657251] hover:text-[#657251]/80 transition-colors"
+              >
+                <div className="text-right">
+                  <p className="text-sm text-gray-500">Siguiente artículo</p>
+                  <p className="font-semibold">Clima ideal para cirugía</p>
+                </div>
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#657251] group-hover:bg-[#657251]/10 transition rotate-180">
+                  <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <Link
+              href="/articulos"
+              className="inline-flex items-center gap-2 px-6 py-3 text-[#657251] hover:text-[#657251]/80 transition-colors border border-[#657251] rounded-full hover:bg-[#657251]/5"
+            >
+              <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+              Volver a todos los artículos
+            </Link>
           </div>
         </div>
       </div>

@@ -6,9 +6,9 @@ import Link from "next/link";
 import Hero from "../components/Hero";
 
 const BLOG_IMAGES = [
-  "/blog1.png", // Entrada de blog 1
-  "/blog2.jpg", // Entrada de blog 2
-  "/blog3.jpg", // Entrada de blog 3
+  "/Viaja a tijuana para tu cirugia plastica y recupera en palmas recovery.webp",
+  "/Viaja con el mejor clima y agenda tu hospedaje para una recuperacion postoperatoria de primer nivel en tijuana en pr.jpg",
+  "/Recuperate mejor con expertos en el area de la salud con instalaciones de primer nivel para cuidados  postoperatorios.jpg",
 ];
 
 const featuredPosts = [

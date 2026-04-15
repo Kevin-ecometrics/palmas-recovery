@@ -7,16 +7,16 @@ import { getLocalizedPath } from "@/i18n/routeMap";
 
 const BLOG_IMAGES = [
   {
-    src: "/Todo lo que debes saber para una estadia comoda en Palmas Recovery.webp",
-    alt: "Empaca con estos consejos para disfrutar al maximo tu estadia en una casa de recuperación como Palmas Recovery ",
+    src: "/Viaja a tijuana para tu cirugia plastica y recupera en palmas recovery.webp",
+    alt: "Travel to Tijuana for your plastic surgery and recover at Palmas Recovery",
   },
   {
-    src: "/Conoce la mejor temporada para operarte y recuperarte en Tijuana con Palmas Recovery.jpg",
-    alt: "Disfuta del mejor clima, conoce que temporada es ideal para para tu recuperación con Palmas recovery ",
+    src: "/Viaja con el mejor clima y agenda tu hospedaje para una recuperacion postoperatoria de primer nivel en tijuana en pr.jpg",
+    alt: "Travel with the best weather and book your stay for a first-class post-operative recovery in Tijuana at PR",
   },
   {
-    src: "/Descubre los beneficios de los cuidados especializados con Palmas Recovery.jpg",
-    alt: "Disfuta del mejor clima, conoce que temporada es ideal para para tu recuperación con Palmas recovery ",
+    src: "/Recuperate mejor con expertos en el area de la salud con instalaciones de primer nivel para cuidados  postoperatorios.jpg",
+    alt: "Recover better with experts in healthcare with first-class facilities for post-operative care",
   },
 ];
 

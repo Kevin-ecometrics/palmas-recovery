@@ -1,19 +1,18 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Head from "next/head";
 import { FaArrowLeft, FaCalendarAlt, FaSun, FaSnowflake, FaWind, FaThermometerHalf, FaUserMd, FaShieldAlt, FaBed, FaUtensils, FaWifi, FaRegHospital, FaSpa, FaCheckCircle } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Blog2() {
 	return (
 		<>
-			<Head>
-				<title>The ideal weather for plastic surgery & smooth recovery in Tijuana?</title>
-				<meta name="description" content="Why autumn is the golden season for your surgery and post-op care. In this blog, we provide an in-depth look at the seasonal benefits for each procedure." />
-				<link rel="canonical" href="https://www.palmasrecovery.com/the-ideal-weather-for-plastic-surgery-and-smooth-recovery-in-tijuana" />
-				<meta name="keywords" content="Recovery, procedures, season, healing, Tijuana, plastic surgery, autumn, Palmas Recovery House" />
-			</Head>
 			<Navbar />
+			<div className="relative w-full h-[60vh]">
+				<img src="/Viaja con el mejor clima y agenda tu hospedaje para una recuperacion postoperatoria de primer nivel en tijuana en pr.jpg" alt="Travel with the best weather and book your stay for a first-class post-operative recovery in Tijuana at PR" className="w-full h-full object-cover" />
+				<div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+					<h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center px-4">What would be the ideal weather for undergoing plastic surgery and smooth recovery in Tijuana?</h1>
+				</div>
+			</div>
 			<div className="max-w-7xl mx-auto px-12 py-8">
 				<div className="mb-8">
 					<Link href="/blog" className="inline-flex items-center gap-2 text-[#70805a] hover:text-[#5f6f4a] transition-colors group">
@@ -21,7 +20,6 @@ export default function Blog2() {
 						Back to All Articles
 					</Link>
 				</div>
-				<h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">What would be the ideal weather for undergoing plastic surgery and smooth recovery in Tijuana?</h1>
 				<h2 className="text-2xl font-bold text-[#70805a] mt-8 mb-4">Timing Your Transformation: Why the Season Matters for Plastic Surgery in Tijuana</h2>
 				<p className="text-lg text-gray-700 mb-8">Tijuana has earned its reputation as the global capital of medical tourism and cosmetic surgery. Situated at the world's busiest border, it offers world-class medical expertise combined with a vibrant culture. However, when planning your journey, there is one factor many patients overlook: <span className="font-semibold text-[#70805a]">the weather</span>.<br/>Choosing the right season for your procedure isn't just about travel convenience, it's about optimizing your biology for healing.</p>
 
@@ -72,7 +70,14 @@ export default function Blog2() {
 
 				<h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mt-16 mb-6">Why Choose Palmas Recovery?</h1>
 				<p className="text-lg text-gray-700 mb-8">No matter what time of year you choose, Palmas Recovery is designed to provide a perfect "micro-climate" for your healing. We are a certified recovery house that prioritizes health, working hand-in-hand with your plastic surgeon to monitor your progress.</p>
-
+				<div className="my-12 mx-auto max-w-4xl">
+					<div className="relative overflow-hidden rounded-2xl shadow-2xl">
+						<img src="/Cuidados especiales post mommy makeover con enfermeras certificas todos los meses del año en palmas recovery.webp" alt="Recover better with experts in healthcare with first-class facilities for post-operative care" className="w-full h-auto" />
+						<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+							<p className="text-white text-sm font-medium">Recover better with experts in healthcare with first-class facilities for post-operative care</p>
+						</div>
+					</div>
+				</div>
 				<h2 className="text-2xl font-bold text-[#70805a] mt-10 mb-4">Our Premium Care Includes:</h2>
 				<ul className="list-disc pl-6 mb-8 text-gray-700">
 					<li><span className="font-semibold text-[#70805a]">24/7 Professional Care:</span> In-house doctors and round-the-clock nursing.</li>

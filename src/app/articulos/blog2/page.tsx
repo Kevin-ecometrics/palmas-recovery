@@ -1,6 +1,5 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Head from "next/head";
 import {
   FaArrowLeft,
   FaSun,
@@ -12,28 +11,17 @@ import Link from "next/link";
 
 export default function Blog2() {
   return (
-    <>
-      <Head>
-        <title>
-          ¿Cuál es el clima ideal para cirugía plástica y una recuperación
-          óptima en Tijuana?
-        </title>
-        <meta
-          name="description"
-          content="Por qué el otoño es la temporada ideal para tu cirugía y recuperación. Descubre los beneficios de cada estación para tu procedimiento."
-        />
-        <link
-          rel="canonical"
-          href="https://www.palmasrecovery.com/es/clima-ideal-para-cirugia-plastica-y-recuperacion-en-tijuana"
-        />
-        <meta
-          name="keywords"
-          content="Recuperación, cirugía, temporada, clima, Tijuana, cirugía plástica, otoño, Palmas Recovery House"
-        />
-      </Head>
-
+<>
       <Navbar />
-
+      <div className="relative w-full h-[60vh]">
+        <img src="/Viaja con el mejor clima y agenda tu hospedaje para una recuperacion postoperatoria de primer nivel en tijuana en pr.jpg" alt="Descubre el mejor clima para viajar y recupérate en la mejor casa de recuperación en Tijuana Palmas Recovery" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center px-4">
+            ¿Cuál es el clima ideal para realizarte una cirugía plástica y tener
+            una recuperación óptima en Tijuana?
+          </h1>
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-12 py-8">
         <div className="mb-8">
           <Link
@@ -44,11 +32,6 @@ export default function Blog2() {
             Volver a todos los artículos
           </Link>
         </div>
-
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
-          ¿Cuál es el clima ideal para realizarte una cirugía plástica y tener
-          una recuperación óptima en Tijuana?
-        </h1>
 
         <h2 className="text-2xl font-bold text-[#70805a] mt-8 mb-4">
           El momento perfecto: por qué la temporada importa en tu cirugía
@@ -163,7 +146,14 @@ export default function Blog2() {
           Sin importar la temporada, ofrecemos un entorno ideal para tu
           recuperación, trabajando en conjunto con tu cirujano.
         </p>
-
+        <div className="my-12 mx-auto max-w-4xl">
+					<div className="relative overflow-hidden rounded-2xl shadow-2xl">
+						<img src="/Cuidados especiales post mommy makeover con enfermeras certificas todos los meses del año en palmas recovery.webp" alt="Cuidados especializados por médicos y enfermeras para mommy makeover, bbl y más solo en Palmas recovery abierto todos los meses del año" className="w-full h-auto" />
+						<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+							<p className="text-white text-sm font-medium">Cuidados especializados por médicos y enfermeras para mommy makeover, bbl y más solo en Palmas recovery abierto todos los meses del año</p>
+						</div>
+					</div>
+				</div>
         <h2 className="text-2xl font-bold text-[#70805a] mt-10 mb-4">
           Incluye:
         </h2>
@@ -208,9 +198,46 @@ export default function Blog2() {
         </div>
 
         {/* Navegación */}
-        <div className="flex justify-between mt-12">
-          <Link href="/articulos/blog1">Artículo anterior</Link>
-          <Link href="/articulos/blog3">Siguiente artículo</Link>
+        <div className="mt-16 pt-8 border-t border-gray-200">
+          <div className="flex justify-between items-center mb-8">
+            <div className="flex-1">
+              <Link
+                href="/articulos/blog1"
+                className="group inline-flex items-center gap-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors"
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#70805a] group-hover:bg-[#70805a]/10 transition">
+                  <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Artículo anterior</p>
+                  <p className="font-semibold">Qué empacar para tu recuperación</p>
+                </div>
+              </Link>
+            </div>
+            <div className="flex-1 flex justify-end">
+              <Link
+                href="/articulos/blog3"
+                className="group inline-flex items-center gap-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors"
+              >
+                <div className="text-right">
+                  <p className="text-sm text-gray-500">Siguiente artículo</p>
+                  <p className="font-semibold">Casa de Recuperación vs. Hotel</p>
+                </div>
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#70805a] group-hover:bg-[#70805a]/10 transition rotate-180">
+                  <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <Link
+              href="/articulos"
+              className="inline-flex items-center gap-2 px-6 py-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors border border-[#70805a] rounded-full hover:bg-[#70805a]/5"
+            >
+              <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+              Volver a todos los artículos
+            </Link>
+          </div>
         </div>
       </div>
 

@@ -1,6 +1,5 @@
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Head from "next/head";
 import {
   FaArrowLeft,
   FaUserMd,
@@ -18,28 +17,16 @@ import Link from "next/link";
 
 export default function Blog3() {
   return (
-    <>
-      <Head>
-        <title>
-          Casa de Recuperación vs Hotel: 3 Razones por las que el cuidado
-          profesional es crucial
-        </title>
-        <meta
-          name="description"
-          content="Tu espacio de recuperación es parte de tu tratamiento. No se trata solo de dónde dormirás. Descubre por qué la verdadera recuperación requiere experiencia y supervisión médica."
-        />
-        <link
-          rel="canonical"
-          href="https://www.palmasrecovery.com/recovery-house-vs-hotel-3-reasons-professional-care-is-crucial"
-        />
-        <meta
-          name="keywords"
-          content="Recuperación, atención médica, cuidado profesional, Tijuana, cirugía plástica, Palmas Recovery House"
-        />
-      </Head>
-
+<>
       <Navbar />
-
+      <div className="relative w-full h-[60vh]">
+        <img src="/Recuperate mejor con expertos en el area de la salud con instalaciones de primer nivel para cuidados  postoperatorios.jpg" alt="Recupérate con expertos en el área de salud en instalaciones de primer nivel para tus cuidados postoperatorios" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white text-center px-4">
+            Casa de Recuperación vs. Hotel: 3 razones por las que tu recuperación
+          </h1>
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-12 py-8">
         <div className="mb-8">
           <Link
@@ -50,11 +37,6 @@ export default function Blog3() {
             Volver a todos los artículos
           </Link>
         </div>
-
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
-          Casa de Recuperación vs. Hotel: 3 razones por las que tu recuperación
-          depende del cuidado profesional
-        </h1>
 
         <p className="text-lg text-gray-700 mb-8">
           Después de una cirugía plástica que cambia la vida, tu entorno es tan
@@ -138,7 +120,14 @@ export default function Blog3() {
           3 razones por las que el cuidado profesional es vital para tus
           resultados
         </h1>
-
+        <div className="my-12 mx-auto max-w-4xl">
+					<div className="relative overflow-hidden rounded-2xl shadow-2xl">
+						<img src="/Monitoreo y atencion personalizada con medicos y enfermeras solo en palmas recovery.webp" alt="En Palmas Recovery siempre estás monitoreado y recibiendo atención personalizada por parte de enfermeras y Doctores" className="w-full h-auto" />
+						<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+							<p className="text-white text-sm font-medium">En Palmas Recovery siempre estás monitoreado y recibiendo atención personalizada por parte de enfermeras y Doctores</p>
+						</div>
+					</div>
+				</div>
         <div className="space-y-10 mb-12">
           <div className="bg-[#f2e9dc] rounded-xl p-8 shadow">
             <div className="flex items-start gap-4 mb-4">
@@ -273,9 +262,10 @@ export default function Blog3() {
           <div className="flex justify-center">
             <Link
               href="/articulos"
-              className="text-[#70805a] border px-6 py-3 rounded-full"
+              className="inline-flex items-center gap-2 px-6 py-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors border border-[#70805a] rounded-full hover:bg-[#70805a]/5"
             >
-              Volver al blog
+              <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+              Volver a todos los artículos
             </Link>
           </div>
         </div>

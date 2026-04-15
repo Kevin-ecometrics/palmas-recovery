@@ -11,6 +11,9 @@ export type RouteKey =
   | "rooms" 
   | "tour"
   | "blog"
+  | "blog1"
+  | "blog2"
+  | "blog3"
   | "about"
   | "tourshared"
   | "tourprivate"
@@ -28,6 +31,9 @@ export const ROUTE_PAIRS: Array<{ key: RouteKey; es: string; en: string }> = [
   { key: "rooms", es: "/habitaciones", en: "/rooms" },
   { key: "tour", es: "/recorrido/360", en: "/tour/360" },
   { key: "blog", es: "/articulos", en: "/blog" },
+  { key: "blog1", es: "/articulos/blog1", en: "/blog/blog1" },
+  { key: "blog2", es: "/articulos/blog2", en: "/blog/blog2" },
+  { key: "blog3", es: "/articulos/blog3", en: "/blog/blog3" },
   { key: "about", es: "/nosotros", en: "/about" },
   { key: "tourshared", es: "/tour/360/shared", en: "/tour/360/shared" },
   { key: "tourprivate", es: "/tour/360/dsa", en: "/tour/360/private" },
