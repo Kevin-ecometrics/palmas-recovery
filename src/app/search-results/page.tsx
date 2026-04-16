@@ -18,6 +18,7 @@ import Footer from "@/app/components/Footer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { getRouteByKey } from "@/i18n/routeMap";
+import { logger } from "@/utils/logger";
 
 // Tipos
 interface Room {
@@ -234,7 +235,7 @@ const SearchResultsInner = () => {
       });
       setAvailableRooms(response.data);
     } catch (error) {
-      console.error("Error checking availability:", error);
+      logger.error("Error checking availability:", error);
     } finally {
       setSearching(false);
       setLoading(false);

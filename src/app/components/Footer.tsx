@@ -47,9 +47,9 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
       <div className="w-full px-4 pt-14 pb-0 flex-1 flex flex-col">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
           <div>
-            <h4 className="text-sm uppercase tracking-[0.2em] mb-4">
+            <h2 className="text-sm uppercase tracking-[0.2em] mb-4">
               {t("footer.linksTitle")}
-            </h4>
+            </h2>
             <ul className={`space-y-2 text-sm ${mutedText}`}>
               {[
                 { name: t("footer.links.home"), path: "/" },
@@ -73,9 +73,9 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
           </div>
 
           <div>
-            <h4 className="text-sm uppercase tracking-[0.2em] mb-4">
+            <h2 className="text-sm uppercase tracking-[0.2em] mb-4">
               {t("footer.connectTitle")}
-            </h4>
+            </h2>
             <div className="flex gap-6 text-sm">
               <button
                 onClick={() =>
@@ -110,9 +110,9 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
           </div>
 
           <div>
-            <h4 className="text-sm uppercase tracking-[0.2em] mb-4">
+            <h2 className="text-sm uppercase tracking-[0.2em] mb-4">
               {t("brand.available")}
-            </h4>
+            </h2>
             <p className={`text-sm ${mutedText}`}>{t("brand.roundTheClock")}</p>
             <div className={`mt-4 flex flex-col gap-2 text-xs ${mutedText}`}>
               <button
@@ -147,9 +147,9 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
             </div>
 
             <div className="w-full md:max-w-xl">
-              <h4 className="text-sm uppercase tracking-[0.2em] mb-4">
+              <h2 className="text-sm uppercase tracking-[0.2em] mb-4">
                 {t("footer.contactTitle")}
-              </h4>
+              </h2>
               <ul className={`space-y-2 text-sm ${mutedText}`}>
                 <li className="flex items-start gap-2">
                   <FaMapMarkerAlt className="mt-1 flex-shrink-0" />
@@ -191,6 +191,8 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
               alt="Palmas Recovery es una clinica de cuidados postoperatorios por médicos certificados en Tijuana"
               title="Palmas Recovery es una clinica de cuidados postoperatorios por médicos certificados en Tijuana"
               className="h-32 md:h-40 w-auto"
+              width={200}
+              height={160}
             />
             <p className={`text-xs ${mutedText}`}>
               &copy; {new Date().getFullYear()} {t("brand.name")}.{" "}

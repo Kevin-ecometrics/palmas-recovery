@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useTranslation } from "react-i18next";
 import Hero from "../components/Hero";
+import { logger } from "@/utils/logger";
 
 // Tipo para el payload del formulario
 interface ContactFormPayload {
@@ -130,7 +131,7 @@ const handleSubmitForm = async (
       setErrorText(errorMessage);
     } catch (handlingError) {
       // Si hay error al manejar el error
-      console.error("Error handling error:", handlingError);
+      logger.error("Error handling error:", handlingError);
       setErrorText(t("contact.errors.unknown"));
     }
   }

@@ -122,12 +122,15 @@ export default function ImprovedSections() {
                   onClick={() =>
                     setExpandedFaq(expandedFaq === index ? null : index)
                   }
+                  aria-expanded={expandedFaq === index}
+                  aria-label={expandedFaq === index ? `Collapse ${faq.question}` : `Expand ${faq.question}`}
                   className="w-full p-6 md:p-8 text-left flex items-center justify-between group hover:bg-gray-50 transition-colors"
                 >
                   <h3 className="text-lg md:text-xl font-bold text-wine pr-8 group-hover:text-wine/80 transition-colors">
                     {faq.question}
                   </h3>
                   <FaChevronDown
+                    aria-hidden="true"
                     className={`w-5 h-5 md:w-6 md:h-6 text-wine transition-transform duration-300 flex-shrink-0 ${
                       expandedFaq === index ? "rotate-180" : ""
                     }`}

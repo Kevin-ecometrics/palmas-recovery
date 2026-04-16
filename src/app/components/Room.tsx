@@ -40,7 +40,7 @@ export default function HotelDestinationsScroll() {
       name: "Shared Room",
       priceText: "$170 dlls / night",
       image:
-        "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.jpg",
+        "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.webp",
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
       alt: "Conoce las comodas habitaciones compartidas para tu recuperación con precios accesibles en la mejor clínica de recuperación en Tijuana a 10 min del cruce fronterizo ",
     },
@@ -48,7 +48,7 @@ export default function HotelDestinationsScroll() {
       id: 2,
       name: "Private Room",
       image:
-        "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.jpg",
+        "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.webp",
       priceText: "$180 dlls / night",
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
       alt: "Amplia habitación con sofá para acompañante, closet y cama   hospitalaria con amplia vista y acompáñate con todas las amenidades incluidas en Tijuana ",
@@ -58,7 +58,7 @@ export default function HotelDestinationsScroll() {
       name: "VIP Suite",
       priceText: "$200 dlls / night",
       image:
-        "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.jpg",
+        "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.webp",
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
       alt: "En Palmas recovery contamos con habitaciones VIP con baño privada y excelente vista para tu comodidad  ",
     },
@@ -130,19 +130,25 @@ export default function HotelDestinationsScroll() {
     if (!containerRef.current) return;
     const cardWidth = 300;
     const gap = 24;
-    const targetItemIndex = Math.round((dotIndex / (TOTAL_DOTS - 1)) * (destinations.length - 1));
+    const targetItemIndex = Math.round(
+      (dotIndex / (TOTAL_DOTS - 1)) * (destinations.length - 1),
+    );
     const scrollLeft = targetItemIndex * (cardWidth + gap);
     containerRef.current.scrollTo({ left: scrollLeft, behavior: "smooth" });
   };
 
   const checkScrollPosition = useCallback(() => {
     if (!containerRef.current) return;
-    const { scrollLeft: sLeft, scrollWidth, clientWidth } = containerRef.current;
+    const {
+      scrollLeft: sLeft,
+      scrollWidth,
+      clientWidth,
+    } = containerRef.current;
     const maxScroll = scrollWidth - clientWidth;
 
     const cardWidth = 300;
     const gap = 24;
-    
+
     if (sLeft >= maxScroll - 10) {
       setCurrentIndex(destinations.length - 1);
     } else {
@@ -154,7 +160,9 @@ export default function HotelDestinationsScroll() {
   useEffect(() => {
     const container = containerRef.current;
     if (container) {
-      container.addEventListener("scroll", checkScrollPosition, { passive: true });
+      container.addEventListener("scroll", checkScrollPosition, {
+        passive: true,
+      });
       checkScrollPosition();
       return () => container.removeEventListener("scroll", checkScrollPosition);
     }
@@ -225,9 +233,9 @@ export default function HotelDestinationsScroll() {
                       whileHover={{ opacity: 1 }}
                       className="space-y-1"
                     >
-                      <h3 className="text-base sm:text-xl font-serif text-gray-800 group-hover:text-wine transition-colors">
+                      <h2 className="text-base sm:text-xl font-serif text-gray-800 group-hover:text-wine transition-colors">
                         {item.name}
-                      </h3>
+                      </h2>
                       <p className="text-xs sm:text-sm text-gray-500">
                         {item.priceText}
                       </p>
@@ -243,7 +251,11 @@ export default function HotelDestinationsScroll() {
                     `}
                     whileHover={{ y: -4 }}
                   >
-                    <a href={item.url || "#"} className="block">
+                    <a
+                      href={item.url || "#"}
+                      aria-label={`View ${item.name} details`}
+                      className="block"
+                    >
                       <motion.img
                         src={item.image}
                         alt={item.alt}
@@ -254,17 +266,26 @@ export default function HotelDestinationsScroll() {
                         }`}
                         whileHover={{ scale: 1.08 }}
                         transition={{ duration: 0.6 }}
+                        width={360}
+                        height={300}
+                        loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 640px) 260px, (max-width: 768px) 300px, 360px"
                       />
 
                       {/* Overlay gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
 
                       <motion.button
+                        aria-label="Add to comparison"
                         className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2.5 shadow-md hover:bg-wine hover:text-white transition-colors"
                         whileHover={{ rotate: 90, scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <IoAdd className="w-5 h-5 text-gray-800" />
+                        <IoAdd
+                          className="w-5 h-5 text-gray-800"
+                          aria-hidden="true"
+                        />
                       </motion.button>
 
                       {/* Badge */}
@@ -296,9 +317,9 @@ export default function HotelDestinationsScroll() {
                       whileHover={{ opacity: 1 }}
                       className="space-y-1"
                     >
-                      <h3 className="text-base sm:text-xl font-serif text-gray-800">
+                      <h2 className="text-base sm:text-xl font-serif text-gray-800">
                         {item.name}
-                      </h3>
+                      </h2>
                       <p className="text-xs sm:text-sm text-gray-500">
                         {item.priceText}
                       </p>

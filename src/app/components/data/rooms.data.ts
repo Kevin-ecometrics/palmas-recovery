@@ -46,7 +46,7 @@ export const ROOMS: Room[] = [
     tagline: "Comfortable & Affordable",
     description:
       "Experience exceptional care in a shared space designed for comfort and connection. Ideal for guests seeking professional recovery services.",
-    image: "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.jpg",
+    image: "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.webp",
     imageAlt: "Shared Room",
     price: 170,
     capacity: 4,
@@ -73,7 +73,7 @@ export const ROOMS: Room[] = [
     description:
       "Find tranquility and privacy in your own recovery space. Our private rooms offer modern medical comfort.",
     imageAlt: "Private Room",
-        image: "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.jpg",
+        image: "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.webp",
 
     price: 180,
     capacity: 1,
@@ -95,7 +95,7 @@ export const ROOMS: Room[] = [
     tagline: "The Ultimate Luxury Experience",
     description:
       "Immerse yourself in unmatched comfort and privacy. Premium furnishings combined with top-tier medical care.",
-        image: "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.jpg",
+        image: "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.webp",
 
     imageAlt: "VIP Suite",
     price: 200,

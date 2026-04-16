@@ -250,9 +250,10 @@ export default function AboutPage() {
                   </h3>
                   <Link
                     href="/"
+                    aria-label="Learn more about our mission and values at Palmas Recovery, the best recovery house in Tijuana"
                     className="text-wine hover:text-olive-dark transition-colors font-medium mt-4 inline-block"
                   >
-                    Read more
+                    Learn more about our mission
                   </Link>
                 </div>
               </div>

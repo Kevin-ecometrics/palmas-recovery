@@ -48,9 +48,10 @@ export default function Blogs() {
             </p>
             <Link
               href={getLocalizedPath("/blog", currentLang)}
+              aria-label="View all blog articles"
               className="inline-flex items-center gap-2 rounded-full border border-black/20 px-6 py-3 text-sm font-semibold text-black hover:bg-black/5 transition"
             >
-              {t("blogs.cta")}
+              View all articles
               <FaArrowRight />
             </Link>
           </div>
@@ -72,13 +73,17 @@ export default function Blogs() {
                         alt={BLOG_IMAGES[index % BLOG_IMAGES.length].alt}
                         title={BLOG_IMAGES[index % BLOG_IMAGES.length].alt}
                         className="h-full w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                        width={400}
+                        height={300}
                       />
                       <span className="absolute bottom-3 right-3 bg-[#f0b16b] text-black text-xs font-semibold px-3 py-1 rounded-full">
                         {item.category}
                       </span>
                     </div>
                     <div className="pt-4 border-t border-black/10 md:border-black/20">
-                      <p className="text-xs uppercase tracking-[0.2em] text-black/50">
+                      <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
                         {t("blogs.kicker")}
                       </p>
                       <h3 className="text-xl font-semibold text-black mt-2 mb-3">
@@ -89,12 +94,13 @@ export default function Blogs() {
                       </p>
                       <Link
                         href={getLocalizedPath(
-                          blogUrls[index % blogUrls.length], // Usando URLs de blog
+                          blogUrls[index % blogUrls.length],
                           currentLang,
                         )}
+                        aria-label={`Read full article: ${item.title}`}
                         className="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-black/70 transition-colors"
                       >
-                        {t("blogs.cta")}
+                        Read full article
                         <FaArrowRight />
                       </Link>
                     </div>

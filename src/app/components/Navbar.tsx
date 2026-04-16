@@ -187,6 +187,8 @@ const Navbar: React.FC = () => {
                   alt="Palmas Recovery - La mejor casa de recuperación en Tijuana"
                   title="Palmas Recovery - La mejor casa de recuperación en Tijuana"
                   className="h-12 w-auto object-contain h transition-opacity"
+                  width={58}
+                  height={48}
                 />
               </figure>
             </button>

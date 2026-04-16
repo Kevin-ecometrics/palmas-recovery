@@ -3,6 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useEffect, useState, useCallback } from "react";
 import * as THREE from "three";
 import { useTranslation } from "react-i18next";
+import { logger } from "@/utils/logger";
 
 interface PanoramaImage {
   src: string;
@@ -40,7 +41,7 @@ function SpherePanorama({ image, rotation }: { image: string; rotation: any }) {
         setLoading(false);
       },
       undefined,
-      (error) => console.error("Error loading texture:", error),
+      (error) => logger.error("Error loading texture:", error),
     );
   }, [image]);
 

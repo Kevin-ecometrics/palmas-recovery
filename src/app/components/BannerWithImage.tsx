@@ -48,6 +48,7 @@ const BannerWithImage: React.FC = () => {
             >
               <Link
                 href={pathname === "/en/" ? "/rooms" : "/habitaciones"}
+                aria-label={t("bannerWithImage.button")}
                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold text-white bg-black rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/30 hover:-translate-y-1 active:translate-y-0"
               >
                 <span className="relative z-10">
@@ -84,11 +85,14 @@ const BannerWithImage: React.FC = () => {
                 <div className="relative bg-white rounded-3xl p-2 shadow-2xl">
                   <div className="relative aspect-[16/11] rounded-2xl overflow-hidden">
                     <img
-                      src="/Palmas Recovery creada por medicos y atendida por medicos.jpg"
+                      src="/Palmas Recovery creada por medicos y atendida por medicos.webp"
                       alt="Palmas Recovery es una casa de recuperación creado por médicos y atendida por médicos con años de experiencia en cuidados "
                       title="Palmas Recovery es una casa de recuperación creado por médicos y atendida por médicos con años de experiencia en cuidados "
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
+                      decoding="async"
+                      width={800}
+                      height={550}
                     />
                     <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-blue-500/5" />
                   </div>

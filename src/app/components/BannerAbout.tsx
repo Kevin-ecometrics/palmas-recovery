@@ -48,6 +48,10 @@ const Banner: React.FC = () => {
         title="Los mejores cuidados post operatoriso de bbl, tummy tuck, Mommy Makeover y más en Palmas recovery "
         className="absolute inset-0 w-full h-full object-cover object-center z-0"
         draggable={false}
+        loading="lazy"
+        decoding="async"
+        width={1920}
+        height={1080}
       />
       {/* Capa oscura */}
       <div className="absolute inset-0 bg-black opacity-50 z-10" />
@@ -79,6 +83,7 @@ const Banner: React.FC = () => {
         {/* Botón centrado */}
         <motion.a
           href={pathname === "/en/" ? "/about" : "/nosotros"}
+          aria-label={t("bannerAbout.button")}
           className="mx-auto bg-transparent border-2 border-white text-white py-3 px-8 rounded-full text-lg flex items-center justify-center hover:bg-white hover:text-black transition duration-300"
           whileHover={{ scale: 1.1 }}
         >

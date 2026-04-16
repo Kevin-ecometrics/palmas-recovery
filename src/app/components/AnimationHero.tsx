@@ -29,15 +29,15 @@ export default function AnimationHero() {
   const getSlideImage = (id: string) => {
     switch (id) {
       case "shared":
-        return "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.jpg";
+        return "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.webp";
       case "private":
-        return "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.jpg";
+        return "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.webp";
 
       case "vip":
-        return "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.jpg";
+        return "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.webp";
 
       default:
-        return "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.jpg";
+        return "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.webp";
     }
   };
 
@@ -62,7 +62,7 @@ export default function AnimationHero() {
 
       if (!images.length || !masks.length || !titles.length) return;
 
-      // Estado inicial
+      // Estado inicial - deferido para evitar forced reflow
       gsap.set(images, { scale: 1.2, transformOrigin: "center center" });
       gsap.set(masks, { clipPath: "circle(0% at 50% 50%)" });
       gsap.set(masks[0], { clipPath: "circle(100% at 50% 50%)" });
@@ -78,6 +78,8 @@ export default function AnimationHero() {
           scrub: 1.5,
           pin: true,
           anticipatePin: 1,
+          scroller:
+            typeof window !== "undefined" ? document.documentElement : null,
           onUpdate: (self) => {
             const index = Math.min(
               Math.floor(self.progress * slides.length),
@@ -148,17 +150,23 @@ export default function AnimationHero() {
   }, [slides.length]);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const section = containerRef.current;
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const showNavbar = rect.bottom <= window.innerHeight * 0.3;
-      window.dispatchEvent(
-        new CustomEvent("heroScroll", { detail: { showNavbar } }),
-      );
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const section = containerRef.current;
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        const showNavbar = rect.bottom <= window.innerHeight * 0.3;
+        window.dispatchEvent(
+          new CustomEvent("heroScroll", { detail: { showNavbar } }),
+        );
+        ticking = false;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -184,7 +192,7 @@ export default function AnimationHero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden bg-black"
+      className="relative w-full h-screen overflow-hidden bg-black will-change-transform"
     >
       {/* Overlay oscuro inicial */}
       {showOverlay && (
@@ -206,6 +214,12 @@ export default function AnimationHero() {
             alt={getSlideAlt(slide.id)}
             title={getSlideAlt(slide.id)}
             className="w-full h-full object-cover"
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding={i === 0 ? "sync" : "async"}
+            width={1920}
+            height={1080}
+            fetchPriority={i === 0 ? "high" : "auto"}
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70"></div>
         </div>
@@ -230,7 +244,10 @@ export default function AnimationHero() {
               {slide.description}
             </p>
             <div className="mt-8 pointer-events-auto">
-              <Link href={getTourPath(slide.id, currentLang)}>
+              <Link
+                href={getTourPath(slide.id, currentLang)}
+                aria-label={t("home.hero.viewTour")}
+              >
                 <span
                   className="group relative inline-flex px-10 py-4 
       bg-transparent border-2 border-white rounded-xl 

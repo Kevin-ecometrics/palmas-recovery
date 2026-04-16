@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Madison Sauvage Script";
-  src: url("/fonts/madison-sauvage-script.otf") format("opentype");
+  font-family: "Madison Sauvage Serif";
+  /* posibilidad de cambiar entre true y opentype */
+  src: url("/fonts/madison-sauvage-serif.ttf") format("truetype");
+  /* src: url("/fonts/madison-sauvage-serif.ttf") format("truet"); */
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -28,6 +30,24 @@ h1,
 h2,
 h3,
 h4,
-.font-script {
-  font-family: "Madison Sauvage Script", serif;
+.font-serif {
+  font-family: "Madison Sauvage Serif", serif;
+}
+
+/* Focus visible para accesibilidad */
+:focus-visible {
+  outline: 2px solid #371510;
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

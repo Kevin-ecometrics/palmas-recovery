@@ -3,6 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { useTranslation } from "react-i18next";
+import { logger } from "@/utils/logger";
 
 function SpherePanorama({ image, rotation }: { image: string; rotation: any }) {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -28,7 +29,7 @@ function SpherePanorama({ image, rotation }: { image: string; rotation: any }) {
         setLoading(false);
       },
       undefined,
-      (error) => console.error("Error al cargar la textura:", error),
+      (error) => logger.error("Error al cargar la textura:", error),
     );
   }, [image]);
 

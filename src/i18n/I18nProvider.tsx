@@ -1,7 +1,7 @@
 "use client";
 
 import { I18nextProvider } from "react-i18next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import i18n from "./i18n";
 
 const STORAGE_KEY = "appLanguage";
@@ -11,7 +11,10 @@ type Props = {
 };
 
 export default function I18nProvider({ children }: Props) {
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored && stored !== i18n.language) {
       i18n.changeLanguage(stored);
@@ -30,6 +33,10 @@ export default function I18nProvider({ children }: Props) {
       i18n.off("languageChanged", updateLang);
     };
   }, []);
+
+  if (!mounted) {
+    return <>{children}</>;
+  }
 
   return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
 }

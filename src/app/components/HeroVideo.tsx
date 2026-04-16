@@ -1,21 +1,35 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { usePathname, useRouter } from "next/navigation";
 import { getLocalizedPath } from "@/i18n/routeMap";
 
+const LANGS = { en: "en", es: "es" } as const;
+
 export default function Hero() {
   const { t, i18n } = useTranslation();
   const pathname = usePathname();
   const router = useRouter();
-  const currentLanguage = i18n.language?.startsWith("en") ? "en" : "es";
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentLanguage = i18n.language?.startsWith("en") ? LANGS.en : LANGS.es;
+
   const words = {
     en: ["Rest", "Recover", "Renew"],
     es: ["Descansa", "Recupera", "Renueva"],
   }[currentLanguage] as string[];
-  // const words = i18n.t("home.heroVideo.words", { returnObjects: true }) as string[];
-  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % words.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [words.length]);
 
   const handleLanguageChange = (lng: "es" | "en") => {
     i18n.changeLanguage(lng);
@@ -23,13 +37,6 @@ export default function Hero() {
     const canonical = getLocalizedPath(pathname, "en");
     router.replace(getLocalizedPath(canonical, lng));
   };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % words.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
 
   const aboutLink = currentLanguage === "en" ? "/about" : "/nosotros";
 
@@ -63,14 +70,17 @@ export default function Hero() {
           {t("common.english")}
         </button>
       </div>
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <video
           className="w-full h-full object-cover"
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="none"
+          poster="/video/poster.webp"
+          disablePictureInPicture
+          aria-hidden="true"
         >
           <source src="/video/hero.webm" type="video/webm" />
         </video>
@@ -84,25 +94,31 @@ export default function Hero() {
           <div className="max-w-3xl">
             <div className="mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center">
-                <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold text-white leading-none tracking-tight">
+                <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold text-white leading-none tracking-tight [text-rendering:optimizeSpeed]">
                   PALMAS
                 </h1>
                 <div className="relative mt-2 sm:mt-0 sm:ml-2 w-full h-[3.5rem] sm:w-[400px] sm:h-[10rem]">
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={words[currentIndex]}
-                      initial={{ y: 100, opacity: 0, rotateX: -90 }}
-                      animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                      exit={{ y: -100, opacity: 0, rotateX: 90 }}
-                      transition={{
-                        duration: 0.7,
-                        ease: [0.68, -0.55, 0.265, 1.55],
-                      }}
-                      className="absolute top-0 left-0 text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-extralight italic text-white leading-none"
-                    >
-                      {words[currentIndex]}
-                    </motion.span>
-                  </AnimatePresence>
+                  {!isLoaded ? (
+                    <span className="absolute top-0 left-0 text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-extralight italic text-white leading-none">
+                      Recover
+                    </span>
+                  ) : (
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={words[currentIndex]}
+                        initial={{ y: 100, opacity: 0, rotateX: -90 }}
+                        animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                        exit={{ y: -100, opacity: 0, rotateX: 90 }}
+                        transition={{
+                          duration: 0.7,
+                          ease: [0.68, -0.55, 0.265, 1.55],
+                        }}
+                        className="absolute top-0 left-0 text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-extralight italic text-white leading-none"
+                      >
+                        {words[currentIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  )}
                 </div>
               </div>
             </div>

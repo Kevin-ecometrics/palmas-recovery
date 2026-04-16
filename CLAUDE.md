@@ -97,12 +97,6 @@ Next.js best practices - file conventions, RSC boundaries, data patterns, async 
 - `.claude/skills/next-best-practices/self-hosting.md`: Deploy Next.js outside of Vercel with confidence.
 - `.claude/skills/next-best-practices/suspense-boundaries.md`: Client hooks that cause CSR bailout without Suspense boundaries.
 
-## Cache Components (Next.js 16+)
-
-Next.js 16 Cache Components - PPR, use cache directive, cacheLife, cacheTag, updateTag
-
-- `.claude/skills/next-cache-components/SKILL.md`
-
 ## Upgrade Next.js
 
 Upgrade Next.js to the latest version following official migration guides and codemods

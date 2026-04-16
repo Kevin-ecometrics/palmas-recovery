@@ -6,19 +6,19 @@ import { useTranslation, Trans } from "react-i18next";
 
 const IMAGES = [
   {
-    src: "/La Dra Cecilia Cardenas y el Dr Raul Munoz son los pilares detras de Palmas Recovery.jpg",
+    src: "/La Dra Cecilia Cardenas y el Dr Raul Munoz son los pilares detras de Palmas Recovery.webp",
     alt: "La Dra. Cecilia Cárdenas y el Dr. Raúl Muñoz son los pilares detrás de Palmas Recovery",
     title:
       "La Dra. Cecilia Cárdenas y el Dr. Raúl Muñoz son los pilares detrás de Palmas Recovery",
   },
   {
-    src: "/La Dr Cecilia esta lista para cuidar de cada paciente en Palmas Recovery.jpg",
+    src: "/La Dr Cecilia esta lista para cuidar de cada paciente en Palmas Recovery.webp",
     alt: "La Dra. Cecilia está lista para cuidar de cada paciente en Palmas Recovery",
     title:
       "La Dra. Cecilia está lista para cuidar de cada paciente en Palmas Recovery",
   },
   {
-    src: "/El Dr. Raul siempre a disposición de sus pacientes en Palmas Recovery.jpg",
+    src: "/El Dr. Raul siempre a disposición de sus pacientes en Palmas Recovery.webp",
     alt: "El Dr. Raúl siempre a disposición de sus pacientes en Palmas Recovery",
     title:
       "El Dr. Raúl siempre a disposición de sus pacientes en Palmas Recovery",
@@ -100,6 +100,10 @@ export default function UniqueHotels() {
                 }}
                 className="absolute inset-0 w-full h-full object-cover"
                 draggable={false}
+                width={800}
+                height={600}
+                loading="lazy"
+                decoding="async"
               />
             </AnimatePresence>
 

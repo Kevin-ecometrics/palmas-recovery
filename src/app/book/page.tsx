@@ -31,6 +31,7 @@ import { ROOMS } from "../components/data/rooms.data";
 import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
 import { Suspense } from "react";
+import { logger } from "@/utils/logger";
 
 // Tipos
 interface BookingPayload {
@@ -243,7 +244,7 @@ const checkBulkAvailability = async (
     });
     return response.data;
   } catch (error) {
-    console.error("Error checking bulk availability:", error);
+    logger.error("Error checking bulk availability:", error);
     return {};
   }
 };
@@ -264,7 +265,7 @@ const checkAvailability = async (
     });
     return response.data;
   } catch (error) {
-    console.error("Error checking availability:", error);
+    logger.error("Error checking availability:", error);
     return { available: false, message: "Error checking availability" };
   }
 };
@@ -349,7 +350,7 @@ const sendConfirmationEmail = async (bookingData: BookingPayload) => {
       bookingData,
     );
   } catch (error) {
-    console.error("Error sending confirmation email:", error);
+    logger.error("Error sending confirmation email:", error);
   }
 };
 
@@ -777,7 +778,7 @@ const BookingPageInner = () => {
               setValidationError(t("booking.errors.selectedRoomNotAvailable"));
             }
           } catch (error) {
-            console.error("Error checking availability on load:", error);
+            logger.error("Error checking availability on load:", error);
           }
         };
 
@@ -829,7 +830,7 @@ const BookingPageInner = () => {
         setValidationError(t("booking.errors.selectedRoomNotAvailable"));
       }
     } catch (error) {
-      console.error("Error searching rooms:", error);
+      logger.error("Error searching rooms:", error);
       setValidationError(t("booking.errors.availabilityCheckFailed"));
     } finally {
       setIsSearchingRooms(false);

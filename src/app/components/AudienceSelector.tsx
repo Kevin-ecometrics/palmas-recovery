@@ -103,7 +103,7 @@ export default function AudienceSelector() {
             {t("audience.heading.description")}
           </p>
 
-          <h4
+          <h3
             className={`mt-4 font-bold text-lg md:text-xl leading-relaxed transition-colors duration-500 ease-in-out ${
               hasActiveItem ? "text-white" : "text-wine"
             }`}
@@ -112,7 +112,7 @@ export default function AudienceSelector() {
             }}
           >
             {t("audience.heading.description2")}
-          </h4>
+          </h3>
         </div>
       </div>
 
@@ -148,6 +148,9 @@ export default function AudienceSelector() {
                       title={t(item.alt)}
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      decoding="async"
+                      width={1920}
+                      height={1080}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-black/30" />
                   </div>
