@@ -15,16 +15,16 @@ import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
 
 const Navbar: React.FC = () => {
+  const { t, i18n } = useTranslation();
+  
+  if (!i18n.language) return null;
+  
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const isHome = usePathname() === "/";
   const pathname = usePathname();
   const router = useRouter();
-  const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.startsWith("en") ? "en" : "es";
-
-  if (!i18n.language) return null;
 
   const socialLinks = [
     {

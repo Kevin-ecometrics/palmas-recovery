@@ -34,11 +34,11 @@ export default function I18nProvider({ children }: Props) {
     };
   }, []);
 
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
-  return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
+  return (
+    <I18nextProvider i18n={i18n}>
+      {children}
+    </I18nextProvider>
+  );
 }
 
 export { STORAGE_KEY };

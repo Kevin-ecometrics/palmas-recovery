@@ -46,12 +46,12 @@ export default function HomePage() {
 
   const pleasureParagraphs = useMemo(
     () => t("home.pleasure.paragraphs", { returnObjects: true }) as string[],
-    [t]
+    [t],
   );
 
   const aboutLink = useMemo(
     () => (pathname === "/en/" ? "/about" : "/nosotros"),
-    [pathname]
+    [pathname],
   );
 
   const titleLine1 = useMemo(() => t("home.pleasure.titleLine1"), [t]);
@@ -74,7 +74,7 @@ export default function HomePage() {
     if (!footerRef.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => setFooterVisible(entry.isIntersecting),
-      { root: null, threshold: 0.1, rootMargin: "100px" }
+      { root: null, threshold: 0.1, rootMargin: "100px" },
     );
     observer.observe(footerRef.current);
     return () => observer.disconnect();
