@@ -324,7 +324,7 @@ const calculateTotal = (
     calculateNights(checkIn, checkOut) <= 0
   )
     return 0;
-  const numberOfGuests = guests || 1;
+  const numberOfGuests = guests || 0;
   const roomTotal =
     selectedRoomData.price *
     calculateNights(checkIn, checkOut) *
@@ -584,8 +584,8 @@ const SuccessModal = ({
                   {t("booking.guests")}:
                 </span>
                 <span className="font-semibold text-olive-dark">
-                  {confirmationData?.guests ?? 1}{" "}
-                  {t("common.guest", { count: confirmationData?.guests ?? 1 })}
+                  {confirmationData?.guests ?? 0}{" "}
+                  {t("common.guest", { count: confirmationData?.guests ?? 0 })}
                 </span>
               </div>
 
@@ -712,7 +712,7 @@ const BookingPageInner = () => {
   // Fecha mínima para check-in
   const minCheckInDate = getMinCheckInDate();
 
-  const DEFAULT_GUEST_COUNT = 1;
+  const DEFAULT_GUEST_COUNT = 0;
   const [guestCount, setGuestCount] = useState<number>(DEFAULT_GUEST_COUNT);
 
   const [formData, setFormData] = useState({

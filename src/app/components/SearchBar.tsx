@@ -546,7 +546,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
               label={t("searchBar.guests")}
               value={`${filters.guests} ${t("common.guest", { count: filters.guests })}`}
               subValue={t("searchBar.maxGuests", {
-                count: selectedRoom?.capacity ?? 1,
+                count: 1,
               })}
               isActive={activeFilter === "guests"}
               onClick={() => toggle("guests")}
@@ -555,7 +555,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
               <Dropdown>
                 <GuestsDropdown
                   guests={filters.guests}
-                  max={selectedRoom?.capacity ?? 1}
+                  max={1}
                   onChange={(v) => handleFilterChange("guests", v)}
                 />
               </Dropdown>

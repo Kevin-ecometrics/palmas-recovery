@@ -49,7 +49,7 @@ const SearchResultsInner = () => {
 
   // Obtener parámetros de búsqueda iniciales
   const roomType = searchParams.get("room");
-  const initialGuests = parseInt(searchParams.get("guests") || "1");
+  const initialGuests = parseInt(searchParams.get("guests") || "0");
   const initialDuration = parseInt(searchParams.get("duration") || "3");
   const promoCode = searchParams.get("promo") || "";
 
