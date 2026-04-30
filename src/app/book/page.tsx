@@ -324,11 +324,8 @@ const calculateTotal = (
     calculateNights(checkIn, checkOut) <= 0
   )
     return 0;
-  const numberOfGuests = guests || 0;
   const roomTotal =
-    selectedRoomData.price *
-    calculateNights(checkIn, checkOut) *
-    numberOfGuests;
+    selectedRoomData.price * calculateNights(checkIn, checkOut);
   return roomTotal + calculateExtrasTotal(selectedExtras);
 };
 
@@ -712,7 +709,7 @@ const BookingPageInner = () => {
   // Fecha mínima para check-in
   const minCheckInDate = getMinCheckInDate();
 
-  const DEFAULT_GUEST_COUNT = 0;
+  const DEFAULT_GUEST_COUNT = 1;
   const [guestCount, setGuestCount] = useState<number>(DEFAULT_GUEST_COUNT);
 
   const [formData, setFormData] = useState({
@@ -1279,25 +1276,66 @@ const BookingPageInner = () => {
                         );
                       })}
 
-                      {bookableRooms.filter(
-                        (room) =>
-                          getRoomAvailabilityStatus(room.id) === "available",
-                      ).length === 0 && (
-                        <div className="text-center py-12 bg-cream rounded-2xl">
-                          <FaBed className="text-5xl text-wine/30 mx-auto mb-4" />
-                          <p className="text-wine font-medium">
-                            {t("booking.noRoomsAvailable")}
-                          </p>
-                          <p className="text-sm text-olive-dark mt-2">
-                            {t("booking.tryDifferentDates")}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  )}
+                  {bookableRooms.filter(
+                         (room) =>
+                           getRoomAvailabilityStatus(room.id) === "available",
+                       ).length === 0 && (
+                         <div className="text-center py-12 bg-cream rounded-2xl">
+                           <FaBed className="text-5xl text-wine/30 mx-auto mb-4" />
+                           <p className="text-wine font-medium">
+                             {t("booking.noRoomsAvailable")}
+                           </p>
+                           <p className="text-sm text-olive-dark mt-2">
+                             {t("booking.tryDifferentDates")}
+                           </p>
+                         </div>
+                       )}
+                     </div>
+                   )}
 
-                  {/* Mostrar error de validación si existe */}
-                  {validationError && (
+                   {/* Guest selector - Step 1 */}
+                   {selectedRoom && hasSearched && (
+                     <div className="bg-cream rounded-xl p-4 mb-6 border border-wine/20 animate-fadeIn">
+                       <h4 className="font-semibold text-wine mb-3 flex items-center gap-2">
+                         <FaUserFriends className="text-wine" />
+                         {t("booking.guests")}
+                       </h4>
+                       <div className="flex gap-4">
+                         <label className="flex items-center gap-2 cursor-pointer px-4 py-2 rounded-lg border-2 transition-all duration-200 hover:border-wine/30 has-[:checked]:bg-wine has-[:checked]:text-white has-[:checked]:border-wine">
+                           <input
+                             type="radio"
+                             name="guests"
+                             checked={guestCount === 0}
+                             onChange={() => setGuestCount(0)}
+                             className="w-4 h-4 text-wine focus:ring-wine"
+                           />
+                           <span className="font-medium">
+                             0 {t("common.guests", { count: 0 })}
+                           </span>
+                         </label>
+                         <label className="flex items-center gap-2 cursor-pointer px-4 py-2 rounded-lg border-2 transition-all duration-200 hover:border-wine/30 has-[:checked]:bg-wine has-[:checked]:text-white has-[:checked]:border-wine">
+                           <input
+                             type="radio"
+                             name="guests"
+                             checked={guestCount === 1}
+                             onChange={() => setGuestCount(1)}
+                             className="w-4 h-4 text-wine focus:ring-wine"
+                           />
+                           <span className="font-medium">
+                             1 {t("common.guest", { count: 1 })}
+                           </span>
+                         </label>
+                       </div>
+                       {selectedRoomData && selectedRoomData.price !== null && formData.checkIn && formData.checkOut && (
+                         <p className="text-sm text-olive-dark mt-3 font-medium">
+                           {t("booking.roomSubtotal")}: ${selectedRoomData.price * nights}
+                         </p>
+                       )}
+                     </div>
+                   )}
+
+                   {/* Mostrar error de validación si existe */}
+                   {validationError && (
                     <div className="bg-wine/10 border border-wine text-wine px-4 py-3 rounded-lg">
                       {validationError}
                     </div>
@@ -1613,13 +1651,13 @@ const BookingPageInner = () => {
                             </span>
                           </div>
                           <div className="flex justify-between items-center py-2">
-                            <span className="text-olive-dark font-medium">
-                              {t("booking.roomSubtotal")}:
-                            </span>
-                            <span className="font-bold text-wine">
-                              ${selectedRoomData.price * nights * guestCount}
-                            </span>
-                          </div>
+                             <span className="text-olive-dark font-medium">
+                               {t("booking.roomSubtotal")}:
+                             </span>
+                             <span className="font-bold text-wine">
+                               ${selectedRoomData.price * nights}
+                             </span>
+                           </div>
 
                           {/* Extras Section in Confirmation */}
                           <div className="mt-4 pt-4 border-t border-wine/20">

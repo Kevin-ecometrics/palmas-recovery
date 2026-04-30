@@ -419,7 +419,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
 
   const [filters, setFilters] = useState<SearchFilters>({
     roomType: "shared",
-    guests: 0,
+    guests: 1,
     duration: "3",
     promoCode: "",
   });

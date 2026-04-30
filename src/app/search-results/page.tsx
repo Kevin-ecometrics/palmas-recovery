@@ -12,6 +12,9 @@ import {
   FaSpinner,
   FaShieldAlt,
   FaSearch,
+  FaMinus,
+  FaPlus,
+  FaUser,
 } from "react-icons/fa";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
@@ -49,7 +52,7 @@ const SearchResultsInner = () => {
 
   // Obtener parámetros de búsqueda iniciales
   const roomType = searchParams.get("room");
-  const initialGuests = parseInt(searchParams.get("guests") || "0");
+  const initialGuests = parseInt(searchParams.get("guests") || "1");
   const initialDuration = parseInt(searchParams.get("duration") || "3");
   const promoCode = searchParams.get("promo") || "";
 
@@ -432,11 +435,35 @@ const SearchResultsInner = () => {
                     </span>
                   </div>
                   <FaSearch className="text-wine" />
-                  <span className="text-sm text-gray-500">
-                    {showDatePicker ? t("common.close") : t("common.edit")}
-                  </span>
-                </div>
-              </div>
+                   <span className="text-sm text-gray-500">
+                     {showDatePicker ? t("common.close") : t("common.edit")}
+                   </span>
+                 </div>
+
+                 {/* Guest selector */}
+                 <div className="flex items-center gap-2 bg-cream px-4 py-2 rounded-full">
+                   <FaUser className="text-wine" />
+                   <button
+                     type="button"
+                     onClick={() => handleGuestsChange(Math.max(0, guests - 1))}
+                     disabled={guests <= 0}
+                     className="w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-gray-400 disabled:opacity-25 disabled:cursor-not-allowed transition-all"
+                   >
+                     <FaMinus size={8} />
+                   </button>
+                   <span className="font-medium text-sm">
+                     {guests} {guests === 1 ? t("common.guest") : t("common.guests")}
+                   </span>
+                   <button
+                     type="button"
+                     onClick={() => handleGuestsChange(Math.min(1, guests + 1))}
+                     disabled={guests >= 1}
+                     className="w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:border-gray-400 disabled:opacity-25 disabled:cursor-not-allowed transition-all"
+                   >
+                     <FaPlus size={8} />
+                   </button>
+                 </div>
+               </div>
 
               {/* Panel de selección de fechas */}
               {showDatePicker && (
