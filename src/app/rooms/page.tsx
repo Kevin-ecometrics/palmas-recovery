@@ -441,7 +441,7 @@ export default function RoomsPage() {
           </div>
 
           {/* Room Cards */}
-          {ROOMS.slice(1, 4).map((room, index) => (
+          {ROOMS.slice(1, 5).map((room, index) => (
             <RoomCard
               key={room.id}
               room={room}

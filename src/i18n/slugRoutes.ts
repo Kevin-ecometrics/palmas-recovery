@@ -3,6 +3,7 @@ import type { Lang } from "./routeMap";
 const ROOM_ID_MAP: Record<string, string> = {
   shared: "compartida",
   private: "privada",
+  "large-private": "privada-grande",
   vip: "vip",
 };
 
@@ -12,6 +13,7 @@ const ROOM_ID_MAP_REVERSE: Record<string, string> = Object.fromEntries(
 
 const TOUR_SLUG_MAP: Record<string, string> = {
   "private-room": "habitacion-privada",
+  "large-private-room": "habitacion-privada-grande",
   "shared-room": "habitacion-compartida",
   "vip-suite": "suite-vip",
 };

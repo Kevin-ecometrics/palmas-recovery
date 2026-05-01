@@ -47,14 +47,22 @@ export default function HotelDestinationsScroll() {
     {
       id: 2,
       name: "Private Room",
-      image:
-        "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.webp",
+      image: "/habitacion_privada1.jpg",
       priceText: "$180 dlls / night",
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",
-      alt: "Amplia habitación con sofá para acompañante, closet y cama   hospitalaria con amplia vista y acompáñate con todas las amenidades incluidas en Tijuana ",
+      alt: "Amplia habitación con sofá para acompañante, closet y cama hospitalaria con amplia vista y todas las amenidades incluidas en Tijuana",
     },
     {
       id: 3,
+      name: "Large Private Room",
+      image:
+        "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.webp",
+      priceText: "$200 dlls / night",
+      url: pathname === "/en/" ? "/rooms" : "/habitaciones",
+      alt: "Habitación privada amplia con sofá cama para acompañante y todas las amenidades incluidas en Palmas Recovery Tijuana",
+    },
+    {
+      id: 4,
       name: "VIP Suite",
       priceText: "$250 dlls / night",
       image:
@@ -63,7 +71,7 @@ export default function HotelDestinationsScroll() {
       alt: "En Palmas recovery contamos con habitaciones VIP con baño privada y excelente vista para tu comodidad  ",
     },
     {
-      id: 4,
+      id: 5,
       name: "Lymphatic massage",
       priceText: "$60 dlls",
       image:
@@ -72,7 +80,7 @@ export default function HotelDestinationsScroll() {
       alt: "En Palmas recovery contamos con habitaciones VIP con baño privada y excelente vista para tu comodidad  ",
     },
     {
-      id: 5,
+      id: 6,
       name: "5 Lymphatic massages package",
       priceText: "$270 dlls",
       image:
@@ -81,7 +89,7 @@ export default function HotelDestinationsScroll() {
       alt: "Paquete de 5 masajes linfáticos para tu estadía con una masajista experta en nuestras instalaciones ",
     },
     {
-      id: 6,
+      id: 7,
       name: "Original Recovery bra sytle No. B01G",
       priceText: "$80 dlls",
       image:
@@ -90,7 +98,7 @@ export default function HotelDestinationsScroll() {
       alt: "Puedes comprar en Palmas Recovery tu brasier lavable y de cierre frontal de compresión postquirgica  ",
     },
     {
-      id: 7,
+      id: 8,
       name: "Open Bust Vest 3/4 Lengh Sleeves Style No. FVOM",
       priceText: "$80 dlls",
       image: "/Faja torerita con apertura en el busto.png",
@@ -98,7 +106,7 @@ export default function HotelDestinationsScroll() {
       alt: "Compra tu faja torerita con apeetura en el busto en Palmas Recovery  ",
     },
     {
-      id: 8,
+      id: 9,
       name: "Reinforced Girdle with High Back and Layered Panels Short Lenght Style No. SFBHRS",
       priceText: "$140 dlls",
       image:
@@ -107,7 +115,7 @@ export default function HotelDestinationsScroll() {
       alt: "Agenda tu estancia En Palmas Recovery y Compra fácil tu Faja con espalda alta de short arriba de las rodillas en",
     },
     {
-      id: 9,
+      id: 10,
       name: "Girdle With High Back No Closures Short Lenght Style No. SFBHS2",
       priceText: "$140 dlls",
       image:
@@ -289,21 +297,24 @@ export default function HotelDestinationsScroll() {
                       </motion.button>
 
                       {/* Badge */}
-                      {item.id <= 3 && (
+                      {item.id <= 4 && (
                         <div className="absolute bottom-4 left-4">
                           <span
                             className={`
                             px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider
                             ${item.id === 1 ? "bg-blush/90 text-wine" : ""}
                             ${item.id === 2 ? "bg-sage/90 text-white" : ""}
-                            ${item.id === 3 ? "bg-wine/90 text-white" : ""}
+                            ${item.id === 3 ? "bg-olive-dark/90 text-white" : ""}
+                            ${item.id === 4 ? "bg-wine/90 text-white" : ""}
                           `}
                           >
                             {item.id === 1
                               ? "Popular"
                               : item.id === 2
                                 ? "Recommended"
-                                : "Premium"}
+                                : item.id === 3
+                                  ? "Spacious"
+                                  : "Premium"}
                           </span>
                         </div>
                       )}

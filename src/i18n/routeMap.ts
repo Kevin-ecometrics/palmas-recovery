@@ -17,6 +17,7 @@ export type RouteKey =
   | "about"
   | "tourshared"
   | "tourprivate"
+  | "tourlargeprivate"
   | "tourvip"
   | "search";
 
@@ -37,6 +38,7 @@ export const ROUTE_PAIRS: Array<{ key: RouteKey; es: string; en: string }> = [
   { key: "about", es: "/nosotros", en: "/about" },
   { key: "tourshared", es: "/tour/360/shared", en: "/tour/360/shared" },
   { key: "tourprivate", es: "/tour/360/dsa", en: "/tour/360/private" },
+  { key: "tourlargeprivate", es: "/tour/360/large-private", en: "/tour/360/large-private" },
   { key: "tourvip", es: "/tour/360/vip", en: "/tour/360/vip" },
   { key: "search", es: "/busqueda", en: "/search-results" },
 ];

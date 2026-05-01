@@ -1,7 +1,6 @@
 {
   "common": {
-        "selected": "Selected",
-
+    "selected": "Selected",
     "night": "night",
     "nights": "nights",
     "guest": "guest",
@@ -115,7 +114,7 @@
       "subtitleLine1": "At Palmas Recovery House, we ensure superior results and a seamless transition to wellness.",
       "subtitleLine2": "",
       "paragraphs": [
-        "We work hand-in-hand with Mexico’s leading plastic surgeons to provide thoughtfully designed care. From private transportation, personalized medication and food preparation of tasty specialized meals, we offer a discreet and nurturing environment. "
+        "We work hand-in-hand with Mexico\u2019s leading plastic surgeons to provide thoughtfully designed care. From private transportation, personalized medication and food preparation of tasty specialized meals, we offer a discreet and nurturing environment. "
       ],
       "more": "Learn more about us",
       "less": "Read less",
@@ -125,7 +124,7 @@
     "promise": {
       "label": "Our Promise",
       "title": "Rest, Recover, Renew",
-      "description": "Each room is thoughtfully crafted for your comfort, privacy, and healing — ensuring every moment of your recovery feels like home.",
+      "description": "Each room is thoughtfully crafted for your comfort, privacy, and healing \u2014 ensuring every moment of your recovery feels like home.",
       "values": [
         {
           "title": "Comfort",
@@ -156,6 +155,12 @@
           "description": "Your own space for reflection and recovery"
         },
         {
+          "id": "large-private",
+          "title": "Large Private",
+          "subtitle": "More Space, More Comfort",
+          "description": "A spacious private room with sofa bed for your companion"
+        },
+        {
           "id": "vip",
           "title": "VIP Suite",
           "subtitle": "Ultimate Comfort",
@@ -166,7 +171,11 @@
       "scroll": "Scroll"
     },
     "heroVideo": {
-      "words": ["Rest", "Recover", "Renew"],
+      "words": [
+        "Rest",
+        "Recover",
+        "Renew"
+      ],
       "subtitle": "The best post-op care with in-house doctors in Tijuana",
       "cta": "Learn more"
     }
@@ -312,15 +321,15 @@
     "title": "At Palmas Recovery",
     "description": "Enjoy a stress-free recovery in a space created to support healing, privacy, and total comfort:",
     "bullets": [
-  "+ <strong>Private and shared suites</strong> with adjustable beds, A/C, and high-speed Wi-Fi",
-  "+ <strong>Elevator access</strong> for effortless mobility",
-  "+ <strong>Private transportation</strong> to the hospital and post-op appointments",
-  "+ Spacious, serene common areas with <strong>full in-room privacy</strong>",
-  "+ <strong>Fresh laundry service</strong> included during your stay",
-  "+ <strong>On-site boutique</strong> with post-surgical garments and recovery supplements",
-  "+ <strong>Anti-inflammatory meals</strong>: 3 nourishing meals + 2 snacks daily",
-  "+ <strong>Complimentary hydration station</strong> with wellness drinks and healing teas"
-],
+      "+ <strong>Private and shared suites</strong> with adjustable beds, A/C, and high-speed Wi-Fi",
+      "+ <strong>Elevator access</strong> for effortless mobility",
+      "+ <strong>Private transportation</strong> to the hospital and post-op appointments",
+      "+ Spacious, serene common areas with <strong>full in-room privacy</strong>",
+      "+ <strong>Fresh laundry service</strong> included during your stay",
+      "+ <strong>On-site boutique</strong> with post-surgical garments and recovery supplements",
+      "+ <strong>Anti-inflammatory meals</strong>: 3 nourishing meals + 2 snacks daily",
+      "+ <strong>Complimentary hydration station</strong> with wellness drinks and healing teas"
+    ],
     "prev": "Previous image",
     "next": "Next image"
   },
@@ -366,8 +375,17 @@
       "imageAlt": "Shared Room",
       "beds": "Adjustable Medical Bed",
       "size": "Shared Space",
-      "amenities": ["Adjustable Medical Bed", "Shared Bathroom", "Air Conditioning", "Smart TV"],
-      "features": ["24/7 Medical Assistance", "Daily Cleaning", "All Meals Included"],
+      "amenities": [
+        "Adjustable Medical Bed",
+        "Shared Bathroom",
+        "Air Conditioning",
+        "Smart TV"
+      ],
+      "features": [
+        "24/7 Medical Assistance",
+        "Daily Cleaning",
+        "All Meals Included"
+      ],
       "highlight": "POPULAR",
       "tag": "POPULAR",
       "tagDescription": "Comfortable & Affordable"
@@ -380,8 +398,16 @@
       "imageAlt": "Private Room",
       "beds": "Adjustable Medical Bed",
       "size": "Private Room",
-      "amenities": ["Adjustable Medical Bed", "Private Bathroom", "Air Conditioning", "Smart TV"],
-      "features": ["Full Privacy", "Personalized Attention"],
+      "amenities": [
+        "Adjustable Medical Bed",
+        "Private Bathroom",
+        "Air Conditioning",
+        "Smart TV"
+      ],
+      "features": [
+        "Full Privacy",
+        "Personalized Attention"
+      ],
       "highlight": "RECOMMENDED",
       "tag": "RECOMMENDED",
       "tagDescription": "Your Personal Sanctuary"
@@ -394,11 +420,43 @@
       "imageAlt": "VIP Suite",
       "beds": "Premium Adjustable Medical Bed",
       "size": "Luxury Suite",
-      "amenities": ["Adjustable Medical Bed", "Private Bathroom", "Air Conditioning", "Smart TV"],
-      "features": ["Maximum Privacy", "Premium Amenities"],
+      "amenities": [
+        "Adjustable Medical Bed",
+        "Private Bathroom",
+        "Air Conditioning",
+        "Smart TV"
+      ],
+      "features": [
+        "Maximum Privacy",
+        "Premium Amenities"
+      ],
       "highlight": "PREMIUM",
       "tag": "PREMIUM",
       "tagDescription": "The Ultimate Luxury Experience"
+    },
+    "large-private": {
+      "name": "Large Private Room",
+      "subtitle": "SPACIOUS",
+      "tagline": "More Space, More Comfort",
+      "description": "Enjoy all the privacy of a private room in a larger, more furnished space. Ideal for longer stays or guests who want extra room to move and recover.",
+      "imageAlt": "Large Private Room",
+      "beds": "Adjustable Medical Bed + Sofa Bed",
+      "size": "Large Private Room",
+      "amenities": [
+        "Adjustable Medical Bed",
+        "Sofa Bed for Companion",
+        "Private Bathroom",
+        "Air Conditioning",
+        "Smart TV"
+      ],
+      "features": [
+        "Full Privacy",
+        "Extra Space",
+        "Personalized Attention"
+      ],
+      "highlight": "SPACIOUS",
+      "tag": "SPACIOUS",
+      "tagDescription": "More Space, More Comfort"
     }
   },
   "roomsPage": {
@@ -412,12 +470,12 @@
     "amenitiesTitle": "Luxury Amenities",
     "viewDetails": "VIEW ROOM TOUR",
     "viewAllTours": "VIEW ALL ROOM TOURS",
-    "limited": "Limited availability • Instant confirmation"
+    "limited": "Limited availability \u2022 Instant confirmation"
   },
   "tour360": {
-    "startTour": "Start 360° Tour",
-    "viewLobby": "Start 360° Lobby Tour",
-    "badge": "360° Tour",
+    "startTour": "Start 360\u00b0 Tour",
+    "viewLobby": "Start 360\u00b0 Lobby Tour",
+    "badge": "360\u00b0 Tour",
     "swipeHint": "swipe image to navigate"
   },
   "roomDetail": {
@@ -433,9 +491,9 @@
     "dailyCleaning": "Daily Professional Cleaning",
     "privacy": "Complete Privacy & Security",
     "bookThisRoom": "BOOK THIS ROOM",
-    "instantConfirmation": "⚡ Instant confirmation",
-    "secureBooking": "🔒 Secure booking",
-    "bestPrice": "🏆 Best price guaranteed",
+    "instantConfirmation": "\u26a1 Instant confirmation",
+    "secureBooking": "\ud83d\udd12 Secure booking",
+    "bestPrice": "\ud83c\udfc6 Best price guaranteed",
     "needHelp": "Need help?",
     "contactTeam": "Contact our team",
     "readyTitle": "Ready to begin your recovery journey?",
@@ -448,7 +506,7 @@
     "capacity": "Capacity",
     "medicalFeatures": "Medical Features",
     "premiumAmenities": "Premium Amenities",
-    "allInclusive": "All inclusive • No hidden fees",
+    "allInclusive": "All inclusive \u2022 No hidden fees",
     "more": "more",
     "total": "total"
   },
@@ -461,7 +519,6 @@
     "noExtrasSelected": "No extra services selected",
     "addExtras": "Add extra services",
     "modifyExtras": "Modify extras",
-
     "bookingSummary": "Your Booking Summary",
     "steps": {
       "select": "Select",
@@ -656,10 +713,22 @@
     "heroTitle": "Your Recovery, Our Priority",
     "heroSubtitle": "At Palmas Recovery, we blend medical excellence with luxury hospitality to create the perfect environment for your healing journey.",
     "stats": [
-      { "stat": "500+", "label": "Successful Recoveries" },
-      { "stat": "100%", "label": "Licensed Medical Staff" },
-      { "stat": "24/7", "label": "Care & Support" },
-      { "stat": "5★", "label": "Patient Satisfaction" }
+      {
+        "stat": "500+",
+        "label": "Successful Recoveries"
+      },
+      {
+        "stat": "100%",
+        "label": "Licensed Medical Staff"
+      },
+      {
+        "stat": "24/7",
+        "label": "Care & Support"
+      },
+      {
+        "stat": "5\u2605",
+        "label": "Patient Satisfaction"
+      }
     ],
     "sectionTitle": "Comprehensive Care Services",
     "sectionSubtitle": "Every aspect of your recovery is carefully managed by our dedicated team of healthcare professionals.",
@@ -837,7 +906,7 @@
       ]
     },
     "private": {
-      "heroLabel": "Tour • Private Room",
+      "heroLabel": "Tour \u2022 Private Room",
       "title": "Private Room",
       "subtitle": "Serenity & Total Privacy",
       "description": "A quiet, elegant room designed for uninterrupted recovery, personal attention, and complete peace of mind.",
@@ -858,7 +927,7 @@
         },
         {
           "title": "Elegant Space",
-          "desc": "Warm, minimal décor with upscale finishes and a soothing palette."
+          "desc": "Warm, minimal d\u00e9cor with upscale finishes and a soothing palette."
         }
       ],
       "detailsLabel": "Room Details",
@@ -869,7 +938,7 @@
         "En-suite bathroom with safety features",
         "Daily housekeeping & linen refresh",
         "24/7 nursing access and monitoring",
-        "Smart TV, Wi‑Fi, and relaxation lounge",
+        "Smart TV, Wi\u2011Fi, and relaxation lounge",
         "Nutrition-focused meal plan"
       ],
       "reserve": "RESERVE NOW",
@@ -896,17 +965,16 @@
       "ctaTalk": "TALK TO US"
     },
     "shared": {
-      "heroLabel": "Tour • Shared Room",
+      "heroLabel": "Tour \u2022 Shared Room",
       "title": "Shared Room",
       "subtitle": "Comfort, Care & Calm",
       "description": "A welcoming, peaceful space designed for recovery with attentive care, elegant finishes, and a warm community atmosphere.",
       "book": "BOOK THIS ROOM",
       "ask": "ASK A QUESTION",
-            "tour": "Take a virtual tour",
-
+      "tour": "Take a virtual tour",
       "highlightsLabel": "Designed for Recovery",
       "highlightsTitle": "What You'll Love",
-      "highlightsSubtitle": "A balanced blend of privacy, companionship, and comfort — with every detail curated for healing.",
+      "highlightsSubtitle": "A balanced blend of privacy, companionship, and comfort \u2014 with every detail curated for healing.",
       "highlights": [
         {
           "title": "Restful Comfort",
@@ -929,7 +997,7 @@
         "En-suite bathroom with safety features",
         "Daily housekeeping & linen refresh",
         "24/7 nursing access and monitoring",
-        "Wi‑Fi, streaming, and reading lounge",
+        "Wi\u2011Fi, streaming, and reading lounge",
         "Healthy meal plan tailored to recovery"
       ],
       "reserve": "RESERVE NOW",
@@ -956,14 +1024,13 @@
       "ctaTalk": "TALK TO US"
     },
     "vip": {
-      "heroLabel": "Tour • VIP Suite",
+      "heroLabel": "Tour \u2022 VIP Suite",
       "title": "VIP Suite",
       "subtitle": "Luxury Recovery Experience",
       "description": "Indulge in a spacious, private suite featuring elevated comfort, refined amenities, and priority care throughout your recovery.",
       "book": "BOOK THIS SUITE",
       "ask": "ASK A QUESTION",
-            "tour": "Take a virtual tour",
-
+      "tour": "Take a virtual tour",
       "highlightsLabel": "Elevated Comfort",
       "highlightsTitle": "The VIP Difference",
       "highlightsSubtitle": "A premium experience for guests seeking the highest level of care and comfort.",
@@ -989,7 +1056,7 @@
         "Private lounge and relaxation seating",
         "En-suite spa-inspired bathroom",
         "Priority nursing support and monitoring",
-        "Smart TV, Wi‑Fi, and curated entertainment",
+        "Smart TV, Wi\u2011Fi, and curated entertainment",
         "Chef-guided recovery meals"
       ],
       "reserve": "RESERVE NOW",
@@ -1003,7 +1070,7 @@
         },
         {
           "q": "Can family stay with me?",
-          "a": "In many cases, yes. We can accommodate a companion—please contact us for details."
+          "a": "In many cases, yes. We can accommodate a companion\u2014please contact us for details."
         },
         {
           "q": "What is included in the nightly rate?",
@@ -1014,10 +1081,69 @@
       "ctaSubtitle": "Enjoy premium privacy, comfort, and care in our most exclusive suite.",
       "ctaBook": "BOOK NOW",
       "ctaTalk": "TALK TO US"
+    },
+    "large-private": {
+      "heroLabel": "Tour - Large Private Room",
+      "title": "Large Private Room",
+      "subtitle": "More Space, More Comfort",
+      "description": "A spacious private room with sofa bed for a companion, designed for guests who need extra room to rest and recover in total privacy.",
+      "book": "BOOK THIS ROOM",
+      "ask": "ASK A QUESTION",
+      "tour": "Take a virtual tour",
+      "highlightsLabel": "Designed for Recovery",
+      "highlightsTitle": "Spacious Private Comforts",
+      "highlightsSubtitle": "Ideal for guests who want more space and still value complete privacy.",
+      "highlights": [
+        {
+          "title": "Extra Space",
+          "desc": "Larger layout with more room to move, rest, and recover comfortably."
+        },
+        {
+          "title": "Companion Friendly",
+          "desc": "Sofa bed included so a companion can stay with you throughout recovery."
+        },
+        {
+          "title": "Full Privacy",
+          "desc": "Private bathroom and single-occupancy setup for total peace of mind."
+        }
+      ],
+      "detailsLabel": "Room Details",
+      "detailsTitle": "A Larger Private Sanctuary",
+      "detailsText": "Our large private rooms offer everything our standard private rooms do, but with more space. A sofa bed for your companion, extra furnishings, and the same dedicated nursing care.",
+      "features": [
+        "Adjustable medical bed with premium linens",
+        "Sofa bed for one companion",
+        "Private en-suite bathroom with safety features",
+        "Daily housekeeping & linen refresh",
+        "24/7 nursing access and monitoring",
+        "Smart TV, Wi-Fi, and nutrition-focused meal plan"
+      ],
+      "reserve": "RESERVE NOW",
+      "viewAll": "VIEW ALL ROOMS",
+      "faqTitle": "Frequently Asked Questions",
+      "faqSubtitle": "Answers about our large private room experience.",
+      "faq": [
+        {
+          "q": "How is this different from the standard private room?",
+          "a": "The large private room offers more square footage, extra furnishings, and a sofa bed for a companion."
+        },
+        {
+          "q": "Can my companion sleep in the room?",
+          "a": "Yes. The sofa bed is included specifically for a companion to stay with you."
+        },
+        {
+          "q": "What is included in the nightly rate?",
+          "a": "Your stay includes nursing support, meals, daily housekeeping, and access to all wellness amenities."
+        }
+      ],
+      "ctaTitle": "Ready to Book Your Large Private Room?",
+      "ctaSubtitle": "More space, same personalized care. Plan your recovery with us.",
+      "ctaBook": "BOOK NOW",
+      "ctaTalk": "TALK TO US"
     }
   },
   "panorama": {
-    "dragHint": "Drag to explore • 360°",
+    "dragHint": "Drag to explore \u2022 360\u00b0",
     "labels": {
       "studio": "Studio",
       "playRoom": "Playroom",
@@ -1045,11 +1171,11 @@
   "bannerHero": {
     "about": {
       "title": "About",
-      "description": "We’re inspired by beauty and culture, which we infuse into spaces designed to create unique moments"
+      "description": "We\u2019re inspired by beauty and culture, which we infuse into spaces designed to create unique moments"
     },
     "contact": {
       "title": "Contact",
-      "description": "Contact us today to book your stay or if you have any questions. We’re here to support you every step of the way during your recovery."
+      "description": "Contact us today to book your stay or if you have any questions. We\u2019re here to support you every step of the way during your recovery."
     },
     "services": {
       "title": "Services",
@@ -1064,7 +1190,6 @@
       "description": "We are committed to protecting your personal information and your right to privacy. Please read our privacy policy to understand how we collect, use, and protect your data."
     }
   },
-  
   "searchResults": {
     "searching": "Searching availability...",
     "backToHome": "Back to home",
@@ -1080,10 +1205,9 @@
     "selected": "Selected",
     "select": "Select",
     "bookNow": "Book Now",
-        "updateSearch": "Update Search",
+    "updateSearch": "Update Search",
     "tryOtherDates": "Try Other Dates"
   },
-  
   "extras": {
     "lymphatic": {
       "title": "Lymphatic Massage",
@@ -1109,8 +1233,5 @@
       "title": "HIGH-BACK GIRDLE",
       "description": "High-back girdle with no closures - Short length - Style No. SFBHS2. Closure-free design for maximum comfort."
     }
-  
-}
-
-
+  }
 }

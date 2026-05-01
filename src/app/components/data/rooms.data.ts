@@ -73,8 +73,7 @@ export const ROOMS: Room[] = [
     description:
       "Find tranquility and privacy in your own recovery space. Our private rooms offer modern medical comfort.",
     imageAlt: "Private Room",
-        image: "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.webp",
-
+    image: "/habitacion_privada1.jpg",
     price: 180,
     capacity: 1,
     beds: "Adjustable Medical Bed",
@@ -87,6 +86,29 @@ export const ROOMS: Room[] = [
     ],
     features: ["Full Privacy", "Personalized Attention"],
     highlight: "RECOMMENDED",
+  },
+  {
+    id: "large-private",
+    name: "Large Private Room",
+    subtitle: "SPACIOUS",
+    tagline: "More Space, More Comfort",
+    description:
+      "Enjoy all the privacy of a private room in a larger, more furnished space. Ideal for longer stays or guests who want extra room to move and recover.",
+    image: "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.webp",
+    imageAlt: "Large Private Room",
+    price: 200,
+    capacity: 1,
+    beds: "Adjustable Medical Bed + Sofa Bed",
+    size: "Large Private Room",
+    amenities: [
+      "Adjustable Medical Bed",
+      "Sofa Bed for Companion",
+      "Private Bathroom",
+      "Air Conditioning",
+      "Smart TV",
+    ],
+    features: ["Full Privacy", "Extra Space", "Personalized Attention"],
+    highlight: "SPACIOUS",
   },
   {
     id: "vip",

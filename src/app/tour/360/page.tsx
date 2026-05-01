@@ -40,6 +40,11 @@ function getAccent(roomId: string): RoomAccent {
         accentLight: "bg-sky-100 text-sky-800 border-sky-200",
         accentDot: "bg-sky-500",
       };
+    case "large-private":
+      return {
+        accentLight: "bg-orange-100 text-orange-800 border-orange-200",
+        accentDot: "bg-orange-500",
+      };
     case "vip":
       return {
         accentLight: "bg-yellow-100 text-yellow-800 border-yellow-200",

@@ -202,10 +202,7 @@ const SearchResultsInner = () => {
         price: room.price,
         description: t(`rooms.${room.id}.description`),
         capacity: room.capacity || (room.id === "shared" ? 4 : 1),
-        beds:
-          room.id === "shared"
-            ? t("rooms.shared.beds")
-            : t("rooms.private.beds"),
+        beds: t(`rooms.${room.id}.beds`),
         bathroom: (room.bathroom_type === "private" ? "private" : "shared") as
           | "shared"
           | "private",

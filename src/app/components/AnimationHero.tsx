@@ -31,8 +31,9 @@ export default function AnimationHero() {
       case "shared":
         return "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.webp";
       case "private":
+        return "/habitacion_privada1.jpg";
+      case "large-private":
         return "/Amplia habitacion con sofa cama y vista para paciente y acompanate con todas las amenidades incluidas en Tijuana.webp";
-
       case "vip":
         return "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.webp";
 
@@ -46,7 +47,9 @@ export default function AnimationHero() {
       case "shared":
         return "Conoce las comodas habitaciones compartidas para tu recuperación con precios accesibles en la mejor clínica de recuperación en Tijuana a 10 min del cruce fronterizo ";
       case "private":
-        return "Amplia habitación con sofá para acompañante, closet y cama   hospitalaria con amplia vista y acompáñate con todas las amenidades incluidas en Tijuana ";
+        return "Habitación privada para tu recuperación postquirúrgica en Palmas Recovery Tijuana";
+      case "large-private":
+        return "Amplia habitación privada con sofá cama para acompañante y todas las amenidades incluidas en Palmas Recovery Tijuana";
       case "vip":
         return "En Palmas recovery contamos con habitaciones VIP con baño privada y excelente vista para tu comodidad  ";
       default:

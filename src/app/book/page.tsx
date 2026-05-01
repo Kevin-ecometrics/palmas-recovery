@@ -500,6 +500,8 @@ const SuccessModal = ({
     switch (roomId) {
       case "private":
         return t("rooms.private.name");
+      case "large-private":
+        return t("rooms.large-private.name");
       case "shared":
         return t("rooms.shared.name");
       case "vip":

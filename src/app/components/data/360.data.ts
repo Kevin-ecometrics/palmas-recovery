@@ -7,12 +7,12 @@
   
   export const privateRoomImages = [
     { src: "/360/Habitación sencilla bano compartido.jpg", key: "room" },
-    {
-      src: "/360/tercer habitacion sencilla con bano compartido.jpg",
-      key: "room",
-    },
   ];
   
+  export const largePrivateRoomImages = [
+    { src: "/360/tercer habitacion sencilla con bano compartido.jpg", key: "room" },
+  ];
+
   export const vipRoomImages = [
     { src: "/360/Habitacion vip con bano propio.jpg", key: "room" },
     { src: "/360/habitacion vip con bano propio vista 2.jpg", key: "room" },

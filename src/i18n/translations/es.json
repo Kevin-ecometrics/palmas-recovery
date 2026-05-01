@@ -1,38 +1,38 @@
 {
   "common": {
-        "selected": "Seleccionado",
+    "selected": "Seleccionado",
     "night": "noche",
     "nights": "noches",
-    "guests": "huéspedes",
+    "guests": "hu\u00e9spedes",
     "wifi": "WiFi",
     "tv": "TV",
-        "edit": "Editar",
+    "edit": "Editar",
     "airConditioning": "Aire Acondicionado",
-    "guest": "Huésped",
+    "guest": "Hu\u00e9sped",
     "english": "EN",
     "spanish": "ES",
-    "openMenu": "Abrir menú",
-    "closeMenu": "Cerrar menú",
-    "viewTour": "Ver habitación",
+    "openMenu": "Abrir men\u00fa",
+    "closeMenu": "Cerrar men\u00fa",
+    "viewTour": "Ver habitaci\u00f3n",
     "scroll": "Desliza",
     "bookNow": "Reservar",
     "bookNowUpper": "RESERVAR",
-    "contactUs": "Contáctanos",
+    "contactUs": "Cont\u00e1ctanos",
     "scheduleTour": "Agendar estancia",
-    "learnMore": "Conoce más",
+    "learnMore": "Conoce m\u00e1s",
     "showLess": "Ver menos",
     "cancel": "Cancelar",
     "confirm": "Confirmar",
     "confirmStay": "Confirmar estancia",
-    "confirmGuests": "Confirmar huéspedes",
+    "confirmGuests": "Confirmar hu\u00e9spedes",
     "apply": "Aplicar",
     "applyDiscount": "Aplicar descuento",
-    "clearCode": "Limpiar código",
-    "selectRoom": "Seleccionar habitación",
+    "clearCode": "Limpiar c\u00f3digo",
+    "selectRoom": "Seleccionar habitaci\u00f3n",
     "select": "Seleccionar",
     "details": "Detalles",
-    "guest_one": "huésped",
-    "guest_other": "huéspedes",
+    "guest_one": "hu\u00e9sped",
+    "guest_other": "hu\u00e9spedes",
     "night_one": "noche",
     "night_other": "noches",
     "hotel_one": "Hotel",
@@ -51,25 +51,25 @@
   },
   "brand": {
     "name": "Palmas Recovery",
-    "tagline": "Post-Op y Recuperación",
+    "tagline": "Post-Op y Recuperaci\u00f3n",
     "address": {
       "line1": "Fray Servando Teresa de Mier",
       "line2": "15-Interior 2",
-      "line3": "Zona Urbana Río Tijuana",
+      "line3": "Zona Urbana R\u00edo Tijuana",
       "line4": "22010 Tijuana, B.C."
     },
-    "phoneLabel": "Teléfono",
+    "phoneLabel": "Tel\u00e9fono",
     "emailLabel": "Correo",
-    "locationLabel": "Ubicación",
+    "locationLabel": "Ubicaci\u00f3n",
     "available": "DISPONIBLE 24/7",
-    "roundTheClock": "Atención y cuidado 24/7"
+    "roundTheClock": "Atenci\u00f3n y cuidado 24/7"
   },
   "navbar": {
     "items": {
       "home": "INICIO",
       "book": "RESERVAR HOY",
       "services": "SERVICIOS",
-      "contact": "CONTÁCTANOS",
+      "contact": "CONT\u00c1CTANOS",
       "panorama": "PANORAMA",
       "about": "NOSOTROS",
       "blogs": "BLOG",
@@ -80,23 +80,23 @@
     "phoneAria": "Llamar a Palmas Recovery"
   },
   "footer": {
-    "description": "Centro líder de recuperación post-operatorio en Tijuana, brindando cuidado y confort excepcionales.",
-    "quickLinks": "Enlaces rápidos",
+    "description": "Centro l\u00edder de recuperaci\u00f3n post-operatorio en Tijuana, brindando cuidado y confort excepcionales.",
+    "quickLinks": "Enlaces r\u00e1pidos",
     "newsletterTitle": "newsletter",
-    "newsletterSubtitle": "Ofertas, novedades y guía para tu recuperación. Lo que somos y lo que queremos compartir contigo. Regístrate.",
+    "newsletterSubtitle": "Ofertas, novedades y gu\u00eda para tu recuperaci\u00f3n. Lo que somos y lo que queremos compartir contigo. Reg\u00edstrate.",
     "newsletterName": "Nombre",
     "newsletterEmail": "Email",
     "newsletterSend": "Enviar",
-    "newsletterConsent": "He leído y acepto el aviso legal y la política de privacidad.",
-    "linksTitle": "Información",
-    "emailPrompt": "Envíanos un correo a jesusponcho0015@gmail.com",
+    "newsletterConsent": "He le\u00eddo y acepto el aviso legal y la pol\u00edtica de privacidad.",
+    "linksTitle": "Informaci\u00f3n",
+    "emailPrompt": "Env\u00edanos un correo a jesusponcho0015@gmail.com",
     "links": {
       "home": "Inicio",
       "book": "Reservar",
       "services": "Servicios",
       "contact": "Contacto",
-      "privacy": "Política de privacidad",
-      "terms": "Términos del servicio"
+      "privacy": "Pol\u00edtica de privacidad",
+      "terms": "T\u00e9rminos del servicio"
     },
     "contactTitle": "Contacto",
     "connectTitle": "Conecta con nosotros",
@@ -109,32 +109,32 @@
   },
   "home": {
     "pleasure": {
-      "titleLine1": "La casa de recuperación preferida por cirujanos",
-      "subtitleLine1": "En Palmas Recovery House garantizamos resultados superiores y una transición fluida hacia tu bienestar.",
+      "titleLine1": "La casa de recuperaci\u00f3n preferida por cirujanos",
+      "subtitleLine1": "En Palmas Recovery House garantizamos resultados superiores y una transici\u00f3n fluida hacia tu bienestar.",
       "subtitleLine2": "",
       "paragraphs": [
-        "Trabajamos de la mano con algunos de los cirujanos plásticos más reconocidos de México para ofrecer una atención cuidadosamente diseñada. Desde transporte privado y manejo personalizado de medicamentos hasta comidas preparadas mediante un rico manejo especializado en alimentos, brindamos un entorno discreto, seguro y enfocado en tu recuperación."
+        "Trabajamos de la mano con algunos de los cirujanos pl\u00e1sticos m\u00e1s reconocidos de M\u00e9xico para ofrecer una atenci\u00f3n cuidadosamente dise\u00f1ada. Desde transporte privado y manejo personalizado de medicamentos hasta comidas preparadas mediante un rico manejo especializado en alimentos, brindamos un entorno discreto, seguro y enfocado en tu recuperaci\u00f3n."
       ],
-      "more": "Leer más",
+      "more": "Leer m\u00e1s",
       "less": "Leer menos",
       "imageAlt": "one-shot-hotels-esencia-urbana",
       "imageAltSecondary": "one-shot-hotels-placer-de-viajar"
     },
     "promise": {
       "label": "Nuestra Promesa",
-      "title": "Descansa, Recupérate, Renueva",
-      "description": "Cada habitación está diseñada para tu comodidad, privacidad y sanación, garantizando que cada momento de tu recuperación se sienta como en casa.",
+      "title": "Descansa, Recup\u00e9rate, Renueva",
+      "description": "Cada habitaci\u00f3n est\u00e1 dise\u00f1ada para tu comodidad, privacidad y sanaci\u00f3n, garantizando que cada momento de tu recuperaci\u00f3n se sienta como en casa.",
       "values": [
         {
           "title": "Comodidad",
-          "desc": "Espacios pensados para la paz y la relajación."
+          "desc": "Espacios pensados para la paz y la relajaci\u00f3n."
         },
         {
           "title": "Privacidad",
-          "desc": "Tu santuario personal para una recuperación sin interrupciones."
+          "desc": "Tu santuario personal para una recuperaci\u00f3n sin interrupciones."
         },
         {
-          "title": "Sanación",
+          "title": "Sanaci\u00f3n",
           "desc": "Un entorno que promueve el bienestar."
         }
       ]
@@ -143,76 +143,86 @@
       "slides": [
         {
           "id": "shared",
-          "title": "Habitación Compartida",
-          "subtitle": "Comunidad y Conexión",
-          "description": "Vive la recuperación en un entorno grupal de apoyo"
+          "title": "Habitaci\u00f3n Compartida",
+          "subtitle": "Comunidad y conexi\u00f3n",
+          "description": "Recuperaci\u00f3n en un ambiente de apoyo grupal"
         },
         {
           "id": "private",
-          "title": "Habitación Privada",
-          "subtitle": "Santuario Personal",
-          "description": "Tu propio espacio para reflexionar y sanar"
+          "title": "Habitaci\u00f3n Privada",
+          "subtitle": "Santuario personal",
+          "description": "Tu propio espacio para reflexionar y recuperarte"
+        },
+        {
+          "id": "large-private",
+          "title": "Privada Grande",
+          "subtitle": "M\u00e1s espacio, m\u00e1s comodidad",
+          "description": "Habitaci\u00f3n privada amplia con sof\u00e1 cama para tu acompa\u00f1ante"
         },
         {
           "id": "vip",
           "title": "Suite VIP",
-          "subtitle": "Máximo Confort",
-          "description": "Amenidades premium para una experiencia superior"
+          "subtitle": "M\u00e1xima comodidad",
+          "description": "Amenidades premium para una experiencia elevada"
         }
       ],
-      "viewTour": "Ver habitación",
+      "viewTour": "Ver habitaci\u00f3n",
       "scroll": "Desliza"
     },
     "heroVideo": {
-      "words": ["Rest", "Recover", "Renew"],
-      "subtitle": "La mejor atención post-operatorio en Tijuana",
-      "cta": "Conoce más"
+      "words": [
+        "Rest",
+        "Recover",
+        "Renew"
+      ],
+      "subtitle": "La mejor atenci\u00f3n post-operatorio en Tijuana",
+      "cta": "Conoce m\u00e1s"
     }
   },
   "audience": {
     "heading": {
-      "titleLine1": "Casa de recuperación certificada en Tijuana",
+      "titleLine1": "Casa de recuperaci\u00f3n certificada en Tijuana",
       "titleLine2": "",
-      "description": "Fundada con orgullo por médicos que priorizan tu salud, combinamos experiencia médica con atención personalizada para garantizar una recuperación segura, cómoda y de la más alta calidad.",
-      "description2": "Experimenta las ventajas de hospedarte en una casa de recuperación profesional en Tijuana:"
+      "description": "Fundada con orgullo por m\u00e9dicos que priorizan tu salud, combinamos experiencia m\u00e9dica con atenci\u00f3n personalizada para garantizar una recuperaci\u00f3n segura, c\u00f3moda y de la m\u00e1s alta calidad.",
+      "description2": "Experimenta las ventajas de hospedarte en una casa de recuperaci\u00f3n profesional en Tijuana:"
     },
     "items": {
       "linea": {
-        "label": "A solo 10 minutos de la línea",
-        "description": "Ubicación estratégica a minutos de la frontera para una llegada y salida sin complicaciones."
+        "label": "A solo 10 minutos de la l\u00ednea",
+        "description": "Ubicaci\u00f3n estrat\u00e9gica a minutos de la frontera para una llegada y salida sin complicaciones."
       },
       "estancia": {
-        "label": "Sin estancia mínima obligatoria",
-        "description": "No trabajamos con paquetes rígidos ni noches mínimas. Tu plan de recuperación se adapta a tu cuerpo, tu procedimiento y tu ritmo personal de sanación."
+        "label": "Sin estancia m\u00ednima obligatoria",
+        "description": "No trabajamos con paquetes r\u00edgidos ni noches m\u00ednimas. Tu plan de recuperaci\u00f3n se adapta a tu cuerpo, tu procedimiento y tu ritmo personal de sanaci\u00f3n."
       },
       "pago": {
         "label": "Opciones de pago flexibles",
-        "description": "Ofrecemos alternativas de pago flexibles y orientación con trámites de seguros para que puedas enfocarte en tu recuperación con tranquilidad."
+        "description": "Ofrecemos alternativas de pago flexibles y orientaci\u00f3n con tr\u00e1mites de seguros para que puedas enfocarte en tu recuperaci\u00f3n con tranquilidad."
       },
       "ubicacion": {
-        "label": "Ubicación segura, céntrica y discreta",
-        "description": "Situado en una de las zonas más seguras del corazón de la ciudad, garantizando privacidad total y paz mental."
+        "label": "Ubicaci\u00f3n segura, c\u00e9ntrica y discreta",
+        "description": "Situado en una de las zonas m\u00e1s seguras del coraz\u00f3n de la ciudad, garantizando privacidad total y paz mental."
       },
       "plazas": {
         "label": "Todo lo que necesitas saber de tu visita",
-        "description": "Hoteles de lujo, restaurantes exclusivos, spas, centros comerciales y hospitales líderes están a solo unos momentos para la comodidad de tu visita."
+        "description": "Hoteles de lujo, restaurantes exclusivos, spas, centros comerciales y hospitales l\u00edderes est\u00e1n a solo unos momentos para la comodidad de tu visita."
       }
     }
   },
   "banner": {
     "exclusive": "Beneficios exclusivos:",
     "items": [
-      "Tu recuperación", 
+      "Tu recuperaci\u00f3n",
       "Nuestra prioridad",
       "Reservas flexibles",
-      "Enfermería certificada 24/7",
-      "Médicos internos"
+      "Enfermer\u00eda certificada 24/7",
+      "M\u00e9dicos internos"
     ]
   },
   "bannerAbout": {
-    "title1": "La mejor casa de recuperación BBL en Tijuana",
+    "title1": "La mejor casa de recuperaci\u00f3n BBL en Tijuana",
     "title2": "Cuidado postoperatorio todo incluido para Mommy Makeover",
-    "title3": "La casa de recuperación más exclusiva para Abdominoplastia",
+    "title3": "La casa de recuperaci\u00f3n m\u00e1s exclusiva para Abdominoplastia",
     "button": "Ver ahora"
   },
   "bannerWithImage": {
@@ -223,23 +233,23 @@
   },
   "blogs": {
     "kicker": "Blog",
-    "title": "Descubra información útil, consejos prácticos y todo lo que necesita para su proceso de recuperación.",
+    "title": "Descubra informaci\u00f3n \u00fatil, consejos pr\u00e1cticos y todo lo que necesita para su proceso de recuperaci\u00f3n.",
     "subtitle": "",
-    "cta": "Leer más",
+    "cta": "Leer m\u00e1s",
     "items": [
       {
         "category": "Bienestar",
-        "title": "¿Qué necesitas llevar a tu recuperación post-operatoria?",
+        "title": "\u00bfQu\u00e9 necesitas llevar a tu recuperaci\u00f3n post-operatoria?",
         "excerpt": ""
       },
       {
         "category": "Cuidado",
-        "title": "¿Cuál es el mejor momento para una cirugía plástica en México?",
+        "title": "\u00bfCu\u00e1l es el mejor momento para una cirug\u00eda pl\u00e1stica en M\u00e9xico?",
         "excerpt": ""
       },
       {
         "category": "Estilo de vida",
-        "title": "Casa de recuperación vs Hotel: 3 razones por las que tu recuperación depende de una atención profesional",
+        "title": "Casa de recuperaci\u00f3n vs Hotel: 3 razones por las que tu recuperaci\u00f3n depende de una atenci\u00f3n profesional",
         "excerpt": ""
       }
     ]
@@ -247,139 +257,156 @@
   "about": {
     "patientStories": {
       "title": "Historias de Pacientes",
-      "subtitle": "Escucha a quienes han recorrido el camino de la recuperación"
+      "subtitle": "Escucha a quienes han recorrido el camino de la recuperaci\u00f3n"
     },
     "testimonials": [
       {
         "name": "Sarah M.",
-        "story": "El cuidado y la comodidad hicieron mi recuperación tranquila y efectiva.",
-        "procedure": "Cuidado postquirúrgico",
+        "story": "El cuidado y la comodidad hicieron mi recuperaci\u00f3n tranquila y efectiva.",
+        "procedure": "Cuidado postquir\u00fargico",
         "avatar": "S",
         "rating": 5
       },
       {
         "name": "James L.",
-        "story": "Atención médica excepcional en un entorno verdaderamente sanador.",
-        "procedure": "Rehabilitación",
+        "story": "Atenci\u00f3n m\u00e9dica excepcional en un entorno verdaderamente sanador.",
+        "procedure": "Rehabilitaci\u00f3n",
         "avatar": "J",
         "rating": 5
       },
       {
         "name": "Maria K.",
-        "story": "Se sintió como en casa desde el primer día. El personal es increíble.",
-        "procedure": "Programa de recuperación",
+        "story": "Se sinti\u00f3 como en casa desde el primer d\u00eda. El personal es incre\u00edble.",
+        "procedure": "Programa de recuperaci\u00f3n",
         "avatar": "M",
         "rating": 5
       }
     ],
     "cta": {
-      "title": "¿Listo para comenzar tu camino?",
-      "description": "Contáctanos hoy para conocer nuestras instalaciones y cómo podemos apoyar tu recuperación.",
+      "title": "\u00bfListo para comenzar tu camino?",
+      "description": "Cont\u00e1ctanos hoy para conocer nuestras instalaciones y c\u00f3mo podemos apoyar tu recuperaci\u00f3n.",
       "schedule": "Agendar cita",
-      "contact": "Contáctanos"
+      "contact": "Cont\u00e1ctanos"
     },
     "faq": {
       "title": "Preguntas Frecuentes",
       "subtitle": "Todo lo que necesitas saber",
       "items": [
         {
-          "question": "¿En qué tipos de recuperación se especializan?",
-          "answer": "Nos especializamos en recuperación postquirúrgica, manejo de enfermedades crónicas y rehabilitación."
+          "question": "\u00bfEn qu\u00e9 tipos de recuperaci\u00f3n se especializan?",
+          "answer": "Nos especializamos en recuperaci\u00f3n postquir\u00fargica, manejo de enfermedades cr\u00f3nicas y rehabilitaci\u00f3n."
         },
         {
-          "question": "¿Cuánto dura la estancia típica?",
-          "answer": "La duración varía según las necesidades individuales, generalmente de 2 semanas a 3 meses."
+          "question": "\u00bfCu\u00e1nto dura la estancia t\u00edpica?",
+          "answer": "La duraci\u00f3n var\u00eda seg\u00fan las necesidades individuales, generalmente de 2 semanas a 3 meses."
         },
         {
-          "question": "¿Aceptan seguros?",
-          "answer": "Trabajamos con la mayoría de las aseguradoras y ofrecemos opciones de pago flexibles."
+          "question": "\u00bfAceptan seguros?",
+          "answer": "Trabajamos con la mayor\u00eda de las aseguradoras y ofrecemos opciones de pago flexibles."
         },
         {
-          "question": "¿Pueden visitar familiares?",
-          "answer": "Sí, contamos con horarios de visita y programas de apoyo familiar."
+          "question": "\u00bfPueden visitar familiares?",
+          "answer": "S\u00ed, contamos con horarios de visita y programas de apoyo familiar."
         }
       ]
     }
   },
   "infiniteBanner": {
-    "title1": "Una recuperación ideal",
-    "title2": "solamente está aquí",
+    "title1": "Una recuperaci\u00f3n ideal",
+    "title2": "solamente est\u00e1 aqu\u00ed",
     "ctaAria": "Visita @palmasrecovery en Instagram"
   },
   "uniqueHotels": {
     "title": "En Palmas Recovery",
-    "description": "Disfruta de una recuperación sin estrés en un espacio creado para apoyar la sanación, la privacidad y el confort total:",
-   "bullets": [
-  "+ <strong>Suites privadas y compartidas</strong> con camas ajustables, A/C y Wi-Fi de alta velocidad",
-  "+ <strong>Acceso por elevador</strong> para movilidad sin esfuerzo",
-  "+ <strong>Transporte privado</strong> al hospital y citas post-operatorias",
-  "+ Áreas comunes espaciosas y serenas con <strong>privacidad total en la habitación</strong>",
-  "+ <strong>Servicio de lavandería</strong> incluido durante tu estancia",
-  "+ <strong>Boutique en el lugar</strong> con prendas postquirúrgicas y suplementos",
-  "+ <strong>Comidas antiinflamatorias preparadas</strong>: 3 comidas + 2 snacks diarios",
-  "+ <strong>Estación de hidratación</strong> con bebidas de bienestar y tés curativos"
-],
+    "description": "Disfruta de una recuperaci\u00f3n sin estr\u00e9s en un espacio creado para apoyar la sanaci\u00f3n, la privacidad y el confort total:",
+    "bullets": [
+      "+ <strong>Suites privadas y compartidas</strong> con camas ajustables, A/C y Wi-Fi de alta velocidad",
+      "+ <strong>Acceso por elevador</strong> para movilidad sin esfuerzo",
+      "+ <strong>Transporte privado</strong> al hospital y citas post-operatorias",
+      "+ \u00c1reas comunes espaciosas y serenas con <strong>privacidad total en la habitaci\u00f3n</strong>",
+      "+ <strong>Servicio de lavander\u00eda</strong> incluido durante tu estancia",
+      "+ <strong>Boutique en el lugar</strong> con prendas postquir\u00fargicas y suplementos",
+      "+ <strong>Comidas antiinflamatorias preparadas</strong>: 3 comidas + 2 snacks diarios",
+      "+ <strong>Estaci\u00f3n de hidrataci\u00f3n</strong> con bebidas de bienestar y t\u00e9s curativos"
+    ],
     "prev": "Imagen anterior",
     "next": "Imagen siguiente"
   },
   "destinations": {
-    "title": "Habitaciones de recuperación + bienestar"
+    "title": "Habitaciones de recuperaci\u00f3n + bienestar"
   },
   "rooms": {
     "lobby": {
       "name": "Lobby",
       "tagDescription": "Bienvenida",
-      "description": "Ingresa a nuestro acogedor lobby, diseñado para brindar comodidad y tranquilidad desde el momento de tu llegada. Un espacio donde la hospitalidad se encuentra con la sanación.",
+      "description": "Ingresa a nuestro acogedor lobby, dise\u00f1ado para brindar comodidad y tranquilidad desde el momento de tu llegada. Un espacio donde la hospitalidad se encuentra con la sanaci\u00f3n.",
       "tag": "BIENVENIDA",
       "imageAlt": "Lobby del Hotel",
       "beds": "N/A",
-      "size": "Área Común",
+      "size": "\u00c1rea Com\u00fan",
       "amenities": [
-        "Recepción",
+        "Recepci\u00f3n",
         "Asientos Confortables",
         "Bebidas de Bienvenida",
         "Wi-Fi",
-        "Mesa de Información"
+        "Mesa de Informaci\u00f3n"
       ],
       "features": [
-        "Recepción 24/7",
-        "Servicio de Conserjería",
-        "Relaciones con Huéspedes"
+        "Recepci\u00f3n 24/7",
+        "Servicio de Conserjer\u00eda",
+        "Relaciones con Hu\u00e9spedes"
       ],
       "labels": {
-        "area": "Área",
-        "commonSpace": "Espacio Común",
+        "area": "\u00c1rea",
+        "commonSpace": "Espacio Com\u00fan",
         "access": "Acceso",
-        "allGuests": "Todos los Huéspedes",
+        "allGuests": "Todos los Hu\u00e9spedes",
         "service": "Servicio",
-        "reception247": "Recepción 24/7",
+        "reception247": "Recepci\u00f3n 24/7",
         "services": "Servicios"
       }
     },
     "shared": {
-      "name": "Habitación Compartida",
+      "name": "Habitaci\u00f3n Compartida",
       "subtitle": "POPULAR",
-      "tagline": "Cómoda y accesible",
-      "description": "Disfruta un cuidado excepcional en un espacio compartido diseñado para la comodidad y la conexión. Ideal para quienes buscan recuperación profesional.",
-      "imageAlt": "Habitación Compartida",
-      "beds": "Cama médica ajustable",
+      "tagline": "C\u00f3moda y accesible",
+      "description": "Disfruta un cuidado excepcional en un espacio compartido dise\u00f1ado para la comodidad y la conexi\u00f3n. Ideal para quienes buscan recuperaci\u00f3n profesional.",
+      "imageAlt": "Habitaci\u00f3n Compartida",
+      "beds": "Cama m\u00e9dica ajustable",
       "size": "Espacio compartido",
-      "amenities": ["Cama médica ajustable", "Baño compartido", "Aire acondicionado", "Smart TV"],
-      "features": ["Asistencia médica 24/7", "Limpieza diaria", "Todas las comidas incluidas"],
+      "amenities": [
+        "Cama m\u00e9dica ajustable",
+        "Ba\u00f1o compartido",
+        "Aire acondicionado",
+        "Smart TV"
+      ],
+      "features": [
+        "Asistencia m\u00e9dica 24/7",
+        "Limpieza diaria",
+        "Todas las comidas incluidas"
+      ],
       "highlight": "POPULAR",
       "tag": "POPULAR",
-      "tagDescription": "Cómoda y accesible"
+      "tagDescription": "C\u00f3moda y accesible"
     },
     "private": {
-      "name": "Habitación Privada",
+      "name": "Habitaci\u00f3n Privada",
       "subtitle": "RECOMENDADA",
       "tagline": "Tu santuario personal",
-      "description": "Encuentra tranquilidad y privacidad en tu propio espacio de recuperación. Nuestras habitaciones privadas ofrecen comodidad médica moderna.",
-      "imageAlt": "Habitación Privada",
-      "beds": "Cama médica ajustable",
-      "size": "Habitación privada",
-      "amenities": ["Cama médica ajustable", "Baño privado", "Aire acondicionado", "Smart TV"],
-      "features": ["Privacidad total", "Atención personalizada"],
+      "description": "Encuentra tranquilidad y privacidad en tu propio espacio de recuperaci\u00f3n. Nuestras habitaciones privadas ofrecen comodidad m\u00e9dica moderna.",
+      "imageAlt": "Habitaci\u00f3n Privada",
+      "beds": "Cama m\u00e9dica ajustable",
+      "size": "Habitaci\u00f3n privada",
+      "amenities": [
+        "Cama m\u00e9dica ajustable",
+        "Ba\u00f1o privado",
+        "Aire acondicionado",
+        "Smart TV"
+      ],
+      "features": [
+        "Privacidad total",
+        "Atenci\u00f3n personalizada"
+      ],
       "highlight": "RECOMENDADA",
       "tag": "RECOMENDADA",
       "tagDescription": "Tu santuario personal"
@@ -387,76 +414,107 @@
     "vip": {
       "name": "Suite VIP",
       "subtitle": "PREMIUM",
-      "tagline": "La máxima experiencia de lujo",
-      "description": "Sumérgete en una comodidad y privacidad inigualables. Mobiliario premium combinado con atención médica de primer nivel.",
+      "tagline": "La m\u00e1xima experiencia de lujo",
+      "description": "Sum\u00e9rgete en una comodidad y privacidad inigualables. Mobiliario premium combinado con atenci\u00f3n m\u00e9dica de primer nivel.",
       "imageAlt": "Suite VIP",
-      "beds": "Cama médica ajustable premium",
+      "beds": "Cama m\u00e9dica ajustable premium",
       "size": "Suite de lujo",
-      "amenities": ["Cama médica ajustable", "Baño privado", "Aire acondicionado", "Smart TV"],
-      "features": ["Máxima privacidad", "Amenidades premium"],
+      "amenities": [
+        "Cama m\u00e9dica ajustable",
+        "Ba\u00f1o privado",
+        "Aire acondicionado",
+        "Smart TV"
+      ],
+      "features": [
+        "M\u00e1xima privacidad",
+        "Amenidades premium"
+      ],
       "highlight": "PREMIUM",
       "tag": "PREMIUM",
-      "tagDescription": "La máxima experiencia de lujo"
+      "tagDescription": "La m\u00e1xima experiencia de lujo"
+    },
+    "large-private": {
+      "name": "Habitaci\u00f3n Privada Grande",
+      "subtitle": "ESPACIOSA",
+      "tagline": "M\u00e1s espacio, m\u00e1s comodidad",
+      "description": "Disfruta toda la privacidad de una habitaci\u00f3n privada en un espacio m\u00e1s amplio y amueblado. Ideal para estad\u00edas largas o pacientes que desean mayor comodidad.",
+      "imageAlt": "Habitaci\u00f3n Privada Grande",
+      "beds": "Cama m\u00e9dica ajustable + Sof\u00e1 cama",
+      "size": "Habitaci\u00f3n privada grande",
+      "amenities": [
+        "Cama m\u00e9dica ajustable",
+        "Sof\u00e1 cama para acompa\u00f1ante",
+        "Ba\u00f1o privado",
+        "Aire acondicionado",
+        "Smart TV"
+      ],
+      "features": [
+        "Privacidad total",
+        "Espacio extra",
+        "Atenci\u00f3n personalizada"
+      ],
+      "highlight": "ESPACIOSA",
+      "tag": "ESPACIOSA",
+      "tagDescription": "M\u00e1s espacio, m\u00e1s comodidad"
     }
   },
   "roomsPage": {
-    "heroTitle": "Tu recuperación, nuestra prioridad",
-    "heroDescription": "Vive atención post-operatorio personalizada donde la excelencia médica se encuentra con el confort de lujo.",
+    "heroTitle": "Tu recuperaci\u00f3n, nuestra prioridad",
+    "heroDescription": "Vive atenci\u00f3n post-operatorio personalizada donde la excelencia m\u00e9dica se encuentra con el confort de lujo.",
     "exploreRooms": "EXPLORAR HABITACIONES",
-    "contactUs": "CONTÁCTANOS",
+    "contactUs": "CONT\u00c1CTANOS",
     "ourSpaces": "Nuestros espacios",
-    "discoverTitle": "Descubre tu lugar de sanación",
-    "discoverDescription": "Cada suite está diseñada para nutrir tu recuperación con serenidad, comodidad y atención personalizada.",
+    "discoverTitle": "Descubre tu lugar de sanaci\u00f3n",
+    "discoverDescription": "Cada suite est\u00e1 dise\u00f1ada para nutrir tu recuperaci\u00f3n con serenidad, comodidad y atenci\u00f3n personalizada.",
     "amenitiesTitle": "Amenidades de lujo",
     "viewDetails": "VER RECORRIDO",
     "viewAllTours": "VER TODOS LOS RECORRIDOS",
-    "limited": "Disponibilidad limitada • Confirmación inmediata"
+    "limited": "Disponibilidad limitada \u2022 Confirmaci\u00f3n inmediata"
   },
   "tour360": {
-    "startTour": "Iniciar tour 360°",
-    "viewLobby": "Iniciar tour lobby 360°",
-
-    "badge": "Tour 360°",
+    "startTour": "Iniciar tour 360\u00b0",
+    "viewLobby": "Iniciar tour lobby 360\u00b0",
+    "badge": "Tour 360\u00b0",
     "swipeHint": "desliza la imagen para navegar"
   },
   "roomDetail": {
-    "exploreMore": "EXPLORA MÁS",
+    "exploreMore": "EXPLORA M\u00c1S",
     "discoverOtherSuites": "Descubre nuestras otras suites de lujo",
-    "otherSuitesDescription": "Cada espacio está diseñado de forma única para ofrecer el entorno perfecto para tu recuperación.",
+    "otherSuitesDescription": "Cada espacio est\u00e1 dise\u00f1ado de forma \u00fanica para ofrecer el entorno perfecto para tu recuperaci\u00f3n.",
     "viewDetails": "Ver detalles",
     "viewAllRooms": "Ver todas las habitaciones",
     "startingFrom": "Desde",
     "taxesIncluded": "Impuestos y servicios incluidos",
-    "medicalAssistance": "Asistencia médica 24/7",
+    "medicalAssistance": "Asistencia m\u00e9dica 24/7",
     "allMeals": "Todas las comidas incluidas",
     "dailyCleaning": "Limpieza profesional diaria",
     "privacy": "Privacidad y seguridad total",
-    "bookThisRoom": "RESERVAR ESTA HABITACIÓN",
-    "instantConfirmation": "⚡ Confirmación inmediata",
-    "secureBooking": "🔒 Reserva segura",
-    "bestPrice": "🏆 Mejor precio garantizado",
-    "needHelp": "¿Necesitas ayuda?",
+    "bookThisRoom": "RESERVAR ESTA HABITACI\u00d3N",
+    "instantConfirmation": "\u26a1 Confirmaci\u00f3n inmediata",
+    "secureBooking": "\ud83d\udd12 Reserva segura",
+    "bestPrice": "\ud83c\udfc6 Mejor precio garantizado",
+    "needHelp": "\u00bfNecesitas ayuda?",
     "contactTeam": "Contacta a nuestro equipo",
-    "readyTitle": "¿Listo para comenzar tu recuperación?",
-    "readyDescription": "Vive atención post-operatorio de clase mundial en un entorno diseñado para sanar y reconfortar.",
+    "readyTitle": "\u00bfListo para comenzar tu recuperaci\u00f3n?",
+    "readyDescription": "Vive atenci\u00f3n post-operatorio de clase mundial en un entorno dise\u00f1ado para sanar y reconfortar.",
     "bookNow": "Reservar",
     "scheduleTour": "Agendar cita",
-    "roomSpecs": "Especificaciones de la habitación",
+    "roomSpecs": "Especificaciones de la habitaci\u00f3n",
     "bedType": "Tipo de cama",
-    "roomSize": "Tamaño de la habitación",
+    "roomSize": "Tama\u00f1o de la habitaci\u00f3n",
     "capacity": "Capacidad",
-    "medicalFeatures": "Características médicas",
+    "medicalFeatures": "Caracter\u00edsticas m\u00e9dicas",
     "premiumAmenities": "Amenidades premium",
-    "allInclusive": "Todo incluido • Sin cargos ocultos",
-    "more": "más",
+    "allInclusive": "Todo incluido \u2022 Sin cargos ocultos",
+    "more": "m\u00e1s",
     "total": "total"
   },
   "booking": {
     "title": "Reserva tu estancia",
-    "subtitle": "Completa los detalles para apartar tu espacio de recuperación.",
+    "subtitle": "Completa los detalles para apartar tu espacio de recuperaci\u00f3n.",
     "dates": "Fechas",
     "bookingSummary": "Resumen de tu reserva",
-        "extraServices": "Servicios adicionales",
+    "extraServices": "Servicios adicionales",
     "extrasTotal": "Total extras",
     "noExtrasSelected": "No has seleccionado servicios adicionales",
     "addExtras": "Agregar servicios adicionales",
@@ -474,64 +532,64 @@
     "noRoomsAvailable": "No hay habitaciones disponibles para las fechas seleccionadas",
     "tryDifferentDates": "Por favor intenta con otras fechas",
     "selected": "seleccionados",
-    "viewGallery": "Ver galería",
+    "viewGallery": "Ver galer\u00eda",
     "addToBooking": "Agregar a reserva",
-    "recoveryGarment": "Prenda de recuperación",
-    "checkInOutInfo": "Información de entrada / salida",
+    "recoveryGarment": "Prenda de recuperaci\u00f3n",
+    "checkInOutInfo": "Informaci\u00f3n de entrada / salida",
     "checkInTime": "Hora de entrada",
     "checkOutTime": "Hora de salida",
     "checkingAvailability": "Verificando disponibilidad...",
-    "roomSubtotal": "Subtotal de la habitación",
-    "extrasAdded": "Extras añadidos",
-    "personalInformation": "Información personal",
+    "roomSubtotal": "Subtotal de la habitaci\u00f3n",
+    "extrasAdded": "Extras a\u00f1adidos",
+    "personalInformation": "Informaci\u00f3n personal",
     "success": "Reserva confirmada",
-    "successMessage": "Tu reservación está confirmada. Nos pondremos en contacto pronto.",
-    "confirmationDetails": "Detalles de la confirmación",
-    "confirmationNumber": "Número de confirmación",
+    "successMessage": "Tu reservaci\u00f3n est\u00e1 confirmada. Nos pondremos en contacto pronto.",
+    "confirmationDetails": "Detalles de la confirmaci\u00f3n",
+    "confirmationNumber": "N\u00famero de confirmaci\u00f3n",
     "important": "Importante",
-    "emailSent": "Hemos enviado los detalles de tu reserva a tu correo electrónico. Por favor revisa tu bandeja de entrada.",
+    "emailSent": "Hemos enviado los detalles de tu reserva a tu correo electr\u00f3nico. Por favor revisa tu bandeja de entrada.",
     "newBooking": "Hacer nueva reserva",
     "errors": {
-      "roomNotBookable": "Esta área no está disponible para reserva. Por favor selecciona una habitación.",
+      "roomNotBookable": "Esta \u00e1rea no est\u00e1 disponible para reserva. Por favor selecciona una habitaci\u00f3n.",
       "checkInRequired": "Por favor selecciona una fecha de entrada.",
       "checkOutRequired": "Por favor selecciona una fecha de salida.",
       "fullNameRequired": "Por favor ingresa tu nombre completo.",
-      "emailRequired": "Por favor ingresa tu correo electrónico.",
-      "phoneRequired": "Por favor ingresa tu número de teléfono.",
-      "certifiedDoctorRequired": "Por favor ingresa el nombre de tu cirujano plástico certificado.",
-      "invalidEmail": "Por favor ingresa un correo electrónico válido.",
+      "emailRequired": "Por favor ingresa tu correo electr\u00f3nico.",
+      "phoneRequired": "Por favor ingresa tu n\u00famero de tel\u00e9fono.",
+      "certifiedDoctorRequired": "Por favor ingresa el nombre de tu cirujano pl\u00e1stico certificado.",
+      "invalidEmail": "Por favor ingresa un correo electr\u00f3nico v\u00e1lido.",
       "checkInPast": "La fecha de entrada no puede estar en el pasado.",
-      "checkInTodayAfter2PM": "El check-in hoy solo está disponible hasta las 2:00 PM.",
+      "checkInTodayAfter2PM": "El check-in hoy solo est\u00e1 disponible hasta las 2:00 PM.",
       "checkOutAfterCheckIn": "La fecha de salida debe ser posterior a la fecha de entrada.",
-      "roomNotAvailable": "La habitación no está disponible para las fechas seleccionadas.",
-      "selectRoomRequired": "Por favor selecciona una habitación para continuar.",
-      "roomNotFound": "No se encontró la habitación seleccionada.",
-      "server": "Ocurrió un error al procesar tu reserva. Por favor intenta nuevamente.",
-      "unknown": "Ocurrió un error inesperado.",
-      "selectedRoomNotAvailable": "La habitación seleccionada ya no está disponible",
+      "roomNotAvailable": "La habitaci\u00f3n no est\u00e1 disponible para las fechas seleccionadas.",
+      "selectRoomRequired": "Por favor selecciona una habitaci\u00f3n para continuar.",
+      "roomNotFound": "No se encontr\u00f3 la habitaci\u00f3n seleccionada.",
+      "server": "Ocurri\u00f3 un error al procesar tu reserva. Por favor intenta nuevamente.",
+      "unknown": "Ocurri\u00f3 un error inesperado.",
+      "selectedRoomNotAvailable": "La habitaci\u00f3n seleccionada ya no est\u00e1 disponible",
       "searchRoomsFirst": "Por favor busca habitaciones disponibles primero",
       "availabilityCheckFailed": "Error al verificar disponibilidad"
     },
-    "selectRoomTitle": "Selecciona tu habitación",
+    "selectRoomTitle": "Selecciona tu habitaci\u00f3n",
     "perNight": "por noche",
-    "roomDescription": "Descripción de la habitación",
-    "guestLabel": "huésped",
-    "guestsLabel": "huéspedes",
+    "roomDescription": "Descripci\u00f3n de la habitaci\u00f3n",
+    "guestLabel": "hu\u00e9sped",
+    "guestsLabel": "hu\u00e9spedes",
     "stayDetails": "Detalles de la estancia",
     "checkIn": "Entrada",
     "checkOut": "Salida",
-    "guests": "Huéspedes",
-    "period": "Período",
+    "guests": "Hu\u00e9spedes",
+    "period": "Per\u00edodo",
     "to": "a",
     "specialRequests": "Solicitudes especiales",
     "assistance": "Asistencia 24/7",
-    "paymentMethod": "Método de pago",
-    "paymentCard": "Tarjeta de crédito / débito",
+    "paymentMethod": "M\u00e9todo de pago",
+    "paymentCard": "Tarjeta de cr\u00e9dito / d\u00e9bito",
     "paymentCash": "Efectivo",
     "paymentTransfer": "Transferencia bancaria",
     "paymentPayPal": "PayPal",
     "confirmBooking": "Confirmar reserva",
-    "back": "Atrás",
+    "back": "Atr\u00e1s",
     "next": "Siguiente",
     "summary": "Resumen de la reserva",
     "nights": "Noches",
@@ -542,71 +600,71 @@
     "estimatedTotal": "Total estimado",
     "included": "Incluido en tu estancia:",
     "personalizedSupport": "Apoyo personalizado",
-    "productGallery": "Galería de producto",
-    "bookingComplete": "¡Reserva completada! Te contactaremos para confirmar.",
+    "productGallery": "Galer\u00eda de producto",
+    "bookingComplete": "\u00a1Reserva completada! Te contactaremos para confirmar.",
     "fullName": "Nombre completo",
     "email": "Correo",
-    "phone": "Teléfono",
-    "specialRequestsPlaceholder": "Cualquier solicitud especial o nota médica...",
+    "phone": "Tel\u00e9fono",
+    "specialRequestsPlaceholder": "Cualquier solicitud especial o nota m\u00e9dica...",
     "selectRoomHelper": "Selecciona una de las habitaciones para continuar.",
-    "extrasTitle": "Esenciales de recuperación",
-    "extrasSubtitle": "Agrega prendas de recuperación a tu estancia.",
-    "extrasNote": "Los complementos se cobrarán al finalizar.",
-    "extrasCta": "Ver artículos extra",
+    "extrasTitle": "Esenciales de recuperaci\u00f3n",
+    "extrasSubtitle": "Agrega prendas de recuperaci\u00f3n a tu estancia.",
+    "extrasNote": "Los complementos se cobrar\u00e1n al finalizar.",
+    "extrasCta": "Ver art\u00edculos extra",
     "extrasPrice": "Precio",
-    "extrasViewGallery": "Ver galería",
+    "extrasViewGallery": "Ver galer\u00eda",
     "extrasAdd": "Agregar",
     "extrasRemove": "Quitar",
     "extrasSelected": "Extras seleccionados",
     "detailsTitle": "Tus datos",
     "confirmTitle": "Revisar y confirmar",
-    "successTitle": "¡Gracias por tu reserva!",
-    "successSubtitle": "Te contactaremos pronto para confirmar tu reservación.",
-    "cancellationTitle": "Política de cancelación",
+    "successTitle": "\u00a1Gracias por tu reserva!",
+    "successSubtitle": "Te contactaremos pronto para confirmar tu reservaci\u00f3n.",
+    "cancellationTitle": "Pol\u00edtica de cancelaci\u00f3n",
     "cancellationItems": [
-      "Cancelación gratuita hasta 48 horas antes del check-in",
+      "Cancelaci\u00f3n gratuita hasta 48 horas antes del check-in",
       "50% de reembolso por cancelaciones dentro de 48 horas",
-      "Se requiere un depósito del 30% para confirmar la reserva",
+      "Se requiere un dep\u00f3sito del 30% para confirmar la reserva",
       "No-show: se cobra la estancia completa"
     ],
     "fields": {
-      "room": "Habitación",
+      "room": "Habitaci\u00f3n",
       "checkIn": "Fecha de entrada",
       "checkOut": "Fecha de salida",
-      "guests": "Número de huéspedes",
+      "guests": "N\u00famero de hu\u00e9spedes",
       "fullName": "Nombre completo",
-      "email": "Correo electrónico",
-      "phone": "Teléfono",
+      "email": "Correo electr\u00f3nico",
+      "phone": "Tel\u00e9fono",
       "specialRequests": "Solicitudes especiales",
-      "certifiedDoctor": "Cirujano plástico certificado",
-      "certifiedDoctorPlaceholder": "Dr. Juan Pérez"
+      "certifiedDoctor": "Cirujano pl\u00e1stico certificado",
+      "certifiedDoctorPlaceholder": "Dr. Juan P\u00e9rez"
     }
   },
   "searchBar": {
-    "roomType": "Tipo de habitación",
-    "guests": "Huéspedes",
-    "selectRoom": "Seleccionar habitación",
-    "stayDuration": "Duración de estancia",
-    "promotion": "Promoción",
-    "addCode": "Agregar código",
+    "roomType": "Tipo de habitaci\u00f3n",
+    "guests": "Hu\u00e9spedes",
+    "selectRoom": "Seleccionar habitaci\u00f3n",
+    "stayDuration": "Duraci\u00f3n de estancia",
+    "promotion": "Promoci\u00f3n",
+    "addCode": "Agregar c\u00f3digo",
     "saveUpTo": "Ahorra hasta {{percent}}%",
     "totalWithValue": "Total: ${{value}}",
-    "maxGuests": "Máx: {{count}}",
-    "roomTypePanelTitle": "Selecciona tu tipo de habitación",
-    "accommodates_one": "Hospeda hasta {{count}} huésped",
-    "accommodates_other": "Hospeda hasta {{count}} huéspedes",
-    "bathroomLabel": "Baño",
+    "maxGuests": "M\u00e1x: {{count}}",
+    "roomTypePanelTitle": "Selecciona tu tipo de habitaci\u00f3n",
+    "accommodates_one": "Hospeda hasta {{count}} hu\u00e9sped",
+    "accommodates_other": "Hospeda hasta {{count}} hu\u00e9spedes",
+    "bathroomLabel": "Ba\u00f1o",
     "bathroom": {
       "shared": "Compartido",
       "private": "Privado"
     },
     "luxuryAmenities": "Amenidades de lujo",
-    "numberOfGuests": "Número de huéspedes",
-    "maximumCapacity_one": "Capacidad máxima: {{count}} huésped",
-    "maximumCapacity_other": "Capacidad máxima: {{count}} huéspedes",
+    "numberOfGuests": "N\u00famero de hu\u00e9spedes",
+    "maximumCapacity_one": "Capacidad m\u00e1xima: {{count}} hu\u00e9sped",
+    "maximumCapacity_other": "Capacidad m\u00e1xima: {{count}} hu\u00e9spedes",
     "noteTitle": "Nota:",
-    "sharedNote": "En habitaciones compartidas, huéspedes adicionales pueden ubicarse con otros pacientes en recuperación.",
-    "durationTitle": "Selecciona duración de estancia",
+    "sharedNote": "En habitaciones compartidas, hu\u00e9spedes adicionales pueden ubicarse con otros pacientes en recuperaci\u00f3n.",
+    "durationTitle": "Selecciona duraci\u00f3n de estancia",
     "duration": {
       "oneNight": "1 noche",
       "threeNights": "3 noches",
@@ -618,11 +676,11 @@
     "save": "AHORRA {{percent}}%",
     "pricePerNight": "Precio por noche:",
     "nights": "Noches:",
-    "promoTitle": "Aplicar código de promoción",
-    "promoCardTitle": "Descuentos especiales de recuperación",
-    "promoCardSubtitle": "Aplica un código para obtener ahorros exclusivos en estancias de recuperación médica",
-    "promoPlaceholder": "Ingresa el código",
-    "availableCodes": "Códigos disponibles",
+    "promoTitle": "Aplicar c\u00f3digo de promoci\u00f3n",
+    "promoCardTitle": "Descuentos especiales de recuperaci\u00f3n",
+    "promoCardSubtitle": "Aplica un c\u00f3digo para obtener ahorros exclusivos en estancias de recuperaci\u00f3n m\u00e9dica",
+    "promoPlaceholder": "Ingresa el c\u00f3digo",
+    "availableCodes": "C\u00f3digos disponibles",
     "promoExamples": {
       "recovery20": "20% de descuento en todas las estancias",
       "health15": "15% de descuento para personal de salud",
@@ -633,70 +691,82 @@
   "contact": {
     "titleStart": "Contactanos",
     "titleHighlight": "Hoy",
-    "subtitle": "Nos encantaría saber de ti. Envíanos un mensaje y responderemos lo antes posible.",
-    "formTitle": "Envíanos un mensaje",
+    "subtitle": "Nos encantar\u00eda saber de ti. Env\u00edanos un mensaje y responderemos lo antes posible.",
+    "formTitle": "Env\u00edanos un mensaje",
     "fullName": "Nombre completo *",
-    "email": "Correo electrónico *",
-    "phone": "Teléfono",
+    "email": "Correo electr\u00f3nico *",
+    "phone": "Tel\u00e9fono",
     "message": "Tu mensaje *",
-    "messagePlaceholder": "Cuéntanos cómo podemos ayudarte...",
-    "namePlaceholder": "Juan Pérez",
+    "messagePlaceholder": "Cu\u00e9ntanos c\u00f3mo podemos ayudarte...",
+    "namePlaceholder": "Juan P\u00e9rez",
     "emailPlaceholder": "juan@ejemplo.com",
     "phonePlaceholder": "+1 (555) 000-0000",
     "send": "Enviar mensaje",
     "sending": "Enviando...",
     "success": "Mensaje enviado correctamente. Te responderemos pronto.",
     "error": "No se pudo enviar el mensaje.",
-    "infoTitle": "Información de contacto"
+    "infoTitle": "Informaci\u00f3n de contacto"
   },
   "services": {
-    "heroLabel": "Cuidado postquirúrgico premium",
-    "heroTitle": "Tu recuperación, nuestra prioridad",
-    "heroSubtitle": "En Palmas Recovery combinamos excelencia médica con hospitalidad de lujo para crear el entorno perfecto para tu sanación.",
+    "heroLabel": "Cuidado postquir\u00fargico premium",
+    "heroTitle": "Tu recuperaci\u00f3n, nuestra prioridad",
+    "heroSubtitle": "En Palmas Recovery combinamos excelencia m\u00e9dica con hospitalidad de lujo para crear el entorno perfecto para tu sanaci\u00f3n.",
     "stats": [
-      { "stat": "500+", "label": "Recuperaciones exitosas" },
-      { "stat": "100%", "label": "Personal médico certificado" },
-      { "stat": "24/7", "label": "Cuidado y apoyo" },
-      { "stat": "5★", "label": "Satisfacción de pacientes" }
+      {
+        "stat": "500+",
+        "label": "Recuperaciones exitosas"
+      },
+      {
+        "stat": "100%",
+        "label": "Personal m\u00e9dico certificado"
+      },
+      {
+        "stat": "24/7",
+        "label": "Cuidado y apoyo"
+      },
+      {
+        "stat": "5\u2605",
+        "label": "Satisfacci\u00f3n de pacientes"
+      }
     ],
     "sectionTitle": "Servicios de cuidado integral",
-    "sectionSubtitle": "Cada aspecto de tu recuperación es gestionado por nuestro equipo de profesionales de la salud.",
+    "sectionSubtitle": "Cada aspecto de tu recuperaci\u00f3n es gestionado por nuestro equipo de profesionales de la salud.",
     "core": [
       {
-        "title": "Supervisión médica 24/7",
-        "description": "Atención profesional permanente para tu comodidad y seguridad durante la recuperación.",
+        "title": "Supervisi\u00f3n m\u00e9dica 24/7",
+        "description": "Atenci\u00f3n profesional permanente para tu comodidad y seguridad durante la recuperaci\u00f3n.",
         "details": [
-          "Personal de enfermería certificado 24 horas",
+          "Personal de enfermer\u00eda certificado 24 horas",
           "Monitoreo de signos vitales",
           "Respuesta inmediata a emergencias",
-          "Coordinación directa con tu cirujano"
+          "Coordinaci\u00f3n directa con tu cirujano"
         ]
       },
       {
         "title": "Planes de cuidado personalizados",
-        "description": "Cada huésped recibe un plan de recuperación adaptado por nuestro equipo médico.",
+        "description": "Cada hu\u00e9sped recibe un plan de recuperaci\u00f3n adaptado por nuestro equipo m\u00e9dico.",
         "details": [
-          "Cronograma de recuperación personalizado",
-          "Administración de medicamentos",
-          "Seguimiento y documentación del progreso",
+          "Cronograma de recuperaci\u00f3n personalizado",
+          "Administraci\u00f3n de medicamentos",
+          "Seguimiento y documentaci\u00f3n del progreso",
           "Evaluaciones de salud regulares"
         ]
       },
       {
         "title": "Alojamiento de lujo",
-        "description": "Un entorno sereno tipo hotel que promueve la sanación y el descanso.",
+        "description": "Un entorno sereno tipo hotel que promueve la sanaci\u00f3n y el descanso.",
         "details": [
-          "Opciones de habitación privada y compartida",
-          "Ropa de cama y sábanas premium",
+          "Opciones de habitaci\u00f3n privada y compartida",
+          "Ropa de cama y s\u00e1banas premium",
           "Confort con control de clima",
           "Sistemas de entretenimiento"
         ]
       },
       {
         "title": "Servicio de comidas gourmet",
-        "description": "Comidas nutritivas preparadas por chef para apoyar tu recuperación postquirúrgica.",
+        "description": "Comidas nutritivas preparadas por chef para apoyar tu recuperaci\u00f3n postquir\u00fargica.",
         "details": [
-          "Planes nutricionales aprobados por médicos",
+          "Planes nutricionales aprobados por m\u00e9dicos",
           "Ingredientes frescos y locales",
           "Opciones para restricciones alimentarias",
           "Tres comidas + snacks diarios"
@@ -704,47 +774,47 @@
       },
       {
         "title": "Bienestar y confort",
-        "description": "Enfoque integral que incluye relajación y actividades terapéuticas suaves.",
+        "description": "Enfoque integral que incluye relajaci\u00f3n y actividades terap\u00e9uticas suaves.",
         "details": [
-          "Áreas comunes cómodas",
-          "Acceso a jardín exterior",
+          "\u00c1reas comunes c\u00f3modas",
+          "Acceso a jard\u00edn exterior",
           "Opciones de entretenimiento",
-          "Zonas de relajación tranquila"
+          "Zonas de relajaci\u00f3n tranquila"
         ]
       },
       {
         "title": "Manejo de medicamentos",
-        "description": "Administración y monitoreo profesional de todos los medicamentos prescritos.",
+        "description": "Administraci\u00f3n y monitoreo profesional de todos los medicamentos prescritos.",
         "details": [
           "Entrega puntual de medicamentos",
           "Monitoreo de efectos secundarios",
-          "Coordinación con farmacia",
+          "Coordinaci\u00f3n con farmacia",
           "Registro detallado de medicamentos"
         ]
       }
     ],
     "commitmentTitle": "Nuestro compromiso con la excelencia",
-    "commitmentSubtitle": "Guiados por la compasión, dedicados a tu recuperación.",
-    "missionTitle": "Nuestra misión",
-    "missionText": "Brindar el mejor servicio de recuperación post-operatorio de manera oportuna, eficiente y cálida, garantizando un regreso saludable a tu vida diaria con los más altos estándares de atención médica.",
-    "visionTitle": "Nuestra visión",
-    "visionText": "Ser el spa de recuperación post-operatorio más confiable de Tijuana, reconocido internacionalmente por su excelencia, instalaciones de vanguardia y cuidado compasivo que transforma la experiencia de recuperación.",
-    "ctaTitle": "¿Listo para comenzar tu recuperación?",
+    "commitmentSubtitle": "Guiados por la compasi\u00f3n, dedicados a tu recuperaci\u00f3n.",
+    "missionTitle": "Nuestra misi\u00f3n",
+    "missionText": "Brindar el mejor servicio de recuperaci\u00f3n post-operatorio de manera oportuna, eficiente y c\u00e1lida, garantizando un regreso saludable a tu vida diaria con los m\u00e1s altos est\u00e1ndares de atenci\u00f3n m\u00e9dica.",
+    "visionTitle": "Nuestra visi\u00f3n",
+    "visionText": "Ser el spa de recuperaci\u00f3n post-operatorio m\u00e1s confiable de Tijuana, reconocido internacionalmente por su excelencia, instalaciones de vanguardia y cuidado compasivo que transforma la experiencia de recuperaci\u00f3n.",
+    "ctaTitle": "\u00bfListo para comenzar tu recuperaci\u00f3n?",
     "ctaSubtitle": "Vive la diferencia que marcan el cuidado profesional y el confort de lujo en tu proceso post-operatorio.",
     "ctaBook": "Reserva tu estancia",
-    "ctaContact": "Contáctanos",
-    "ctaQuestions": "¿Preguntas? Llámanos al"
+    "ctaContact": "Cont\u00e1ctanos",
+    "ctaQuestions": "\u00bfPreguntas? Ll\u00e1manos al"
   },
   "privacy": {
-    "title": "Política de privacidad",
-    "subtitle": "Respetamos tu privacidad y estamos comprometidos a proteger tu información personal.",
+    "title": "Pol\u00edtica de privacidad",
+    "subtitle": "Respetamos tu privacidad y estamos comprometidos a proteger tu informaci\u00f3n personal.",
     "sections": [
       {
-        "title": "1. Información que recopilamos",
-        "content": "Recopilamos la información que proporcionas directamente, como nombre, correo, teléfono, detalles de reserva y solicitudes especiales. También podemos recopilar datos básicos de uso para mejorar el rendimiento del sitio."
+        "title": "1. Informaci\u00f3n que recopilamos",
+        "content": "Recopilamos la informaci\u00f3n que proporcionas directamente, como nombre, correo, tel\u00e9fono, detalles de reserva y solicitudes especiales. Tambi\u00e9n podemos recopilar datos b\u00e1sicos de uso para mejorar el rendimiento del sitio."
       },
       {
-        "title": "2. Cómo usamos la información",
+        "title": "2. C\u00f3mo usamos la informaci\u00f3n",
         "list": [
           "Procesar reservas y brindar los servicios solicitados.",
           "Responder consultas y solicitudes de soporte.",
@@ -753,226 +823,224 @@
         ]
       },
       {
-        "title": "3. Cookies y analítica",
-        "content": "Podemos usar cookies y tecnologías similares para medir el uso y mejorar nuestro sitio. Puedes controlar las cookies desde la configuración de tu navegador."
+        "title": "3. Cookies y anal\u00edtica",
+        "content": "Podemos usar cookies y tecnolog\u00edas similares para medir el uso y mejorar nuestro sitio. Puedes controlar las cookies desde la configuraci\u00f3n de tu navegador."
       },
       {
-        "title": "4. Compartir información",
-        "content": "No vendemos tu información personal. Podemos compartir información con proveedores confiables que ayudan a operar nuestro sitio o prestar servicios, bajo obligaciones de confidencialidad."
+        "title": "4. Compartir informaci\u00f3n",
+        "content": "No vendemos tu informaci\u00f3n personal. Podemos compartir informaci\u00f3n con proveedores confiables que ayudan a operar nuestro sitio o prestar servicios, bajo obligaciones de confidencialidad."
       },
       {
         "title": "5. Seguridad de datos",
-        "content": "Utilizamos medidas administrativas y técnicas razonables para proteger tu información. Ningún sistema es 100% seguro y no podemos garantizar seguridad absoluta."
+        "content": "Utilizamos medidas administrativas y t\u00e9cnicas razonables para proteger tu informaci\u00f3n. Ning\u00fan sistema es 100% seguro y no podemos garantizar seguridad absoluta."
       },
       {
         "title": "6. Tus derechos",
-        "content": "Puedes solicitar acceso, corrección o eliminación de tus datos personales contactándonos. Responderemos conforme a la ley aplicable."
+        "content": "Puedes solicitar acceso, correcci\u00f3n o eliminaci\u00f3n de tus datos personales contact\u00e1ndonos. Responderemos conforme a la ley aplicable."
       },
       {
-        "title": "7. Contáctanos",
-        "content": "Para dudas sobre privacidad, contáctanos en palmasrecoveryspa@gmail.com."
+        "title": "7. Cont\u00e1ctanos",
+        "content": "Para dudas sobre privacidad, cont\u00e1ctanos en palmasrecoveryspa@gmail.com."
       }
     ]
   },
   "terms": {
-    "title": "Términos y condiciones",
-    "subtitle": "Por favor revisa estos términos antes de usar nuestros servicios.",
+    "title": "T\u00e9rminos y condiciones",
+    "subtitle": "Por favor revisa estos t\u00e9rminos antes de usar nuestros servicios.",
     "sections": [
       {
-        "title": "1. Aceptación de términos",
-        "content": "Al acceder o usar nuestro sitio y servicios, aceptas estos Términos y Condiciones. Si no estás de acuerdo, no uses el sitio."
+        "title": "1. Aceptaci\u00f3n de t\u00e9rminos",
+        "content": "Al acceder o usar nuestro sitio y servicios, aceptas estos T\u00e9rminos y Condiciones. Si no est\u00e1s de acuerdo, no uses el sitio."
       },
       {
         "title": "2. Reservas y pagos",
         "list": [
-          "Las reservas están sujetas a disponibilidad y confirmación.",
-          "Puede requerirse un depósito para asegurar tu reserva.",
+          "Las reservas est\u00e1n sujetas a disponibilidad y confirmaci\u00f3n.",
+          "Puede requerirse un dep\u00f3sito para asegurar tu reserva.",
           "Los precios pueden cambiar sin previo aviso."
         ]
       },
       {
         "title": "3. Cancelaciones",
-        "content": "Las políticas de cancelación pueden variar por tipo de habitación y temporada. Consulta tu confirmación para los términos aplicables."
+        "content": "Las pol\u00edticas de cancelaci\u00f3n pueden variar por tipo de habitaci\u00f3n y temporada. Consulta tu confirmaci\u00f3n para los t\u00e9rminos aplicables."
       },
       {
         "title": "4. Uso del sitio",
-        "content": "Aceptas no hacer mal uso del sitio, interferir con su funcionamiento ni intentar acceder sin autorización."
+        "content": "Aceptas no hacer mal uso del sitio, interferir con su funcionamiento ni intentar acceder sin autorizaci\u00f3n."
       },
       {
-        "title": "5. Exención de responsabilidad",
-        "content": "Nuestros servicios se ofrecen \"tal cual\". No somos responsables de daños indirectos o consecuentes derivados del uso del sitio o servicios, en la medida permitida por la ley."
+        "title": "5. Exenci\u00f3n de responsabilidad",
+        "content": "Nuestros servicios se ofrecen \"tal cual\". No somos responsables de da\u00f1os indirectos o consecuentes derivados del uso del sitio o servicios, en la medida permitida por la ley."
       },
       {
-        "title": "6. Cambios en los términos",
-        "content": "Podemos actualizar estos Términos ocasionalmente. El uso continuo del sitio constituye aceptación de los términos actualizados."
+        "title": "6. Cambios en los t\u00e9rminos",
+        "content": "Podemos actualizar estos T\u00e9rminos ocasionalmente. El uso continuo del sitio constituye aceptaci\u00f3n de los t\u00e9rminos actualizados."
       },
       {
-        "title": "7. Contáctanos",
-        "content": "Si tienes dudas sobre estos Términos, contáctanos en palmasrecoveryspa@gmail.com."
+        "title": "7. Cont\u00e1ctanos",
+        "content": "Si tienes dudas sobre estos T\u00e9rminos, cont\u00e1ctanos en palmasrecoveryspa@gmail.com."
       }
     ]
   },
   "tour": {
     "lobby": {
-  "name": "Lobby",
-  "tagDescription": "Bienvenida",
-  "description": "Ingresa a nuestro acogedor lobby, diseñado para brindar comodidad y tranquilidad desde el momento de tu llegada. Un espacio donde la hospitalidad se encuentra con la sanación.",
-  "tag": "BIENVENIDA",
-  "imageAlt": "Lobby del Hotel",
-  "beds": "N/A",
-  "size": "Área Común",
-  "amenities": [
-    "Recepción",
-    "Asientos Confortables",
-    "Bebidas de Bienvenida",
-    "Wi-Fi",
-    "Mesa de Información"
-  ],
-  "features": [
-    "Recepción 24/7",
-    "Servicio de Conserjería",
-    "Relaciones con Huéspedes"
-  ]
-},
+      "name": "Lobby",
+      "tagDescription": "Bienvenida",
+      "description": "Ingresa a nuestro acogedor lobby, dise\u00f1ado para brindar comodidad y tranquilidad desde el momento de tu llegada. Un espacio donde la hospitalidad se encuentra con la sanaci\u00f3n.",
+      "tag": "BIENVENIDA",
+      "imageAlt": "Lobby del Hotel",
+      "beds": "N/A",
+      "size": "\u00c1rea Com\u00fan",
+      "amenities": [
+        "Recepci\u00f3n",
+        "Asientos Confortables",
+        "Bebidas de Bienvenida",
+        "Wi-Fi",
+        "Mesa de Informaci\u00f3n"
+      ],
+      "features": [
+        "Recepci\u00f3n 24/7",
+        "Servicio de Conserjer\u00eda",
+        "Relaciones con Hu\u00e9spedes"
+      ]
+    },
     "private": {
-      "heroLabel": "Tour • Habitación Privada",
-      "title": "Habitación Privada",
+      "heroLabel": "Tour \u2022 Habitaci\u00f3n Privada",
+      "title": "Habitaci\u00f3n Privada",
       "subtitle": "Serenidad y privacidad total",
-      "description": "Una habitación tranquila y elegante diseñada para una recuperación sin interrupciones, atención personal y total tranquilidad.",
-      "book": "RESERVAR ESTA HABITACIÓN",
+      "description": "Una habitaci\u00f3n tranquila y elegante dise\u00f1ada para una recuperaci\u00f3n sin interrupciones, atenci\u00f3n personal y total tranquilidad.",
+      "book": "RESERVAR ESTA HABITACI\u00d3N",
       "ask": "HACER UNA PREGUNTA",
       "tour": "Ver tour virtual",
-      "highlightsLabel": "Diseñada para la recuperación",
+      "highlightsLabel": "Dise\u00f1ada para la recuperaci\u00f3n",
       "highlightsTitle": "Comodidad privada",
-      "highlightsSubtitle": "Ideal para huéspedes que valoran la privacidad y el apoyo personalizado.",
+      "highlightsSubtitle": "Ideal para hu\u00e9spedes que valoran la privacidad y el apoyo personalizado.",
       "highlights": [
         {
           "title": "Silenciosa y reparadora",
-          "desc": "Diseño que minimiza el ruido, iluminación calmante y ropa de cama premium."
+          "desc": "Dise\u00f1o que minimiza el ruido, iluminaci\u00f3n calmante y ropa de cama premium."
         },
         {
-          "title": "Atención personal",
-          "desc": "Cuidado dedicado y visitas frecuentes adaptadas a tu recuperación."
+          "title": "Atenci\u00f3n personal",
+          "desc": "Cuidado dedicado y visitas frecuentes adaptadas a tu recuperaci\u00f3n."
         },
         {
           "title": "Espacio elegante",
-          "desc": "Decoración cálida y minimalista con acabados de alta calidad."
+          "desc": "Decoraci\u00f3n c\u00e1lida y minimalista con acabados de alta calidad."
         }
       ],
-      "detailsLabel": "Detalles de la habitación",
+      "detailsLabel": "Detalles de la habitaci\u00f3n",
       "detailsTitle": "Un santuario privado para sanar",
-      "detailsText": "Nuestras habitaciones privadas ofrecen una experiencia de recuperación tranquila con mayor espacio, privacidad y comodidad. Perfectas para quienes buscan un entorno personalizado.",
+      "detailsText": "Nuestras habitaciones privadas ofrecen una experiencia de recuperaci\u00f3n tranquila con mayor espacio, privacidad y comodidad. Perfectas para quienes buscan un entorno personalizado.",
       "features": [
-        "Cama king o queen con sábanas premium",
-        "Baño en suite con características de seguridad",
-        "Limpieza diaria y cambio de sábanas",
-        "Acceso y monitoreo de enfermería 24/7",
-        "Smart TV, Wi‑Fi y lounge de relajación",
-        "Plan de alimentación enfocado en recuperación"
+        "Cama king o queen con s\u00e1banas premium",
+        "Ba\u00f1o en suite con caracter\u00edsticas de seguridad",
+        "Limpieza diaria y cambio de s\u00e1banas",
+        "Acceso y monitoreo de enfermer\u00eda 24/7",
+        "Smart TV, Wi\u2011Fi y lounge de relajaci\u00f3n",
+        "Plan de alimentaci\u00f3n enfocado en recuperaci\u00f3n"
       ],
       "reserve": "RESERVAR AHORA",
       "viewAll": "VER TODAS LAS HABITACIONES",
       "faqTitle": "Preguntas frecuentes",
-      "faqSubtitle": "Respuestas sobre la experiencia de habitación privada.",
+      "faqSubtitle": "Respuestas sobre la experiencia de habitaci\u00f3n privada.",
       "faq": [
         {
-          "q": "¿La habitación es totalmente privada?",
-          "a": "Sí. Es una habitación individual con amenidades privadas y atención dedicada."
+          "q": "\u00bfLa habitaci\u00f3n es totalmente privada?",
+          "a": "S\u00ed. Es una habitaci\u00f3n individual con amenidades privadas y atenci\u00f3n dedicada."
         },
         {
-          "q": "¿Puede quedarse un acompañante conmigo?",
-          "a": "En muchos casos, sí. Contáctanos para confirmar disponibilidad y políticas."
+          "q": "\u00bfPuede quedarse un acompa\u00f1ante conmigo?",
+          "a": "En muchos casos, s\u00ed. Cont\u00e1ctanos para confirmar disponibilidad y pol\u00edticas."
         },
         {
-          "q": "¿Qué incluye la tarifa por noche?",
-          "a": "Incluye apoyo de enfermería, comidas, limpieza diaria y acceso a amenidades de bienestar."
+          "q": "\u00bfQu\u00e9 incluye la tarifa por noche?",
+          "a": "Incluye apoyo de enfermer\u00eda, comidas, limpieza diaria y acceso a amenidades de bienestar."
         }
       ],
-      "ctaTitle": "¿Lista/o para reservar tu habitación privada?",
-      "ctaSubtitle": "Te ayudaremos a planear una estancia tranquila y cómoda con atención personalizada.",
+      "ctaTitle": "\u00bfLista/o para reservar tu habitaci\u00f3n privada?",
+      "ctaSubtitle": "Te ayudaremos a planear una estancia tranquila y c\u00f3moda con atenci\u00f3n personalizada.",
       "ctaBook": "RESERVAR",
       "ctaTalk": "HABLEMOS"
     },
     "shared": {
-      "heroLabel": "Tour • Habitación Compartida",
-      "title": "Habitación Compartida",
+      "heroLabel": "Tour \u2022 Habitaci\u00f3n Compartida",
+      "title": "Habitaci\u00f3n Compartida",
       "subtitle": "Comodidad, cuidado y calma",
-      "description": "Un espacio acogedor y tranquilo diseñado para la recuperación con atención dedicada, acabados elegantes y un ambiente comunitario cálido.",
-      "book": "RESERVAR ESTA HABITACIÓN",
+      "description": "Un espacio acogedor y tranquilo dise\u00f1ado para la recuperaci\u00f3n con atenci\u00f3n dedicada, acabados elegantes y un ambiente comunitario c\u00e1lido.",
+      "book": "RESERVAR ESTA HABITACI\u00d3N",
       "ask": "HACER UNA PREGUNTA",
-            "tour": "Ver tour virtual",
-
-      "highlightsLabel": "Diseñada para la recuperación",
-      "highlightsTitle": "Lo que te encantará",
-      "highlightsSubtitle": "Una mezcla equilibrada de privacidad, compañía y comodidad con cada detalle pensado para sanar.",
+      "tour": "Ver tour virtual",
+      "highlightsLabel": "Dise\u00f1ada para la recuperaci\u00f3n",
+      "highlightsTitle": "Lo que te encantar\u00e1",
+      "highlightsSubtitle": "Una mezcla equilibrada de privacidad, compa\u00f1\u00eda y comodidad con cada detalle pensado para sanar.",
       "highlights": [
         {
           "title": "Descanso reparador",
-          "desc": "Ropa de cama premium, iluminación suave y ambiente tranquilo."
+          "desc": "Ropa de cama premium, iluminaci\u00f3n suave y ambiente tranquilo."
         },
         {
-          "title": "Apoyo de enfermería",
-          "desc": "Personal en sitio y revisiones diarias para asegurar tu recuperación."
+          "title": "Apoyo de enfermer\u00eda",
+          "desc": "Personal en sitio y revisiones diarias para asegurar tu recuperaci\u00f3n."
         },
         {
           "title": "Amenidades de bienestar",
-          "desc": "Comidas nutritivas, hidratación y asistencia suave de movilidad."
+          "desc": "Comidas nutritivas, hidrataci\u00f3n y asistencia suave de movilidad."
         }
       ],
-      "detailsLabel": "Detalles de la habitación",
+      "detailsLabel": "Detalles de la habitaci\u00f3n",
       "detailsTitle": "Un espacio compartido que se siente como en casa",
-      "detailsText": "Nuestra opción de habitación compartida ofrece un ambiente cómodo y de apoyo. Ideal para quienes prefieren compañía suave y excelente atención.",
+      "detailsText": "Nuestra opci\u00f3n de habitaci\u00f3n compartida ofrece un ambiente c\u00f3modo y de apoyo. Ideal para quienes prefieren compa\u00f1\u00eda suave y excelente atenci\u00f3n.",
       "features": [
-        "Dos camas individuales con sábanas premium",
-        "Baño en suite con características de seguridad",
-        "Limpieza diaria y cambio de sábanas",
-        "Acceso y monitoreo de enfermería 24/7",
-        "Wi‑Fi, streaming y lounge de lectura",
-        "Plan de alimentación saludable para recuperación"
+        "Dos camas individuales con s\u00e1banas premium",
+        "Ba\u00f1o en suite con caracter\u00edsticas de seguridad",
+        "Limpieza diaria y cambio de s\u00e1banas",
+        "Acceso y monitoreo de enfermer\u00eda 24/7",
+        "Wi\u2011Fi, streaming y lounge de lectura",
+        "Plan de alimentaci\u00f3n saludable para recuperaci\u00f3n"
       ],
       "reserve": "RESERVAR AHORA",
       "viewAll": "VER TODAS LAS HABITACIONES",
       "faqTitle": "Preguntas frecuentes",
-      "faqSubtitle": "Todo lo que necesitas saber sobre la habitación compartida.",
+      "faqSubtitle": "Todo lo que necesitas saber sobre la habitaci\u00f3n compartida.",
       "faq": [
         {
-          "q": "¿La habitación compartida tiene suficiente privacidad?",
-          "a": "Sí. Cada huésped tiene su espacio y nuestro personal mantiene un ambiente respetuoso."
+          "q": "\u00bfLa habitaci\u00f3n compartida tiene suficiente privacidad?",
+          "a": "S\u00ed. Cada hu\u00e9sped tiene su espacio y nuestro personal mantiene un ambiente respetuoso."
         },
         {
-          "q": "¿Puedo solicitar un acompañante específico?",
-          "a": "Cuando es posible, acomodamos preferencias según disponibilidad y compatibilidad."
+          "q": "\u00bfPuedo solicitar un acompa\u00f1ante espec\u00edfico?",
+          "a": "Cuando es posible, acomodamos preferencias seg\u00fan disponibilidad y compatibilidad."
         },
         {
-          "q": "¿Qué incluye la tarifa por noche?",
-          "a": "Incluye apoyo de enfermería, comidas, limpieza diaria y acceso a amenidades de bienestar."
+          "q": "\u00bfQu\u00e9 incluye la tarifa por noche?",
+          "a": "Incluye apoyo de enfermer\u00eda, comidas, limpieza diaria y acceso a amenidades de bienestar."
         }
       ],
-      "ctaTitle": "¿Lista/o para reservar tu habitación compartida?",
-      "ctaSubtitle": "Nosotros nos encargamos de los detalles mientras tú te enfocas en sanar.",
+      "ctaTitle": "\u00bfLista/o para reservar tu habitaci\u00f3n compartida?",
+      "ctaSubtitle": "Nosotros nos encargamos de los detalles mientras t\u00fa te enfocas en sanar.",
       "ctaBook": "RESERVAR",
       "ctaTalk": "HABLEMOS"
     },
     "vip": {
-      "heroLabel": "Tour • Suite VIP",
+      "heroLabel": "Tour \u2022 Suite VIP",
       "title": "Suite VIP",
-      "subtitle": "Experiencia de recuperación de lujo",
-      "description": "Disfruta una suite amplia y privada con mayor confort, amenidades refinadas y atención prioritaria durante tu recuperación.",
+      "subtitle": "Experiencia de recuperaci\u00f3n de lujo",
+      "description": "Disfruta una suite amplia y privada con mayor confort, amenidades refinadas y atenci\u00f3n prioritaria durante tu recuperaci\u00f3n.",
       "book": "RESERVAR ESTA SUITE",
       "ask": "HACER UNA PREGUNTA",
-            "tour": "Ver tour virtual",
-
+      "tour": "Ver tour virtual",
       "highlightsLabel": "Confort elevado",
       "highlightsTitle": "La diferencia VIP",
-      "highlightsSubtitle": "Una experiencia premium para quienes buscan el más alto nivel de cuidado y comodidad.",
+      "highlightsSubtitle": "Una experiencia premium para quienes buscan el m\u00e1s alto nivel de cuidado y comodidad.",
       "highlights": [
         {
           "title": "Suite espaciosa",
-          "desc": "Distribución generosa con lounge para descansar y acompañamiento."
+          "desc": "Distribuci\u00f3n generosa con lounge para descansar y acompa\u00f1amiento."
         },
         {
           "title": "Servicio prioritario",
-          "desc": "Atención de enfermería mejorada y apoyo personalizado."
+          "desc": "Atenci\u00f3n de enfermer\u00eda mejorada y apoyo personalizado."
         },
         {
           "title": "Amenidades premium",
@@ -983,12 +1051,12 @@
       "detailsTitle": "Un espacio de lujo para descansar y sanar",
       "detailsText": "La Suite VIP ofrece un entorno refinado con acabados elevados, apoyo dedicado y mayor espacio para tu comodidad. Ideal para quienes buscan privacidad premium.",
       "features": [
-        "Cama king con sábanas premium y almohadas de recuperación",
-        "Lounge privado y área de descanso",
-        "Baño en suite estilo spa",
-        "Soporte y monitoreo de enfermería prioritarios",
-        "Smart TV, Wi‑Fi y entretenimiento curado",
-        "Comidas guiadas por chef para recuperación"
+        "Cama king con s\u00e1banas premium y almohadas de recuperaci\u00f3n",
+        "Lounge privado y \u00e1rea de descanso",
+        "Ba\u00f1o en suite estilo spa",
+        "Soporte y monitoreo de enfermer\u00eda prioritarios",
+        "Smart TV, Wi\u2011Fi y entretenimiento curado",
+        "Comidas guiadas por chef para recuperaci\u00f3n"
       ],
       "reserve": "RESERVAR AHORA",
       "viewAll": "VER TODAS LAS HABITACIONES",
@@ -996,74 +1064,131 @@
       "faqSubtitle": "Detalles sobre la experiencia de la Suite VIP.",
       "faq": [
         {
-          "q": "¿Qué hace diferente a la Suite VIP?",
-          "a": "Ofrece más espacio, amenidades mejoradas y atención prioritaria para una experiencia premium."
+          "q": "\u00bfQu\u00e9 hace diferente a la Suite VIP?",
+          "a": "Ofrece m\u00e1s espacio, amenidades mejoradas y atenci\u00f3n prioritaria para una experiencia premium."
         },
         {
-          "q": "¿Puede quedarse un familiar conmigo?",
-          "a": "En muchos casos sí. Podemos acomodar un acompañante; contáctanos para más detalles."
+          "q": "\u00bfPuede quedarse un familiar conmigo?",
+          "a": "En muchos casos s\u00ed. Podemos acomodar un acompa\u00f1ante; cont\u00e1ctanos para m\u00e1s detalles."
         },
         {
-          "q": "¿Qué incluye la tarifa por noche?",
+          "q": "\u00bfQu\u00e9 incluye la tarifa por noche?",
           "a": "Incluye soporte premium, comidas, limpieza diaria y acceso a todas las amenidades de bienestar."
         }
       ],
-      "ctaTitle": "¿Lista/o para reservar la Suite VIP?",
-      "ctaSubtitle": "Disfruta privacidad, confort y cuidado premium en nuestra suite más exclusiva.",
+      "ctaTitle": "\u00bfLista/o para reservar la Suite VIP?",
+      "ctaSubtitle": "Disfruta privacidad, confort y cuidado premium en nuestra suite m\u00e1s exclusiva.",
+      "ctaBook": "RESERVAR",
+      "ctaTalk": "HABLEMOS"
+    },
+    "large-private": {
+      "heroLabel": "Tour - Habitaci\u00f3n Privada Grande",
+      "title": "Habitaci\u00f3n Privada Grande",
+      "subtitle": "M\u00e1s espacio, m\u00e1s comodidad",
+      "description": "Una habitaci\u00f3n privada amplia con sof\u00e1 cama para acompa\u00f1ante, dise\u00f1ada para quienes necesitan m\u00e1s espacio para descansar y recuperarse con total privacidad.",
+      "book": "RESERVAR ESTA HABITACI\u00d3N",
+      "ask": "HACER UNA PREGUNTA",
+      "tour": "Ver tour virtual",
+      "highlightsLabel": "Dise\u00f1ada para la recuperaci\u00f3n",
+      "highlightsTitle": "Comodidad privada y amplia",
+      "highlightsSubtitle": "Ideal para hu\u00e9spedes que quieren m\u00e1s espacio sin sacrificar privacidad.",
+      "highlights": [
+        {
+          "title": "Espacio extra",
+          "desc": "Distribuci\u00f3n m\u00e1s amplia con m\u00e1s espacio para moverse, descansar y recuperarse."
+        },
+        {
+          "title": "Apto para acompa\u00f1ante",
+          "desc": "Sof\u00e1 cama incluido para que un familiar pueda acompa\u00f1arte durante tu recuperaci\u00f3n."
+        },
+        {
+          "title": "Privacidad total",
+          "desc": "Ba\u00f1o privado y ocupaci\u00f3n individual para total tranquilidad."
+        }
+      ],
+      "detailsLabel": "Detalles de la habitaci\u00f3n",
+      "detailsTitle": "Un santuario privado y m\u00e1s amplio",
+      "detailsText": "Nuestras habitaciones privadas grandes ofrecen todo lo de la habitaci\u00f3n privada est\u00e1ndar, pero con m\u00e1s espacio. Sof\u00e1 cama para acompa\u00f1ante, m\u00e1s muebles y la misma atenci\u00f3n dedicada.",
+      "features": [
+        "Cama m\u00e9dica ajustable con s\u00e1banas premium",
+        "Sof\u00e1 cama para un acompa\u00f1ante",
+        "Ba\u00f1o en suite con caracter\u00edsticas de seguridad",
+        "Limpieza diaria y cambio de s\u00e1banas",
+        "Acceso y monitoreo de enfermer\u00eda 24/7",
+        "Smart TV, Wi-Fi y plan de alimentaci\u00f3n"
+      ],
+      "reserve": "RESERVAR AHORA",
+      "viewAll": "VER TODAS LAS HABITACIONES",
+      "faqTitle": "Preguntas frecuentes",
+      "faqSubtitle": "Respuestas sobre la habitaci\u00f3n privada grande.",
+      "faq": [
+        {
+          "q": "\u00bfEn qu\u00e9 se diferencia de la habitaci\u00f3n privada est\u00e1ndar?",
+          "a": "Ofrece mayor superficie, m\u00e1s muebles y un sof\u00e1 cama para que un acompa\u00f1ante se quede contigo."
+        },
+        {
+          "q": "\u00bfPuede dormir mi acompa\u00f1ante en el cuarto?",
+          "a": "S\u00ed. El sof\u00e1 cama est\u00e1 incluido espec\u00edficamente para eso."
+        },
+        {
+          "q": "\u00bfQu\u00e9 incluye la tarifa por noche?",
+          "a": "Incluye apoyo de enfermer\u00eda, comidas, limpieza diaria y acceso a amenidades de bienestar."
+        }
+      ],
+      "ctaTitle": "\u00bfLista/o para reservar tu habitaci\u00f3n privada grande?",
+      "ctaSubtitle": "M\u00e1s espacio, misma atenci\u00f3n personalizada. Planea tu recuperaci\u00f3n con nosotros.",
       "ctaBook": "RESERVAR",
       "ctaTalk": "HABLEMOS"
     }
   },
   "panorama": {
-    "dragHint": "Arrastra para explorar • 360°",
+    "dragHint": "Arrastra para explorar \u2022 360\u00b0",
     "labels": {
       "studio": "Estudio",
       "playRoom": "Sala de juegos",
-      "riverAlcove": "Alcoba del río",
+      "riverAlcove": "Alcoba del r\u00edo",
       "moonLab": "Laboratorio lunar",
-      "germanTown": "Pueblo alemán",
+      "germanTown": "Pueblo alem\u00e1n",
       "room": "Cuarto",
-      "bathroom": "Baño",
+      "bathroom": "Ba\u00f1o",
       "hallway": "Pasillo",
       "entrance": "Entrada",
-      "commonArea": "Área común",
-      "sharedSpace": "Espacio común",
-      "nurseStation": "Estación de enfermeras"
+      "commonArea": "\u00c1rea com\u00fan",
+      "sharedSpace": "Espacio com\u00fan",
+      "nurseStation": "Estaci\u00f3n de enfermeras"
     }
   },
   "notFound": {
-    "title": "Página no encontrada",
-    "description": "Lo sentimos, la página que buscas no existe. Puede haber sido eliminada o la URL es incorrecta.",
+    "title": "P\u00e1gina no encontrada",
+    "description": "Lo sentimos, la p\u00e1gina que buscas no existe. Puede haber sido eliminada o la URL es incorrecta.",
     "cta": "Volver al inicio"
   },
   "testPage": {
     "title": "Contenido que sigue",
-    "description": "Aquí ya se libera el scroll. La imagen terminó su animación y ahora el contenido fluye normalmente hacia abajo."
+    "description": "Aqu\u00ed ya se libera el scroll. La imagen termin\u00f3 su animaci\u00f3n y ahora el contenido fluye normalmente hacia abajo."
   },
   "bannerHero": {
     "about": {
       "title": "Sobre Nosotros",
-      "description": "Nos inspiramos en la belleza y la cultura, que plasmamos en espacios diseñados para crear momentos únicos"
+      "description": "Nos inspiramos en la belleza y la cultura, que plasmamos en espacios dise\u00f1ados para crear momentos \u00fanicos"
     },
     "contact": {
       "title": "Contacto",
-      "description": "Contáctanos hoy para reservar tu estancia o para cualquier pregunta que tengas. Estamos aquí para ayudarte en cada paso de tu proceso de recuperación."
+      "description": "Cont\u00e1ctanos hoy para reservar tu estancia o para cualquier pregunta que tengas. Estamos aqu\u00ed para ayudarte en cada paso de tu proceso de recuperaci\u00f3n."
     },
     "services": {
       "title": "Servicios",
-      "description": "Nuestros completos servicios de cuidados posoperatorios están diseñados para acompañarle en su proceso de recuperación con excelencia médica y una atención personalizada."
+      "description": "Nuestros completos servicios de cuidados posoperatorios est\u00e1n dise\u00f1ados para acompa\u00f1arle en su proceso de recuperaci\u00f3n con excelencia m\u00e9dica y una atenci\u00f3n personalizada."
     },
     "terms": {
-      "title": "Términos y Condiciones",
-      "description": "Por favor revisa nuestros términos y condiciones antes de usar nuestros servicios para asegurarte de entender nuestras políticas y procedimientos."
+      "title": "T\u00e9rminos y Condiciones",
+      "description": "Por favor revisa nuestros t\u00e9rminos y condiciones antes de usar nuestros servicios para asegurarte de entender nuestras pol\u00edticas y procedimientos."
     },
     "privacy": {
-      "title": "Política de Privacidad",
-      "description": "En Palmas Recovery, respetamos tu privacidad y estamos comprometidos a proteger tu información personal. Lee nuestra política de privacidad para entender cómo recopilamos, usamos y protegemos tus datos."
+      "title": "Pol\u00edtica de Privacidad",
+      "description": "En Palmas Recovery, respetamos tu privacidad y estamos comprometidos a proteger tu informaci\u00f3n personal. Lee nuestra pol\u00edtica de privacidad para entender c\u00f3mo recopilamos, usamos y protegemos tus datos."
     }
-    
   },
-  
   "searchResults": {
     "searching": "Buscando disponibilidad...",
     "backToHome": "Volver al inicio",
@@ -1079,37 +1204,33 @@
     "selected": "Seleccionada",
     "select": "Seleccionar",
     "bookNow": "Reservar",
-       "updateSearch": "Actualizar Búsqueda",
+    "updateSearch": "Actualizar B\u00fasqueda",
     "tryOtherDates": "Probar Otras Fechas"
   },
-
   "extras": {
     "lymphatic": {
-      "title": "Masaje Linfático",
-      "description": "Masaje especializado para reducir inflamación y mejorar la circulación"
+      "title": "Masaje Linf\u00e1tico",
+      "description": "Masaje especializado para reducir inflamaci\u00f3n y mejorar la circulaci\u00f3n"
     },
     "fiveMassages": {
-      "title": "Paquete de 5 Masajes Linfáticos",
-      "description": "5 sesiones de masaje linfático con un 10% de descuento"
+      "title": "Paquete de 5 Masajes Linf\u00e1ticos",
+      "description": "5 sesiones de masaje linf\u00e1tico con un 10% de descuento"
     },
     "b01g": {
-      "title": "BRA DE RECUPERACIÓN",
-      "description": "Sujetador de recuperación original - Estilo N° B01G. Proporciona soporte óptimo y compresión suave."
+      "title": "BRA DE RECUPERACI\u00d3N",
+      "description": "Sujetador de recuperaci\u00f3n original - Estilo N\u00b0 B01G. Proporciona soporte \u00f3ptimo y compresi\u00f3n suave."
     },
     "fvom": {
       "title": "CHALECO DE BUSTO ABIERTO",
-      "description": "Chaleco con mangas 3/4 - Estilo N° FVOM. Diseñado para máxima comodidad y facilidad de uso."
+      "description": "Chaleco con mangas 3/4 - Estilo N\u00b0 FVOM. Dise\u00f1ado para m\u00e1xima comodidad y facilidad de uso."
     },
     "sfbhrs": {
       "title": "FAJA REFORZADA",
-      "description": "Faja con espalda alta y paneles en capas - Largo corto - Estilo N° SFBHRS. Compresión avanzada para resultados óptimos."
+      "description": "Faja con espalda alta y paneles en capas - Largo corto - Estilo N\u00b0 SFBHRS. Compresi\u00f3n avanzada para resultados \u00f3ptimos."
     },
     "sfbhs2": {
       "title": "FAJA CON ESPALDA ALTA",
-      "description": "Faja sin cierres - Largo corto - Estilo N° SFBHS2. Diseño sin cierres para máxima comodidad."
+      "description": "Faja sin cierres - Largo corto - Estilo N\u00b0 SFBHS2. Dise\u00f1o sin cierres para m\u00e1xima comodidad."
     }
-  
-}
-
-
+  }
 }

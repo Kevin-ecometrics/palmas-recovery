@@ -25,7 +25,7 @@ interface Props {
 interface RoomType {
   id: string;
   name: string;
-  type: "shared" | "private" | "vip";
+  type: "shared" | "private" | "large-private" | "vip";
   price: number;
   description: string;
   capacity: number;
@@ -149,6 +149,7 @@ function Dropdown({ children }: { children: React.ReactNode }) {
 const ROOM_ICONS: Record<string, React.ReactNode> = {
   shared: <FaUsers size={14} />,
   private: <FaUser size={13} />,
+  "large-private": <FaBed size={13} />,
   vip: <FaCrown size={12} />,
 };
 
@@ -401,6 +402,21 @@ export default function SearchBar({ floating, hidden = false }: Props) {
       }) as string[],
       tag: t("rooms.private.tag"),
       tagColor: "bg-green-500",
+    },
+    {
+      id: "large-private",
+      name: t("rooms.large-private.name"),
+      type: "large-private",
+      price: 200,
+      description: t("rooms.large-private.tagline"),
+      capacity: 1,
+      beds: t("rooms.large-private.beds"),
+      bathroom: "private",
+      amenities: t("rooms.large-private.amenities", {
+        returnObjects: true,
+      }) as string[],
+      tag: t("rooms.large-private.tag"),
+      tagColor: "bg-orange-500",
     },
     {
       id: "vip",
