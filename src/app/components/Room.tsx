@@ -56,7 +56,7 @@ export default function HotelDestinationsScroll() {
     {
       id: 3,
       name: "VIP Suite",
-      priceText: "$200 dlls / night",
+      priceText: "$250 dlls / night",
       image:
         "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.webp",
       url: pathname === "/en/" ? "/rooms" : "/habitaciones",

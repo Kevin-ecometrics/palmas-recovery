@@ -98,7 +98,7 @@ export const ROOMS: Room[] = [
         image: "/Habitacion privada con bano completo para total comodidad en tu recuperacion solo en Palmas Recovery.webp",
 
     imageAlt: "VIP Suite",
-    price: 200,
+    price: 250,
     capacity: 1,
     beds: "Premium Adjustable Medical Bed",
     size: "Luxury Suite",

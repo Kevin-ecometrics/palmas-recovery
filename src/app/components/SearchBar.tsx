@@ -406,7 +406,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
       id: "vip",
       name: t("rooms.vip.name"),
       type: "vip",
-      price: 200,
+      price: 250,
       description: t("rooms.vip.tagline"),
       capacity: 1,
       beds: t("rooms.vip.beds"),
