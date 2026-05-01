@@ -1,5 +1,5 @@
 "use client";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useRef, useEffect, useState, useCallback } from "react";
 import * as THREE from "three";
 import { useTranslation } from "react-i18next";
@@ -16,34 +16,61 @@ interface Panorama360Props {
   className?: string;
 }
 
-function SpherePanorama({ image, rotation }: { image: string; rotation: any }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [loading, setLoading] = useState(true);
+// Shared texture cache — survives across image switches, no re-download
+const textureCache = new Map<string, THREE.Texture>();
+const loader = new THREE.TextureLoader();
 
-  useEffect(() => {
-    setLoading(true);
-    const loader = new THREE.TextureLoader();
+function loadTexture(src: string): Promise<THREE.Texture> {
+  if (textureCache.has(src)) return Promise.resolve(textureCache.get(src)!);
+  return new Promise((resolve, reject) => {
     loader.load(
-      image,
+      src,
       (tex) => {
         tex.wrapS = THREE.RepeatWrapping;
         tex.repeat.x = -1;
         tex.colorSpace = THREE.SRGBColorSpace;
-        tex.minFilter = THREE.LinearMipmapLinearFilter;
+        tex.minFilter = THREE.LinearFilter;
         tex.magFilter = THREE.LinearFilter;
-        tex.anisotropy = 16;
+        tex.anisotropy = 8;
+        tex.generateMipmaps = false;
+        textureCache.set(src, tex);
+        resolve(tex);
+      },
+      undefined,
+      reject,
+    );
+  });
+}
 
+function preloadTexture(src: string) {
+  if (!textureCache.has(src)) loadTexture(src).catch(() => {});
+}
+
+function SpherePanorama({
+  image,
+  rotation,
+  onLoaded,
+}: {
+  image: string;
+  rotation: React.MutableRefObject<{ y: number; x: number }>;
+  onLoaded: () => void;
+}) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const { invalidate } = useThree();
+
+  useEffect(() => {
+    loadTexture(image)
+      .then((tex) => {
         if (meshRef.current) {
           const mat = meshRef.current.material as THREE.MeshBasicMaterial;
           mat.map = tex;
           mat.needsUpdate = true;
+          invalidate();
         }
-        setLoading(false);
-      },
-      undefined,
-      (error) => logger.error("Error loading texture:", error),
-    );
-  }, [image]);
+        onLoaded();
+      })
+      .catch((err) => logger.error("Error loading texture:", err));
+  }, [image, invalidate, onLoaded]);
 
   useFrame(() => {
     if (meshRef.current) {
@@ -54,7 +81,7 @@ function SpherePanorama({ image, rotation }: { image: string; rotation: any }) {
 
   return (
     <mesh ref={meshRef}>
-      <sphereGeometry args={[500, 128, 128]} />
+      <sphereGeometry args={[500, 60, 60]} />
       <meshBasicMaterial side={THREE.BackSide} />
     </mesh>
   );
@@ -71,13 +98,18 @@ export default function Panorama360({
   const lastPos = useRef({ x: 0, y: 0 });
   const lastTime = useRef(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [showHint, setShowHint] = useState(true);
   const [showScrollHint, setShowScrollHint] = useState(true);
   const galleryRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
 
   const activeImage = images[activeIndex]?.src || "";
+
+  // Preload all images eagerly on mount
+  useEffect(() => {
+    images.forEach((img) => preloadTexture(img.src));
+  }, [images]);
 
   const handleFirstDrag = useCallback(() => {
     if (showHint) setShowHint(false);
@@ -219,14 +251,17 @@ export default function Panorama360({
     lastTime.current = currentTime;
   };
 
+  const handleTextureLoaded = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
   const selectImage = (index: number) => {
     if (index === activeIndex) return;
-    setIsLoading(true);
+    const alreadyCached = textureCache.has(images[index]?.src ?? "");
+    if (!alreadyCached) setIsLoading(true);
     setActiveIndex(index);
-    // Reset rotation when changing images for a fresh start
     rotation.current = { y: 0, x: 0 };
     velocity.current = { y: 0, x: 0 };
-    setTimeout(() => setIsLoading(false), 600);
   };
 
   // Normalize rotation for display (optional - for compass if needed)
@@ -257,13 +292,18 @@ export default function Panorama360({
         <Canvas
           camera={{ fov: 100, position: [0, 0, 0.1] }}
           gl={{
-            antialias: true,
+            antialias: typeof window !== "undefined" && window.devicePixelRatio < 2,
             alpha: false,
             powerPreference: "high-performance",
-            precision: "highp",
+            precision: "mediump",
           }}
+          dpr={[1, 1.5]}
         >
-          <SpherePanorama image={activeImage} rotation={rotation} />
+          <SpherePanorama
+            image={activeImage}
+            rotation={rotation}
+            onLoaded={handleTextureLoaded}
+          />
         </Canvas>
       </div>
 
