@@ -286,6 +286,21 @@ function DurationDropdown({
   pricePerNight: number;
   onChange: (d: string) => void;
 }) {
+  const isCustom = !DURATIONS.find((d) => d.nights === duration);
+  const [customValue, setCustomValue] = useState(isCustom ? duration : "");
+
+  const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value.replace(/\D/g, "");
+    if (val === "" || parseInt(val) <= 99) setCustomValue(val);
+  };
+
+  const commitCustom = () => {
+    const n = parseInt(customValue);
+    if (customValue && n > 0 && n <= 99) onChange(customValue);
+  };
+
+  const parsedDuration = parseInt(duration) || 0;
+
   return (
     <div className="p-4 w-[240px]">
       <p className="text-[10px] uppercase tracking-widest text-gray-400 font-medium mb-3">
@@ -296,11 +311,14 @@ function DurationDropdown({
           <button
             key={d.nights}
             type="button"
-            onClick={() => onChange(d.nights)}
+            onClick={() => {
+              setCustomValue("");
+              onChange(d.nights);
+            }}
             className={`
               py-2 rounded-lg text-xs font-medium transition-all text-center
               ${
-                duration === d.nights
+                duration === d.nights && !isCustom
                   ? "bg-gray-900 text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }
@@ -309,12 +327,43 @@ function DurationDropdown({
             {d.label}
           </button>
         ))}
+        <div className={`col-span-2 rounded-lg overflow-hidden border transition-all flex ${isCustom ? "border-gray-900" : "border-gray-200"}`}>
+          <input
+            type="text"
+            inputMode="numeric"
+            value={customValue}
+            onChange={handleCustomChange}
+            onFocus={() => {
+              if (!isCustom) setCustomValue("");
+            }}
+            onKeyDown={(e) => e.key === "Enter" && commitCustom()}
+            placeholder="1–99"
+            maxLength={2}
+            className={`
+              flex-1 min-w-0 py-2 pl-2 pr-1 text-xs font-medium text-center bg-gray-100
+              placeholder-gray-400 focus:outline-none transition-all
+              ${isCustom ? "bg-gray-900 text-white placeholder-gray-500" : "text-gray-600"}
+            `}
+          />
+          <button
+            type="button"
+            onClick={commitCustom}
+            disabled={!customValue || parseInt(customValue) < 1}
+            className={`
+              shrink-0 px-2 text-[10px] font-semibold transition-all
+              ${isCustom ? "bg-gray-700 text-white hover:bg-gray-600" : "bg-gray-200 text-gray-500 hover:bg-gray-300"}
+              disabled:opacity-30 disabled:cursor-not-allowed
+            `}
+          >
+            OK
+          </button>
+        </div>
       </div>
-      {pricePerNight > 0 && (
+      {pricePerNight > 0 && parsedDuration > 0 && (
         <div className="pt-3 border-t border-gray-100 flex justify-between text-xs">
           <span className="text-gray-400">Total</span>
           <span className="font-semibold text-gray-800">
-            ${pricePerNight * parseInt(duration)}
+            ${pricePerNight * parsedDuration}
           </span>
         </div>
       )}
@@ -436,7 +485,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
   const [filters, setFilters] = useState<SearchFilters>({
     roomType: "shared",
     guests: 1,
-    duration: "3",
+    duration: "5",
     promoCode: "",
   });
 

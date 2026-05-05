@@ -237,7 +237,7 @@ export default function HotelDestinationsScroll() {
                   {/* TEXTO ARRIBA */}
                   {isOdd && (
                     <motion.div
-                      initial={{ opacity: 0.6 }}
+                      initial={{ opacity: 1 }}
                       whileHover={{ opacity: 1 }}
                       className="space-y-1"
                     >
@@ -324,7 +324,7 @@ export default function HotelDestinationsScroll() {
                   {/* TEXTO ABAJO */}
                   {!isOdd && (
                     <motion.div
-                      initial={{ opacity: 0.6 }}
+                      initial={{ opacity: 1 }}
                       whileHover={{ opacity: 1 }}
                       className="space-y-1"
                     >

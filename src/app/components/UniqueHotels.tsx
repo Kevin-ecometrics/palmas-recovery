@@ -68,13 +68,13 @@ export default function UniqueHotels() {
               {t("uniqueHotels.title")}
             </h2>
 
-            <p className="text-base md:text-lg mb-8 md:mb-10">
+            <p className="text-base md:text-lg mb-8 md:mb-10 text-black">
               {t("uniqueHotels.description")}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 md:gap-x-10 text-base md:text-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 md:gap-x-10 text-base md:text-lg text-black [&_strong]:text-black [&_strong]:font-semibold">
               {bullets.map((item, idx) => (
-                <p key={idx}>
+                <p key={idx} className="text-black">
                   <Trans>{item}</Trans>
                 </p>
               ))}
