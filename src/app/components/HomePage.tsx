@@ -97,67 +97,61 @@ export default function HomePage() {
         <Navbar />
       </div>
       <Banner />
-      <section className="relative px-6 md:px-8 py-20 lg:py-24 bg-[#fffaf6] overflow-hidden">
-        {/* <img
-          src="/La casa de recuperacion numero uno para cirugias plasticas en Tijuana.webp"
-          alt=""
-          aria-hidden="true"
-          className="hidden lg:block absolute top-0 right-0 h-full w-[320px] object-cover opacity-100 pointer-events-none"
-          width={320}
-          height={520}
-          loading="lazy"
-          decoding="async"
-        /> */}
-        <div className="max-w-7xl mx-auto">
-          <header className="mb-12 text-left">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.15] tracking-tight">
+      <section className="relative px-6 md:px-8 py-20 lg:py-28 bg-[#f6f3ef] overflow-hidden">
+        <div className="xl:max-w-[90%] mx-auto">
+          {/* Header */}
+          <header className="mb-16 text-left">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.1] tracking-tight">
               {titleLine1}
-              <br />
             </h2>
           </header>
 
-          <div>
-            <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-start">
-              <div className="relative">
-                <img
-                  src="/La casa de recuperacion numero uno para cirugias plasticas en Tijuana.webp"
-                  alt="La casa de recuperación número uno para cirugía plástica en Tijuana hecha por médicos y enfermeras certificadas "
-                  title="La casa de recuperación número uno para cirugía plástica en Tijuana hecha por médicos y enfermeras certificadas "
-                  className="w-full h-[420px] md:h-[520px] object-cover"
-                  width={924}
-                  height={520}
-                  fetchPriority="high"
-                  loading="eager"
-                  decoding="sync"
-                  sizes="(max-width: 768px) 100vw, 924px"
-                />
-              </div>
+          {/* Content */}
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-12 xl:gap-20 items-center">
+            {/* Imagen principal (la misma que ya tenías) */}
+            <div className="relative max-w-xl">
+              <img
+                src="/La casa de recuperacion numero uno para cirugias plasticas en Tijuana.webp"
+                alt="La casa de recuperación número uno para cirugía plástica en Tijuana hecha por médicos y enfermeras certificadas"
+                title="La casa de recuperación número uno para cirugía plástica en Tijuana hecha por médicos y enfermeras certificadas"
+                className=" h-[420px] md:h-[520px] object-cover"
+                fetchPriority="high"
+                loading="eager"
+                decoding="sync"
+              />
+            </div>
 
-              <div className="space-y-6">
-                <div>
-                  <div className="text-gray-600 leading-relaxed space-y-4 text-base mb-4">
-                    {pleasureParagraphs.slice(0, 1).map((paragraph, index) => (
-                      <p key={index}>{paragraph}</p>
-                    ))}
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-4 leading-snug">
-                    {subtitleLine1}
-                    <br />
-                    {subtitleLine2}
-                  </h3>
+            {/* Texto */}
+            <div className="">
+              <p className="text-gray-600 leading-relaxed text-base mb-4">
+                {pleasureParagraphs[0]}
+              </p>
 
-                  <a
-                    href={aboutLink}
-                    aria-label={moreLabel}
-                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-900 border-b border-gray-900/50 hover:border-gray-900 transition-colors"
-                  >
-                    {moreLabel}
-                  </a>
-                </div>
-              </div>
+              <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-4 leading-snug">
+                {subtitleLine2}
+
+                {subtitleLine1}
+              </h3>
+
+              <a
+                href={aboutLink}
+                aria-label={moreLabel}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 border-b border-gray-900/40 hover:border-gray-900 transition-colors"
+              >
+                {moreLabel}
+              </a>
             </div>
           </div>
         </div>
+
+        <img
+          src="/Palmas Recovery te cuida en tu proceso.webp"
+          alt=""
+          aria-hidden="true"
+          className="xl:block relative mx-0 mt-8 w-full xl:max-w-[400px] h-[400px] object-cover xl:absolute xl:top-67 xl:right-0 xl:mt-0"
+          loading="lazy"
+          decoding="async"
+        />
       </section>
       <UniqueHotels />
       <BannerAbout />

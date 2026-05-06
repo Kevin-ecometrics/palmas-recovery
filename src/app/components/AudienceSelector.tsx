@@ -73,7 +73,7 @@ export default function AudienceSelector() {
 
   return (
     <section
-      className={`relative w-full py-14 md:py-20 transition-colors duration-700 ease-in-out ${
+      className={`relative w-full pt-8 transition-colors duration-700 ease-in-out ${
         activeItem ? activeItem.bg : "bg-cream"
       }`}
     >
@@ -117,7 +117,7 @@ export default function AudienceSelector() {
       </div>
 
       <div className="relative w-full mt-10">
-        <ul className="flex flex-col gap-4 md:gap-6 py-4 md:py-6">
+        <ul className="flex flex-col gap-4 md:gap-6">
           {ITEMS.map((item, index) => {
             const isActive = activeId === item.id;
             const isInactive = hasActiveItem && !isActive;
