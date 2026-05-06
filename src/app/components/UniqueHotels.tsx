@@ -82,7 +82,7 @@ export default function UniqueHotels() {
           </div>
 
           {/* RIGHT – FRAMER CAROUSEL */}
-          <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden rounded-xl">
+          <div className="relative w-full aspect-[3/4] sm:aspect-auto sm:h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden rounded-xl">
             <AnimatePresence initial={false} custom={direction}>
               <motion.img
                 key={index}

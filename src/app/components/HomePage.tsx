@@ -97,7 +97,17 @@ export default function HomePage() {
         <Navbar />
       </div>
       <Banner />
-      <section className="relative px-6 md:px-8 py-20 lg:py-24 bg-[#fffaf6]">
+      <section className="relative px-6 md:px-8 py-20 lg:py-24 bg-[#fffaf6] overflow-hidden">
+        {/* <img
+          src="/La casa de recuperacion numero uno para cirugias plasticas en Tijuana.webp"
+          alt=""
+          aria-hidden="true"
+          className="hidden lg:block absolute top-0 right-0 h-full w-[320px] object-cover opacity-100 pointer-events-none"
+          width={320}
+          height={520}
+          loading="lazy"
+          decoding="async"
+        /> */}
         <div className="max-w-7xl mx-auto">
           <header className="mb-12 text-left">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.15] tracking-tight">
