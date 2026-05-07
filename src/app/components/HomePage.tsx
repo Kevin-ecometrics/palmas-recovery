@@ -55,6 +55,7 @@ export default function HomePage() {
   );
 
   const titleLine1 = useMemo(() => t("home.pleasure.titleLine1"), [t]);
+  const titleLine2 = useMemo(() => t("home.pleasure.titleLine2"), [t]);
   const subtitleLine1 = useMemo(() => t("home.pleasure.subtitleLine1"), [t]);
   const subtitleLine2 = useMemo(() => t("home.pleasure.subtitleLine2"), [t]);
   const moreLabel = useMemo(() => t("home.pleasure.more"), [t]);
@@ -100,38 +101,38 @@ export default function HomePage() {
       <section className="relative px-6 md:px-8 py-20 lg:py-28 bg-[#f6f3ef] overflow-hidden">
         <div className="xl:max-w-[90%] mx-auto">
           {/* Header */}
-          <header className="mb-16 text-left">
+          <header className="mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.1] tracking-tight">
               {titleLine1}
             </h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.1] tracking-tight">
+              {titleLine2}
+            </h2>
           </header>
 
-          {/* Content */}
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-12 xl:gap-20 items-center">
-            {/* Imagen principal (la misma que ya tenías) */}
+          {/* Content grid */}
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-12 xl:gap-20 items-start">
+            {/* Imagen principal — izquierda */}
             <div className="relative max-w-xl">
               <img
                 src="/La casa de recuperacion numero uno para cirugias plasticas en Tijuana.webp"
                 alt="La casa de recuperación número uno para cirugía plástica en Tijuana hecha por médicos y enfermeras certificadas"
                 title="La casa de recuperación número uno para cirugía plástica en Tijuana hecha por médicos y enfermeras certificadas"
-                className=" h-[420px] md:h-[520px] object-cover"
+                className="w-full h-[420px] md:h-[520px] object-cover"
                 fetchPriority="high"
                 loading="eager"
                 decoding="sync"
               />
             </div>
 
-            {/* Texto */}
-            <div className="">
+            {/* Texto — centro */}
+            <div className="xl:self-end">
+              <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-4 leading-snug">
+                {subtitleLine1}
+              </h3>
               <p className="text-gray-600 leading-relaxed text-base mb-4">
                 {pleasureParagraphs[0]}
               </p>
-
-              <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-4 leading-snug">
-                {subtitleLine2}
-
-                {subtitleLine1}
-              </h3>
 
               <a
                 href={aboutLink}
@@ -141,17 +142,20 @@ export default function HomePage() {
                 {moreLabel}
               </a>
             </div>
+
+            {/* Imagen secundaria — derecha, aparece solo en XL */}
+            <div className="block xl:absolute xl:top-60 xl:right-0 xl:max-w-[400px]">
+              <img
+                src="/Palmas Recovery te cuida en tu proceso.webp"
+                alt=""
+                aria-hidden="true"
+                className="w-full h-[320px] object-cover xl:ml-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
         </div>
-
-        <img
-          src="/Palmas Recovery te cuida en tu proceso.webp"
-          alt=""
-          aria-hidden="true"
-          className="xl:block relative mx-0 mt-8 w-full xl:max-w-[400px] h-[400px] object-cover xl:absolute xl:top-67 xl:right-0 xl:mt-0"
-          loading="lazy"
-          decoding="async"
-        />
       </section>
       <UniqueHotels />
       <BannerAbout />
