@@ -40,9 +40,9 @@ export default function Blogs() {
       <div className="max-w-7xl mx-auto px-6 md:px-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.2fr] gap-12 items-start">
           <div className="text-black">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif leading-tight mb-5 sm:mb-6">
+            <p className="text-2xl sm:text-3xl md:text-4xl leading-tight mb-5 sm:mb-6">
               {t("blogs.title")}
-            </h2>
+            </p>
             <p className="text-base sm:text-lg md:text-xl text-black/70 mb-6 sm:mb-8 max-w-md">
               {t("blogs.subtitle")}
             </p>
@@ -78,7 +78,7 @@ export default function Blogs() {
                         width={400}
                         height={300}
                       />
-                      <span className="absolute bottom-3 right-3 bg-[#f0b16b] text-black text-xs font-semibold px-3 py-1 rounded-full">
+                      <span className="absolute bottom-3 right-3 bg-wine text-white text-xs font-semibold px-3 py-1 rounded-full">
                         {item.category}
                       </span>
                     </div>

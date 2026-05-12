@@ -36,8 +36,8 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
 
   const isDark = variant === "dark";
   const bgClass = isDark
-    ? "bg-[#111111] text-white"
-    : "bg-[#fffaf6] text-black";
+    ? "bg-wine text-white"
+    : "bg-cream text-black";
   const borderClass = isDark ? "border-white/10" : "border-black/10";
   const mutedText = isDark ? "text-white/70" : "text-black/60";
   const linkHover = isDark ? "hover:text-white" : "hover:text-black";

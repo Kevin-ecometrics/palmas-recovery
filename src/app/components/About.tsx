@@ -28,13 +28,13 @@ export default function ImprovedSections() {
   return (
     <div id="about">
       {/* Patient Stories Section - BLUSH */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-wine">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-wine">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               {t("about.patientStories.title")}
             </h2>
-            <p className="text-lg text-wine/80">
+            <p className="text-lg text-white/80">
               {t("about.patientStories.subtitle")}
             </p>
           </div>
@@ -116,7 +116,9 @@ export default function ImprovedSections() {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+                className={`rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ${
+                  expandedFaq === index ? "bg-wine text-white" : "bg-white"
+                }`}
               >
                 <button
                   onClick={() =>
@@ -124,15 +126,19 @@ export default function ImprovedSections() {
                   }
                   aria-expanded={expandedFaq === index}
                   aria-label={expandedFaq === index ? `Collapse ${faq.question}` : `Expand ${faq.question}`}
-                  className="w-full p-6 md:p-8 text-left flex items-center justify-between group hover:bg-gray-50 transition-colors"
+                  className={`w-full p-6 md:p-8 text-left flex items-center justify-between group transition-colors ${
+                    expandedFaq === index ? "bg-wine text-white" : "hover:bg-gray-50"
+                  }`}
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-wine pr-8 group-hover:text-wine/80 transition-colors">
+                  <h3 className={`text-lg md:text-xl font-bold pr-8 transition-colors ${
+                    expandedFaq === index ? "text-white" : "text-wine group-hover:text-wine/80"
+                  }`}>
                     {faq.question}
                   </h3>
                   <FaChevronDown
                     aria-hidden="true"
-                    className={`w-5 h-5 md:w-6 md:h-6 text-wine transition-transform duration-300 flex-shrink-0 ${
-                      expandedFaq === index ? "rotate-180" : ""
+                    className={`w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 flex-shrink-0 ${
+                      expandedFaq === index ? "rotate-180 text-white" : "text-wine"
                     }`}
                   />
                 </button>
@@ -145,7 +151,9 @@ export default function ImprovedSections() {
                   }`}
                 >
                   <div className="px-6 md:px-8 pb-6 md:pb-8">
-                    <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                    <p className={`leading-relaxed text-base md:text-lg ${
+                      expandedFaq === index ? "text-gray-100" : "text-gray-600"
+                    }`}>
                       {faq.answer}
                     </p>
                   </div>

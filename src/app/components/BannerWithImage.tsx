@@ -49,7 +49,7 @@ const BannerWithImage: React.FC = () => {
               <Link
                 href={pathname === "/en/" ? "/rooms" : "/habitaciones"}
                 aria-label={t("bannerWithImage.button")}
-                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold text-white bg-black rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/30 hover:-translate-y-1 active:translate-y-0"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold text-white bg-sage rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/30 hover:-translate-y-1 active:translate-y-0"
               >
                 <span className="relative z-10">
                   {t("bannerWithImage.button")}
@@ -67,7 +67,7 @@ const BannerWithImage: React.FC = () => {
                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-black scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <div className="absolute inset-0 bg-gradient-to-r from-wine to-wine scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </Link>
             </motion.div>
           </div>
@@ -79,24 +79,17 @@ const BannerWithImage: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-3xl opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-500" />
-
-                <div className="relative bg-white rounded-3xl p-2 shadow-2xl">
-                  <div className="relative aspect-[16/11] rounded-2xl overflow-hidden">
-                    <img
-                      src="/Palmas Recovery creada por medicos y atendida por medicos.webp"
-                      alt="Palmas Recovery es una casa de recuperación creado por médicos y atendida por médicos con años de experiencia en cuidados "
-                      title="Palmas Recovery es una casa de recuperación creado por médicos y atendida por médicos con años de experiencia en cuidados "
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                      decoding="async"
-                      width={800}
-                      height={550}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-blue-500/5" />
-                  </div>
-                </div>
+              <div className="relative aspect-[16/11] rounded-2xl overflow-hidden">
+                <img
+                  src="/Palmas Recovery creada por medicos y atendida por medicos.webp"
+                  alt="Palmas Recovery es una casa de recuperación creado por médicos y atendida por médicos con años de experiencia en cuidados"
+                  title="Palmas Recovery es una casa de recuperación creado por médicos y atendida por médicos con años de experiencia en cuidados"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={550}
+                />
               </div>
             </motion.div>
           </div>
