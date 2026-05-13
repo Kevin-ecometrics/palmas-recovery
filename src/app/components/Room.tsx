@@ -198,9 +198,9 @@ export default function HotelDestinationsScroll() {
   const scrollProgress = (currentIndex + 1) / destinations.length;
 
   return (
-    <section className="bg-[#f5f3ef] py-16 sm:py-20 px-4 sm:px-8 md:px-10 relative overflow-hidden">
+    <section className="bg-white py-16 sm:py-20 px-4 sm:px-8 md:px-10 relative overflow-hidden">
       <div className="max-w-[1800px] mx-auto">
-        <h1 className="text-2xl sm:text-3xl md:text-[42px] font-serif text-gray-800 mb-10 sm:mb-16 max-w-xl sm:max-w-3xl leading-snug whitespace-nowrap text-center mx-auto">
+        <h1 className="text-2xl sm:text-3xl md:text-[42px] font-serif text-wine mb-10 sm:mb-16 max-w-xl sm:max-w-3xl leading-snug whitespace-nowrap text-center mx-auto">
           {t("destinations.title")}
         </h1>
 
@@ -241,10 +241,10 @@ export default function HotelDestinationsScroll() {
                       whileHover={{ opacity: 1 }}
                       className="space-y-1"
                     >
-                      <h2 className="text-base sm:text-xl font-serif text-gray-800 group-hover:text-wine transition-colors">
+                      <h2 className="text-base sm:text-xl font-serif text-wine group-hover:text-wine/80 transition-colors">
                         {item.name}
                       </h2>
-                      <p className="text-xs sm:text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-sage">
                         {item.priceText}
                       </p>
                     </motion.div>
@@ -291,7 +291,7 @@ export default function HotelDestinationsScroll() {
                         whileTap={{ scale: 0.95 }}
                       >
                         <IoAdd
-                          className="w-5 h-5 text-gray-800"
+                          className="w-5 h-5 text-wine"
                           aria-hidden="true"
                         />
                       </motion.button>
@@ -328,10 +328,10 @@ export default function HotelDestinationsScroll() {
                       whileHover={{ opacity: 1 }}
                       className="space-y-1"
                     >
-                      <h2 className="text-base sm:text-xl font-serif text-gray-800">
+                      <h2 className="text-base sm:text-xl font-serif text-wine">
                         {item.name}
                       </h2>
-                      <p className="text-xs sm:text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-sage">
                         {item.priceText}
                       </p>
                     </motion.div>
@@ -354,7 +354,7 @@ export default function HotelDestinationsScroll() {
                   onClick={() => scrollToDot(index)}
                   className={`
                     transition-all duration-300 rounded-full cursor-pointer
-                    ${isActive ? "w-8 h-3 bg-wine" : "w-3 h-3 bg-gray-300 hover:bg-gray-400"}
+                    ${isActive ? "w-8 h-3 bg-wine" : "w-3 h-3 bg-blush hover:bg-sage"}
                   `}
                   aria-label={`Go to section ${index + 1}`}
                 />
@@ -363,7 +363,7 @@ export default function HotelDestinationsScroll() {
           </div>
 
           {/* Barra de progreso */}
-          <div className="w-48 sm:w-64 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+          <div className="w-48 sm:w-64 h-1.5 bg-blush rounded-full overflow-hidden">
             <motion.div
               className="h-full bg-gradient-to-r from-wine to-blush rounded-full"
               initial={false}

@@ -51,12 +51,12 @@ export default function ImprovedSections() {
                   </div>
                   <div className="flex gap-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <FaStar key={i} className="w-5 h-5 text-yellow-500" />
+                      <FaStar key={i} className="w-5 h-5 text-blush" />
                     ))}
                   </div>
                 </div>
 
-                <p className="text-gray-700 mb-6 italic leading-relaxed text-lg">
+                <p className="text-olive-dark mb-6 italic leading-relaxed text-lg">
                   "{testimonial.story}"
                 </p>
 
@@ -75,7 +75,7 @@ export default function ImprovedSections() {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-wine">
             {t("about.cta.title")}
           </h2>
-          <p className="text-lg mb-12 max-w-2xl mx-auto text-gray-600">
+          <p className="text-lg mb-12 max-w-2xl mx-auto text-olive-dark">
             {t("about.cta.description")}
           </p>
 
@@ -127,7 +127,7 @@ export default function ImprovedSections() {
                   aria-expanded={expandedFaq === index}
                   aria-label={expandedFaq === index ? `Collapse ${faq.question}` : `Expand ${faq.question}`}
                   className={`w-full p-6 md:p-8 text-left flex items-center justify-between group transition-colors ${
-                    expandedFaq === index ? "bg-wine text-white" : "hover:bg-gray-50"
+                    expandedFaq === index ? "bg-wine text-white" : "hover:bg-cream"
                   }`}
                 >
                   <h3 className={`text-lg md:text-xl font-bold pr-8 transition-colors ${
@@ -152,7 +152,7 @@ export default function ImprovedSections() {
                 >
                   <div className="px-6 md:px-8 pb-6 md:pb-8">
                     <p className={`leading-relaxed text-base md:text-lg ${
-                      expandedFaq === index ? "text-gray-100" : "text-gray-600"
+                      expandedFaq === index ? "text-cream" : "text-olive-dark"
                     }`}>
                       {faq.answer}
                     </p>

@@ -147,7 +147,6 @@ export default function Panorama360({
         if (Math.abs(velocity.current.x) > 0.0001) {
           rotation.current.x += velocity.current.x;
           velocity.current.x *= 0.95;
-          // Limit vertical rotation to avoid flipping
           rotation.current.x = Math.max(
             -Math.PI / 2.5,
             Math.min(Math.PI / 2.5, rotation.current.x),
@@ -177,18 +176,13 @@ export default function Panorama360({
     const deltaX = e.clientX - lastPos.current.x;
     const deltaY = e.clientY - lastPos.current.y;
 
-    // INVERTED: Moving mouse right should rotate view left (negative direction)
-    // This creates natural "dragging the world" feeling
     rotation.current.y -= deltaX * 0.005;
-    // Vertical rotation - inverted as well for natural feel
     rotation.current.x -= deltaY * 0.005;
-    // Limit vertical rotation
     rotation.current.x = Math.max(
       -Math.PI / 2.5,
       Math.min(Math.PI / 2.5, rotation.current.x),
     );
 
-    // Calculate velocity for inertia (also inverted)
     if (deltaTime > 0) {
       velocity.current.y = (-(deltaX * 0.005) / deltaTime) * 16;
       velocity.current.x = (-(deltaY * 0.005) / deltaTime) * 16;
@@ -199,7 +193,6 @@ export default function Panorama360({
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    // Prevent gallery scroll from interfering with panorama drag
     const target = e.target as HTMLElement;
     if (target.closest(".gallery-container")) {
       return;
@@ -217,7 +210,6 @@ export default function Panorama360({
   const handleTouchEnd = () => (isDragging.current = false);
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    // Prevent gallery scroll from interfering with panorama drag
     const target = e.target as HTMLElement;
     if (target.closest(".gallery-container")) {
       return;
@@ -228,17 +220,13 @@ export default function Panorama360({
     const deltaX = e.touches[0].clientX - lastPos.current.x;
     const deltaY = e.touches[0].clientY - lastPos.current.y;
 
-    // INVERTED: Moving finger right should rotate view left
     rotation.current.y -= deltaX * 0.005;
-    // Vertical rotation - inverted for natural feel
     rotation.current.x -= deltaY * 0.005;
-    // Limit vertical rotation
     rotation.current.x = Math.max(
       -Math.PI / 2.5,
       Math.min(Math.PI / 2.5, rotation.current.x),
     );
 
-    // Calculate velocity for inertia (inverted)
     if (deltaTime > 0) {
       velocity.current.y = (-(deltaX * 0.005) / deltaTime) * 16;
       velocity.current.x = (-(deltaY * 0.005) / deltaTime) * 16;
@@ -264,7 +252,6 @@ export default function Panorama360({
     velocity.current = { y: 0, x: 0 };
   };
 
-  // Normalize rotation for display (optional - for compass if needed)
   const normalizedYRotation =
     ((rotation.current.y % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
   const compassDirection = Math.round(
@@ -273,7 +260,7 @@ export default function Panorama360({
 
   return (
     <div
-      className={`w-full h-screen bg-black relative overflow-hidden ${className}`}
+      className={`w-full h-screen bg-white relative overflow-hidden ${className}`}
     >
       {/* Vignette overlay */}
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/75 pointer-events-none z-20" />
@@ -313,21 +300,21 @@ export default function Panorama360({
           isLoading ? "opacity-100" : "opacity-0"
         }`}
       >
-        <div className="w-10 h-10 border border-amber-500/40 border-t-amber-500 rounded-full animate-spin" />
+        <div className="w-10 h-10 border border-wine/40 border-t-wine rounded-full animate-spin" />
       </div>
 
       {/* Top bar */}
       <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 md:px-8 py-4 md:py-6 bg-gradient-to-b from-black/70 to-transparent">
         <div className="flex items-center gap-2 md:gap-3">
-          <div className="w-5 h-5 md:w-7 md:h-7 border border-amber-500 rounded-full flex items-center justify-center relative">
-            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-amber-500 rounded-full" />
+          <div className="w-5 h-5 md:w-7 md:h-7 border border-blush rounded-full flex items-center justify-center relative">
+            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blush rounded-full" />
           </div>
-          <span className=" text-xs md:text-[15px] font-light tracking-[0.25em] md:tracking-[0.35em] text-amber-50 uppercase">
+          <span className="text-xs md:text-[15px] font-light tracking-[0.25em] md:tracking-[0.35em] text-cream uppercase">
             {brandName}
           </span>
         </div>
-        <span className="text-[10px] md:text-[11px] tracking-[0.15em] md:tracking-[0.2em] text-amber-50/50">
-          <span className="text-amber-500">
+        <span className="text-[10px] md:text-[11px] tracking-[0.15em] md:tracking-[0.2em] text-cream/50">
+          <span className="text-blush">
             {String(activeIndex + 1).padStart(2, "0")}
           </span>
           {" / "}
@@ -342,26 +329,25 @@ export default function Panorama360({
         }`}
       >
         <div className="relative w-12 h-12 md:w-14 md:h-14">
-          <div className="absolute inset-0 border border-amber-500/40 rounded-full animate-[pulse-ring_2.5s_ease-in-out_infinite]" />
-          <div className="absolute inset-0 m-1.5 border border-amber-500 rounded-full animate-[pulse-ring_2.5s_ease-in-out_infinite_0.4s]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-2 text-amber-500 text-[10px] md:text-xs">
+          <div className="absolute inset-0 border border-wine/40 rounded-full animate-[pulse-ring_2.5s_ease-in-out_infinite]" />
+          <div className="absolute inset-0 m-1.5 border border-wine rounded-full animate-[pulse-ring_2.5s_ease-in-out_infinite_0.4s]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-2 text-blush text-[10px] md:text-xs">
             ← → ↑ ↓
           </div>
         </div>
-        <span className="text-[9px] md:text-[10px] tracking-[0.2em] md:tracking-[0.25em] text-amber-50/50 uppercase">
+        <span className="text-[9px] md:text-[10px] tracking-[0.2em] md:tracking-[0.25em] text-cream/50 uppercase">
           {t("panorama.dragHint")}
         </span>
       </div>
 
-      {/* Compass - shows current orientation */}
+      {/* Compass */}
       <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-1.5">
-        <div className="w-8 h-8 md:w-10 md:h-10 border border-amber-50/15 rounded-full flex items-center justify-center relative">
-          <span className=" text-[8px] md:text-[10px] text-amber-500 tracking-[0.1em] absolute top-1">
+        <div className="w-8 h-8 md:w-10 md:h-10 border border-cream/15 rounded-full flex items-center justify-center relative">
+          <span className="text-[8px] md:text-[10px] text-blush tracking-[0.1em] absolute top-1">
             N
           </span>
-          {/* Compass indicator */}
           <div
-            className="absolute w-0.5 h-2 md:h-3 bg-amber-500/60 rounded-full origin-bottom"
+            className="absolute w-0.5 h-2 md:h-3 bg-wine/60 rounded-full origin-bottom"
             style={{
               transform: `rotate(${compassDirection}deg)`,
               bottom: "50%",
@@ -369,7 +355,7 @@ export default function Panorama360({
             }}
           />
         </div>
-        <span className="text-[8px] md:text-[9px] tracking-[0.15em] md:tracking-[0.2em] text-amber-50/50 uppercase">
+        <span className="text-[8px] md:text-[9px] tracking-[0.15em] md:tracking-[0.2em] text-cream/50 uppercase">
           {compassDirection}°
         </span>
       </div>
@@ -387,7 +373,7 @@ export default function Panorama360({
                   : "w-4 md:w-6 flex-shrink-0"
               } ${
                 i === activeIndex
-                  ? "bg-amber-500 shadow-[0_0_6px_rgba(201,169,110,0.4)]"
+                  ? "bg-blush shadow-[0_0_6px_rgba(229,200,189,0.4)]"
                   : "bg-white/20"
               }`}
             />
@@ -397,9 +383,9 @@ export default function Panorama360({
         {/* Scroll hint for mobile */}
         {showScrollHint && images.length > 4 && (
           <div className="flex justify-center mb-2 md:hidden">
-            <div className="bg-amber-500/20 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-2 animate-pulse">
+            <div className="bg-wine/20 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-2 animate-pulse">
               <svg
-                className="w-3 h-3 text-amber-500"
+                className="w-3 h-3 text-blush"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -411,11 +397,11 @@ export default function Panorama360({
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-              <span className="text-[8px] tracking-wide text-amber-500 uppercase font-medium">
+              <span className="text-[8px] tracking-wide text-blush uppercase font-medium">
                 {t("panorama.scrollHint") || "Desliza para ver más fotos"}
               </span>
               <svg
-                className="w-3 h-3 text-amber-500"
+                className="w-3 h-3 text-blush"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -447,7 +433,7 @@ export default function Panorama360({
               key={i}
               className={`relative flex-shrink-0 cursor-pointer rounded overflow-hidden transition-all duration-400 outline-none border-none p-0 bg-transparent group ${
                 i === activeIndex
-                  ? "w-[80px] h-[54px] md:w-[100px] md:h-[66px] opacity-100 shadow-[0_0_0_1px_#c9a96e,0_8px_24px_rgba(201,169,110,0.2)]"
+                  ? "w-[80px] h-[54px] md:w-[100px] md:h-[66px] opacity-100 shadow-[0_0_0_1px_#371510,0_8px_24px_rgba(55,21,16,0.2)]"
                   : "w-[60px] h-[40px] md:w-[72px] md:h-12 opacity-45 grayscale-[0.6] hover:opacity-75 hover:grayscale-[0.2] hover:-translate-y-0.5"
               }`}
               onClick={() => selectImage(i)}
@@ -459,7 +445,7 @@ export default function Panorama360({
                 className="w-full h-full object-cover"
               />
               <span
-                className={`absolute bottom-0 left-0 right-0 px-1 py-0.5 md:px-1.5 md:py-1 text-[6px] md:text-[8px] tracking-[0.08em] md:tracking-[0.12em] uppercase text-amber-50 bg-gradient-to-t from-black/90 to-transparent transition-opacity duration-300 truncate ${
+                className={`absolute bottom-0 left-0 right-0 px-1 py-0.5 md:px-1.5 md:py-1 text-[6px] md:text-[8px] tracking-[0.08em] md:tracking-[0.12em] uppercase text-cream bg-gradient-to-t from-black/90 to-transparent transition-opacity duration-300 truncate ${
                   i === activeIndex
                     ? "opacity-100"
                     : "opacity-0 group-hover:opacity-100"
@@ -468,7 +454,7 @@ export default function Panorama360({
                 {t(`panorama.labels.${img.key}`)}
               </span>
               {i === activeIndex && (
-                <div className="absolute top-1 right-1 md:top-1.5 md:right-1.5 w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-amber-500 z-10 shadow-[0_0_6px_#c9a96e]" />
+                <div className="absolute top-1 right-1 md:top-1.5 md:right-1.5 w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-wine z-10 shadow-[0_0_6px_#371510]" />
               )}
             </button>
           ))}
@@ -484,7 +470,7 @@ export default function Panorama360({
                     key={i}
                     className={`w-1 h-1 rounded-full transition-all duration-300 ${
                       Math.floor((activeIndex / images.length) * 5) === i
-                        ? "bg-amber-500 w-2"
+                        ? "bg-wine w-2"
                         : "bg-white/30"
                     }`}
                   />

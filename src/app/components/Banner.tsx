@@ -55,11 +55,11 @@ const Banner: React.FC = () => {
   }, [items.join("|")]);
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-slate-50 via-white to-slate-50 py-5 select-none border-y border-slate-200">
+    <div className="relative overflow-hidden bg-gradient-to-r from-cream via-white to-cream py-5 select-none border-y border-blush">
       <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0">
         {/* Parte FIJA a la izquierda */}
         <div className="w-full sm:w-[15%] flex-shrink-0 px-4 sm:px-8 z-10 relative">
-          <div className="inline-flex items-center gap-3 text-black px-3 sm:px-5 py-2.5 rounded">
+          <div className="inline-flex items-center gap-3 text-wine px-3 sm:px-5 py-2.5 rounded">
             <div className="w-1 h-6 bg-wine rounded-full"></div>
             <span className="text-xs sm:text-sm font-semibold tracking-wide uppercase whitespace-nowrap">
               {t("banner.exclusive")}
@@ -70,10 +70,10 @@ const Banner: React.FC = () => {
         {/* Contenedor del scroll con degradado en los bordes */}
         <div className="w-full sm:w-[85%] overflow-hidden relative">
           {/* Degradado izquierdo */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-50 via-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-cream via-white to-transparent z-10 pointer-events-none"></div>
 
           {/* Degradado derecho */}
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-slate-50 via-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-cream via-white to-transparent z-10 pointer-events-none"></div>
 
           <div
             ref={containerRef}
@@ -83,12 +83,12 @@ const Banner: React.FC = () => {
               <React.Fragment key={index}>
                 <div className="flex items-center mx-6 group">
                   <div className="w-1.5 h-1.5 bg-wine rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
-                  <span className="text-xl font-medium text-slate-700 group-hover:text-slate-900 transition-colors">
+                  <span className="text-xl font-medium text-olive-dark group-hover:text-wine transition-colors">
                     {item}
                   </span>
                 </div>
                 {index < items.length * 2 - 1 && (
-                  <div className="h-4 w-px bg-slate-300 mx-4"></div>
+                  <div className="h-4 w-px bg-blush mx-4"></div>
                 )}
               </React.Fragment>
             ))}

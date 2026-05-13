@@ -128,7 +128,7 @@ function Dropdown({ children }: { children: React.ReactNode }) {
     <div
       className="
         absolute bottom-full left-0 mb-3 z-50
-        bg-white rounded-2xl shadow-2xl border border-gray-100
+        bg-white rounded-2xl shadow-2xl border border-cream
         overflow-hidden
       "
       style={{ animation: "dropUp 0.14s ease-out" }}
@@ -164,7 +164,7 @@ function RoomDropdown({
 }) {
   return (
     <div className="p-3 w-[270px]">
-      <p className="text-[10px] uppercase tracking-widest text-gray-400 font-medium px-1 mb-2">
+      <p className="text-[10px] uppercase tracking-widest text-sage font-medium px-1 mb-2">
         Room type
       </p>
       <div className="flex flex-col gap-0.5">
@@ -178,34 +178,34 @@ function RoomDropdown({
               className={`
                 flex items-center gap-3 px-3 py-2.5 rounded-xl text-left
                 transition-all duration-150
-                ${active ? "bg-gray-900 text-white" : "text-gray-700 hover:bg-gray-50"}
+                ${active ? "bg-wine text-white" : "text-olive-dark hover:bg-cream"}
               `}
             >
               <span
-                className={`shrink-0 ${active ? "text-white" : "text-gray-400"}`}
+                className={`shrink-0 ${active ? "text-white" : "text-sage"}`}
               >
                 {ROOM_ICONS[room.type] ?? <FaBed size={13} />}
               </span>
               <span className="flex-1 min-w-0">
                 <span
-                  className={`block text-sm font-medium leading-tight ${active ? "text-white" : "text-gray-800"}`}
+                  className={`block text-sm font-medium leading-tight ${active ? "text-white" : "text-wine"}`}
                 >
                   {room.name}
                 </span>
                 <span
-                  className={`block text-xs mt-0.5 leading-tight ${active ? "text-white" : "text-gray-400"}`}
+                  className={`block text-xs mt-0.5 leading-tight ${active ? "text-white" : "text-sage"}`}
                 >
                   {room.description}
                 </span>
               </span>
               <span className="shrink-0 text-right">
                 <span
-                  className={`block text-sm font-semibold ${active ? "text-white" : "text-gray-800"}`}
+                  className={`block text-sm font-semibold ${active ? "text-white" : "text-wine"}`}
                 >
                   ${room.price}
                 </span>
                 <span
-                  className={`block text-[10px] ${active ? "text-white" : "text-gray-400"}`}
+                  className={`block text-[10px] ${active ? "text-white" : "text-sage"}`}
                 >
                   /night
                 </span>
@@ -231,23 +231,23 @@ function GuestsDropdown({
 }) {
   return (
     <div className="p-5 w-[230px]">
-      <p className="text-[10px] uppercase tracking-widest text-gray-400 font-medium mb-4">
+      <p className="text-[10px] uppercase tracking-widest text-sage font-medium mb-4">
         Guests
       </p>
       <div className="flex items-center justify-between">
         <div>
-          <span className="text-2xl font-semibold text-gray-900">{guests}</span>
-          <span className="text-sm text-gray-400 ml-1.5">
+          <span className="text-2xl font-semibold text-wine">{guests}</span>
+          <span className="text-sm text-sage ml-1.5">
             {guests === 1 ? "guest" : "guests"}
           </span>
-          <p className="text-xs text-gray-400 mt-0.5">Max {max}</p>
+          <p className="text-xs text-sage mt-0.5">Max {max}</p>
         </div>
         <div className="flex items-center gap-2.5">
           <button
             type="button"
             onClick={() => onChange(Math.max(0, guests - 1))} // Cambiado de 1 a 0
             disabled={guests <= 0} // Cambiado de 1 a 0
-            className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-gray-400 hover:text-gray-800 disabled:opacity-25 disabled:cursor-not-allowed transition-all"
+            className="w-8 h-8 rounded-full border border-blush flex items-center justify-center text-sage hover:border-sage hover:text-wine disabled:opacity-25 disabled:cursor-not-allowed transition-all"
           >
             <FaMinus size={8} />
           </button>
@@ -255,7 +255,7 @@ function GuestsDropdown({
             type="button"
             onClick={() => onChange(Math.min(max, guests + 1))}
             disabled={guests >= max}
-            className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-gray-400 hover:text-gray-800 disabled:opacity-25 disabled:cursor-not-allowed transition-all"
+            className="w-8 h-8 rounded-full border border-blush flex items-center justify-center text-sage hover:border-sage hover:text-wine disabled:opacity-25 disabled:cursor-not-allowed transition-all"
           >
             <FaPlus size={8} />
           </button>
@@ -303,7 +303,7 @@ function DurationDropdown({
 
   return (
     <div className="p-4 w-[240px]">
-      <p className="text-[10px] uppercase tracking-widest text-gray-400 font-medium mb-3">
+      <p className="text-[10px] uppercase tracking-widest text-sage font-medium mb-3">
         Duration
       </p>
       <div className="grid grid-cols-4 gap-1.5 mb-3">
@@ -319,15 +319,15 @@ function DurationDropdown({
               py-2 rounded-lg text-xs font-medium transition-all text-center
               ${
                 duration === d.nights && !isCustom
-                  ? "bg-gray-900 text-white"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  ? "bg-wine text-white"
+                  : "bg-cream text-olive-dark hover:bg-blush"
               }
             `}
           >
             {d.label}
           </button>
         ))}
-        <div className={`col-span-2 rounded-lg overflow-hidden border transition-all flex ${isCustom ? "border-gray-900" : "border-gray-200"}`}>
+        <div className={`col-span-2 rounded-lg overflow-hidden border transition-all flex ${isCustom ? "border-wine" : "border-blush"}`}>
           <input
             type="text"
             inputMode="numeric"
@@ -340,9 +340,9 @@ function DurationDropdown({
             placeholder="1–99"
             maxLength={2}
             className={`
-              flex-1 min-w-0 py-2 pl-2 pr-1 text-xs font-medium text-center bg-gray-100
-              placeholder-gray-400 focus:outline-none transition-all
-              ${isCustom ? "bg-gray-900 text-white placeholder-gray-500" : "text-gray-600"}
+              flex-1 min-w-0 py-2 pl-2 pr-1 text-xs font-medium text-center bg-cream
+              placeholder-sage focus:outline-none transition-all
+              ${isCustom ? "bg-wine text-white placeholder-blush" : "text-olive-dark"}
             `}
           />
           <button
@@ -351,7 +351,7 @@ function DurationDropdown({
             disabled={!customValue || parseInt(customValue) < 1}
             className={`
               shrink-0 px-2 text-[10px] font-semibold transition-all
-              ${isCustom ? "bg-gray-700 text-white hover:bg-gray-600" : "bg-gray-200 text-gray-500 hover:bg-gray-300"}
+              ${isCustom ? "bg-wine/80 text-white hover:bg-wine" : "bg-blush text-sage hover:bg-blush/70"}
               disabled:opacity-30 disabled:cursor-not-allowed
             `}
           >
@@ -360,9 +360,9 @@ function DurationDropdown({
         </div>
       </div>
       {pricePerNight > 0 && parsedDuration > 0 && (
-        <div className="pt-3 border-t border-gray-100 flex justify-between text-xs">
-          <span className="text-gray-400">Total</span>
-          <span className="font-semibold text-gray-800">
+        <div className="pt-3 border-t border-cream flex justify-between text-xs">
+          <span className="text-sage">Total</span>
+          <span className="font-semibold text-wine">
             ${pricePerNight * parsedDuration}
           </span>
         </div>
@@ -382,7 +382,7 @@ function PromoDropdown({
 }) {
   return (
     <div className="p-4 w-[230px]">
-      <p className="text-[10px] uppercase tracking-widest text-gray-400 font-medium mb-3">
+      <p className="text-[10px] uppercase tracking-widest text-sage font-medium mb-3">
         Promo code
       </p>
       <div className="relative">
@@ -393,9 +393,9 @@ function PromoDropdown({
           placeholder="ENTER CODE"
           autoFocus
           className="
-            w-full border border-gray-200 rounded-xl px-3 py-2.5 pr-8
-            text-sm font-mono tracking-widest text-gray-800
-            placeholder-gray-300 focus:outline-none focus:border-gray-400
+            w-full border border-blush rounded-xl px-3 py-2.5 pr-8
+            text-sm font-mono tracking-widest text-wine
+            placeholder-blush focus:outline-none focus:border-sage
             transition-colors
           "
         />
@@ -403,13 +403,13 @@ function PromoDropdown({
           <button
             type="button"
             onClick={() => onChange("")}
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-blush hover:text-sage transition-colors"
           >
             <FaTimes size={10} />
           </button>
         )}
       </div>
-      <p className="text-[11px] text-gray-400 mt-2">
+      <p className="text-[11px] text-sage mt-2">
         Save up to 20% with a valid code
       </p>
     </div>
@@ -435,7 +435,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
         returnObjects: true,
       }) as string[],
       tag: t("rooms.shared.tag"),
-      tagColor: "bg-blue-500",
+      tagColor: "bg-sage",
     },
     {
       id: "private",
@@ -450,7 +450,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
         returnObjects: true,
       }) as string[],
       tag: t("rooms.private.tag"),
-      tagColor: "bg-green-500",
+      tagColor: "bg-olive-dark",
     },
     {
       id: "large-private",
@@ -465,7 +465,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
         returnObjects: true,
       }) as string[],
       tag: t("rooms.large-private.tag"),
-      tagColor: "bg-orange-500",
+      tagColor: "bg-blush",
     },
     {
       id: "vip",
@@ -478,7 +478,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
       bathroom: "private",
       amenities: t("rooms.vip.amenities", { returnObjects: true }) as string[],
       tag: t("rooms.vip.tag"),
-      tagColor: "bg-purple-500",
+      tagColor: "bg-wine",
     },
   ];
 
@@ -687,10 +687,10 @@ export default function SearchBar({ floating, hidden = false }: Props) {
               type="button"
               onClick={handleSearch}
               className="
-                bg-white text-gray-900 font-semibold text-sm
+                bg-white text-wine font-semibold text-sm
                 px-6 py-3 rounded-xl w-full md:w-auto
                 flex items-center justify-center gap-2
-                hover:bg-gray-100 active:scale-95
+                hover:bg-cream active:scale-95
                 transition-all duration-150 shadow-lg whitespace-nowrap
               "
             >

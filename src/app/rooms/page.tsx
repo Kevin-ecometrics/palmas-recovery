@@ -108,14 +108,14 @@ function RoomCard({
           {/* Precio flotante */}
           {room.price && (
             <div className="absolute bottom-7 right-7 z-20 bg-white/96 backdrop-blur-sm p-5 rounded-2xl shadow-2xl">
-              <p className="text-[10px] text-gray-400 font-medium tracking-widest uppercase mb-1">
+              <p className="text-[10px] text-sage font-medium tracking-widest uppercase mb-1">
                 {t("common.from") || "Desde"}
               </p>
               <div className="flex items-baseline gap-1">
-                <span className="text-4xl font-bold text-gray-900 leading-none">
+                <span className="text-4xl font-bold text-wine leading-none">
                   ${room.price}
                 </span>
-                <span className="text-gray-400 text-xs ml-1">
+                <span className="text-sage text-xs ml-1">
                   {t("common.perNight")}
                 </span>
               </div>
@@ -124,19 +124,19 @@ function RoomCard({
         </div>
 
         {/* ── Contenido ──────────────────────────────── */}
-        <div className="lg:w-[42%] p-10 lg:p-14 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-white">
+        <div className="lg:w-[42%] p-10 lg:p-14 flex flex-col justify-center bg-gradient-to-br from-cream to-white">
           {/* Eyebrow */}
           <p className="text-principal font-bold tracking-[0.32em] text-[10px] mb-3 uppercase">
             {subtitle}
           </p>
 
           {/* Nombre */}
-          <h2 className="text-4xl lg:text-[2.75rem] font-serif font-bold text-gray-900 mb-2 leading-tight">
+          <h2 className="text-4xl lg:text-[2.75rem] font-serif font-bold text-wine mb-2 leading-tight">
             {name}
           </h2>
 
           {/* Tagline */}
-          <p className="text-base text-gray-400 font-light italic mb-5 leading-snug">
+          <p className="text-base text-black font-light italic mb-5 leading-snug">
             {tagline}
           </p>
 
@@ -147,27 +147,27 @@ function RoomCard({
           </div>
 
           {/* Descripción */}
-          <p className="text-gray-500 leading-relaxed mb-7 text-sm">
+          <p className="text-olive-dark leading-relaxed mb-7 text-sm">
             {description}
           </p>
 
           {/* Detalles */}
-          <div className="space-y-3 mb-7 pb-7 border-b border-gray-100">
+          <div className="space-y-3 mb-7 pb-7 border-b border-cream">
             <div className="flex items-start gap-3">
               <FaBed className="text-principal text-sm mt-0.5 flex-shrink-0" />
-              <span className="text-gray-600 text-sm leading-relaxed">
+              <span className="text-olive-dark text-sm leading-relaxed">
                 {beds}
               </span>
             </div>
             <div className="flex items-start gap-3">
               <MdZoomOutMap className="text-principal text-base mt-0.5 flex-shrink-0" />
-              <span className="text-gray-600 text-sm leading-relaxed">
+              <span className="text-olive-dark text-sm leading-relaxed">
                 {size}
               </span>
             </div>
             <div className="flex items-start gap-3">
               <FaUsers className="text-principal text-sm mt-0.5 flex-shrink-0" />
-              <span className="text-gray-600 text-sm leading-relaxed">
+              <span className="text-olive-dark text-sm leading-relaxed">
                 {t("searchBar.accommodates", { count: room.capacity || 0 })}
               </span>
             </div>
@@ -175,7 +175,7 @@ function RoomCard({
 
           {/* Amenidades */}
           <div className="mb-8">
-            <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.25em] mb-4 flex items-center gap-3">
+            <h3 className="text-[10px] font-bold text-black uppercase tracking-[0.25em] mb-4 flex items-center gap-3">
               <div className="w-5 h-px bg-principal" />
               {t("roomsPage.amenitiesTitle")}
             </h3>
@@ -183,7 +183,7 @@ function RoomCard({
               {amenities.map((amenity, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-3 text-gray-500 text-sm"
+                  className="flex items-center gap-3 text-olive-dark text-sm"
                 >
                   <div className="w-1 h-1 bg-principal rotate-45 flex-shrink-0" />
                   {amenity}
@@ -195,8 +195,9 @@ function RoomCard({
           {/* CTAs */}
           <div className="flex flex-col gap-3">
             <Link
-              href={getRoomTourPath(room.id, currentLang as "es" | "en")}
-              className="group/btn relative w-full bg-gray-900 text-white font-bold py-4 overflow-hidden transition-all duration-300 hover:shadow-xl rounded-full text-center"
+              href={getTourPath(room.id, currentLang as "es" | "en")}
+
+              className="group/btn relative w-full bg-wine text-white font-bold py-4 overflow-hidden transition-all duration-300 hover:shadow-xl rounded-full text-center"
             >
               <span className="relative z-10 tracking-[0.18em] text-xs uppercase">
                 {t("roomsPage.viewDetails")}
@@ -204,8 +205,9 @@ function RoomCard({
               <div className="absolute inset-0 bg-principal transform translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 rounded-full" />
             </Link>
             <Link
-              href={getTourPath(room.id, currentLang as "es" | "en")}
-              className="group/btn relative w-full bg-transparent border border-gray-200 text-gray-700 font-bold py-4 overflow-hidden transition-all duration-300 hover:shadow-md rounded-full text-center"
+                          href={getRoomTourPath(room.id, currentLang as "es" | "en")}
+
+              className="group/btn relative w-full bg-transparent border border-blush text-olive-dark font-bold py-4 overflow-hidden transition-all duration-300 hover:shadow-md rounded-full text-center"
             >
               <span className="relative z-10 tracking-[0.18em] text-xs uppercase group-hover/btn:text-white transition-colors duration-300">
                 {t("roomsPage.viewAllTours")}
@@ -214,7 +216,7 @@ function RoomCard({
             </Link>
           </div>
 
-          <p className="text-center text-[11px] text-gray-300 mt-4">
+          <p className="text-center text-[11px] text-black mt-4">
             {t("roomsPage.limited")}
           </p>
         </div>
@@ -320,7 +322,7 @@ export default function RoomsPage() {
                     "opacity 0.8s ease 0.45s, transform 0.8s ease 0.45s",
                 }}
               >
-                <p className="text-gray-300 text-lg md:text-xl font-light leading-relaxed mb-10 max-w-xl">
+                <p className="text-cream text-lg md:text-xl font-light leading-relaxed mb-10 max-w-xl">
                   {t("roomsPage.heroDescription") ||
                     "Espacios diseñados para ofrecerte una experiencia única. Confort, elegancia y los mejores acabados en cada detalle."}
                 </p>
@@ -427,15 +429,15 @@ export default function RoomsPage() {
             <p className="text-principal font-bold tracking-[0.35em] text-[11px] mb-4 uppercase">
               {t("roomsPage.ourSpaces")}
             </p>
-            <h2 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 mb-5 leading-tight">
+            <h2 className="text-5xl md:text-6xl font-serif font-bold text-wine mb-5 leading-tight">
               {t("roomsPage.discoverTitle")}
             </h2>
             <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-px bg-gray-200" />
+              <div className="w-12 h-px bg-blush" />
               <div className="w-2 h-2 bg-principal rotate-45" />
-              <div className="w-12 h-px bg-gray-200" />
+              <div className="w-12 h-px bg-blush" />
             </div>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-olive-dark max-w-2xl mx-auto leading-relaxed">
               {t("roomsPage.discoverDescription")}
             </p>
           </div>

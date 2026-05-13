@@ -49,34 +49,6 @@ export default function AboutPage() {
         </div>
       )}
 
-      <section className="bg-white py-20 md:py-28">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="relative max-w-5xl mx-auto">
-            {/* Decorative corners */}
-            <div className="absolute -top-4 -left-4 w-16 h-16 border-l-2 border-t-2 border-wine/30" />
-            <div className="absolute -top-4 -right-4 w-16 h-16 border-r-2 border-t-2 border-wine/30" />
-            <div className="absolute -bottom-4 -left-4 w-16 h-16 border-l-2 border-b-2 border-wine/30" />
-            <div className="absolute -bottom-4 -right-4 w-16 h-16 border-r-2 border-b-2 border-wine/30" />
-
-            {/* Main container */}
-            <div className="relative bg-gradient-to-br from-cream/50 to-blush/20 rounded-3xl p-3 md:p-4 shadow-2xl">
-              {/* Inner frame */}
-              <div className="relative overflow-hidden rounded-2xl bg-white">
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-wine/5 via-transparent to-transparent z-10 pointer-events-none" />
-
-                <img
-                  src="/Casa de recuperacion palmas recovery en Tijuana  .png"
-                  alt="Palmas Recovery desde el 2021 fue creado por médicos con enfermeras certificadas que brinda atención de excelencia a pacientes en Tijuana"
-                  title="Palmas Recovery desde el 2021 fue creado por médicos con enfermeras certificadas que brinda atención de excelencia a pacientes en Tijuana"
-                  className="w-full h-auto object-contain"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* COEPRIS Accreditation Section */}
       <section className="bg-gradient-to-br from-cream to-blush/20 py-16">
         <div className="container mx-auto px-6">
@@ -172,23 +144,26 @@ export default function AboutPage() {
 
       <section className="container mx-auto px-6 py-28">
         <div className="max-w-8xl mx-auto">
-          <div className="md:grid grid-cols-2">
-            <header className="text-4xl md:text-5xl font-bold text-start mb-8 text-wine">
-              Fundamos Palmas Recovery en 2021 con una visión compartida:
-              redefinir la experiencia postoperatoria.
-            </header>
-            <div></div>
-          </div>
+<div className="md:grid grid-cols-[3fr_2fr]
+  gap-3 mb-4">
+    <header className="text-4xl md:text-5xl
+  font-bold text-start mb-8 text-wine">
+      Fundamos Palmas Recovery en 2021 con una
+  visión compartida:
+      redefinir la experiencia postoperatoria.
+    </header>
+    <h4 className="text-2xl font-light text-wine
+  max-w-md">
+      Con más de ocho años de experiencia en
+  hospitalidad médica y una
+      sólida colaboración con los mejores
+  cirujanos plásticos en
+      México, priorizamos tus necesidades y
+  objetivos postoperatorios.
+    </h4>
+  </div>
 
           <div className="space-y-6 text-lg leading-relaxed text-olive-dark ">
-            <div className="md:grid grid-cols-2">
-              <div></div>
-              <h4 className="text-2xl font-light text-wine">
-                Con más de ocho años de experiencia en hospitalidad médica y una
-                sólida colaboración con los mejores cirujanos plásticos en
-                México, priorizamos tus necesidades y objetivos postoperatorios.
-              </h4>
-            </div>
 
             <p>
               Entendemos que la recuperación es más efectiva cuando se aborda de
@@ -208,11 +183,11 @@ export default function AboutPage() {
                     className="w-full h-[420px] object-cover rounded-xl"
                   />
 
-                  <img
+                  {/* <img
                     src="/supervision y control de medicamento por doctores especializados en tijuana.webp"
                     alt="Recupera en la mejor casa de recuperación en Tijuana con supervisión de doctores que brindaran cuidados y medicación especializada"
                     className="absolute -bottom-16 right-[-40px] w-[65%] h-[260px] object-cover rounded-xl shadow-2xl"
-                  />
+                  /> */}
                 </div>
 
                 <div className="pt-10 max-w-lg">

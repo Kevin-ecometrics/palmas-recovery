@@ -27,33 +27,33 @@ function getAccent(roomId: string): RoomAccent {
   switch (roomId) {
     case "lobby":
       return {
-        accentLight: "bg-emerald-100 text-emerald-800 border-emerald-200",
-        accentDot: "bg-emerald-500",
+        accentLight: "bg-cream text-wine border-blush",
+        accentDot: "bg-wine",
       };
     case "private":
       return {
-        accentLight: "bg-amber-100 text-amber-800 border-amber-200",
-        accentDot: "bg-amber-500",
+        accentLight: "bg-blush text-wine border-blush",
+        accentDot: "bg-blush",
       };
     case "shared":
       return {
-        accentLight: "bg-sky-100 text-sky-800 border-sky-200",
-        accentDot: "bg-sky-500",
+        accentLight: "bg-cream text-olive-dark border-sage",
+        accentDot: "bg-sage",
       };
     case "large-private":
       return {
-        accentLight: "bg-orange-100 text-orange-800 border-orange-200",
-        accentDot: "bg-orange-500",
+        accentLight: "bg-cream text-olive-dark border-sage",
+        accentDot: "bg-olive-dark",
       };
     case "vip":
       return {
-        accentLight: "bg-yellow-100 text-yellow-800 border-yellow-200",
-        accentDot: "bg-yellow-500",
+        accentLight: "bg-blush text-wine border-wine/30",
+        accentDot: "bg-wine",
       };
     default:
       return {
-        accentLight: "bg-stone-100 text-stone-800 border-stone-200",
-        accentDot: "bg-stone-500",
+        accentLight: "bg-cream text-sage border-sage",
+        accentDot: "bg-sage",
       };
   }
 }
@@ -99,7 +99,7 @@ function Spotlight() {
     <motion.div
       className="pointer-events-none fixed inset-0 z-0 hidden md:block"
       style={{
-        background: `radial-gradient(320px circle at ${mx.get()}px ${my.get()}px, rgba(214,211,208,0.09) 0%, transparent 70%)`,
+        background: `radial-gradient(320px circle at ${mx.get()}px ${my.get()}px, rgba(242,233,220,0.12) 0%, transparent 70%)`,
       }}
     />
   );
@@ -124,7 +124,6 @@ export default function Page() {
     const beds = t(`rooms.${room.id}.beds`, { defaultValue: room.beds });
     const size = t(`rooms.${room.id}.size`, { defaultValue: room.size });
 
-    // Ensure amenities is always an array
     let amenities = t(`rooms.${room.id}.amenities`, {
       returnObjects: true,
       defaultValue: room.amenities,
@@ -133,7 +132,6 @@ export default function Page() {
       amenities = room.amenities;
     }
 
-    // Ensure features is always an array
     let features = t(`rooms.${room.id}.features`, {
       returnObjects: true,
       defaultValue: room.features,
@@ -215,7 +213,7 @@ export default function Page() {
   }, [active]);
 
   return (
-    <main className="min-h-screen bg-stone-50 overflow-x-hidden selection:bg-stone-900 selection:text-stone-50">
+    <main className="min-h-screen bg-white overflow-x-hidden selection:bg-wine selection:text-cream">
       <Navbar />
       <Spotlight />
 
@@ -226,7 +224,7 @@ export default function Page() {
         onTouchEnd={handleTouchEnd}
       >
         {/* ══ LEFT / INFO ══ */}
-        <div className="order-2 md:order-1 flex flex-col justify-between px-6 py-8 md:px-12 md:py-10 border-r border-stone-200/60">
+        <div className="order-2 md:order-1 flex flex-col justify-between px-6 py-8 md:px-12 md:py-10 border-r border-blush/60">
           {/* Top: tour list / selector */}
           <div className="hidden md:flex flex-row gap-1">
             {ROOMS.map((r, i) => {
@@ -238,21 +236,21 @@ export default function Page() {
                   key={r.id}
                   onClick={() => goTo(i)}
                   className={`group flex items-center gap-4 px-3 py-3 rounded-xl text-left transition-all duration-300 cursor-pointer border-none bg-transparent ${
-                    i === active ? "bg-stone-100" : "hover:bg-stone-50"
+                    i === active ? "bg-cream" : "hover:bg-cream/50"
                   }`}
                 >
                   <span
                     className={`w-1.5 h-6 rounded-full transition-all duration-300 flex-shrink-0 ${
                       i === active
                         ? accentDot
-                        : "bg-stone-200 group-hover:bg-stone-300"
+                        : "bg-blush group-hover:bg-sage"
                     }`}
                   />
                   <span
                     className={`text-xs tracking-[0.2em] uppercase transition-colors duration-200 ${
                       i === active
-                        ? "text-stone-900 font-medium"
-                        : "text-stone-400 group-hover:text-stone-600"
+                        ? "text-wine font-medium"
+                        : "text-sage group-hover:text-olive-dark"
                     }`}
                   >
                     {index} — {nameFlat}
@@ -272,45 +270,45 @@ export default function Page() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Title — big editorial serif */}
-              <h1 className=" font-medium text-stone-900 leading-[1] tracking-tight mb-3 text-[clamp(40px,7vw,72px)] whitespace-pre-line">
+              {/* Title */}
+              <h1 className="font-medium text-wine leading-[1] tracking-tight mb-3 text-[clamp(40px,7vw,72px)] whitespace-pre-line">
                 {tour.name}
               </h1>
 
               {/* Subtitle italic */}
-              <p className=" italic text-stone-500 text-xl md:text-2xl mb-6 tracking-wide font-normal">
+              <p className="italic text-sage text-xl md:text-2xl mb-6 tracking-wide font-normal">
                 {tour.subtitle}
               </p>
 
               {/* Divider */}
-              <div className="w-12 h-px bg-stone-300 mb-6" />
+              <div className="w-12 h-px bg-blush mb-6" />
 
               {/* Description */}
-              <p className="text-base md:text-lg font-light leading-[1.9] text-stone-600 mb-8 max-w-sm">
+              <p className="text-base md:text-lg font-light leading-[1.9] text-olive-dark mb-8 max-w-sm">
                 {tour.description}
               </p>
 
-              {/* Room details - Using translations */}
+              {/* Room details */}
               <div className="grid grid-cols-2 gap-3 mb-8 md:mb-10">
-                <div className="rounded-2xl border border-stone-200 bg-white/60 px-5 py-4">
-                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-stone-400 mb-1">
+                <div className="rounded-2xl border border-blush bg-cream/40 px-5 py-4">
+                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-sage mb-1">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.area")
                       : t("common.perNight")}
                   </div>
-                  <div className="text-base md:text-lg text-stone-900 font-medium">
+                  <div className="text-base md:text-lg text-wine font-medium">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.commonSpace")
                       : `$${tour.price}`}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-stone-200 bg-white/60 px-5 py-4">
-                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-stone-400 mb-1">
+                <div className="rounded-2xl border border-blush bg-cream/40 px-5 py-4">
+                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-sage mb-1">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.access")
                       : t("roomDetail.capacity")}
                   </div>
-                  <div className="text-base md:text-lg text-stone-900 font-medium">
+                  <div className="text-base md:text-lg text-wine font-medium">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.allGuests")
                       : t("searchBar.accommodates", {
@@ -318,25 +316,25 @@ export default function Page() {
                         })}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-stone-200 bg-white/60 px-5 py-4">
-                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-stone-400 mb-1">
+                <div className="rounded-2xl border border-blush bg-cream/40 px-5 py-4">
+                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-sage mb-1">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.service")
                       : t("roomDetail.bedType")}
                   </div>
-                  <div className="text-base md:text-lg text-stone-900 font-medium">
+                  <div className="text-base md:text-lg text-wine font-medium">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.reception247")
                       : tour.beds}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-stone-200 bg-white/60 px-5 py-4">
-                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-stone-400 mb-1">
+                <div className="rounded-2xl border border-blush bg-cream/40 px-5 py-4">
+                  <div className="text-xs md:text-[10px] tracking-[0.22em] uppercase text-sage mb-1">
                     {tour.id === "lobby"
                       ? t("rooms.lobby.labels.area")
                       : t("roomDetail.roomSize")}
                   </div>
-                  <div className="text-base md:text-lg text-stone-900 font-medium">
+                  <div className="text-base md:text-lg text-wine font-medium">
                     {tour.size}
                   </div>
                 </div>
@@ -348,7 +346,7 @@ export default function Page() {
                   tour.features.map((f) => (
                     <div key={f} className="flex items-center gap-3">
                       <svg
-                        className="w-4 h-4 text-stone-400 flex-shrink-0"
+                        className="w-4 h-4 text-sage flex-shrink-0"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -356,7 +354,7 @@ export default function Page() {
                       >
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
-                      <span className="text-sm text-stone-600 font-normal">
+                      <span className="text-sm text-olive-dark font-normal">
                         {f}
                       </span>
                     </div>
@@ -365,7 +363,7 @@ export default function Page() {
 
               {/* Amenities */}
               <div className="mb-8 md:mb-10">
-                <div className="text-xs tracking-[0.25em] uppercase text-stone-400 mb-3">
+                <div className="text-xs tracking-[0.25em] uppercase text-sage mb-3">
                   {tour.id === "lobby"
                     ? t("rooms.lobby.labels.services")
                     : t("roomsPage.amenitiesTitle")}
@@ -374,8 +372,8 @@ export default function Page() {
                   {Array.isArray(tour.amenities) &&
                     tour.amenities.map((a) => (
                       <div key={a} className="flex items-center gap-3">
-                        <span className="w-2 h-2 rounded-full bg-stone-300" />
-                        <span className="text-sm text-stone-600 font-normal">
+                        <span className="w-2 h-2 rounded-full bg-blush" />
+                        <span className="text-sm text-olive-dark font-normal">
                           {a}
                         </span>
                       </div>
@@ -383,14 +381,14 @@ export default function Page() {
                 </div>
               </div>
 
-              {/* CTA - Show for all rooms including lobby */}
+              {/* CTA */}
               <motion.a
                 ref={ctaMag.ref as React.RefObject<HTMLAnchorElement>}
                 href={tour.href}
                 onMouseMove={ctaMag.onMove}
                 onMouseLeave={ctaMag.onLeave}
                 style={{ x: ctaMag.sx, y: ctaMag.sy }}
-                className="group relative inline-flex items-center gap-3 text-sm md:text-base font-medium tracking-[0.15em] uppercase text-stone-50 bg-stone-900 px-8 py-4 rounded-full overflow-hidden self-start no-underline w-full md:w-auto justify-center md:justify-start hover:shadow-2xl transition-shadow duration-300"
+                className="group relative inline-flex items-center gap-3 text-sm md:text-base font-medium tracking-[0.15em] uppercase text-cream bg-wine px-8 py-4 rounded-full overflow-hidden self-start no-underline w-full md:w-auto justify-center md:justify-start hover:shadow-2xl transition-shadow duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -428,10 +426,10 @@ export default function Page() {
           </AnimatePresence>
 
           {/* Bottom: prev/next desktop */}
-          <div className="hidden md:flex items-center justify-between pt-6 border-t border-stone-100">
+          <div className="hidden md:flex items-center justify-between pt-6 border-t border-cream">
             <button
               onClick={() => goTo(active - 1)}
-              className="group flex items-center gap-2 text-sm text-stone-400 hover:text-stone-900 transition-colors cursor-pointer bg-transparent border-none p-0"
+              className="group flex items-center gap-2 text-sm text-sage hover:text-wine transition-colors cursor-pointer bg-transparent border-none p-0"
             >
               <svg
                 className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
@@ -446,7 +444,7 @@ export default function Page() {
             </button>
             <button
               onClick={() => goTo(active + 1)}
-              className="group flex items-center gap-2 text-sm text-stone-400 hover:text-stone-900 transition-colors cursor-pointer bg-transparent border-none p-0"
+              className="group flex items-center gap-2 text-sm text-sage hover:text-wine transition-colors cursor-pointer bg-transparent border-none p-0"
             >
               {t(`rooms.${ROOMS[(active + 1) % TOTAL].id}.name`)}
               <svg
@@ -463,8 +461,8 @@ export default function Page() {
         </div>
 
         {/* ══ RIGHT / IMAGE ══ */}
-        <div className="order-1 md:order-2 relative h-[62vw] min-h-[260px] max-h-[450px] md:h-auto md:max-h-none overflow-hidden bg-stone-200">
-          {/* Image with parallax */}
+        <div className="order-1 md:order-2 relative h-[62vw] min-h-[260px] max-h-[450px] md:h-auto md:max-h-none overflow-hidden bg-blush/20">
+          {/* Image */}
           <AnimatePresence mode="wait">
             <motion.div
               key={`img-${active}`}
@@ -482,13 +480,13 @@ export default function Page() {
               />
 
               {/* Dark vignette bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-wine/40 via-transparent to-transparent pointer-events-none" />
               {/* Left fade into info panel (desktop only) */}
-              <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-stone-50 to-transparent pointer-events-none hidden md:block" />
+              <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white to-transparent pointer-events-none hidden md:block" />
             </motion.div>
           </AnimatePresence>
 
-          {/* 360° floating badge - Show for all including lobby */}
+          {/* 360° floating badge */}
           <motion.div
             className="absolute top-4 right-4 md:top-6 md:right-6 z-10 flex items-center gap-2 px-3 py-2 md:px-4 md:py-2.5 bg-white/90 backdrop-blur-md border border-white/60 rounded-full shadow-lg"
             initial={{ opacity: 0, scale: 0.8, y: -10 }}
@@ -496,22 +494,22 @@ export default function Page() {
             transition={{ delay: 0.6, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.svg
-              className="w-4 h-4 md:w-3.5 md:h-3.5 text-stone-700 fill-current"
+              className="w-4 h-4 md:w-3.5 md:h-3.5 text-wine fill-current"
               viewBox="0 0 24 24"
               animate={{ rotate: 360 }}
               transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
             >
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
             </motion.svg>
-            <span className="text-xs md:text-[10px] font-semibold tracking-[0.15em] uppercase text-stone-700">
+            <span className="text-xs md:text-[10px] font-semibold tracking-[0.15em] uppercase text-wine">
               {tour.id === "lobby"
                 ? t("tour360.viewLobby")
                 : t("tour360.badge")}
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-sage animate-pulse" />
           </motion.div>
 
-          {/* Bottom overlay info (mobile: show tour name on image) */}
+          {/* Bottom overlay info (mobile) */}
           <div className="absolute bottom-0 left-0 right-0 p-5 md:hidden">
             <AnimatePresence mode="wait">
               <motion.div
@@ -526,14 +524,14 @@ export default function Page() {
                 >
                   {tour.tag}
                 </span>
-                <h2 className=" text-2xl font-medium text-white leading-tight drop-shadow-lg">
+                <h2 className="text-2xl font-medium text-white leading-tight drop-shadow-lg">
                   {tour.nameFlat}
                 </h2>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Desktop: thumbnail strip inside image */}
+          {/* Desktop: thumbnail strip */}
           <div className="absolute bottom-6 right-6 z-10 hidden md:flex flex-col gap-2">
             {ROOMS.map((r, i) => (
               <motion.button
@@ -586,8 +584,8 @@ export default function Page() {
               onClick={() => goTo(i)}
               className={`flex-1 py-3 px-2 rounded-xl text-xs md:text-[10px] font-medium tracking-[0.1em] uppercase transition-all duration-300 cursor-pointer border-none ${
                 i === active
-                  ? "bg-stone-900 text-stone-50"
-                  : "bg-stone-100 text-stone-400 hover:bg-stone-200"
+                  ? "bg-wine text-cream"
+                  : "bg-cream text-sage hover:bg-blush"
               }`}
             >
               {t(`rooms.${r.id}.name`)}
@@ -595,8 +593,8 @@ export default function Page() {
           ))}
         </div>
 
-        {/* Swipe hint - Show for all */}
-        <p className="text-xs tracking-[0.2em] uppercase text-stone-400">
+        {/* Swipe hint */}
+        <p className="text-xs tracking-[0.2em] uppercase text-sage">
           {t("tour360.swipeHint")}
         </p>
       </div>
