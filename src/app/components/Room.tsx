@@ -5,6 +5,7 @@ import { IoAdd } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { usePathname } from "next/navigation";
+import { gaEvent } from "@/utils/analytics";
 
 interface Destination {
   id: number;
@@ -263,6 +264,7 @@ export default function HotelDestinationsScroll() {
                       href={item.url || "#"}
                       aria-label={`View ${item.name} details`}
                       className="block"
+                      onClick={() => gaEvent.roomCardClick(item.name, item.priceText)}
                     >
                       <motion.img
                         src={item.image}

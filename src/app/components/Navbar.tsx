@@ -13,6 +13,7 @@ import { RiMenuFill, RiCloseFill } from "react-icons/ri";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
+import { gaEvent } from "@/utils/analytics";
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -202,9 +203,10 @@ const Navbar: React.FC = () => {
                 variants={navItemVariants}
               >
                 <button
-                  onClick={() =>
-                    router.push(getLocalizedPath(item.path, currentLang))
-                  }
+                  onClick={() => {
+                    gaEvent.navClick(item.label, item.path);
+                    router.push(getLocalizedPath(item.path, currentLang));
+                  }}
                   className={`hover:text-principal transition-colors ${
                     i === activeIndex ? "text-principal font-bold" : ""
                   }`}
@@ -315,6 +317,7 @@ const Navbar: React.FC = () => {
             >
               <button
                 onClick={() => {
+                  gaEvent.navClick(item.label, item.path);
                   router.push(getLocalizedPath(item.path, currentLang));
                   setMenuOpen(false);
                 }}

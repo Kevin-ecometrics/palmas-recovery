@@ -3,7 +3,13 @@
     "allow": [
       "Bash(dir C:\\\\Users\\\\kevin\\\\e-commetrics\\\\palmas-recovery *)",
       "Bash(npx tsc *)",
-      "Bash(node_modules/.bin/tsc --noEmit)"
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "PowerShell($env:PATH = $env:PATH + \";C:\\\\Program Files\\\\nodejs\"; cd \"C:\\\\Users\\\\kevin\\\\e-commetrics\\\\palmas-recovery\"; node node_modules\\\\typescript\\\\bin\\\\tsc --noEmit 2>&1 | Select-Object -First 50)",
+      "Bash(node node_modules/typescript/bin/tsc --noEmit)",
+      "Read(//usr/local/**)",
+      "Read(//c/Users/kevin/.nvm/versions/**)",
+      "Bash(~/.bun/bin/bun --version)",
+      "Bash(~/.bun/bin/bun run *)"
     ]
   }
 }

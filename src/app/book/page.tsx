@@ -32,6 +32,7 @@ import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
 import { Suspense } from "react";
 import { logger } from "@/utils/logger";
+import { gaEvent } from "@/utils/analytics";
 
 // Tipos
 interface BookingPayload {
@@ -520,6 +521,13 @@ const handleFinalSubmit = async (
 
     setStatus("success");
     setShowSuccessModal(true);
+    gaEvent.bookingCompleted(
+      response.data.confirmationNumber,
+      selectedRoom,
+      total,
+      nights,
+      selectedExtras,
+    );
   } catch (error) {
     setStatus("error");
     if (axios.isAxiosError(error)) {
@@ -964,8 +972,15 @@ const BookingPageInner = () => {
   };
 
   const toggleExtra = (id: string) => {
+    const extra = EXTRAS.find((e) => e.id === id);
+    const isRemoving = selectedExtras.includes(id);
+    if (extra) {
+      isRemoving
+        ? gaEvent.extraRemoved(id, extra.price)
+        : gaEvent.extraAdded(id, extra.price);
+    }
     setSelectedExtras((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
+      isRemoving ? prev.filter((item) => item !== id) : [...prev, id],
     );
   };
 
@@ -999,6 +1014,11 @@ const BookingPageInner = () => {
     if (result.success && result.promo) {
       setAppliedPromo(result.promo);
       setPromoCode("");
+      gaEvent.promoApplied(
+        result.promo.code,
+        result.promo.discount_type,
+        result.promo.discount_value,
+      );
     } else {
       const reasonMap: Record<string, string> = {
         "Código no encontrado": t("booking.promo.notFound"),
@@ -1026,6 +1046,7 @@ const BookingPageInner = () => {
         setValidationError(t("booking.errors.searchRoomsFirst"));
         return;
       }
+      gaEvent.bookingStepComplete(1, "room_and_dates");
       handleStepChange(step + 1, setStep);
     } else if (step === 2) {
       // Validación completa del paso 2
@@ -1034,6 +1055,7 @@ const BookingPageInner = () => {
         setValidationError(validation.errorMessage);
         return;
       }
+      gaEvent.bookingStepComplete(2, "personal_details");
       handleStepChange(step + 1, setStep);
     }
   };
@@ -1044,6 +1066,9 @@ const BookingPageInner = () => {
     if (step < 3) {
       await handleNextClick();
     } else {
+      if (selectedRoom) {
+        gaEvent.beginCheckout(selectedRoom, finalTotal, selectedExtras);
+      }
       await handleFinalSubmit(
         formData,
         selectedRoom,
@@ -1300,9 +1325,16 @@ const BookingPageInner = () => {
                         return (
                           <div key={room.id} className="space-y-0">
                             <div
-                              onClick={() =>
-                                isAvailable && setSelectedRoom(room.id)
-                              }
+                              onClick={() => {
+                                if (isAvailable) {
+                                  setSelectedRoom(room.id);
+                                  gaEvent.roomSelected(
+                                    room.id,
+                                    room.name,
+                                    room.price ?? 0,
+                                  );
+                                }
+                              }}
                               className={`
                                 group relative overflow-hidden rounded-2xl cursor-pointer 
                                 transition-all duration-500 transform hover:scale-[1.02]
