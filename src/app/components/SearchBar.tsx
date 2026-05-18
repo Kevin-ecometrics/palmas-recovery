@@ -268,13 +268,10 @@ function GuestsDropdown({
 // ─── Duration dropdown ────────────────────────────────────────────────────────
 
 const DURATIONS = [
-  { nights: "1", label: "1n" },
-  { nights: "2", label: "2n" },
-  { nights: "3", label: "3n" },
   { nights: "5", label: "5n" },
   { nights: "7", label: "7n" },
   { nights: "14", label: "14n" },
-  { nights: "30", label: "30n" },
+  { nights: "18", label: "18n" },
 ];
 
 function DurationDropdown({
@@ -428,7 +425,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
       type: "shared",
       price: 170,
       description: t("rooms.shared.tagline"),
-      capacity: 4,
+      capacity: 1,
       beds: t("rooms.shared.beds"),
       bathroom: "shared",
       amenities: t("rooms.shared.amenities", {
@@ -445,7 +442,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
       description: t("rooms.private.tagline"),
       capacity: 1,
       beds: t("rooms.private.beds"),
-      bathroom: "private",
+      bathroom: "shared",
       amenities: t("rooms.private.amenities", {
         returnObjects: true,
       }) as string[],
@@ -460,7 +457,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
       description: t("rooms.large-private.tagline"),
       capacity: 1,
       beds: t("rooms.large-private.beds"),
-      bathroom: "private",
+      bathroom: "shared",
       amenities: t("rooms.large-private.amenities", {
         returnObjects: true,
       }) as string[],

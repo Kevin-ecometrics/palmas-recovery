@@ -98,7 +98,7 @@ export default function UniqueHotels() {
                   x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.3 },
                 }}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover object-top"
                 draggable={false}
                 width={800}
                 height={600}

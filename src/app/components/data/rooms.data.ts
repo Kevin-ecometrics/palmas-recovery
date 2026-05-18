@@ -49,7 +49,7 @@ export const ROOMS: Room[] = [
     image: "/Conoce las comodas habitaciones compartidas para tu recuperacion en la mejor clinica de recuperacion.webp",
     imageAlt: "Shared Room",
     price: 170,
-    capacity: 4,
+    capacity: 1,
     beds: "Adjustable Medical Bed",
     size: "Shared Space",
     amenities: [
@@ -80,7 +80,7 @@ export const ROOMS: Room[] = [
     size: "Private Room",
     amenities: [
       "Adjustable Medical Bed",
-      "Private Bathroom",
+      "Shared Bathroom",
       "Air Conditioning",
       "Smart TV",
     ],
@@ -103,7 +103,7 @@ export const ROOMS: Room[] = [
     amenities: [
       "Adjustable Medical Bed",
       "Sofa Bed for Companion",
-      "Private Bathroom",
+      "Shared Bathroom",
       "Air Conditioning",
       "Smart TV",
     ],
