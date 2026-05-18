@@ -32,7 +32,7 @@ import { useTranslation } from "react-i18next";
 import { getLocalizedPath } from "@/i18n/routeMap";
 import { Suspense } from "react";
 import { logger } from "@/utils/logger";
-import { gaEvent } from "@/utils/analytics";
+import { gaEvent, pixelEvent } from "@/utils/analytics";
 
 // Tipos
 interface BookingPayload {
@@ -528,6 +528,7 @@ const handleFinalSubmit = async (
       nights,
       selectedExtras,
     );
+    pixelEvent.bookingCompleted(selectedRoom, total, nights, selectedExtras);
   } catch (error) {
     setStatus("error");
     if (axios.isAxiosError(error)) {
@@ -975,9 +976,12 @@ const BookingPageInner = () => {
     const extra = EXTRAS.find((e) => e.id === id);
     const isRemoving = selectedExtras.includes(id);
     if (extra) {
-      isRemoving
-        ? gaEvent.extraRemoved(id, extra.price)
-        : gaEvent.extraAdded(id, extra.price);
+      if (isRemoving) {
+        gaEvent.extraRemoved(id, extra.price);
+      } else {
+        gaEvent.extraAdded(id, extra.price);
+        pixelEvent.extraAdded(id, extra.price);
+      }
     }
     setSelectedExtras((prev) =>
       isRemoving ? prev.filter((item) => item !== id) : [...prev, id],
@@ -1047,6 +1051,7 @@ const BookingPageInner = () => {
         return;
       }
       gaEvent.bookingStepComplete(1, "room_and_dates");
+      pixelEvent.bookingStepComplete(1, "room_and_dates");
       handleStepChange(step + 1, setStep);
     } else if (step === 2) {
       // Validación completa del paso 2
@@ -1056,6 +1061,7 @@ const BookingPageInner = () => {
         return;
       }
       gaEvent.bookingStepComplete(2, "personal_details");
+      pixelEvent.bookingStepComplete(2, "personal_details");
       handleStepChange(step + 1, setStep);
     }
   };
@@ -1068,6 +1074,7 @@ const BookingPageInner = () => {
     } else {
       if (selectedRoom) {
         gaEvent.beginCheckout(selectedRoom, finalTotal, selectedExtras);
+        pixelEvent.beginCheckout(selectedRoom, finalTotal, selectedExtras);
       }
       await handleFinalSubmit(
         formData,
@@ -1329,6 +1336,11 @@ const BookingPageInner = () => {
                                 if (isAvailable) {
                                   setSelectedRoom(room.id);
                                   gaEvent.roomSelected(
+                                    room.id,
+                                    room.name,
+                                    room.price ?? 0,
+                                  );
+                                  pixelEvent.roomSelected(
                                     room.id,
                                     room.name,
                                     room.price ?? 0,
