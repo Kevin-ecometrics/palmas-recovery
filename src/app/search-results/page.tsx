@@ -15,6 +15,7 @@ import {
   FaMinus,
   FaPlus,
   FaUser,
+  FaCheckCircle,
 } from "react-icons/fa";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
@@ -55,6 +56,17 @@ const SearchResultsInner = () => {
   const initialGuests = parseInt(searchParams.get("guests") || "1");
   const initialDuration = parseInt(searchParams.get("duration") || "3");
   const promoCode = searchParams.get("promo") || "";
+  const promoType = searchParams.get("promoType") as "percentage" | "fixed" | null;
+  const promoValue = parseFloat(searchParams.get("promoValue") || "0");
+
+  const computeDiscountedTotal = (price: number, nights: number): number => {
+    const raw = price * nights;
+    if (!promoCode || !promoType || !promoValue) return raw;
+    if (promoType === "percentage") {
+      return Math.round(raw * (1 - promoValue / 100) * 100) / 100;
+    }
+    return Math.max(0, raw - promoValue);
+  };
 
   // Estados
   const [loading, setLoading] = useState(true);
@@ -359,9 +371,11 @@ const SearchResultsInner = () => {
       checkIn,
       checkOut,
       guests: finalGuests.toString(),
-      promo: promoCode,
       step: "2",
     });
+    if (promoCode) params.set("promo", promoCode);
+    if (promoType) params.set("promoType", promoType);
+    if (promoValue) params.set("promoValue", promoValue.toString());
     router.push(`${getRouteByKey("book", currentLang)}?${params.toString()}`);
   };
 
@@ -556,11 +570,19 @@ const SearchResultsInner = () => {
               )}
 
               {promoCode && (
-                <div className="flex items-center gap-2 bg-sage/10 px-4 py-2 rounded-full mt-4 w-fit">
-                  <span className="text-sage font-medium">
-                    {t("searchResults.promo")}:
+                <div className="flex items-center gap-2 bg-green-50 border border-green-200 px-4 py-2 rounded-full mt-4 w-fit">
+                  <FaCheckCircle className="text-green-600 text-sm" />
+                  <span className="text-green-700 font-semibold text-sm font-mono tracking-widest">
+                    {promoCode}
                   </span>
-                  <span>{promoCode}</span>
+                  {promoType && promoValue ? (
+                    <span className="text-green-600 text-sm">
+                      —{" "}
+                      {promoType === "percentage"
+                        ? `${promoValue}% OFF`
+                        : `$${promoValue} OFF`}
+                    </span>
+                  ) : null}
                 </div>
               )}
             </div>
@@ -589,7 +611,8 @@ const SearchResultsInner = () => {
                         room={room}
                         duration={duration}
                         guests={guests}
-                        totalPrice={room.price * duration}
+                        totalPrice={computeDiscountedTotal(room.price, duration)}
+                        originalPrice={promoType ? room.price * duration : undefined}
                         isSelected={selectedRoom === room.id}
                         onSelect={() => setSelectedRoom(room.id)}
                         onBook={() => handleBookNow(room.id)}
@@ -688,6 +711,7 @@ const RoomCard = ({
   duration,
   guests,
   totalPrice,
+  originalPrice,
   isSelected,
   onSelect,
   onBook,
@@ -697,6 +721,7 @@ const RoomCard = ({
   duration: number;
   guests: number;
   totalPrice: number;
+  originalPrice?: number;
   isSelected: boolean;
   onSelect: () => void;
   onBook: () => void;
@@ -823,9 +848,20 @@ const RoomCard = ({
                     ? t("common.night")
                     : t("common.nights", { count: duration })}
                 </div>
-                <div className="text-2xl font-bold text-wine">
-                  ${totalPrice}
-                </div>
+                {originalPrice && originalPrice !== totalPrice ? (
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-lg line-through text-gray-400">
+                      ${originalPrice}
+                    </span>
+                    <span className="text-2xl font-bold text-green-600">
+                      ${totalPrice}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="text-2xl font-bold text-wine">
+                    ${totalPrice}
+                  </div>
+                )}
               </div>
               <div className="flex gap-3">
                 <button

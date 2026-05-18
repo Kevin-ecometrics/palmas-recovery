@@ -639,6 +639,19 @@
       "specialRequests": "Solicitudes especiales",
       "certifiedDoctor": "Cirujano pl\u00e1stico certificado",
       "certifiedDoctorPlaceholder": "Dr. Juan P\u00e9rez"
+    },
+    "promo": {
+      "label": "C\u00f3digo promocional",
+      "placeholder": "Ingresa tu c\u00f3digo",
+      "apply": "Aplicar",
+      "applied": "Promo aplicada",
+      "discount": "Descuento",
+      "remove": "Quitar",
+      "notFound": "C\u00f3digo no encontrado",
+      "inactive": "C\u00f3digo inactivo",
+      "expired": "C\u00f3digo expirado",
+      "limitReached": "L\u00edmite de usos alcanzado",
+      "error": "No se pudo validar el c\u00f3digo"
     }
   },
   "searchBar": {

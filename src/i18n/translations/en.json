@@ -640,6 +640,19 @@
       "specialRequests": "Special requests",
       "certifiedDoctor": "Certified plastic surgeon",
       "certifiedDoctorPlaceholder": "Dr. John Smith"
+    },
+    "promo": {
+      "label": "Promo Code",
+      "placeholder": "Enter promo code",
+      "apply": "Apply",
+      "applied": "Promo applied",
+      "discount": "Discount",
+      "remove": "Remove",
+      "notFound": "Code not found",
+      "inactive": "Code is inactive",
+      "expired": "Code has expired",
+      "limitReached": "Usage limit reached",
+      "error": "Could not validate code"
     }
   },
   "searchBar": {

@@ -12,6 +12,8 @@ import {
   FaMinus,
   FaPlus,
   FaTimes,
+  FaCheckCircle,
+  FaTag,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
@@ -278,10 +280,12 @@ function DurationDropdown({
   duration,
   pricePerNight,
   onChange,
+  discountedTotal,
 }: {
   duration: string;
   pricePerNight: number;
   onChange: (d: string) => void;
+  discountedTotal?: number;
 }) {
   const isCustom = !DURATIONS.find((d) => d.nights === duration);
   const [customValue, setCustomValue] = useState(isCustom ? duration : "");
@@ -357,11 +361,24 @@ function DurationDropdown({
         </div>
       </div>
       {pricePerNight > 0 && parsedDuration > 0 && (
-        <div className="pt-3 border-t border-cream flex justify-between text-xs">
+        <div className="pt-3 border-t border-cream flex justify-between items-center text-xs">
           <span className="text-sage">Total</span>
-          <span className="font-semibold text-wine">
-            ${pricePerNight * parsedDuration}
-          </span>
+          <div className="flex items-center gap-1.5">
+            {discountedTotal !== undefined && discountedTotal !== pricePerNight * parsedDuration ? (
+              <>
+                <span className="line-through text-gray-400">
+                  ${pricePerNight * parsedDuration}
+                </span>
+                <span className="font-semibold text-green-600">
+                  ${discountedTotal}
+                </span>
+              </>
+            ) : (
+              <span className="font-semibold text-wine">
+                ${pricePerNight * parsedDuration}
+              </span>
+            )}
+          </div>
         </div>
       )}
     </div>
@@ -370,45 +387,115 @@ function DurationDropdown({
 
 // ─── Promo dropdown ───────────────────────────────────────────────────────────
 
+type PromoStatus = "idle" | "loading" | "valid" | "error";
+
 function PromoDropdown({
   value,
   onChange,
+  onApply,
+  status,
+  discountLabel,
+  errorReason,
 }: {
   value: string;
   onChange: (v: string) => void;
+  onApply: () => void;
+  status: PromoStatus;
+  discountLabel?: string;
+  errorReason?: string;
 }) {
   return (
-    <div className="p-4 w-[230px]">
+    <div className="p-4 w-[250px]">
       <p className="text-[10px] uppercase tracking-widest text-sage font-medium mb-3">
         Promo code
       </p>
-      <div className="relative">
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value.toUpperCase())}
-          placeholder="ENTER CODE"
-          autoFocus
-          className="
-            w-full border border-blush rounded-xl px-3 py-2.5 pr-8
-            text-sm font-mono tracking-widest text-wine
-            placeholder-blush focus:outline-none focus:border-sage
-            transition-colors
-          "
-        />
-        {value && (
+
+      {status === "valid" ? (
+        <div className="flex items-center gap-2 bg-green-50 border border-green-200 rounded-xl px-3 py-2.5">
+          <FaCheckCircle className="text-green-600 shrink-0" size={14} />
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-semibold text-green-700 truncate font-mono tracking-widest">
+              {value}
+            </p>
+            <p className="text-[11px] text-green-600">{discountLabel}</p>
+          </div>
           <button
             type="button"
             onClick={() => onChange("")}
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-blush hover:text-sage transition-colors"
+            className="text-green-400 hover:text-green-700 transition-colors shrink-0"
           >
             <FaTimes size={10} />
           </button>
-        )}
-      </div>
-      <p className="text-[11px] text-sage mt-2">
-        Save up to 20% with a valid code
-      </p>
+        </div>
+      ) : (
+        <>
+          <div
+            className={`flex rounded-xl overflow-hidden border transition-all ${
+              status === "error" ? "border-red-400" : "border-blush focus-within:border-sage"
+            }`}
+          >
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => onChange(e.target.value.toUpperCase())}
+              onKeyDown={(e) => e.key === "Enter" && onApply()}
+              placeholder="ENTER CODE"
+              autoFocus
+              className="
+                flex-1 min-w-0 px-3 py-2.5
+                text-sm font-mono tracking-widest text-wine
+                placeholder-blush focus:outline-none bg-white
+              "
+            />
+            <button
+              type="button"
+              onClick={onApply}
+              disabled={!value.trim() || status === "loading"}
+              className="
+                shrink-0 px-3 text-[11px] font-semibold transition-all
+                bg-wine text-white hover:bg-wine/85
+                disabled:opacity-40 disabled:cursor-not-allowed
+              "
+            >
+              {status === "loading" ? (
+                <svg
+                  className="animate-spin h-3 w-3 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+              ) : (
+                "OK"
+              )}
+            </button>
+          </div>
+          {status === "error" && errorReason && (
+            <p className="text-[11px] text-red-500 mt-1.5 flex items-center gap-1">
+              <FaTimes size={9} />
+              {errorReason}
+            </p>
+          )}
+          {status === "idle" && (
+            <p className="text-[11px] text-sage mt-2">
+              Enter a valid promo code to get a discount
+            </p>
+          )}
+        </>
+      )}
     </div>
   );
 }
@@ -488,6 +575,57 @@ export default function SearchBar({ floating, hidden = false }: Props) {
 
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [promoStatus, setPromoStatus] = useState<PromoStatus>("idle");
+  const [promoDiscountLabel, setPromoDiscountLabel] = useState<string>("");
+  const [promoErrorReason, setPromoErrorReason] = useState<string>("");
+  const [promoData, setPromoData] = useState<{
+    discount_type: "percentage" | "fixed";
+    discount_value: number;
+  } | null>(null);
+
+  const computeDiscountedTotal = (price: number, nights: number): number => {
+    const raw = price * nights;
+    if (!promoData) return raw;
+    if (promoData.discount_type === "percentage") {
+      return Math.round(raw * (1 - promoData.discount_value / 100) * 100) / 100;
+    }
+    return Math.max(0, raw - promoData.discount_value);
+  };
+
+  const handleApplyPromo = async () => {
+    const code = filters.promoCode.trim();
+    if (!code) return;
+    setPromoStatus("loading");
+    setPromoErrorReason("");
+    try {
+      const apiBaseUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+      const res = await fetch(`${apiBaseUrl}/promo-codes/validate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+      const data = await res.json();
+      if (data.valid) {
+        setPromoData({
+          discount_type: data.discount_type,
+          discount_value: data.discount_value,
+        });
+        const label =
+          data.discount_type === "percentage"
+            ? `${data.discount_value}% OFF applied!`
+            : `$${data.discount_value} OFF applied!`;
+        setPromoDiscountLabel(label);
+        setPromoStatus("valid");
+      } else {
+        setPromoErrorReason(data.reason ?? "Invalid code");
+        setPromoStatus("error");
+      }
+    } catch {
+      setPromoErrorReason("Could not validate code");
+      setPromoStatus("error");
+    }
+  };
 
   const barRef = useRef<HTMLDivElement>(null);
   useOutsideClick(barRef as React.RefObject<HTMLElement>, () =>
@@ -495,15 +633,13 @@ export default function SearchBar({ floating, hidden = false }: Props) {
   );
 
   const handleFilterChange = (key: keyof SearchFilters, value: any) => {
-    if (key === "roomType") {
-      const newRoom = roomTypes.find((r) => r.id === value);
-      setFilters((prev) => ({
-        ...prev,
-        roomType: value,
-      }));
-    } else {
-      setFilters((prev) => ({ ...prev, [key]: value }));
+    if (key === "promoCode") {
+      setPromoStatus("idle");
+      setPromoErrorReason("");
+      setPromoDiscountLabel("");
+      setPromoData(null);
     }
+    setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
   const toggle = (name: string) =>
@@ -514,8 +650,14 @@ export default function SearchBar({ floating, hidden = false }: Props) {
       room: filters.roomType,
       guests: filters.guests.toString(),
       duration: filters.duration,
-      promo: filters.promoCode,
     });
+    if (filters.promoCode) {
+      params.set("promo", filters.promoCode);
+    }
+    if (promoData && promoStatus === "valid") {
+      params.set("promoType", promoData.discount_type);
+      params.set("promoValue", promoData.discount_value.toString());
+    }
     window.location.href = `/search-results?${params.toString()}`;
     setActiveFilter(null);
   };
@@ -634,9 +776,11 @@ export default function SearchBar({ floating, hidden = false }: Props) {
               value={`${filters.duration} ${t("common.night", { count: Number(filters.duration) })}`}
               subValue={
                 selectedRoom
-                  ? t("searchBar.totalWithValue", {
-                      value: selectedRoom.price * parseInt(filters.duration),
-                    })
+                  ? promoData && promoStatus === "valid"
+                    ? `$${computeDiscountedTotal(selectedRoom.price, parseInt(filters.duration))} total`
+                    : t("searchBar.totalWithValue", {
+                        value: selectedRoom.price * parseInt(filters.duration),
+                      })
                   : undefined
               }
               isActive={activeFilter === "duration"}
@@ -651,6 +795,11 @@ export default function SearchBar({ floating, hidden = false }: Props) {
                     handleFilterChange("duration", v);
                     setActiveFilter(null);
                   }}
+                  discountedTotal={
+                    promoData && promoStatus === "valid" && selectedRoom
+                      ? computeDiscountedTotal(selectedRoom.price, parseInt(filters.duration))
+                      : undefined
+                  }
                 />
               </Dropdown>
             )}
@@ -661,10 +810,24 @@ export default function SearchBar({ floating, hidden = false }: Props) {
           {/* Promo */}
           <div className="relative">
             <SectionButton
-              icon={<FaCrown size={12} />}
+              icon={
+                promoStatus === "valid" ? (
+                  <FaCheckCircle size={13} className="text-green-300" />
+                ) : (
+                  <FaTag size={12} />
+                )
+              }
               label={t("searchBar.promotion")}
-              value={filters.promoCode || t("searchBar.addCode")}
-              subValue={t("searchBar.saveUpTo", { percent: 20 })}
+              value={
+                promoStatus === "valid"
+                  ? filters.promoCode
+                  : (filters.promoCode || t("searchBar.addCode"))
+              }
+              subValue={
+                promoStatus === "valid"
+                  ? promoDiscountLabel
+                  : t("searchBar.addCode")
+              }
               isActive={activeFilter === "promo"}
               onClick={() => toggle("promo")}
             />
@@ -673,6 +836,10 @@ export default function SearchBar({ floating, hidden = false }: Props) {
                 <PromoDropdown
                   value={filters.promoCode}
                   onChange={(v) => handleFilterChange("promoCode", v)}
+                  onApply={handleApplyPromo}
+                  status={promoStatus}
+                  discountLabel={promoDiscountLabel}
+                  errorReason={promoErrorReason}
                 />
               </Dropdown>
             )}

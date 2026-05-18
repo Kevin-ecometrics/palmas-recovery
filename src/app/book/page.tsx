@@ -69,6 +69,12 @@ interface AvailableRoom {
   available: boolean;
 }
 
+interface AppliedPromo {
+  code: string;
+  discount_type: "percentage" | "fixed";
+  discount_value: number;
+}
+
 // Datos de extras con claves de traducción para título y descripción
 const EXTRAS: Extra[] = [
   {
@@ -270,6 +276,47 @@ const checkAvailability = async (
   }
 };
 
+// Función para validar y canjear un código promocional
+const applyPromoCode = async (
+  code: string,
+): Promise<{ success: boolean; promo?: AppliedPromo; reason?: string }> => {
+  try {
+    const apiBaseUrl =
+      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+    const response = await axios.post(`${apiBaseUrl}/promo-codes/validate`, {
+      code,
+    });
+    return {
+      success: true,
+      promo: {
+        code: code.toUpperCase(),
+        discount_type: response.data.discount_type,
+        discount_value: response.data.discount_value,
+      },
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return {
+        success: false,
+        reason: error.response?.data?.reason,
+      };
+    }
+    return { success: false };
+  }
+};
+
+// Calcular monto del descuento
+const calculateDiscount = (
+  rawTotal: number,
+  promo: AppliedPromo | null,
+): number => {
+  if (!promo) return 0;
+  if (promo.discount_type === "percentage") {
+    return Math.round(rawTotal * (promo.discount_value / 100) * 100) / 100;
+  }
+  return Math.min(promo.discount_value, rawTotal);
+};
+
 // ==================== FUNCIONES DE VALIDACIÓN Y CÁLCULO ====================
 
 // Función para validar el formulario paso 2
@@ -384,6 +431,7 @@ const handleFinalSubmit = async (
   selectedRoom: string | null,
   selectedExtras: string[],
   guestCount: number,
+  appliedPromo: AppliedPromo | null,
   t: (key: string) => string,
   setStatus: (status: "idle" | "submitting" | "success" | "error") => void,
   setErrorText: (error: string | null) => void,
@@ -422,13 +470,15 @@ const handleFinalSubmit = async (
     }
 
     const nights = calculateNights(formData.checkIn, formData.checkOut);
-    const total = calculateTotal(
+    const rawTotal = calculateTotal(
       roomData,
       formData.checkIn,
       formData.checkOut,
       selectedExtras,
       guestCount,
     );
+    const discount = calculateDiscount(rawTotal, appliedPromo);
+    const total = rawTotal - discount;
 
     // Preparar payload para la API
     const payload: BookingPayload = {
@@ -463,6 +513,9 @@ const handleFinalSubmit = async (
       ...payload,
       confirmationNumber: response.data.confirmationNumber,
       bookingId: response.data.bookingId,
+      appliedPromo,
+      discount,
+      rawTotal,
     });
 
     setStatus("success");
@@ -650,6 +703,22 @@ const SuccessModal = ({
                   </>
                 )}
 
+              {confirmationData?.discount > 0 && (
+                <div className="flex justify-between items-center py-2 text-green-700">
+                  <span className="font-semibold flex items-center gap-2">
+                    {t("booking.promo.discount")}
+                    {confirmationData?.appliedPromo && (
+                      <span className="text-xs bg-wine text-white px-2 py-0.5 rounded-full font-mono">
+                        {confirmationData.appliedPromo.code}
+                      </span>
+                    )}
+                    :
+                  </span>
+                  <span className="font-bold">
+                    -${confirmationData.discount}
+                  </span>
+                </div>
+              )}
               <div className="flex justify-between items-center py-2 border-t border-gray-200 mt-2">
                 <span className="text-xl font-bold text-olive-dark">
                   {t("booking.total")}:
@@ -725,6 +794,11 @@ const BookingPageInner = () => {
     paymentMethod: "credit-card",
   });
 
+  const [promoCode, setPromoCode] = useState("");
+  const [appliedPromo, setAppliedPromo] = useState<AppliedPromo | null>(null);
+  const [promoError, setPromoError] = useState<string | null>(null);
+  const [promoLoading, setPromoLoading] = useState(false);
+
   // Obtener room param de URL y step
   useEffect(() => {
     const roomParam = searchParams.get("room");
@@ -744,6 +818,32 @@ const BookingPageInner = () => {
       }
     }
   }, [searchParams]);
+
+  // Leer promo de URL y pre-aplicar (sin llamar la API de nuevo)
+  useEffect(() => {
+    const promoParam = searchParams.get("promo");
+    const promoTypeParam = searchParams.get("promoType") as "percentage" | "fixed" | null;
+    const promoValueParam = searchParams.get("promoValue");
+
+    if (promoParam) {
+      if (promoTypeParam && promoValueParam) {
+        // Viene del SearchBar con los datos ya validados — usar directamente
+        setAppliedPromo({
+          code: promoParam.toUpperCase(),
+          discount_type: promoTypeParam,
+          discount_value: parseFloat(promoValueParam),
+        });
+      } else {
+        // Navegación directa con solo el código — validar una vez
+        setPromoCode(promoParam.toUpperCase());
+        applyPromoCode(promoParam).then((result) => {
+          if (result.success && result.promo) {
+            setAppliedPromo(result.promo);
+          }
+        });
+      }
+    }
+  }, []); // solo al montar
 
   // Manejar fechas desde URL (CORREGIDO)
   useEffect(() => {
@@ -888,6 +988,32 @@ const BookingPageInner = () => {
     selectedExtras,
     guestCount,
   );
+  const discount = calculateDiscount(total, appliedPromo);
+  const finalTotal = total - discount;
+
+  const handleApplyPromo = async () => {
+    if (!promoCode.trim()) return;
+    setPromoLoading(true);
+    setPromoError(null);
+    const result = await applyPromoCode(promoCode);
+    if (result.success && result.promo) {
+      setAppliedPromo(result.promo);
+      setPromoCode("");
+    } else {
+      const reasonMap: Record<string, string> = {
+        "Código no encontrado": t("booking.promo.notFound"),
+        "Código inactivo": t("booking.promo.inactive"),
+        "Código expirado": t("booking.promo.expired"),
+        "Límite de usos alcanzado": t("booking.promo.limitReached"),
+      };
+      setPromoError(
+        result.reason
+          ? (reasonMap[result.reason] ?? result.reason)
+          : t("booking.promo.error"),
+      );
+    }
+    setPromoLoading(false);
+  };
 
   const handleNextClick = async () => {
     if (step === 1) {
@@ -923,6 +1049,7 @@ const BookingPageInner = () => {
         selectedRoom,
         selectedExtras,
         guestCount,
+        appliedPromo,
         t,
         setStatus,
         setErrorText,
@@ -1084,7 +1211,7 @@ const BookingPageInner = () => {
                           value={formData.checkIn}
                           onChange={handleInputChange}
                           min={minCheckInDate}
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
+                          className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:outline-none focus:border-wine/60 transition-colors group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
@@ -1100,7 +1227,7 @@ const BookingPageInner = () => {
                           value={formData.checkOut}
                           onChange={handleInputChange}
                           min={formData.checkIn || minCheckInDate}
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
+                          className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:outline-none focus:border-wine/60 transition-colors group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
@@ -1309,7 +1436,7 @@ const BookingPageInner = () => {
                              name="guests"
                              checked={guestCount === 0}
                              onChange={() => setGuestCount(0)}
-                             className="w-4 h-4 text-wine focus:ring-wine"
+                             className="w-4 h-4 text-wine focus:ring-0 focus:outline-none"
                            />
                            <span className="font-medium">
                              0 {t("common.guests", { count: 0 })}
@@ -1321,7 +1448,7 @@ const BookingPageInner = () => {
                              name="guests"
                              checked={guestCount === 1}
                              onChange={() => setGuestCount(1)}
-                             className="w-4 h-4 text-wine focus:ring-wine"
+                             className="w-4 h-4 text-wine focus:ring-0 focus:outline-none"
                            />
                            <span className="font-medium">
                              1 {t("common.guest", { count: 1 })}
@@ -1425,7 +1552,7 @@ const BookingPageInner = () => {
                           value={formData.fullName}
                           onChange={handleInputChange}
                           placeholder="John Doe"
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
+                          className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:outline-none focus:border-wine/60 transition-colors group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
@@ -1441,7 +1568,7 @@ const BookingPageInner = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           placeholder="john@example.com"
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
+                          className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:outline-none focus:border-wine/60 transition-colors group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
@@ -1457,7 +1584,7 @@ const BookingPageInner = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           placeholder="+1 (555) 000-0000"
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
+                          className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:outline-none focus:border-wine/60 transition-colors group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
@@ -1473,7 +1600,7 @@ const BookingPageInner = () => {
                           value={formData.certifiedDoctor}
                           onChange={handleInputChange}
                           placeholder={t("booking.fields.certifiedDoctorPlaceholder")}
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark"
+                          className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:outline-none focus:border-wine/60 transition-colors group-hover:border-gray-300 text-olive-dark"
                           required
                           disabled={status === "submitting"}
                         />
@@ -1489,7 +1616,7 @@ const BookingPageInner = () => {
                           onChange={handleInputChange}
                           rows={4}
                           placeholder={t("booking.specialRequestsPlaceholder")}
-                          className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-wine focus:border-wine transition-all duration-300 group-hover:border-gray-300 text-olive-dark resize-none"
+                          className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:outline-none focus:border-wine/60 transition-colors group-hover:border-gray-300 text-olive-dark resize-none"
                           disabled={status === "submitting"}
                         />
                       </div>
@@ -1547,7 +1674,7 @@ const BookingPageInner = () => {
                                     type="checkbox"
                                     checked={selectedExtras.includes(extra.id)}
                                     onChange={() => toggleExtra(extra.id)}
-                                    className="w-5 h-5 text-wine focus:ring-wine rounded"
+                                    className="w-5 h-5 text-wine focus:ring-0 focus:outline-none rounded"
                                   />
                                   <span className="text-sm text-olive-dark">
                                     {selectedExtras.includes(extra.id)
@@ -1760,13 +1887,117 @@ const BookingPageInner = () => {
                           </div>
                         </div>
 
+                        {/* Promo Code */}
+                        <div className="pt-4 border-t border-wine/20">
+                          {appliedPromo ? (
+                            <div className="flex justify-between items-center bg-green-50 border border-green-200 rounded-xl px-4 py-3">
+                              <div className="flex items-center gap-2">
+                                <FaCheckCircle className="text-green-600 flex-shrink-0" />
+                                <div>
+                                  <span className="text-sm font-semibold text-green-700">
+                                    {t("booking.promo.applied")}
+                                  </span>
+                                  <span className="ml-2 text-xs bg-wine text-white px-2 py-0.5 rounded-full font-mono">
+                                    {appliedPromo.code}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <span className="font-bold text-green-700">
+                                  -{appliedPromo.discount_type === "percentage"
+                                    ? `${appliedPromo.discount_value}%`
+                                    : `$${appliedPromo.discount_value}`}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => setAppliedPromo(null)}
+                                  className="text-gray-400 hover:text-wine transition-colors"
+                                  aria-label={t("booking.promo.remove")}
+                                >
+                                  <FaTimes />
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <div>
+                              <label className="block text-sm font-semibold text-olive-dark mb-2">
+                                {t("booking.promo.label")}
+                              </label>
+                              <div className="flex gap-2">
+                                <input
+                                  type="text"
+                                  value={promoCode}
+                                  onChange={(e) => {
+                                    setPromoCode(e.target.value.toUpperCase());
+                                    setPromoError(null);
+                                  }}
+                                  onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                      e.preventDefault();
+                                      handleApplyPromo();
+                                    }
+                                  }}
+                                  placeholder={t("booking.promo.placeholder")}
+                                  className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-wine/60 transition-colors text-sm font-mono uppercase tracking-widest"
+                                  disabled={promoLoading}
+                                />
+                                <button
+                                  type="button"
+                                  onClick={handleApplyPromo}
+                                  disabled={!promoCode.trim() || promoLoading}
+                                  className="px-5 py-2.5 bg-wine text-white rounded-xl font-semibold text-sm hover:bg-wine/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[80px]"
+                                >
+                                  {promoLoading ? (
+                                    <svg
+                                      className="animate-spin h-4 w-4 mx-auto text-white"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <circle
+                                        className="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        strokeWidth="4"
+                                      />
+                                      <path
+                                        className="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                      />
+                                    </svg>
+                                  ) : (
+                                    t("booking.promo.apply")
+                                  )}
+                                </button>
+                              </div>
+                              {promoError && (
+                                <p className="mt-1.5 text-sm text-red-600 flex items-center gap-1.5">
+                                  <FaTimes className="text-xs flex-shrink-0" />
+                                  {promoError}
+                                </p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+
                         <div className="pt-5 border-t-2 border-wine/20">
+                          {discount > 0 && (
+                            <div className="flex justify-between items-center mb-2 text-green-700">
+                              <span className="font-semibold">
+                                {t("booking.promo.discount")}:
+                              </span>
+                              <span className="font-bold">-${discount}</span>
+                            </div>
+                          )}
                           <div className="flex justify-between items-center mb-2">
                             <span className="text-xl font-bold text-wine">
                               {t("booking.total")}:
                             </span>
                             <span className="text-3xl font-bold text-wine">
-                              ${total}
+                              ${finalTotal}
                             </span>
                           </div>
                           <p className="text-sm text-olive-dark">
@@ -1950,9 +2181,26 @@ const BookingPageInner = () => {
                         <span className="text-lg font-bold text-wine">
                           {t("booking.estimatedTotal")}:
                         </span>
-                        <span className="text-2xl font-bold text-wine">
-                          ${total}
-                        </span>
+                        {appliedPromo && discount > 0 ? (
+                          <div className="text-right">
+                            <span className="block text-base line-through text-gray-400">
+                              ${total}
+                            </span>
+                            <span className="block text-2xl font-bold text-green-600">
+                              ${finalTotal}
+                            </span>
+                            <span className="text-xs text-green-600 font-medium">
+                              {appliedPromo.discount_type === "percentage"
+                                ? `${appliedPromo.discount_value}% OFF`
+                                : `$${appliedPromo.discount_value} OFF`}{" "}
+                              · {appliedPromo.code}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="text-2xl font-bold text-wine">
+                            ${total}
+                          </span>
+                        )}
                       </div>
                       {selectedExtras.length > 0 && (
                         <div className="mt-3 p-3 bg-cream rounded-lg border border-wine/20">
@@ -2188,7 +2436,7 @@ const BookingPageInner = () => {
                           type="checkbox"
                           checked={selectedExtras.includes(extra.id)}
                           onChange={() => toggleExtra(extra.id)}
-                          className="w-5 h-5 text-wine focus:ring-wine rounded border-white/30 bg-white/10"
+                          className="w-5 h-5 text-wine focus:ring-0 focus:outline-none rounded border-white/30 bg-white/10"
                           disabled={status === "submitting"}
                         />
                       </label>
