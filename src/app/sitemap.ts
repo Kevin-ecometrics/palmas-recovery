@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 const BASE = "https://www.palmasrecovery.com";
 
 type Entry = {
