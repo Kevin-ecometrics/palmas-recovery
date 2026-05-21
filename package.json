@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "preview": "next build --turbopack && next export",
-    "postbuild": "node scripts/generate-sitemap.js",
-    "start": "next start"
+"start": "next start"
   },
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.8",

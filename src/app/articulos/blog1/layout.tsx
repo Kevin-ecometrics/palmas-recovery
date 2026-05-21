@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   description:
     "¿Te hospedarás en una casa de recuperación después de tu cirugía plástica? Te proporcionamos los elementos esenciales para garantizar un viaje sin estrés para ti y tu acompañante.",
   keywords: ["Recuperación", "Tijuana", "viaje", "viajando"],
+  alternates: {
+    canonical: "https://www.palmasrecovery.com/articulos/blog1/",
+    languages: {
+      en: "https://www.palmasrecovery.com/blog/blog1/",
+      es: "https://www.palmasrecovery.com/articulos/blog1/",
+    },
+  },
 };
 
 export default function BlogLayout({

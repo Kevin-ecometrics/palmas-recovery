@@ -12,6 +12,13 @@ export const metadata: Metadata = {
     "curación",
     "Tijuana",
   ],
+  alternates: {
+    canonical: "https://www.palmasrecovery.com/articulos/blog2/",
+    languages: {
+      en: "https://www.palmasrecovery.com/blog/blog2/",
+      es: "https://www.palmasrecovery.com/articulos/blog2/",
+    },
+  },
 };
 
 export default function BlogLayout({

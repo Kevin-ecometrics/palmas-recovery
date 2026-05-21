@@ -6,6 +6,13 @@ export const metadata: Metadata = {
   description:
     "Tu espacio de recuperación es parte de tu tratamiento. No se trata solo de dónde dormirás. Descubre por qué una recuperación verdadera requiere experiencia médica y supervisión profesional.",
   keywords: ["Recuperación", "cuidado médico", "cuidado profesional"],
+  alternates: {
+    canonical: "https://www.palmasrecovery.com/articulos/blog3/",
+    languages: {
+      en: "https://www.palmasrecovery.com/blog/blog3/",
+      es: "https://www.palmasrecovery.com/articulos/blog3/",
+    },
+  },
 };
 
 export default function BlogLayout({

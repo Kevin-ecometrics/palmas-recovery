@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   description:
     "At Palmas, your needs are at the core of everything we do. Experience a post-op process thoughtfully designed for your comfort and safety since 2021. ",
   keywords: ["post-operative", "recovery", "home", "recovery journey"],
+  alternates: {
+    canonical: "https://www.palmasrecovery.com/about/",
+    languages: {
+      en: "https://www.palmasrecovery.com/about/",
+      es: "https://www.palmasrecovery.com/nosotros/",
+    },
+  },
 };
 
 export default function AboutLayout({

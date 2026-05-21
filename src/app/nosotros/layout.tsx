@@ -11,6 +11,13 @@ export const metadata: Metadata = {
     "hogar",
     "proceso de recuperación",
   ],
+  alternates: {
+    canonical: "https://www.palmasrecovery.com/nosotros/",
+    languages: {
+      en: "https://www.palmasrecovery.com/about/",
+      es: "https://www.palmasrecovery.com/nosotros/",
+    },
+  },
 };
 
 export default function AboutLayout({

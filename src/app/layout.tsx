@@ -31,9 +31,6 @@ export const metadata: Metadata = {
     "Recovery house with lymphatic massage",
     "Post-op meal plans Tijuana",
   ],
-  alternates: {
-    canonical: "https://www.palmasrecovery.com",
-  },
   authors: [
     {
       name: "Palmas Recovery",

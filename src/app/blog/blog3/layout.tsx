@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   description:
     "Your recovery space is part of your treatment. It’s not just about where you’ll sleep.Discover why true recovery requires medical expertise and supervision.",
   keywords: ["Recovery", "medical care", "professional care"],
+  alternates: {
+    canonical: "https://www.palmasrecovery.com/blog/blog3/",
+    languages: {
+      en: "https://www.palmasrecovery.com/blog/blog3/",
+      es: "https://www.palmasrecovery.com/articulos/blog3/",
+    },
+  },
 };
 
 export default function BlogLayout({
