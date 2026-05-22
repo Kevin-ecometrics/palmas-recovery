@@ -228,11 +228,7 @@ export default function HotelDestinationsScroll() {
             return (
               <div
                 key={item.id}
-                className={`
-                  flex-none w-[260px] sm:w-[300px] md:w-[360px] snap-start
-                  transition-all duration-300
-                  ${isActive ? "scale-[1.02]" : "scale-100"}
-                `}
+                className="flex-none w-[260px] sm:w-[300px] md:w-[360px] snap-start transition-all duration-300"
               >
                 <div className="flex flex-col gap-4">
                   {/* TEXTO ARRIBA */}
