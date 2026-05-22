@@ -75,9 +75,9 @@ const BannerWithImage: React.FC = () => {
           <div className="lg:col-span-6">
             <motion.div
               className="relative"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="relative aspect-[16/11] rounded-2xl overflow-hidden">
                 <img
