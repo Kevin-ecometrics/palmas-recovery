@@ -40,10 +40,6 @@ interface Room {
   tagColor?: string;
 }
 
-interface AvailabilityResponse {
-  [roomId: string]: boolean;
-}
-
 // Componente principal
 const SearchResultsInner = () => {
   const router = useRouter();
@@ -70,14 +66,11 @@ const SearchResultsInner = () => {
 
   // Estados
   const [loading, setLoading] = useState(true);
-  const [availableRooms, setAvailableRooms] = useState<AvailabilityResponse>(
-    {},
-  );
   const [roomsData, setRoomsData] = useState<Room[]>([]);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [selectedRoom, setSelectedRoom] = useState<string | null>(roomType);
-  const [searching, setSearching] = useState(false);
+
 
   // Estados para el selector de fechas
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -234,24 +227,7 @@ const SearchResultsInner = () => {
   // Verificar disponibilidad
   const checkAvailability = async () => {
     if (!checkIn || !checkOut) return;
-
-    setSearching(true);
-    setLoading(true);
-    try {
-      const apiBaseUrl =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-      const response = await axios.post(`${apiBaseUrl}/api/bulk-availability`, {
-        checkIn,
-        checkOut,
-        roomIds: roomsData.map((r) => r.id),
-      });
-      setAvailableRooms(response.data);
-    } catch (error) {
-      logger.error("Error checking availability:", error);
-    } finally {
-      setSearching(false);
-      setLoading(false);
-    }
+    setLoading(false);
   };
 
   // Buscar cuando cambien fechas o datos
@@ -379,13 +355,9 @@ const SearchResultsInner = () => {
     router.push(`${getRouteByKey("book", currentLang)}?${params.toString()}`);
   };
 
-  // Filtrar habitaciones
-  const availableRoomsList = roomsData.filter(
-    (room) => availableRooms[room.id] === true,
-  );
-  const unavailableRoomsList = roomsData.filter(
-    (room) => availableRooms[room.id] === false,
-  );
+  // Mostrar todas las habitaciones sin filtrar por disponibilidad
+  const availableRoomsList = roomsData;
+  const unavailableRoomsList: typeof roomsData = [];
 
   // Renderizado condicional inicial
   if (!isClient) {
@@ -518,7 +490,7 @@ const SearchResultsInner = () => {
 
                   {/* Opciones rápidas de duración */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {[1, 2, 3, 4, 5, 7].map((days) => {
+                    {[5, 7, 14, 18].map((days) => {
                       const {
                         checkIn: previewCheckIn,
                         checkOut: previewCheckOut,

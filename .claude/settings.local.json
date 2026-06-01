@@ -11,7 +11,8 @@
       "Bash(~/.bun/bin/bun --version)",
       "Bash(~/.bun/bin/bun run *)",
       "Bash(Remove-Item \"C:/Users/kevin/e-commetrics/palmas-recovery/public/sitemap.xml\")",
-      "Bash(Remove-Item \"C:/Users/kevin/e-commetrics/palmas-recovery/public/robots.txt\")"
+      "Bash(Remove-Item \"C:/Users/kevin/e-commetrics/palmas-recovery/public/robots.txt\")",
+      "PowerShell(Get-Command *)"
     ]
   }
 }

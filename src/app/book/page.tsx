@@ -236,47 +236,6 @@ const validateDates = (
 
 // ==================== FUNCIONES DE API ====================
 
-// Función para verificar disponibilidad de múltiples habitaciones
-const checkBulkAvailability = async (
-  checkIn: string,
-  checkOut: string,
-): Promise<{ [roomId: string]: boolean }> => {
-  try {
-    const apiBaseUrl =
-      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-    const response = await axios.post(`${apiBaseUrl}/api/bulk-availability`, {
-      checkIn,
-      checkOut,
-      roomIds: ROOMS.filter((room) => room.price !== null).map((r) => r.id),
-    });
-    return response.data;
-  } catch (error) {
-    logger.error("Error checking bulk availability:", error);
-    return {};
-  }
-};
-
-// Función para verificar disponibilidad de una habitación específica
-const checkAvailability = async (
-  roomId: string,
-  checkIn: string,
-  checkOut: string,
-): Promise<{ available: boolean; message?: string }> => {
-  try {
-    const apiBaseUrl =
-      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-    const response = await axios.post(`${apiBaseUrl}/api/check-availability`, {
-      roomId,
-      checkIn,
-      checkOut,
-    });
-    return response.data;
-  } catch (error) {
-    logger.error("Error checking availability:", error);
-    return { available: false, message: "Error checking availability" };
-  }
-};
-
 // Función para validar y canjear un código promocional
 const applyPromoCode = async (
   code: string,
@@ -456,18 +415,6 @@ const handleFinalSubmit = async (
     // Verificar si el precio es null (como en el lobby)
     if (roomData.price === null) {
       throw new Error(t("booking.errors.roomNotBookable"));
-    }
-
-    // Verificar disponibilidad nuevamente
-    const availability = await checkAvailability(
-      selectedRoom,
-      formData.checkIn,
-      formData.checkOut,
-    );
-    if (!availability.available) {
-      throw new Error(
-        availability.message || t("booking.errors.roomNotAvailable"),
-      );
     }
 
     const nights = calculateNights(formData.checkIn, formData.checkOut);
@@ -779,9 +726,6 @@ const BookingPageInner = () => {
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [galleryExtraId, setGalleryExtraId] = useState<string | null>(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
-  const [availableRooms, setAvailableRooms] = useState<{
-    [roomId: string]: boolean;
-  }>({});
   const [isSearchingRooms, setIsSearchingRooms] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -870,27 +814,7 @@ const BookingPageInner = () => {
           checkOut: checkOutParam,
         }));
 
-        // Verificar disponibilidad automáticamente si tenemos fechas
-        const checkAvailabilityOnLoad = async () => {
-          try {
-            const availability = await checkBulkAvailability(
-              checkInParam,
-              checkOutParam,
-            );
-            setAvailableRooms(availability);
-            setHasSearched(true);
-
-            // Si hay una habitación preseleccionada pero no está disponible, limpiar
-            if (selectedRoom && availability[selectedRoom] === false) {
-              setSelectedRoom(null);
-              setValidationError(t("booking.errors.selectedRoomNotAvailable"));
-            }
-          } catch (error) {
-            logger.error("Error checking availability on load:", error);
-          }
-        };
-
-        checkAvailabilityOnLoad();
+        setHasSearched(true);
       }
     }
 
@@ -926,20 +850,7 @@ const BookingPageInner = () => {
     setHasSearched(true);
 
     try {
-      const availability = await checkBulkAvailability(
-        formData.checkIn,
-        formData.checkOut,
-      );
-      setAvailableRooms(availability);
-
-      // Si la habitación actualmente seleccionada no está disponible, deseleccionarla
-      if (selectedRoom && availability[selectedRoom] === false) {
-        setSelectedRoom(null);
-        setValidationError(t("booking.errors.selectedRoomNotAvailable"));
-      }
-    } catch (error) {
-      logger.error("Error searching rooms:", error);
-      setValidationError(t("booking.errors.availabilityCheckFailed"));
+      // búsqueda realizada
     } finally {
       setIsSearchingRooms(false);
     }
@@ -968,7 +879,6 @@ const BookingPageInner = () => {
     // Resetear búsqueda cuando cambian las fechas
     if (name === "checkIn" || name === "checkOut") {
       setHasSearched(false);
-      setAvailableRooms({});
     }
   };
 
@@ -1101,12 +1011,6 @@ const BookingPageInner = () => {
       setShowSuccessModal,
     );
     setHasSearched(false);
-    setAvailableRooms({});
-  };
-
-  const getRoomAvailabilityStatus = (roomId: string) => {
-    if (!hasSearched) return "unknown";
-    return availableRooms[roomId] ? "available" : "unavailable";
   };
 
   // Filtrar habitaciones que tienen precio (excluir lobby)
@@ -1320,37 +1224,26 @@ const BookingPageInner = () => {
 
                       {bookableRooms.map((room) => {
                         const isSelected = selectedRoom === room.id;
-                        const availabilityStatus = getRoomAvailabilityStatus(
-                          room.id,
-                        );
-                        const isAvailable = availabilityStatus === "available";
-
-                        if (!isAvailable && availabilityStatus !== "unknown") {
-                          return null;
-                        }
 
                         return (
                           <div key={room.id} className="space-y-0">
                             <div
                               onClick={() => {
-                                if (isAvailable) {
-                                  setSelectedRoom(room.id);
-                                  gaEvent.roomSelected(
-                                    room.id,
-                                    room.name,
-                                    room.price ?? 0,
-                                  );
-                                  pixelEvent.roomSelected(
-                                    room.id,
-                                    room.name,
-                                    room.price ?? 0,
-                                  );
-                                }
+                                setSelectedRoom(room.id);
+                                gaEvent.roomSelected(
+                                  room.id,
+                                  room.name,
+                                  room.price ?? 0,
+                                );
+                                pixelEvent.roomSelected(
+                                  room.id,
+                                  room.name,
+                                  room.price ?? 0,
+                                );
                               }}
                               className={`
-                                group relative overflow-hidden rounded-2xl cursor-pointer 
+                                group relative overflow-hidden rounded-2xl cursor-pointer
                                 transition-all duration-500 transform hover:scale-[1.02]
-                                ${!isAvailable ? "opacity-50 cursor-not-allowed" : ""}
                                 ${
                                   isSelected
                                     ? "ring-4 ring-wine shadow-2xl shadow-wine/20"
@@ -1376,13 +1269,7 @@ const BookingPageInner = () => {
                                         </div>
                                       )}
 
-                                      {!isAvailable && (
-                                        <div className="absolute inset-0 bg-gray-500/50 flex items-center justify-center">
-                                          <span className="bg-wine text-white px-4 py-2 rounded-full text-sm font-bold">
-                                            {t("booking.notAvailable")}
-                                          </span>
-                                        </div>
-                                      )}
+
                                     </div>
                                   </div>
 
@@ -1449,20 +1336,6 @@ const BookingPageInner = () => {
                         );
                       })}
 
-                  {bookableRooms.filter(
-                         (room) =>
-                           getRoomAvailabilityStatus(room.id) === "available",
-                       ).length === 0 && (
-                         <div className="text-center py-12 bg-cream rounded-2xl">
-                           <FaBed className="text-5xl text-wine/30 mx-auto mb-4" />
-                           <p className="text-wine font-medium">
-                             {t("booking.noRoomsAvailable")}
-                           </p>
-                           <p className="text-sm text-olive-dark mt-2">
-                             {t("booking.tryDifferentDates")}
-                           </p>
-                         </div>
-                       )}
                      </div>
                    )}
 
