@@ -156,7 +156,8 @@ const ContactPage: React.FC = () => {
         title={t("bannerHero.contact.title")}
         description={t("bannerHero.contact.description")}
         height="h-[80dvh]"
-        imageSrc="/contact_palmas_banner.webp"
+        mediaType="video"
+        videoSrc="/video/video_contact_palmas_recovery.webm"
         overlayColor="bg-black/55"
       />
       <div className="min-h-screen bg-white py-20 px-6 md:px-20">

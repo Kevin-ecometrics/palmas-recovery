@@ -62,7 +62,8 @@ export default function Hero({
             poster={videoPoster}
             className="w-full h-full object-cover"
           >
-            <source src={videoSrc} type="video/mp4" />
+            <source src={videoSrc} type="video/webm" />
+            <source src={videoSrc?.replace('.webm', '.mp4')} type="video/mp4" />
           </video>
         ) : (
           <img
