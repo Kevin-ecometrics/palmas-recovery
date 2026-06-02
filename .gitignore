@@ -43,3 +43,6 @@ next-env.d.ts
 # source big size files
 /public/video/*
 /public/360/*
+
+# Server files
+/server/*
