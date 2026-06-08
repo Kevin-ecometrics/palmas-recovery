@@ -1,15 +1,9 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { FaHotel, FaSuitcase, FaArrowRight } from "react-icons/fa";
+import { FaHotel, FaSuitcase, FaArrowRight, FaUserMd, FaHospital } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import Link from "next/link";
 import Hero from "../components/Hero";
-
-const BLOG_IMAGES = [
-  "/Viaja a tijuana para tu cirugia plastica y recupera en palmas recovery.webp",
-  "/Viaja con el mejor clima y agenda tu hospedaje para una recuperacion postoperatoria de primer nivel en tijuana en pr.jpg",
-  "/Recuperate mejor con expertos en el area de la salud con instalaciones de primer nivel para cuidados  postoperatorios.jpg",
-];
 
 const featuredPosts = [
   {
@@ -18,7 +12,7 @@ const featuredPosts = [
     excerpt:
       "Tu checklist completo para una recuperación sin estrés. Prepárate como un profesional con nuestra guía esencial.",
     category: "Preparación",
-    image: BLOG_IMAGES[0],
+    image: "/Viaja a tijuana para tu cirugia plastica y recupera en palmas recovery.webp",
     icon: <FaSuitcase className="text-xl" />,
   },
   {
@@ -27,7 +21,7 @@ const featuredPosts = [
     excerpt:
       "Guía completa para elegir la mejor temporada para tu procedimiento estético y recuperación en México.",
     category: "Planeación",
-    image: BLOG_IMAGES[1],
+    image: "/Viaja con el mejor clima y agenda tu hospedaje para una recuperacion postoperatoria de primer nivel en tijuana en pr.jpg",
     icon: <FaCalendarAlt className="text-xl" />,
   },
   {
@@ -37,8 +31,26 @@ const featuredPosts = [
     excerpt:
       "Conoce las diferencias clave entre el cuidado profesional postoperatorio y un alojamiento tradicional.",
     category: "Cuidado de recuperación",
-    image: BLOG_IMAGES[2],
+    image: "/Recuperate mejor con expertos en el area de la salud con instalaciones de primer nivel para cuidados  postoperatorios.jpg",
     icon: <FaHotel className="text-xl" />,
+  },
+  {
+    id: "blog4",
+    title: "¿Estás considerando una cirugía plástica? Descubre por qué Tijuana es el destino ideal",
+    excerpt:
+      "Conoce por qué Tijuana es la meca del turismo médico y cómo elegir al cirujano plástico certificado correcto para un procedimiento seguro y exitoso.",
+    category: "Cirugía Plástica",
+    image: "/images blog 4/Cirugia plastica en Tijuana con expertos.webp",
+    icon: <FaUserMd className="text-xl" />,
+  },
+  {
+    id: "blog5",
+    title: "¿Eres cirujano plástico? Extiende tu equipo con una casa de recuperación de primer nivel en Tijuana",
+    excerpt:
+      "Descubre cómo Palmas Recovery complementa tu práctica con cuidados postoperatorios certificados por COEPRIS, 24/7, que protegen a tus pacientes y tu reputación.",
+    category: "Para Cirujanos",
+    image: "/imagenes blog 5/Palmas recovery es tu equipo con una casa de recuperación de primer nivel en Tijuana.webp",
+    icon: <FaHospital className="text-xl" />,
   },
 ];
 
@@ -96,7 +108,7 @@ export default function BlogHome() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredPosts.map((post) => (
               <article
                 key={post.id}
