@@ -13,10 +13,10 @@ export const metadata: Metadata = {
     "Tijuana",
   ],
   alternates: {
-    canonical: "https://www.palmasrecovery.com/articulos/blog2/",
+    canonical: "https://www.palmasrecovery.com/articulos/cual-es-el-clima-ideal-para-cirugia-plastica-y-recuperacion-en-tijuana/",
     languages: {
-      en: "https://www.palmasrecovery.com/blog/blog2/",
-      es: "https://www.palmasrecovery.com/articulos/blog2/",
+      en: "https://www.palmasrecovery.com/blog/the-ideal-weather-for-plastic-surgery-and-smooth-recovery-in-tijuana/",
+      es: "https://www.palmasrecovery.com/articulos/cual-es-el-clima-ideal-para-cirugia-plastica-y-recuperacion-en-tijuana/",
     },
   },
 };

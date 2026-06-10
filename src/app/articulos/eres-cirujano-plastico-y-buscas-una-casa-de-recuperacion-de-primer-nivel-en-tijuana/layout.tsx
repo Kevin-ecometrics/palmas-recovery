@@ -7,10 +7,10 @@ export const metadata: Metadata = {
     "¿Buscas una casa de recuperación certificada por COEPRIS? somos la extensión médica y logística ideal para el postoperatorio de tus pacientes. ",
   keywords: ["Recuperación", "cuidado médico", "cuidado profesional"],
   alternates: {
-    canonical: "https://www.palmasrecovery.com/articulos/blog5/",
+    canonical: "https://www.palmasrecovery.com/articulos/eres-cirujano-plastico-y-buscas-una-casa-de-recuperacion-de-primer-nivel-en-tijuana/",
     languages: {
-      en: "https://www.palmasrecovery.com/blog/blog5/",
-      es: "https://www.palmasrecovery.com/articulos/blog5/",
+      en: "https://www.palmasrecovery.com/blog/are-you-a-plastic-surgeon-looking-for-a-premier-recovery-house-in-tijuana/",
+      es: "https://www.palmasrecovery.com/articulos/eres-cirujano-plastico-y-buscas-una-casa-de-recuperacion-de-primer-nivel-en-tijuana/",
     },
   },
 };

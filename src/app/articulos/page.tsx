@@ -7,7 +7,7 @@ import Hero from "../components/Hero";
 
 const featuredPosts = [
   {
-    id: "blog1",
+    id: "que-empacar-para-tu-casa-de-recuperacion-postoperatoria-en-tijuana",
     title: "Qué empacar para tu casa de recuperación postoperatoria",
     excerpt:
       "Tu checklist completo para una recuperación sin estrés. Prepárate como un profesional con nuestra guía esencial.",
@@ -16,7 +16,7 @@ const featuredPosts = [
     icon: <FaSuitcase className="text-xl" />,
   },
   {
-    id: "blog2",
+    id: "cual-es-el-clima-ideal-para-cirugia-plastica-y-recuperacion-en-tijuana",
     title: "¿Cuál es el mejor momento para una cirugía plástica en México?",
     excerpt:
       "Guía completa para elegir la mejor temporada para tu procedimiento estético y recuperación en México.",
@@ -25,7 +25,7 @@ const featuredPosts = [
     icon: <FaCalendarAlt className="text-xl" />,
   },
   {
-    id: "blog3",
+    id: "casa-de-recuperacion-vs-hotel-3-razones-por-las-que-el-cuidado-profesional-es-crucial",
     title:
       "Casa de recuperación vs. hotel: por qué tu recuperación depende del cuidado profesional",
     excerpt:
@@ -35,7 +35,7 @@ const featuredPosts = [
     icon: <FaHotel className="text-xl" />,
   },
   {
-    id: "blog4",
+    id: "por-que-tijuana-es-el-destino-ideal-para-cirugia-plastica-y-como-elegir-al-especialista-correcto",
     title: "¿Estás considerando una cirugía plástica? Descubre por qué Tijuana es el destino ideal",
     excerpt:
       "Conoce por qué Tijuana es la meca del turismo médico y cómo elegir al cirujano plástico certificado correcto para un procedimiento seguro y exitoso.",
@@ -44,7 +44,7 @@ const featuredPosts = [
     icon: <FaUserMd className="text-xl" />,
   },
   {
-    id: "blog5",
+    id: "eres-cirujano-plastico-y-buscas-una-casa-de-recuperacion-de-primer-nivel-en-tijuana",
     title: "¿Eres cirujano plástico? Extiende tu equipo con una casa de recuperación de primer nivel en Tijuana",
     excerpt:
       "Descubre cómo Palmas Recovery complementa tu práctica con cuidados postoperatorios certificados por COEPRIS, 24/7, que protegen a tus pacientes y tu reputación.",

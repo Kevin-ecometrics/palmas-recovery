@@ -258,10 +258,10 @@ export default function Blog5() {
 
         <div className="mt-16 pt-8 border-t border-gray-200">
           <div className="flex justify-between items-center mb-8">
-            <Link href="/articulos/blog4" className="text-[#70805a]">
+            <Link href="/articulos/por-que-tijuana-es-el-destino-ideal-para-cirugia-plastica-y-como-elegir-al-especialista-correcto" className="text-[#70805a]">
               ← Artículo anterior
             </Link>
-            <Link href="/articulos/blog1" className="text-[#70805a]">
+            <Link href="/articulos/que-empacar-para-tu-casa-de-recuperacion-postoperatoria-en-tijuana" className="text-[#70805a]">
               Siguiente artículo →
             </Link>
           </div>

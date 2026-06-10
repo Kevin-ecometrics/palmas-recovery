@@ -259,7 +259,7 @@ export default function Blog5() {
         <div className="mt-16 pt-8 border-t border-gray-200">
           <div className="flex justify-between items-center mb-8">
             <div className="flex-1">
-              <Link href="/blog/blog4" className="group inline-flex items-center gap-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors">
+              <Link href="/blog/why-tijuana-is-the-ideal-destination-for-plastic-surgery-and-how-to-choose-the-right-specialist" className="group inline-flex items-center gap-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors">
                 <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#70805a] group-hover:bg-[#70805a]/10 transition">
                   <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
                 </div>
@@ -270,7 +270,7 @@ export default function Blog5() {
               </Link>
             </div>
             <div className="flex-1 flex justify-end">
-              <Link href="/blog/blog1" className="group inline-flex items-center gap-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors">
+              <Link href="/blog/what-to-pack-for-your-post-op-recovery-house-in-tijuana" className="group inline-flex items-center gap-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors">
                 <div className="text-right">
                   <p className="text-sm text-gray-500">Next Article</p>
                   <p className="font-semibold">What to Pack for Recovery</p>

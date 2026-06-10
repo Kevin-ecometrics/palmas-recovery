@@ -202,7 +202,7 @@ export default function Blog2() {
           <div className="flex justify-between items-center mb-8">
             <div className="flex-1">
               <Link
-                href="/articulos/blog1"
+                href="/articulos/que-empacar-para-tu-casa-de-recuperacion-postoperatoria-en-tijuana"
                 className="group inline-flex items-center gap-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors"
               >
                 <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-[#70805a] group-hover:bg-[#70805a]/10 transition">
@@ -216,7 +216,7 @@ export default function Blog2() {
             </div>
             <div className="flex-1 flex justify-end">
               <Link
-                href="/articulos/blog3"
+                href="/articulos/casa-de-recuperacion-vs-hotel-3-razones-por-las-que-el-cuidado-profesional-es-crucial"
                 className="group inline-flex items-center gap-3 text-[#70805a] hover:text-[#5f6f4a] transition-colors"
               >
                 <div className="text-right">

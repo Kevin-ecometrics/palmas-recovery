@@ -286,10 +286,10 @@ export default function Blog4() {
 
         <div className="mt-16 pt-8 border-t border-gray-200">
           <div className="flex justify-between items-center mb-8">
-            <Link href="/articulos/blog2" className="text-[#70805a]">
+            <Link href="/articulos/cual-es-el-clima-ideal-para-cirugia-plastica-y-recuperacion-en-tijuana" className="text-[#70805a]">
               ← Artículo anterior
             </Link>
-            <Link href="/articulos/blog5" className="text-[#70805a]">
+            <Link href="/articulos/eres-cirujano-plastico-y-buscas-una-casa-de-recuperacion-de-primer-nivel-en-tijuana" className="text-[#70805a]">
               Siguiente artículo →
             </Link>
           </div>

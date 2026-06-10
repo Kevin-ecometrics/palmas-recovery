@@ -7,7 +7,7 @@ import Hero from "../components/Hero";
 
 const featuredPosts = [
   {
-    id: "blog1",
+    id: "what-to-pack-for-your-post-op-recovery-house-in-tijuana",
     title: "What to Pack for Your Post-Op Recovery House",
     excerpt:
       "Your complete checklist for a stress-free recovery experience. Prepare like a pro with our essential packing guide.",
@@ -16,7 +16,7 @@ const featuredPosts = [
     icon: <FaSuitcase className="text-xl" />,
   },
   {
-    id: "blog2",
+    id: "the-ideal-weather-for-plastic-surgery-and-smooth-recovery-in-tijuana",
     title: "When is the Best Time for Plastic Surgery in Mexico?",
     excerpt:
       "A comprehensive guide to choosing the optimal season for your cosmetic procedure and recovery in Mexico.",
@@ -25,7 +25,7 @@ const featuredPosts = [
     icon: <FaCalendarAlt className="text-xl" />,
   },
   {
-    id: "blog3",
+    id: "recovery-house-vs-hotel-3-reasons-professional-care-is-crucial",
     title:
       "Recovery House vs. Hotel: Why Your Healing Depends on Professional Care",
     excerpt:
@@ -35,7 +35,7 @@ const featuredPosts = [
     icon: <FaHotel className="text-xl" />,
   },
   {
-    id: "blog4",
+    id: "why-tijuana-is-the-ideal-destination-for-plastic-surgery-and-how-to-choose-the-right-specialist",
     title: "Considering Plastic Surgery? Why Tijuana Is the Ideal Destination",
     excerpt:
       "Discover why Tijuana is the world's medical tourism capital and how to choose the right board-certified plastic surgeon for a safe, successful procedure.",
@@ -44,7 +44,7 @@ const featuredPosts = [
     icon: <FaUserMd className="text-xl" />,
   },
   {
-    id: "blog5",
+    id: "are-you-a-plastic-surgeon-looking-for-a-premier-recovery-house-in-tijuana",
     title: "Are You a Plastic Surgeon? Partner with a Premier Recovery House in Tijuana",
     excerpt:
       "Learn how Palmas Recovery extends your team's excellence with COEPRIS-certified, 24/7 expert post-operative care that protects your patients and your reputation.",
