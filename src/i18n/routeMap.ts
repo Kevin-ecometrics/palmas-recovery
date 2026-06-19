@@ -14,6 +14,8 @@ export type RouteKey =
   | "blog1"
   | "blog2"
   | "blog3"
+  | "blog4"
+  | "blog5"
   | "about"
   | "tourshared"
   | "tourprivate"
@@ -32,9 +34,31 @@ export const ROUTE_PAIRS: Array<{ key: RouteKey; es: string; en: string }> = [
   { key: "rooms", es: "/habitaciones", en: "/rooms" },
   { key: "tour", es: "/recorrido/360", en: "/tour/360" },
   { key: "blog", es: "/articulos", en: "/blog" },
-  { key: "blog1", es: "/articulos/blog1", en: "/blog/blog1" },
-  { key: "blog2", es: "/articulos/blog2", en: "/blog/blog2" },
-  { key: "blog3", es: "/articulos/blog3", en: "/blog/blog3" },
+  {
+    key: "blog1",
+    es: "/articulos/cual-es-el-clima-ideal-para-cirugia-plastica-y-recuperacion-en-tijuana",
+    en: "/blog/the-ideal-weather-for-plastic-surgery-and-smooth-recovery-in-tijuana",
+  },
+  {
+    key: "blog2",
+    es: "/articulos/por-que-tijuana-es-el-destino-ideal-para-cirugia-plastica-y-como-elegir-al-especialista-correcto",
+    en: "/blog/why-tijuana-is-the-ideal-destination-for-plastic-surgery-and-how-to-choose-the-right-specialist",
+  },
+  {
+    key: "blog3",
+    es: "/articulos/que-empacar-para-tu-casa-de-recuperacion-postoperatoria-en-tijuana",
+    en: "/blog/what-to-pack-for-your-post-op-recovery-house-in-tijuana",
+  },
+  {
+    key: "blog4",
+    es: "/articulos/casa-de-recuperacion-vs-hotel-3-razones-por-las-que-el-cuidado-profesional-es-crucial",
+    en: "/blog/recovery-house-vs-hotel-3-reasons-professional-care-is-crucial",
+  },
+  {
+    key: "blog5",
+    es: "/articulos/eres-cirujano-plastico-y-buscas-una-casa-de-recuperacion-de-primer-nivel-en-tijuana",
+    en: "/blog/are-you-a-plastic-surgeon-looking-for-a-premier-recovery-house-in-tijuana",
+  },
   { key: "about", es: "/nosotros", en: "/about" },
   { key: "tourshared", es: "/tour/360/shared", en: "/tour/360/shared" },
   { key: "tourprivate", es: "/tour/360/dsa", en: "/tour/360/private" },
