@@ -277,7 +277,7 @@ export default function Blog4() {
           </h3>
           <p className="text-gray-700 mb-4">Have your surgery with board-certified plastic surgeons and experience your post-operative recovery with certified doctors and care specialists.</p>
           <Link
-            href="/book"
+            href="/contact"
             className="inline-block px-8 py-3 bg-[#70805a] text-white font-bold rounded-full shadow hover:bg-[#5f6f4a] transition"
           >
             Contact Us Today

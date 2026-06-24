@@ -237,24 +237,8 @@
     "kicker": "Blog",
     "title": "Discover helpful insights, practical tips, and everything you need to support your recovery journey",
     "subtitle": "",
-    "cta": "Read more",
-    "items": [
-      {
-        "category": "Wellness",
-        "title": "What to pack for your post-op recovery house?",
-        "excerpt": ""
-      },
-      {
-        "category": "Care",
-        "title": "When is the best time for plastic surgery in Mexico?",
-        "excerpt": ""
-      },
-      {
-        "category": "Lifestyle",
-        "title": "Recovery House vs. Hotel: 3 Reasons Why Your Healing Depends on Professional Care",
-        "excerpt": ""
-      }
-    ]
+    "cta": "Read full article",
+    "viewAll": "View all articles"
   },
   "about": {
     "patientStories": {
@@ -1158,6 +1142,8 @@
   },
   "panorama": {
     "dragHint": "Drag to explore \u2022 360\u00b0",
+    "back": "Back",
+    "goToLobby": "Go to Lobby",
     "labels": {
       "studio": "Studio",
       "playRoom": "Playroom",

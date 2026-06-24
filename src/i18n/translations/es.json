@@ -236,24 +236,8 @@
     "kicker": "Blog",
     "title": "Descubra informaci\u00f3n \u00fatil, consejos pr\u00e1cticos y todo lo que necesita para su proceso de recuperaci\u00f3n.",
     "subtitle": "",
-    "cta": "Leer m\u00e1s",
-    "items": [
-      {
-        "category": "Bienestar",
-        "title": "\u00bfQu\u00e9 necesitas llevar a tu recuperaci\u00f3n post-operatoria?",
-        "excerpt": ""
-      },
-      {
-        "category": "Cuidado",
-        "title": "\u00bfCu\u00e1l es el mejor momento para una cirug\u00eda pl\u00e1stica en M\u00e9xico?",
-        "excerpt": ""
-      },
-      {
-        "category": "Estilo de vida",
-        "title": "Casa de recuperaci\u00f3n vs Hotel: 3 razones por las que tu recuperaci\u00f3n depende de una atenci\u00f3n profesional",
-        "excerpt": ""
-      }
-    ]
+    "cta": "Leer art\u00edculo completo",
+    "viewAll": "Ver todos los art\u00edculos"
   },
   "about": {
     "patientStories": {
@@ -1157,6 +1141,8 @@
   },
   "panorama": {
     "dragHint": "Arrastra para explorar \u2022 360\u00b0",
+    "back": "Volver",
+    "goToLobby": "Ir al Lobby",
     "labels": {
       "studio": "Estudio",
       "playRoom": "Sala de juegos",

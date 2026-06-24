@@ -106,7 +106,7 @@ export default function Blog3() {
 					<FaCheckCircle className="text-4xl text-[#70805a] mb-4" />
 					<h3 className="text-2xl font-bold text-[#70805a] mb-2">Ready to experience professional care?</h3>
 					<p className="text-gray-700 mb-4">Send us a message or give us a call to find out more about our facilities, services, and packages. At Palmas we combine medical excellence with luxury hospitality to create the perfect environment for your healing journey.</p>
-					<Link href="/book" className="inline-block px-8 py-3 bg-[#70805a] text-white font-bold rounded-full shadow hover:bg-[#5f6f4a] transition">Contact Us Today</Link>
+					<Link href="/contact" className="inline-block px-8 py-3 bg-[#70805a] text-white font-bold rounded-full shadow hover:bg-[#5f6f4a] transition">Contact Us Today</Link>
 				</div>
 
 				{/* Blog Navigation */}

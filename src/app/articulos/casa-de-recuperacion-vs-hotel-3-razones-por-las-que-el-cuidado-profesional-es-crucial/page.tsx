@@ -30,7 +30,7 @@ export default function Blog3() {
       <div className="max-w-7xl mx-auto px-12 py-8">
         <div className="mb-8">
           <Link
-            href="/blog"
+            href="/articulos"
             className="inline-flex items-center gap-2 text-[#70805a] hover:text-[#5f6f4a] transition-colors group"
           >
             <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />

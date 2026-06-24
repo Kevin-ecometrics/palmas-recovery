@@ -249,7 +249,7 @@ export default function Blog5() {
             Let us care for your patients with the same passion, rigor, and professionalism with which you operate on them. Make Palmas Recovery your strategic partner for surgical success.
           </p>
           <Link
-            href="/book"
+            href="/contact"
             className="inline-block px-8 py-3 bg-[#70805a] text-white font-bold rounded-full shadow hover:bg-[#5f6f4a] transition"
           >
             Contact Us Today

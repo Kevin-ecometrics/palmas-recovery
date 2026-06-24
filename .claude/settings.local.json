@@ -12,7 +12,13 @@
       "Bash(~/.bun/bin/bun run *)",
       "Bash(Remove-Item \"C:/Users/kevin/e-commetrics/palmas-recovery/public/sitemap.xml\")",
       "Bash(Remove-Item \"C:/Users/kevin/e-commetrics/palmas-recovery/public/robots.txt\")",
-      "PowerShell(Get-Command *)"
+      "PowerShell(Get-Command *)",
+      "Bash(awk '{print $NF}')",
+      "PowerShell(npx tsc --noEmit -p . 2>&1 | Select-Object -First 100)",
+      "PowerShell(node .\\\\node_modules\\\\typescript\\\\bin\\\\tsc --noEmit -p . 2>&1 | Select-Object -First 150)",
+      "Bash(bun x *)",
+      "Bash(bun *)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
