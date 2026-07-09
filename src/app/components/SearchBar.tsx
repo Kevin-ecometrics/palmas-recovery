@@ -581,11 +581,24 @@ export default function SearchBar({ floating, hidden = false }: Props) {
   const [promoData, setPromoData] = useState<{
     discount_type: "percentage" | "fixed";
     discount_value: number;
+    applies_to?: "all" | "room" | "extra" | "targets";
+    target_ids?: string[] | null;
+    targets?: { type: "room" | "extra"; id: string; discount: number }[] | null;
   } | null>(null);
 
-  const computeDiscountedTotal = (price: number, nights: number): number => {
+  const computeDiscountedTotal = (price: number, nights: number, roomId?: string): number => {
     const raw = price * nights;
     if (!promoData) return raw;
+
+    // Targets mode: find matching room target
+    if (promoData.targets?.length && roomId) {
+      const roomTarget = promoData.targets.find((t) => t.type === "room" && t.id === roomId);
+      if (roomTarget && roomTarget.discount) {
+        return Math.round(raw * (1 - roomTarget.discount / 100) * 100) / 100;
+      }
+      return raw;
+    }
+
     if (promoData.discount_type === "percentage") {
       return Math.round(raw * (1 - promoData.discount_value / 100) * 100) / 100;
     }
@@ -610,9 +623,13 @@ export default function SearchBar({ floating, hidden = false }: Props) {
         setPromoData({
           discount_type: data.discount_type,
           discount_value: data.discount_value,
+          applies_to: data.applies_to || "all",
+          target_ids: data.target_ids || null,
+          targets: data.targets || null,
         });
-        const label =
-          data.discount_type === "percentage"
+        const label = data.targets?.length
+          ? "Discount by room/extra applied!"
+          : data.discount_type === "percentage"
             ? `${data.discount_value}% OFF applied!`
             : `$${data.discount_value} OFF applied!`;
         setPromoDiscountLabel(label);
@@ -657,6 +674,15 @@ export default function SearchBar({ floating, hidden = false }: Props) {
     if (promoData && promoStatus === "valid") {
       params.set("promoType", promoData.discount_type);
       params.set("promoValue", promoData.discount_value.toString());
+      if (promoData.targets?.length) {
+        params.set("appliesTo", "targets");
+        params.set("targets", JSON.stringify(promoData.targets));
+      } else if (promoData.applies_to && promoData.applies_to !== "all") {
+        params.set("appliesTo", promoData.applies_to);
+        if (promoData.target_ids?.length) {
+          params.set("targetIds", JSON.stringify(promoData.target_ids));
+        }
+      }
     }
     window.location.href = `/search-results?${params.toString()}`;
     setActiveFilter(null);
@@ -777,7 +803,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
               subValue={
                 selectedRoom
                   ? promoData && promoStatus === "valid"
-                    ? `$${computeDiscountedTotal(selectedRoom.price, parseInt(filters.duration))} total`
+                      ? `$${computeDiscountedTotal(selectedRoom.price, parseInt(filters.duration), selectedRoom.id)} total`
                     : t("searchBar.totalWithValue", {
                         value: selectedRoom.price * parseInt(filters.duration),
                       })
@@ -797,7 +823,7 @@ export default function SearchBar({ floating, hidden = false }: Props) {
                   }}
                   discountedTotal={
                     promoData && promoStatus === "valid" && selectedRoom
-                      ? computeDiscountedTotal(selectedRoom.price, parseInt(filters.duration))
+                      ? computeDiscountedTotal(selectedRoom.price, parseInt(filters.duration), selectedRoom.id)
                       : undefined
                   }
                 />

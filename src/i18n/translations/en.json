@@ -32,6 +32,8 @@
     "selectRoom": "Select Room",
     "select": "Select",
     "details": "Details",
+    "increaseQuantity": "Increase quantity",
+    "decreaseQuantity": "Decrease quantity",
     "guest_one": "guest",
     "guest_other": "guests",
     "night_one": "night",

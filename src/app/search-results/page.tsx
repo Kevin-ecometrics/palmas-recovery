@@ -54,10 +54,25 @@ const SearchResultsInner = () => {
   const promoCode = searchParams.get("promo") || "";
   const promoType = searchParams.get("promoType") as "percentage" | "fixed" | null;
   const promoValue = parseFloat(searchParams.get("promoValue") || "0");
+  const appliesTo = searchParams.get("appliesTo") as "all" | "room" | "extra" | "targets" | null;
+  const targetIdsRaw = searchParams.get("targetIds");
+  const targetIds = targetIdsRaw ? JSON.parse(targetIdsRaw) as string[] : null;
+  const targetsRaw = searchParams.get("targets");
+  const targets = targetsRaw ? JSON.parse(targetsRaw) as { type: "room" | "extra"; id: string; discount: number }[] : null;
 
-  const computeDiscountedTotal = (price: number, nights: number): number => {
+  const computeDiscountedTotal = (price: number, nights: number, roomId?: string): number => {
     const raw = price * nights;
-    if (!promoCode || !promoType || !promoValue) return raw;
+    if (!promoCode || !promoType) return raw;
+
+    // Targets mode: find matching room target
+    if (appliesTo === "targets" && targets?.length && roomId) {
+      const roomTarget = targets.find((t) => t.type === "room" && t.id === roomId);
+      if (roomTarget && roomTarget.discount) {
+        return Math.round(raw * (1 - roomTarget.discount / 100) * 100) / 100;
+      }
+      return raw;
+    }
+
     if (promoType === "percentage") {
       return Math.round(raw * (1 - promoValue / 100) * 100) / 100;
     }
@@ -352,6 +367,15 @@ const SearchResultsInner = () => {
     if (promoCode) params.set("promo", promoCode);
     if (promoType) params.set("promoType", promoType);
     if (promoValue) params.set("promoValue", promoValue.toString());
+    if (targets?.length) {
+      params.set("appliesTo", "targets");
+      params.set("targets", JSON.stringify(targets));
+    } else if (appliesTo && appliesTo !== "all") {
+      params.set("appliesTo", appliesTo);
+      if (targetIds?.length) {
+        params.set("targetIds", JSON.stringify(targetIds));
+      }
+    }
     router.push(`${getRouteByKey("book", currentLang)}?${params.toString()}`);
   };
 
@@ -583,7 +607,7 @@ const SearchResultsInner = () => {
                         room={room}
                         duration={duration}
                         guests={guests}
-                        totalPrice={computeDiscountedTotal(room.price, duration)}
+                        totalPrice={computeDiscountedTotal(room.price, duration, room.id)}
                         originalPrice={promoType ? room.price * duration : undefined}
                         isSelected={selectedRoom === room.id}
                         onSelect={() => setSelectedRoom(room.id)}

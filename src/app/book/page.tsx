@@ -74,6 +74,9 @@ interface AppliedPromo {
   code: string;
   discount_type: "percentage" | "fixed";
   discount_value: number;
+  applies_to?: "all" | "room" | "extra" | "targets";
+  target_ids?: string[] | null;
+  targets?: { type: "room" | "extra"; id: string; discount: number }[] | null;
 }
 
 // Datos de extras con claves de traducción para título y descripción
@@ -252,6 +255,9 @@ const applyPromoCode = async (
         code: code.toUpperCase(),
         discount_type: response.data.discount_type,
         discount_value: response.data.discount_value,
+        applies_to: response.data.applies_to || "all",
+        target_ids: response.data.target_ids || null,
+        targets: response.data.targets || null,
       },
     };
   } catch (error) {
@@ -265,16 +271,51 @@ const applyPromoCode = async (
   }
 };
 
-// Calcular monto del descuento
+// Calcular monto del descuento segmentado por targeting
 const calculateDiscount = (
-  rawTotal: number,
   promo: AppliedPromo | null,
+  roomPrice: number,
+  nights: number,
+  extraIds: string[],
+  rawTotal: number,
 ): number => {
   if (!promo) return 0;
-  if (promo.discount_type === "percentage") {
-    return Math.round(rawTotal * (promo.discount_value / 100) * 100) / 100;
+
+  const extrasPrice: Record<string, number> = {
+    lymphatic: 60, "5massages": 270, b01g: 80, fvom: 80, sfbhrs: 140, sfbhs2: 140,
+  };
+
+  // Targets mode: sum individual discounts per item
+  if (promo.applies_to === "targets" && promo.targets) {
+    let total = 0;
+    const roomCost = roomPrice * nights;
+    for (const t of promo.targets) {
+      if (t.type === "room") {
+        total += roomCost * t.discount / 100;
+      } else if (t.type === "extra") {
+        const qty = extraIds.filter((id) => id === t.id).length;
+        if (qty > 0) {
+          total += (extrasPrice[t.id] ?? 0) * qty * t.discount / 100;
+        }
+      }
+    }
+    return Math.round(total * 100) / 100;
   }
-  return Math.min(promo.discount_value, rawTotal);
+
+  let applicableBase = rawTotal;
+
+  if (promo.applies_to === "room") {
+    applicableBase = roomPrice * nights;
+  } else if (promo.applies_to === "extra") {
+    applicableBase = extraIds
+      .filter((id) => promo.target_ids?.includes(id))
+      .reduce((s, id) => s + (extrasPrice[id] ?? 0), 0);
+  }
+
+  if (promo.discount_type === "percentage") {
+    return Math.round(applicableBase * (promo.discount_value / 100) * 100) / 100;
+  }
+  return Math.min(promo.discount_value, applicableBase);
 };
 
 // ==================== FUNCIONES DE VALIDACIÓN Y CÁLCULO ====================
@@ -425,7 +466,7 @@ const handleFinalSubmit = async (
       selectedExtras,
       guestCount,
     );
-    const discount = calculateDiscount(rawTotal, appliedPromo);
+    const discount = calculateDiscount(appliedPromo, roomData.price ?? 0, nights, selectedExtras, rawTotal);
     const total = rawTotal - discount;
 
     // Preparar payload para la API
@@ -638,9 +679,10 @@ const SuccessModal = ({
                       </span>
                     </div>
                     <div className="mt-2 space-y-2">
-                      {confirmationData.extras.map((extraId: string) => {
+                      {Array.from(new Set(confirmationData.extras as string[])).map((extraId) => {
                         const extra = EXTRAS.find((e) => e.id === extraId);
                         if (!extra) return null;
+                        const qty = (confirmationData.extras as string[]).filter((id: string) => id === extraId).length;
                         return (
                           <div
                             key={extra.id}
@@ -650,6 +692,9 @@ const SuccessModal = ({
                               <FaCheck className="text-wine text-xs" />
                               <span className="font-semibold">
                                 {t(extra.titleKey)}
+                                {qty > 1 && (
+                                  <span className="text-olive-dark font-normal"> × {qty}</span>
+                                )}
                               </span>
                             </div>
                           </div>
@@ -781,10 +826,16 @@ const BookingPageInner = () => {
     if (promoParam) {
       if (promoTypeParam && promoValueParam) {
         // Viene del SearchBar con los datos ya validados — usar directamente
+        const targetsParam = searchParams.get("targets");
         setAppliedPromo({
           code: promoParam.toUpperCase(),
           discount_type: promoTypeParam,
           discount_value: parseFloat(promoValueParam),
+          applies_to: (searchParams.get("appliesTo") as "all" | "room" | "extra" | "targets") || "all",
+          target_ids: searchParams.get("targetIds")
+            ? JSON.parse(searchParams.get("targetIds")!)
+            : null,
+          targets: targetsParam ? JSON.parse(targetsParam) : null,
         });
       } else {
         // Navegación directa con solo el código — validar una vez
@@ -882,20 +933,28 @@ const BookingPageInner = () => {
     }
   };
 
-  const toggleExtra = (id: string) => {
+  const getExtraQuantity = (id: string) =>
+    selectedExtras.reduce((count, itemId) => (itemId === id ? count + 1 : count), 0);
+
+  const incrementExtra = (id: string) => {
     const extra = EXTRAS.find((e) => e.id === id);
-    const isRemoving = selectedExtras.includes(id);
     if (extra) {
-      if (isRemoving) {
-        gaEvent.extraRemoved(id, extra.price);
-      } else {
-        gaEvent.extraAdded(id, extra.price);
-        pixelEvent.extraAdded(id, extra.price);
-      }
+      gaEvent.extraAdded(id, extra.price);
+      pixelEvent.extraAdded(id, extra.price);
     }
-    setSelectedExtras((prev) =>
-      isRemoving ? prev.filter((item) => item !== id) : [...prev, id],
-    );
+    setSelectedExtras((prev) => [...prev, id]);
+  };
+
+  const decrementExtra = (id: string) => {
+    const extra = EXTRAS.find((e) => e.id === id);
+    setSelectedExtras((prev) => {
+      const index = prev.lastIndexOf(id);
+      if (index === -1) return prev;
+      if (extra) {
+        gaEvent.extraRemoved(id, extra.price);
+      }
+      return [...prev.slice(0, index), ...prev.slice(index + 1)];
+    });
   };
 
   const openGallery = (id: string, index: number) => {
@@ -917,7 +976,7 @@ const BookingPageInner = () => {
     selectedExtras,
     guestCount,
   );
-  const discount = calculateDiscount(total, appliedPromo);
+  const discount = calculateDiscount(appliedPromo, selectedRoomData?.price ?? 0, nights, selectedExtras, total);
   const finalTotal = total - discount;
 
   const handleApplyPromo = async () => {
@@ -1586,19 +1645,29 @@ const BookingPageInner = () => {
                                     ${extra.price}
                                   </p>
                                 </div>
-                                <label className="flex items-center gap-2 cursor-pointer ml-4">
-                                  <input
-                                    type="checkbox"
-                                    checked={selectedExtras.includes(extra.id)}
-                                    onChange={() => toggleExtra(extra.id)}
-                                    className="w-5 h-5 text-wine focus:ring-0 focus:outline-none rounded"
-                                  />
-                                  <span className="text-sm text-olive-dark">
-                                    {selectedExtras.includes(extra.id)
-                                      ? t("common.selected")
-                                      : t("common.select")}
+                                <div className="flex items-center gap-3 ml-4">
+                                  <button
+                                    type="button"
+                                    onClick={() => decrementExtra(extra.id)}
+                                    disabled={getExtraQuantity(extra.id) === 0 || status === "submitting"}
+                                    className="w-8 h-8 flex items-center justify-center rounded-full border border-wine/30 text-wine hover:bg-wine/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                    aria-label={t("common.decreaseQuantity")}
+                                  >
+                                    −
+                                  </button>
+                                  <span className="w-6 text-center font-semibold text-olive-dark">
+                                    {getExtraQuantity(extra.id)}
                                   </span>
-                                </label>
+                                  <button
+                                    type="button"
+                                    onClick={() => incrementExtra(extra.id)}
+                                    disabled={status === "submitting"}
+                                    className="w-8 h-8 flex items-center justify-center rounded-full border border-wine/30 text-wine hover:bg-wine/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                    aria-label={t("common.increaseQuantity")}
+                                  >
+                                    +
+                                  </button>
+                                </div>
                               </div>
 
                               {/* Galería de imágenes miniaturas */}
@@ -1735,11 +1804,12 @@ const BookingPageInner = () => {
                               </div>
                             ) : (
                               <div className="space-y-3">
-                                {selectedExtras.map((extraId) => {
+                                {Array.from(new Set(selectedExtras)).map((extraId) => {
                                   const extra = EXTRAS.find(
                                     (e) => e.id === extraId,
                                   );
                                   if (!extra) return null;
+                                  const quantity = getExtraQuantity(extraId);
                                   return (
                                     <div
                                       key={extra.id}
@@ -1757,6 +1827,12 @@ const BookingPageInner = () => {
                                           <div className="flex-1">
                                             <p className="font-semibold text-wine text-sm">
                                               {t(extra.titleKey)}
+                                              {quantity > 1 && (
+                                                <span className="text-olive-dark font-normal">
+                                                  {" "}
+                                                  × {quantity}
+                                                </span>
+                                              )}
                                             </p>
                                             <p className="text-xs text-olive-dark line-clamp-1">
                                               {t(extra.descriptionKey)}
@@ -1766,7 +1842,7 @@ const BookingPageInner = () => {
                                       </div>
                                       <div className="text-right ml-3">
                                         <span className="font-bold text-wine">
-                                          ${extra.price}
+                                          ${extra.price * quantity}
                                         </span>
                                       </div>
                                     </div>
@@ -1821,9 +1897,11 @@ const BookingPageInner = () => {
                               </div>
                               <div className="flex items-center gap-3">
                                 <span className="font-bold text-green-700">
-                                  -{appliedPromo.discount_type === "percentage"
-                                    ? `${appliedPromo.discount_value}%`
-                                    : `$${appliedPromo.discount_value}`}
+                                  {appliedPromo.applies_to === "targets" && appliedPromo.targets?.length
+                                    ? "Multiple discounts"
+                                    : appliedPromo.discount_type === "percentage"
+                                      ? `-${appliedPromo.discount_value}%`
+                                      : `-$${appliedPromo.discount_value}`}
                                 </span>
                                 <button
                                   type="button"
@@ -2107,9 +2185,11 @@ const BookingPageInner = () => {
                               ${finalTotal}
                             </span>
                             <span className="text-xs text-green-600 font-medium">
-                              {appliedPromo.discount_type === "percentage"
-                                ? `${appliedPromo.discount_value}% OFF`
-                                : `$${appliedPromo.discount_value} OFF`}{" "}
+                              {appliedPromo.applies_to === "targets" && appliedPromo.targets?.length
+                                ? "Multi discount"
+                                : appliedPromo.discount_type === "percentage"
+                                  ? `${appliedPromo.discount_value}% OFF`
+                                  : `$${appliedPromo.discount_value} OFF`}{" "}
                               · {appliedPromo.code}
                             </span>
                           </div>
@@ -2124,9 +2204,10 @@ const BookingPageInner = () => {
                           <p className="text-xs font-semibold text-wine mb-2">
                             {t("booking.extrasAdded")}:
                           </p>
-                          {selectedExtras.map((id) => {
+                          {Array.from(new Set(selectedExtras)).map((id) => {
                             const extra = EXTRAS.find((item) => item.id === id);
                             if (!extra) return null;
+                            const quantity = getExtraQuantity(id);
                             return (
                               <div
                                 key={extra.id}
@@ -2135,9 +2216,10 @@ const BookingPageInner = () => {
                                 <div className="flex justify-between items-center">
                                   <span className="font-medium truncate flex-1">
                                     {t(extra.titleKey)}
+                                    {quantity > 1 && ` × ${quantity}`}
                                   </span>
                                   <span className="font-bold text-wine ml-2">
-                                    ${extra.price}
+                                    ${extra.price * quantity}
                                   </span>
                                 </div>
                               </div>
@@ -2345,18 +2427,32 @@ const BookingPageInner = () => {
                         </span>
                         <span className="text-white/60 text-sm">USD</span>
                       </div>
-                      <label className="flex items-center gap-3 cursor-pointer group">
-                        <span className="text-white/80 text-sm font-medium group-hover:text-white transition-colors">
+                      <div className="flex items-center gap-3">
+                        <span className="text-white/80 text-sm font-medium">
                           {t("booking.addToBooking")}
                         </span>
-                        <input
-                          type="checkbox"
-                          checked={selectedExtras.includes(extra.id)}
-                          onChange={() => toggleExtra(extra.id)}
-                          className="w-5 h-5 text-wine focus:ring-0 focus:outline-none rounded border-white/30 bg-white/10"
+                        <button
+                          type="button"
+                          onClick={() => decrementExtra(extra.id)}
+                          disabled={getExtraQuantity(extra.id) === 0 || status === "submitting"}
+                          className="w-8 h-8 flex items-center justify-center rounded-full border border-white/30 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                          aria-label={t("common.decreaseQuantity")}
+                        >
+                          −
+                        </button>
+                        <span className="w-6 text-center font-semibold text-white">
+                          {getExtraQuantity(extra.id)}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => incrementExtra(extra.id)}
                           disabled={status === "submitting"}
-                        />
-                      </label>
+                          className="w-8 h-8 flex items-center justify-center rounded-full border border-white/30 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                          aria-label={t("common.increaseQuantity")}
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
 
                     {/* Thumbnails */}

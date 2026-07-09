@@ -31,6 +31,8 @@
     "selectRoom": "Seleccionar habitaci\u00f3n",
     "select": "Seleccionar",
     "details": "Detalles",
+    "increaseQuantity": "Aumentar cantidad",
+    "decreaseQuantity": "Disminuir cantidad",
     "guest_one": "hu\u00e9sped",
     "guest_other": "hu\u00e9spedes",
     "night_one": "noche",
