@@ -79,12 +79,12 @@ function RoomCard({
         } lg:flex`}
       >
         {/* ── Imagen ─────────────────────────────────── */}
-        <div className="lg:w-[58%] relative overflow-hidden min-h-[480px]">
+        <div className="lg:w-[58%] relative overflow-hidden h-[320px] sm:h-[420px] lg:h-auto lg:min-h-[480px]">
           <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent z-10" />
           <img
             src={room.image}
             alt={t(`rooms.${room.id}.imageAlt`)}
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
             style={{
               transform: hovered ? "scale(1.06)" : "scale(1.0)",
               transition: "transform 1.4s cubic-bezier(0.25,0.46,0.45,0.94)",
