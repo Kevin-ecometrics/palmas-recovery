@@ -99,7 +99,8 @@
       "services": "Services",
       "contact": "Contact Us",
       "privacy": "Privacy Policy",
-      "terms": "Terms of Service"
+      "terms": "Terms of Service",
+      "cancellation": "Cancellation Policy"
     },
     "contactTitle": "Contact Us",
     "connectTitle": "Connect With Us",
@@ -609,6 +610,7 @@
     "successTitle": "Thanks for your booking!",
     "successSubtitle": "We will reach out shortly to confirm your reservation.",
     "cancellationTitle": "Cancellation Policy",
+    "cancellationNotice": "By confirming this booking you accept our deposit, change and",
     "cancellationItems": [
       "Free cancellation up to 48 hours before check-in",
       "50% refund for cancellations within 48 hours",
@@ -863,7 +865,11 @@
       },
       {
         "title": "3. Cancellations",
-        "content": "Cancellation policies may vary by room type and season. Please review your confirmation details for applicable terms."
+        "content": "Cancellation policies may vary by room type and season. Please review your confirmation details for applicable terms.",
+        "link": {
+          "text": "Read our full cancellation policy.",
+          "href": "/cancellation-policy"
+        }
       },
       {
         "title": "4. Use of the Website",
@@ -879,7 +885,100 @@
       },
       {
         "title": "7. Contact Us",
-        "content": "If you have questions about these Terms, contact us at palmasrecoveryspa@gmail.com."
+        "content": "If you have questions about these Terms, contact us at contact@palmasrecovery.com."
+      }
+    ]
+  },
+  "cancellationPolicy": {
+    "title": "CANCELLATION, CHANGE AND SHORTENED-STAY POLICY",
+    "subtitle": "Post-Surgical Recovery Center",
+    "intro": "In order to guarantee the availability of rooms, nursing staff, medical services and other resources necessary to provide adequate care to our patients, the following reservation, cancellation and stay-modification policies are established.",
+    "sections": [
+      {
+        "title": "1. Reservation Deposit",
+        "blocks": [
+          { "type": "p", "text": "A $200 USD deposit is required to confirm and secure a reservation." },
+          {
+            "type": "list",
+            "items": [
+              "The reservation deposit is NOT refundable.",
+              "The deposit may only be transferable when the cancellation or change is the result of a medical situation, subject to prior review and authorization by management.",
+              "The deposit may not be used as credit for a different person without prior authorization from management.",
+              "Once the deposit is received, the check-in date and the corresponding room are reserved exclusively for the patient."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "2. Cancellation Before Check-In",
+        "blocks": [
+          { "type": "p", "text": "If the patient decides to cancel their stay before the scheduled check-in date:" },
+          {
+            "type": "list",
+            "items": [
+              "The $200 USD deposit will not be refundable.",
+              "Any additional amount paid in advance will be reviewed according to the specific conditions of the reservation and how much notice was given for the cancellation.",
+              "When the cancellation is due to documented medical reasons, management may consider transferring the deposit to a new date, subject to availability and authorization."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Shortening the Stay Once the Service Has Begun",
+        "blocks": [
+          { "type": "p", "text": "Once the patient has checked in to the recovery center and the stay has begun, reducing the number of days originally reserved will be subject to a cancellation fee equivalent to two (2) days of stay." },
+          { "type": "p", "text": "This fee is established because, upon confirming a reservation, the center:" },
+          {
+            "type": "list",
+            "items": [
+              "Reserves the room exclusively for the patient.",
+              "Arranges staff coverage and availability in advance.",
+              "Declines or limits the possibility of accepting other reservations for those same dates.",
+              "Dedicates operational and administrative resources to guarantee care during the reserved period."
+            ]
+          },
+          { "type": "p", "text": "Therefore, if the patient decides to leave before the originally contracted date, the days that become available as a result of that decision may result in a loss of occupancy for the center." },
+          { "type": "p", "text": "Example:" },
+          { "type": "p", "text": "If a patient books a 7-day stay and, after beginning their recovery, decides to leave on the fourth day, the unused days will be subject to the cancellation fee equivalent to 2 days of stay." }
+        ]
+      },
+      {
+        "title": "4. Changes to the Departure Date",
+        "blocks": [
+          { "type": "p", "text": "Any change to the departure date must be communicated to management as far in advance as possible." },
+          { "type": "p", "text": "Authorization of a shortened stay is subject to the conditions established in this policy and does not guarantee a refund for unused days." }
+        ]
+      },
+      {
+        "title": "5. Early Departure by Medical Recommendation",
+        "blocks": [
+          { "type": "p", "text": "When early departure is indicated by a physician for strictly medical reasons, management may review the case individually." },
+          { "type": "p", "text": "In these cases, an exception to the shortened-stay policy may be considered, depending on the circumstances, medical documentation and operational availability." },
+          { "type": "p", "text": "The exception must be authorized by management and will not be considered automatic." }
+        ]
+      },
+      {
+        "title": "6. Reservation Transfer",
+        "blocks": [
+          { "type": "p", "text": "When a cancellation is made for medical reasons and is authorized as transferable:" },
+          {
+            "type": "list",
+            "items": [
+              "The amount may be applied to a future stay.",
+              "The new date will be subject to availability.",
+              "The transfer must be completed within the period established by management.",
+              "The transfer does not represent a cash refund."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "7. Acceptance of Policies",
+        "blocks": [
+          { "type": "p", "text": "By paying the deposit and confirming a reservation, the patient acknowledges having received, read and accepted the cancellation, modification and shortened-stay policies established by the Post-Surgical Recovery Center." },
+          { "type": "p", "text": "These policies are intended to maintain an organized operation and guarantee that we can adequately reserve rooms, staff and resources for each patient." },
+          { "type": "p", "text": "Management reserves the right to individually evaluate extraordinary situations when there are duly justified medical circumstances or force majeure." }
+        ]
       }
     ]
   },
@@ -1190,6 +1289,10 @@
     "privacy": {
       "title": "Privacy Policy",
       "description": "We are committed to protecting your personal information and your right to privacy. Please read our privacy policy to understand how we collect, use, and protect your data."
+    },
+    "cancellationPolicy": {
+      "title": "Cancellation Policy",
+      "description": "Review Palmas Recovery's deposit, cancellation, change, and shortened-stay policy before confirming your reservation."
     }
   },
   "searchResults": {

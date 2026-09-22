@@ -736,6 +736,16 @@ const SuccessModal = ({
               <strong className="text-wine">{t("booking.important")}:</strong>{" "}
               {t("booking.emailSent")}
             </p>
+            <p className="text-sm text-olive-dark mt-2">
+              <Link
+                href="/cancellation-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-wine underline hover:text-wine/80"
+              >
+                {t("booking.cancellationTitle")}
+              </Link>
+            </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -2000,6 +2010,26 @@ const BookingPageInner = () => {
                           </p>
                         </div>
                       </div>
+                    </div>
+
+                    {/* Cancellation Policy Notice */}
+                    <div className="bg-cream border border-wine/20 rounded-xl p-4 flex items-start gap-3">
+                      <FaInfoCircle className="text-wine text-xl flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-olive-dark">
+                        {t("booking.cancellationNotice")}{" "}
+                        <Link
+                          href={getLocalizedPath(
+                            "/cancellation-policy",
+                            currentLang,
+                          )}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-wine underline hover:text-wine/80"
+                        >
+                          {t("booking.cancellationTitle")}
+                        </Link>
+                        .
+                      </p>
                     </div>
                   </div>
                 )}

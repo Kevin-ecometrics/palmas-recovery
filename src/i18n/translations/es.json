@@ -98,7 +98,8 @@
       "services": "Servicios",
       "contact": "Contacto",
       "privacy": "Pol\u00edtica de privacidad",
-      "terms": "T\u00e9rminos del servicio"
+      "terms": "T\u00e9rminos del servicio",
+      "cancellation": "Pol\u00edtica de cancelaci\u00f3n"
     },
     "contactTitle": "Contacto",
     "connectTitle": "Conecta con nosotros",
@@ -608,6 +609,7 @@
     "successTitle": "\u00a1Gracias por tu reserva!",
     "successSubtitle": "Te contactaremos pronto para confirmar tu reservaci\u00f3n.",
     "cancellationTitle": "Pol\u00edtica de cancelaci\u00f3n",
+    "cancellationNotice": "Al confirmar esta reserva aceptas nuestro reglamento de dep\u00f3sitos, cambios y",
     "cancellationItems": [
       "Cancelaci\u00f3n gratuita hasta 48 horas antes del check-in",
       "50% de reembolso por cancelaciones dentro de 48 horas",
@@ -862,7 +864,11 @@
       },
       {
         "title": "3. Cancelaciones",
-        "content": "Las pol\u00edticas de cancelaci\u00f3n pueden variar por tipo de habitaci\u00f3n y temporada. Consulta tu confirmaci\u00f3n para los t\u00e9rminos aplicables."
+        "content": "Las pol\u00edticas de cancelaci\u00f3n pueden variar por tipo de habitaci\u00f3n y temporada. Consulta tu confirmaci\u00f3n para los t\u00e9rminos aplicables.",
+        "link": {
+          "text": "Consulta nuestra pol\u00edtica de cancelaci\u00f3n completa.",
+          "href": "/cancellation-policy"
+        }
       },
       {
         "title": "4. Uso del sitio",
@@ -878,7 +884,100 @@
       },
       {
         "title": "7. Cont\u00e1ctanos",
-        "content": "Si tienes dudas sobre estos T\u00e9rminos, cont\u00e1ctanos en palmasrecoveryspa@gmail.com."
+        "content": "Si tienes dudas sobre estos T\u00e9rminos, cont\u00e1ctanos en contact@palmasrecovery.com."
+      }
+    ]
+  },
+  "cancellationPolicy": {
+    "title": "REGLAMENTO DE CANCELACIONES, CAMBIOS Y REDUCCI\u00d3N DE ESTAD\u00cdA",
+    "subtitle": "Centro de Recuperaci\u00f3n Post Quir\u00fargica",
+    "intro": "Con el objetivo de garantizar la disponibilidad de habitaciones, personal de enfermer\u00eda, servicios m\u00e9dicos y dem\u00e1s recursos necesarios para brindar una atenci\u00f3n adecuada a nuestros pacientes, se establecen las siguientes pol\u00edticas de reservaci\u00f3n, cancelaci\u00f3n y modificaci\u00f3n de estad\u00edas.",
+    "sections": [
+      {
+        "title": "1. Dep\u00f3sito de reservaci\u00f3n",
+        "blocks": [
+          { "type": "p", "text": "Para confirmar y garantizar una reservaci\u00f3n, se requiere un dep\u00f3sito de $200 USD." },
+          {
+            "type": "list",
+            "items": [
+              "El dep\u00f3sito de reserva NO es reembolsable.",
+              "El dep\u00f3sito podr\u00e1 ser transferible exclusivamente cuando la cancelaci\u00f3n o modificaci\u00f3n sea consecuencia de una situaci\u00f3n m\u00e9dica, previa evaluaci\u00f3n y autorizaci\u00f3n de la administraci\u00f3n.",
+              "El dep\u00f3sito no podr\u00e1 ser utilizado como cr\u00e9dito para una persona diferente sin autorizaci\u00f3n previa de la administraci\u00f3n.",
+              "Una vez recibido el dep\u00f3sito, la fecha de ingreso y la habitaci\u00f3n correspondiente quedan apartadas exclusivamente para el paciente."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "2. Cancelaci\u00f3n antes del ingreso",
+        "blocks": [
+          { "type": "p", "text": "En caso de que el paciente decida cancelar su estad\u00eda antes de la fecha programada de ingreso:" },
+          {
+            "type": "list",
+            "items": [
+              "El dep\u00f3sito de $200 USD no ser\u00e1 reembolsable.",
+              "Cualquier cantidad adicional pagada por adelantado ser\u00e1 revisada de acuerdo con las condiciones espec\u00edficas de la reservaci\u00f3n y el tiempo de anticipaci\u00f3n con el que se solicite la cancelaci\u00f3n.",
+              "Cuando la cancelaci\u00f3n sea por motivos m\u00e9dicos documentados, la administraci\u00f3n podr\u00e1 considerar la transferencia del dep\u00f3sito a una nueva fecha, sujeto a disponibilidad y autorizaci\u00f3n."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Reducci\u00f3n de la estad\u00eda una vez iniciado el servicio",
+        "blocks": [
+          { "type": "p", "text": "Una vez que el paciente haya ingresado al centro de recuperaci\u00f3n y la estad\u00eda haya comenzado, la reducci\u00f3n del n\u00famero de d\u00edas originalmente reservados estar\u00e1 sujeta a una cuota de cancelaci\u00f3n equivalente a dos (2) d\u00edas de estancia." },
+          { "type": "p", "text": "Esta cuota se establece debido a que, al confirmar una reservaci\u00f3n, el centro:" },
+          {
+            "type": "list",
+            "items": [
+              "Reserva la habitaci\u00f3n exclusivamente para el paciente.",
+              "Organiza con anticipaci\u00f3n la cobertura y disponibilidad del personal.",
+              "Rechaza o limita la posibilidad de aceptar otras reservaciones para esas mismas fechas.",
+              "Destina recursos operativos y administrativos para garantizar la atenci\u00f3n durante el periodo reservado."
+            ]
+          },
+          { "type": "p", "text": "Por lo tanto, si el paciente decide retirarse antes de la fecha originalmente contratada, los d\u00edas que queden disponibles como consecuencia de dicha decisi\u00f3n podr\u00e1n generar una p\u00e9rdida de ocupaci\u00f3n para el centro." },
+          { "type": "p", "text": "Ejemplo:" },
+          { "type": "p", "text": "Si un paciente reserva una estancia de 7 d\u00edas y, despu\u00e9s de haber iniciado su recuperaci\u00f3n, decide retirarse al cuarto d\u00eda, los d\u00edas no utilizados estar\u00e1n sujetos a la cuota de cancelaci\u00f3n equivalente a 2 d\u00edas de estancia." }
+        ]
+      },
+      {
+        "title": "4. Cambios en la fecha de salida",
+        "blocks": [
+          { "type": "p", "text": "Cualquier cambio en la fecha de salida deber\u00e1 ser comunicado a la administraci\u00f3n con la mayor anticipaci\u00f3n posible." },
+          { "type": "p", "text": "La autorizaci\u00f3n de una reducci\u00f3n de estad\u00eda estar\u00e1 sujeta a las condiciones establecidas en este reglamento y no garantiza un reembolso por los d\u00edas no utilizados." }
+        ]
+      },
+      {
+        "title": "5. Salida anticipada por recomendaci\u00f3n m\u00e9dica",
+        "blocks": [
+          { "type": "p", "text": "Cuando la salida anticipada sea indicada por un m\u00e9dico por razones estrictamente m\u00e9dicas, la administraci\u00f3n podr\u00e1 revisar el caso de manera individual." },
+          { "type": "p", "text": "En estos casos, se podr\u00e1 considerar una excepci\u00f3n a la pol\u00edtica de reducci\u00f3n de estad\u00eda, dependiendo de las circunstancias, documentaci\u00f3n m\u00e9dica y disponibilidad operativa." },
+          { "type": "p", "text": "La excepci\u00f3n deber\u00e1 ser autorizada por la administraci\u00f3n y no se considerar\u00e1 autom\u00e1tica." }
+        ]
+      },
+      {
+        "title": "6. Transferencia de reservaci\u00f3n",
+        "blocks": [
+          { "type": "p", "text": "Cuando una cancelaci\u00f3n sea realizada por razones m\u00e9dicas y sea autorizada como transferible:" },
+          {
+            "type": "list",
+            "items": [
+              "El importe podr\u00e1 aplicarse a una futura estad\u00eda.",
+              "La nueva fecha estar\u00e1 sujeta a disponibilidad.",
+              "La transferencia deber\u00e1 realizarse dentro del periodo establecido por la administraci\u00f3n.",
+              "La transferencia no representa un reembolso en efectivo."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "7. Aceptaci\u00f3n de las pol\u00edticas",
+        "blocks": [
+          { "type": "p", "text": "Al realizar el pago del dep\u00f3sito y confirmar una reservaci\u00f3n, el paciente reconoce haber recibido, le\u00eddo y aceptado las pol\u00edticas de cancelaci\u00f3n, modificaci\u00f3n y reducci\u00f3n de estad\u00eda establecidas por el Centro de Recuperaci\u00f3n Post Quir\u00fargica." },
+          { "type": "p", "text": "Estas pol\u00edticas tienen como finalidad mantener una operaci\u00f3n organizada y garantizar que podamos reservar adecuadamente habitaciones, personal y recursos para cada paciente." },
+          { "type": "p", "text": "La administraci\u00f3n se reserva el derecho de evaluar situaciones extraordinarias de manera individual cuando existan circunstancias m\u00e9dicas o de fuerza mayor debidamente justificadas." }
+        ]
       }
     ]
   },
@@ -1189,6 +1288,10 @@
     "privacy": {
       "title": "Pol\u00edtica de Privacidad",
       "description": "En Palmas Recovery, respetamos tu privacidad y estamos comprometidos a proteger tu informaci\u00f3n personal. Lee nuestra pol\u00edtica de privacidad para entender c\u00f3mo recopilamos, usamos y protegemos tus datos."
+    },
+    "cancellationPolicy": {
+      "title": "Pol\u00edtica de Cancelaci\u00f3n",
+      "description": "Conoce el reglamento de dep\u00f3sitos, cancelaciones, cambios y reducci\u00f3n de estad\u00eda de Palmas Recovery antes de confirmar tu reservaci\u00f3n."
     }
   },
   "searchResults": {

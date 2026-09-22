@@ -8,6 +8,7 @@ export type RouteKey =
   | "panorama"
   | "privacy"
   | "terms"
+  | "cancellation"
   | "rooms" 
   | "tour"
   | "blog"
@@ -31,6 +32,7 @@ export const ROUTE_PAIRS: Array<{ key: RouteKey; es: string; en: string }> = [
   { key: "panorama", es: "/panorama", en: "/panorama" },
   { key: "privacy", es: "/privacidad", en: "/privacy" },
   { key: "terms", es: "/terminos", en: "/terms" },
+  { key: "cancellation", es: "/politica-cancelacion", en: "/cancellation-policy" },
   { key: "rooms", es: "/habitaciones", en: "/rooms" },
   { key: "tour", es: "/recorrido/360", en: "/tour/360" },
   { key: "blog", es: "/articulos", en: "/blog" },

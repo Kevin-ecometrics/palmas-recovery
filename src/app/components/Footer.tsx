@@ -127,6 +127,12 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
               >
                 {t("footer.links.terms")}
               </button>
+              <button
+                onClick={() => handleNav("/cancellation-policy")}
+                className={`${linkHover} transition-colors text-left`}
+              >
+                {t("footer.links.cancellation")}
+              </button>
             </div>
           </div>
         </div>
@@ -172,11 +178,11 @@ const Footer = ({ variant = "dark" }: FooterProps) => {
                   <button
                     onClick={() =>
                       (window.location.href =
-                        "mailto:palmasrecoveryspa@gmail.com")
+                        "mailto:contact@palmasrecovery.com")
                     }
                     className={`${linkHover} transition-colors`}
                   >
-                    palmasrecoveryspa@gmail.com
+                    contact@palmasrecovery.com
                   </button>
                 </li>
               </ul>

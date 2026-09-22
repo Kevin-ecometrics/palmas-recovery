@@ -3,28 +3,27 @@
 import React, { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { getLocalizedPath } from "@/i18n/routeMap";
 import Hero from "../components/Hero";
 
-export default function TermsPage() {
-  const { t, i18n } = useTranslation();
-  const currentLang = i18n.language?.startsWith("es") ? "es" : "en";
+export default function CancellationPolicyPage() {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const sections = t("terms.sections", { returnObjects: true }) as Array<{
+  const sections = t("cancellationPolicy.sections", {
+    returnObjects: true,
+  }) as Array<{
     title: string;
-    content?: string;
-    list?: string[];
-    link?: { text: string; href: string };
+    blocks: Array<
+      { type: "p"; text: string } | { type: "list"; items: string[] }
+    >;
   }>;
 
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
       <Hero
-        title={t("bannerHero.terms.title")}
-        description={t("bannerHero.terms.description")}
+        title={t("bannerHero.cancellationPolicy.title")}
+        description={t("bannerHero.cancellationPolicy.description")}
         height="h-[80dvh]"
       />
       <main className="bg-gradient-to-b from-white via-[#fffaf6] to-white">
@@ -34,10 +33,13 @@ export default function TermsPage() {
               {t("common.legal")}
             </p>
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
-              {t("terms.title")}
+              {t("cancellationPolicy.title")}
             </h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              {t("terms.subtitle")}
+              {t("cancellationPolicy.subtitle")}
+            </p>
+            <p className="text-gray-600 max-w-2xl mx-auto mt-4 text-sm leading-relaxed">
+              {t("cancellationPolicy.intro")}
             </p>
           </div>
 
@@ -77,25 +79,22 @@ export default function TermsPage() {
                       : "max-h-0 pb-0 opacity-0"
                   }`}
                 >
-                  {section.list ? (
-                    <ul className="list-disc pl-5 space-y-2">
-                      {section.list.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>{section.content}</p>
-                  )}
-                  {section.link && (
-                    <Link
-                      href={getLocalizedPath(section.link.href, currentLang)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block mt-2 font-semibold text-principal underline hover:text-principal/80"
-                    >
-                      {section.link.text}
-                    </Link>
-                  )}
+                  <div className="space-y-3">
+                    {section.blocks.map((block, blockIndex) =>
+                      block.type === "list" ? (
+                        <ul
+                          key={blockIndex}
+                          className="list-disc pl-5 space-y-2"
+                        >
+                          {block.items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p key={blockIndex}>{block.text}</p>
+                      ),
+                    )}
+                  </div>
                 </div>
               </div>
             ))}

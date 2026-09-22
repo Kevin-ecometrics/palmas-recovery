@@ -21,7 +21,6 @@ const Navbar: React.FC = () => {
   if (!i18n.language) return null;
   
   const [menuOpen, setMenuOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const pathname = usePathname();
   const router = useRouter();
@@ -259,44 +258,13 @@ const Navbar: React.FC = () => {
             })}
           </div>
           <span className="mx-4 h-4 w-px bg-black/30" aria-hidden="true" />
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setLangOpen((prev) => !prev)}
-              className="text-xs tracking-widest border border-black/20 rounded-full px-3 py-1 hover:bg-black/5 transition-colors"
-              aria-expanded={langOpen}
-              aria-controls="navbar-language-menu"
-            >
-              {currentLang === "es" ? t("common.spanish") : t("common.english")}
-            </button>
-            {langOpen && (
-              <div
-                id="navbar-language-menu"
-                className="absolute right-0 mt-2 w-28 rounded-lg border border-black/10 bg-white shadow-lg overflow-hidden z-50"
-              >
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleLanguageChange("es");
-                    setLangOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-2 text-xs hover:bg-black/5"
-                >
-                  {t("common.spanish")}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleLanguageChange("en");
-                    setLangOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-2 text-xs hover:bg-black/5"
-                >
-                  {t("common.english")}
-                </button>
-              </div>
-            )}
-          </div>
+          <button
+            type="button"
+            onClick={() => handleLanguageChange(currentLang === "es" ? "en" : "es")}
+            className="text-xs tracking-widest border border-black/20 rounded-full px-3 py-1 hover:bg-black/5 transition-colors"
+          >
+            {currentLang === "es" ? t("common.english") : t("common.spanish")}
+          </button>
         </div>
       </div>
 
@@ -359,44 +327,13 @@ const Navbar: React.FC = () => {
               </a>
             );
           })}
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setLangOpen((prev) => !prev)}
-              className="text-xs tracking-widest border border-black/20 rounded-full px-3 py-1 hover:bg-black/5 transition-colors"
-              aria-expanded={langOpen}
-              aria-controls="navbar-language-menu-mobile"
-            >
-              {currentLang === "es" ? t("common.spanish") : t("common.english")}
-            </button>
-            {langOpen && (
-              <div
-                id="navbar-language-menu-mobile"
-                className="absolute left-0 mt-2 w-28 rounded-lg border border-black/10 bg-white shadow-lg overflow-hidden z-50"
-              >
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleLanguageChange("es");
-                    setLangOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-2 text-xs hover:bg-black/5"
-                >
-                  {t("common.spanish")}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleLanguageChange("en");
-                    setLangOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-2 text-xs hover:bg-black/5"
-                >
-                  {t("common.english")}
-                </button>
-              </div>
-            )}
-          </div>
+          <button
+            type="button"
+            onClick={() => handleLanguageChange(currentLang === "es" ? "en" : "es")}
+            className="text-xs tracking-widest border border-black/20 rounded-full px-3 py-1 hover:bg-black/5 transition-colors"
+          >
+            {currentLang === "es" ? t("common.english") : t("common.spanish")}
+          </button>
         </motion.div>
 
         <motion.div
