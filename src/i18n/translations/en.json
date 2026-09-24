@@ -611,6 +611,11 @@
     "successSubtitle": "We will reach out shortly to confirm your reservation.",
     "cancellationTitle": "Cancellation Policy",
     "cancellationNotice": "By confirming this booking you accept our deposit, change and",
+    "terms": {
+      "label": "I accept the",
+      "link": "Terms and Conditions",
+      "required": "You must accept the Terms and Conditions to continue"
+    },
     "cancellationItems": [
       "Free cancellation up to 48 hours before check-in",
       "50% refund for cancellations within 48 hours",

@@ -407,6 +407,7 @@ const resetBookingForm = (
   setStep: (step: number) => void,
   setStatus: (status: "idle" | "submitting" | "success" | "error") => void,
   setShowSuccessModal: (show: boolean) => void,
+  setAcceptedTerms: (accepted: boolean) => void,
 ) => {
   setSelectedRoom(null);
   setSelectedExtras([]);
@@ -423,6 +424,7 @@ const resetBookingForm = (
   setStep(1);
   setStatus("idle");
   setShowSuccessModal(false);
+  setAcceptedTerms(false);
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
@@ -783,6 +785,7 @@ const BookingPageInner = () => {
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [isSearchingRooms, setIsSearchingRooms] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   // Fecha mínima para check-in
@@ -1051,6 +1054,10 @@ const BookingPageInner = () => {
     if (step < 3) {
       await handleNextClick();
     } else {
+      if (!acceptedTerms) {
+        setValidationError(t("booking.terms.required"));
+        return;
+      }
       if (selectedRoom) {
         gaEvent.beginCheckout(selectedRoom, finalTotal, selectedExtras);
         pixelEvent.beginCheckout(selectedRoom, finalTotal, selectedExtras);
@@ -1078,6 +1085,7 @@ const BookingPageInner = () => {
       setStep,
       setStatus,
       setShowSuccessModal,
+      setAcceptedTerms,
     );
     setHasSearched(false);
   };
@@ -2031,6 +2039,42 @@ const BookingPageInner = () => {
                         .
                       </p>
                     </div>
+
+                    {/* Terms & Conditions Opt-in */}
+                    <div className="bg-white rounded-2xl p-4 md:p-5 shadow-lg border border-gray-200">
+                      <label className="flex items-start gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={acceptedTerms}
+                          onChange={(e) => {
+                            setAcceptedTerms(e.target.checked);
+                            if (e.target.checked) {
+                              setValidationError(null);
+                            }
+                          }}
+                          disabled={status === "submitting"}
+                          className="mt-1 w-5 h-5 accent-wine flex-shrink-0 cursor-pointer"
+                        />
+                        <span className="text-sm text-olive-dark">
+                          {t("booking.terms.label")}{" "}
+                          <Link
+                            href={getLocalizedPath("/terms", currentLang)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-wine underline hover:text-wine/80"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {t("booking.terms.link")}
+                          </Link>
+                        </span>
+                      </label>
+                      {!acceptedTerms && validationError === t("booking.terms.required") && (
+                        <p className="mt-2 text-sm text-red-600 flex items-center gap-1.5">
+                          <FaTimes className="text-xs flex-shrink-0" />
+                          {validationError}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 )}
 
@@ -2058,7 +2102,9 @@ const BookingPageInner = () => {
                     status === "submitting" ||
                     (step === 2 && !!validationError) ||
                     (step === 3 &&
-                      (!selectedRoomData || selectedRoomData.price === null))
+                      (!selectedRoomData ||
+                        selectedRoomData.price === null ||
+                        !acceptedTerms))
                   }
                   className={`
                     group flex items-center justify-center gap-3 px-10 py-4 font-bold rounded-full 
@@ -2071,7 +2117,8 @@ const BookingPageInner = () => {
                         (step === 2 && !validationError) ||
                         (step === 3 &&
                           selectedRoomData &&
-                          selectedRoomData.price !== null)) &&
+                          selectedRoomData.price !== null &&
+                          acceptedTerms)) &&
                       status !== "submitting"
                         ? "bg-wine text-white hover:shadow-wine/30 hover:shadow-2xl"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"

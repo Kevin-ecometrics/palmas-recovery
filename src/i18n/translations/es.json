@@ -610,6 +610,11 @@
     "successSubtitle": "Te contactaremos pronto para confirmar tu reservaci\u00f3n.",
     "cancellationTitle": "Pol\u00edtica de cancelaci\u00f3n",
     "cancellationNotice": "Al confirmar esta reserva aceptas nuestro reglamento de dep\u00f3sitos, cambios y",
+    "terms": {
+      "label": "Acepto los",
+      "link": "T\u00e9rminos y Condiciones",
+      "required": "Debes aceptar los T\u00e9rminos y Condiciones para continuar"
+    },
     "cancellationItems": [
       "Cancelaci\u00f3n gratuita hasta 48 horas antes del check-in",
       "50% de reembolso por cancelaciones dentro de 48 horas",
